@@ -1,0 +1,10 @@
+site_name: Faxe
+theme: material
+extra_css:
+  - 'stylesheets/extra.css'
+markdown_extensions:
+  - codehilite:
+        guess_lang: False
+        use_pygments: True
+        noclasses: True
+        pygments_style: monokai
