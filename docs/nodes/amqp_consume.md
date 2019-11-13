@@ -43,7 +43,7 @@ dt_format    | description                                  | example
 'millisecond'|timestamp UTC in milliseconds                 |1565343079000
 'second'     |timestamp UTC in seconds                      |1565343079
 'float_micro'|timestamp UTC float with microsecond precision|1565343079.173588
-'float_millisecond|timestamp UTC float with millisecond precision|1565343079.173
+'float_millisecond'|timestamp UTC float with millisecond precision|1565343079.173
 'ISO8601'    |ISO8601 Datetime format string                |'2011-10-05T14:48:00.000Z'
 'RFC3339'    |RFC3339 Datetime format string                |'2018-02-01 15:18:02.088Z'
 'convtrack_datetime'|special datetime format used in the conveyor tracking data stream|'19.08.01  17:33:44,867  '

@@ -29,7 +29,7 @@ Example
         'data.tbo[1].ix_Lift_PosTop', 'data.tbo[1].ix_Lift_PosBo'
         )
     
-Read 4 values (BOOL in this case) from a plc and name them with a deep json path.
+Read 4 values (BOOL in this case) from a plc every 3 seconds and name them with a deep json path.
 
 
 Parameters

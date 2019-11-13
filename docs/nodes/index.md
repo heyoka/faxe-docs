@@ -1,10 +1,7 @@
-List of currently supported nodes
----------------------------------
+# Faxe nodes
 
-* [stats](./nodes/stats.md)
-* python
+## Parameter types
 
-
-
-| params | | trash | | input types  |
+Type name            | Description                                     | Examples
+---------------------|-------------------------------------------------|---------
 

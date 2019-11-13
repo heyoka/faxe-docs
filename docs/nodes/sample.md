@@ -13,7 +13,7 @@ Keep every 5th data_point or data_batch.
 
     |sample(10s)
     
-Keep every point or batch, that falls in a 10 second boundary.
+Keep every point or batch, that falls in a 10 second interval.
 
 
 Parameters

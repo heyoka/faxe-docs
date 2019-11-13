@@ -7,6 +7,7 @@ If the 'field_merge' parameter is given, the node will merge the field given fro
 joining.
 
 When considering the "fill" option, the following rules apply:
+
 * none - (default) skip rows where a point is missing, inner join.
 * null - fill missing points with null, full outer join.
 * Any numerical value - fill fields with given value, full outer join.
