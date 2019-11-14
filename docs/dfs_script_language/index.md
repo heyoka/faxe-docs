@@ -60,6 +60,8 @@ OR | or
 != | Not equal
 /= | Not equal
 ! | Logical Not
+rem| remainder
+div|integer division
 
 These operators are mainly used in Lambda expressions in faxe.
 
@@ -112,7 +114,7 @@ text      | Text type. Mostly used where strings are used | <<< SELECT MEAN(obj[
 integer   | Integer type. Arbitrarily big ints are allowed | 123456789987654321, 55
 float     | Floating point number. May be arbitrarily big  | 12.343422023, 5.6
 duration  | A duration literal. See section below.         | 34s, 500ms, 2d
-lambda    | A lambda expression. See extra section in this documentarion| lambda: str_tolower('BIG')
+lambda    | A lambda expression. See extra section in this documentarion| lambda: str_downcase('BIG')
     
 ### Duration literals 
 
