@@ -1,7 +1,7 @@
 The s7poll node
 =====================
 
-Periodically pull data from a siemens s7 plc via the snap7 library using the `tcp on iso protocoll`.
+Periodically pull data from a siemens s7 plc via the snap7 library using the `iso on tcp protocol`.
 
 Data `addressing` can be done in a `Step7` schema or with a sligthly different schema used in node-red
 (although the step7 variant is preferred). 
