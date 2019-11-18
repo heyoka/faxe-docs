@@ -1,7 +1,5 @@
 # Faxe nodes
 
-## Parameter types
+## Parameters
 
-Type name            | Description                                     | Examples
----------------------|-------------------------------------------------|---------
-
+**Every parameter with no default value is mandatory !**
