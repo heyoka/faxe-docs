@@ -7,7 +7,7 @@ Flow based data-collector and time-centric data-processor.
 
 ## Rest Api
 
-With the [rest api](../rest-api/faxe_rest_api.html) for `faxe` you can `list`, `register`, `start`, `stop`, `delete`, `...` faxe tasks.
+With the [rest api](./faxe_rest_api.html) for `faxe` you can `list`, `register`, `start`, `stop`, `delete`, `...` faxe tasks.
 
 
 ## General
