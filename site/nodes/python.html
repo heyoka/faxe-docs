@@ -1045,6 +1045,15 @@ Note that parameter definition must be in <code>bytes</code> type.</p>
 
     <span style="color: #a6e22e">@staticmethod</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">():</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        overwrite this method to request options you would like to use</span>
+
+<span style="color: #e6db74">        return value is a list of tuples: (option_name, option_type, (optional: default type))</span>
+<span style="color: #e6db74">        a two tuple: (b&quot;foo&quot;, b&quot;string&quot;) with no default value is mandatory in the dfs script</span>
+<span style="color: #e6db74">        a three tuple: (b&quot;foo&quot;, b&quot;string&quot;, b&quot;mystring&quot;) may be overwritten in a dfs script</span>
+
+<span style="color: #e6db74">        :return: list of tuples</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
         <span style="color: #f8f8f2">opts</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
             <span style="color: #f8f8f2">(</span><span style="color: #e6db74">b&#39;field&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">b&#39;string&#39;</span><span style="color: #f8f8f2">),</span>
             <span style="color: #f8f8f2">(</span><span style="color: #e6db74">b&#39;as&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">b&#39;string&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">b&#39;double&#39;</span><span style="color: #f8f8f2">)</span>
@@ -1052,14 +1061,26 @@ Note that parameter definition must be in <code>bytes</code> type.</p>
         <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">opts</span>
 
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">init</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">args):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        will be called on startup with args requested with options()</span>
+<span style="color: #e6db74">        :param args: dict</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
         <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">fieldname</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">args[</span><span style="color: #e6db74">b&#39;field&#39;</span><span style="color: #f8f8f2">]</span>
         <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">asfieldname</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">args[</span><span style="color: #e6db74">b&#39;as&#39;</span><span style="color: #f8f8f2">]</span>
         <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;my args: &quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">args)</span>
 
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">handle_point</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">point_data):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        called when a data_point comes in to this node</span>
+<span style="color: #e6db74">        :param point_data: dict</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
         <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">emit(self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">calc(point_data))</span>
 
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">handle_batch</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">batch_data):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        called when a data_batch comes in</span>
+<span style="color: #e6db74">        :param batch_data: list of dicts</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
         <span style="color: #f8f8f2">out_list</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">list()</span>
         <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">point</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">batch_data:</span>
             <span style="color: #f8f8f2">out_list</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">calc(point))</span>

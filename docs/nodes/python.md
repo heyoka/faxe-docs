@@ -42,6 +42,15 @@ class Double(Faxe):
 
     @staticmethod
     def options():
+        """
+        overwrite this method to request options you would like to use
+
+        return value is a list of tuples: (option_name, option_type, (optional: default type))
+        a two tuple: (b"foo", b"string") with no default value is mandatory in the dfs script
+        a three tuple: (b"foo", b"string", b"mystring") may be overwritten in a dfs script
+
+        :return: list of tuples
+        """
         opts = [
             (b'field', b'string'),
             (b'as', b'string', b'double')
@@ -49,14 +58,26 @@ class Double(Faxe):
         return opts
 
     def init(self, args):
+        """
+        will be called on startup with args requested with options()
+        :param args: dict
+        """
         self.fieldname = args[b'field']
         self.asfieldname = args[b'as']
         print("my args: ", args)
 
     def handle_point(self, point_data):
+        """
+        called when a data_point comes in to this node
+        :param point_data: dict
+        """
         self.emit(self.calc(point_data))
 
     def handle_batch(self, batch_data):
+        """
+        called when a data_batch comes in
+        :param batch_data: list of dicts
+        """
         out_list = list()
         for point in batch_data:
             out_list.append(self.calc(point))
