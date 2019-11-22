@@ -9,11 +9,11 @@ Example
     
     |shift(5m)
   
-Shift all data point 5m forward in time.
+Shift all data points 5 minutes forward in time.
 
     |shift(-10s)
     
-Shift all data points 10s backwards in time.
+Shift all data points 10 seconds backwards in time.
 
 
 Parameters

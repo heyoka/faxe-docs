@@ -19,6 +19,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/ArrayOfTasks'
+        405:
+          description: "Method not allowed"
   /tasks/running:
     get:
       summary: Returns a list of all tasks currently running.
@@ -30,6 +32,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/ArrayOfTasks'
+        405:
+          description: "Method not allowed"
   /task/{task_id}:
     get:
       summary: Get a task by its id
@@ -42,7 +46,9 @@ paths:
           schema:
             $ref: '#/definitions/Task'
         404:
-          description: Task not found
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path" 
           name: "task_id"
@@ -59,13 +65,15 @@ paths:
           description: "Task started successfully"
         404:
           description: "Task could not be found"
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path"
           name: "task_id"
           description: "Id of the task, that should be started"
           required: true
           type: "integer"
-  /task/start/permanent/{task_id}:
+  /task/start/{task_id}/true:
     get:
       summary: Start a task permanently.
       description: A permanently started task will automatically be started on faxe startup.
@@ -74,8 +82,12 @@ paths:
       responses:
         200:
           description: "Task started successfully"
+          schema:
+            $ref: '#/definitions/started'
         404:
           description: "Task could not be found"
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path"
           name: "task_id"
@@ -92,13 +104,15 @@ paths:
           description: "Task stopped successfully"
         404:
           description: "Task could not be found"
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path"
           name: "task_id"
           description: "Id of the task, that should be stopped"
           required: true
           type: "integer"
-  /task/stop/permanent/{task_id}:
+  /task/stop/{task_id}/true:
     get:
       summary: Stop a task permanently.
       description: A permanently stopped task will NOT automatically be started on faxe startup anymore.
@@ -109,6 +123,8 @@ paths:
           description: "Task stopped successfully"
         404:
           description: "Task could not be found"
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path"
           name: "task_id"
@@ -147,10 +163,57 @@ paths:
               error:
                 type: string
                 description: error message
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "formData"
           name: "name"
           description: "Name for the newly registered task"
+          type: "string"
+        - in: "formData"
+          name: "dfs"
+          description: "A valid dfs script"
+          type: "string"
+  /task/update/{task_id}:
+    post:
+      summary: "Update an existing task."
+      description: "Provide a dfs script and a name, update can be done while a task is running!"
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "Successfully updated task"
+          schema:
+            properties:
+              id:
+                type: integer
+                description: The task ID
+              name:
+                type: string
+                description: The task name
+              success:
+                type: boolean
+                default: true
+        400:
+          description: "Error updating the task"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: false
+              error:
+                type: string
+                description: error message
+        404:
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "formData"
+          name: "name"
+          description: "Task name"
           type: "string"
         - in: "formData"
           name: "dfs"
@@ -167,6 +230,8 @@ paths:
           description: "Task successfully registered"
         404:
           description: "Template with id 'template_id' not found."
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path"
           name: "template_id"
@@ -186,6 +251,8 @@ paths:
           description: "Task successfully deleted."
         404:
           description: "Task with id 'task_id' could not be found."
+        405:
+          description: "Method not allowed"
         406:
           description: "Task is running and must be stopped before it can be deleted."
       parameters:
@@ -212,7 +279,9 @@ paths:
         200:
           description: OK
         404:
-          description: Template not found
+          description: "Template not found"
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path" 
           name: "template_id"
@@ -230,6 +299,8 @@ paths:
       responses:
         200:
           description: "Successfully parsed and registered template"
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "formData"
           name: "name"
@@ -249,13 +320,29 @@ paths:
           description: "Template successfully deleted."
         404:
           description: "Template with id 'task_id' could not be found."
+        405:
+          description: "Method not allowed"
       parameters:
         - in: "path"
           name: "template_id"
           type: "integer"
           required: true
 
+
+
 definitions:
+  started:
+    type: object
+    properties:
+      ok:
+        type: string
+        description: "started"
+  stopped:
+    type: object
+    properties:
+      error:
+        type: string
+        description: error string
   Task:
     type: object
     properties:
