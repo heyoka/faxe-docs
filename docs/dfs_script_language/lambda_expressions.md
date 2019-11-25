@@ -96,7 +96,8 @@ Function                    | Description
 `max(x, y)` -> number|
 `min(x, y)` -> number
 `pow(x, y)` -> float|
-`round(x)` -> integer|
+`round(x)` -> integer| round a number to an integer
+`round_float(precision, x)` -> float| round a float with the given precision
 `sin(x)` -> float|
 `sinh(x)` -> float|
 `sqrt(x)` -> float|
