@@ -94,7 +94,7 @@ Function                    | Description
 `log10(x)` -> float|
 `log2(x)` -> float|
 `max(x, y)` -> number|
-`min(x, y)` -> number
+`min(x, y)` -> number|
 `pow(x, y)` -> float|
 `round(x)` -> integer| round a number to an integer
 `round_float(x, precision)` -> float| round a float (x) with the given precision
