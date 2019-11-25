@@ -1024,7 +1024,8 @@
 <p>Keep only those fields and tags specified by the parameters.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|keep()
-.fields(&#39;topic&#39;, &#39;temperature&#39;)
+.fields(&#39;data.topic&#39;, &#39;data.temperature&#39;)
+.as(&#39;topic&#39;, &#39;temperature&#39;)
 </pre></div>
 
 
@@ -1046,6 +1047,11 @@
 <tr>
 <td>tags( <code>string_list</code> )</td>
 <td>list of tagnames to keep from the incoming data</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>as( <code>string_list</code>)</td>
+<td>list of new field names for the kept fields, if given, must have the same count of names as <code>fields</code></td>
 <td>[]</td>
 </tr>
 </tbody>
