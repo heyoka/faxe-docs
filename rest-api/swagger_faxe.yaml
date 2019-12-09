@@ -327,8 +327,78 @@ paths:
           name: "template_id"
           type: "integer"
           required: true
+  /task/start_temp:
+    post:
+      summary: "Start a temporary task"
+      description: "Start the given dfs script with a TTL, runtime can be extended with a call to /task/ping/:task_id;
+      when the timeout is over the task will stop and delete itself. Temporary tasks can not be restarted or updated!"
+      produces:
+        - 'application/json'
+      consumes:
+        - 'application/x-www-form-urlencoded'
+      responses:
+        200:
+          description: "Sucessfully parsed the DFS script and started the task with the given ttl"
+          schema:
+            properties:
+              id:
+                type: string
+                description: The task ID
+              ttl:
+                type: integer
+                description: Time to live
+              success:
+                type: boolean
+                default: true
+        400:
+          description: "An error occurred when parsing or starting the script"
+          schema:
+            properties:
+              error:
+                type: string
+                description: String describing the error
+              success:
+                type: boolean
+                default: false
+      parameters:
+        - in: "formData"
+          name: "dfs"
+          description: "DFS Script to run"
+          type: "string"
+          required: true
+        - in: "formData"
+          name: "ttl"
+          description: "Timeout in milliseconds"
+          type: "integer"
+          required: true
 
-
+  /task/ping/{task_id}:
+    post:
+      summary: "Extend the lifetime of a temporary task"
+      responses:
+        200:
+          description: "Successfully extended the tasks lifetime"
+          schema:
+            properties:
+              id:
+                type: string
+                description: The task ID
+              ttl:
+                type: integer
+                description: Time to live
+              success:
+                type: boolean
+                default: true
+        400:
+          description: "An error occurred. Maybe the tasks has stopped already or was not found."
+          schema:
+            properties:
+              error:
+                type: string
+                description: String describing the error
+              success:
+                type: boolean
+                default: false
 
 definitions:
   started:
