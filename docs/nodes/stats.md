@@ -3,8 +3,9 @@ The stats node
 
 The stats node lets you compute statistical functions on data_points and data_batches.
 
-see nodes under `Statistics` for more info
+See nodes under `statistics` for details.
 
+Stats nodes produce a new stream, the incoming stream is not outputted.
 
 Parameters
 ----------

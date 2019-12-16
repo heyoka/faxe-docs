@@ -41,6 +41,13 @@ Example
 Joins the fields of `v1` and `v2` and produces a stream, that has the fields `v1.joined.val` and `v2.joined.val`
 
 
+Node Parameters
+---------------
+Parameter     | Description | Default 
+--------------|-------------|--------- 
+nodes( `node_list` )| list of node (chains) to merge  | []
+
+
 Parameters
 ----------
 
@@ -51,3 +58,78 @@ field_merge( `string` )|when given, the join node will do a field merge operatio
 missing_timeout( `duration` )| values that do not arrive within this timeout will be treated as missing | 20s
 tolerance( `duration` )|db fieldnames (mapping for faxe fieldname to table field names)|
 fill( 'none' 'null' `any` )|fill missing values / join behaviour|'none'
+
+
+### Merge example
+
+Let's look at an example where the streams coming out of two nodes are not joined with prefixes, but
+a merge operation is performed. 
+
+    def v1 =
+    |json_emitter()
+    .every(3s)
+    .json(<<< {"condition": {"id": 0, "name": "OK", "sub_cond":
+            [{"value": 33}]}, "condition_reason": "",
+            "predicted_maintenance_time": 1584246411783,
+            "vac_on_without_contact": [1.2, 2.5, 4.33]} >>>)
+    
+    def v2 =
+    |json_emitter()
+    .every(3s)
+    .json(<<< {"condition": {"id1": 0, "name1": "OK", "sub_cond":
+            [{"number": 44}]}, "condition_reason": "",
+            "predicted_maintenance_time": 1584246411783,
+            "vac_on_without_contact": [2.2, 2.5, 4.33],
+            "vac_on_with_contact": [5.6, 45.98, 7.012]} >>>)
+    
+    v1
+        |join(v2)
+        .field_merge('data')
+        .tolerance(20ms)
+        .missing_timeout(30ms)
+        .fill(null)
+
+    |debug()
+    
+#### v1 node data-field (in json format for readability):
+   
+```json
+{"condition": {"id": 0, "name": "OK", "sub_cond":
+            [{"value": 33}]}, "condition_reason": "Reason",
+ "predicted_maintenance_time": 1584246411783,
+ "vac_on_without_contact": [1.2, 2.5, 4.33]
+            }
+```  
+#### v2 node data-field:
+   
+```json
+{"condition": {"id1": 0, "name1": "OK", "sub_cond":
+            [{"number": 44}]}, "condition_reason": "",
+ "predicted_maintenance_time": 1584246411785,
+ "vac_on_without_contact": [2.2, 2.5, 4.33],
+ "vac_on_with_contact": [5.6, 45.98, 7.012]
+            }
+```  
+    
+    
+The result data-field after merge (json format here):
+
+```json
+{"condition":
+         {"name1":"OK","name":"OK","id1":0,"id":0,
+         "sub_cond":[{"number":44}, {"value":33}]
+         },
+ "predicted_maintenance_time":1584246411785,
+ "vac_on_without_contact":[1.2,2.2,2.5,2.5,4.33,4.33],
+ "vac_on_with_contact":[5.6,45.98,7.012],
+ "condition_reason":""
+         }
+```
+
+Objects and lists and lists of objects will be merged.
+
+If a path exists in several streams, the value in the first stream is superseded by the value in
+a following stream ("condition_reason" and "predicted_maintenance_time" in this example).
+Except for lists, which will be merged ("vac_on_without_contact").
+
+    
