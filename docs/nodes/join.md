@@ -53,7 +53,7 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-prefix( `string_list` )| list of prefixes (used in join mode) | []
+prefix( `string_list` )| list of prefixes (used in join mode) | ['', ''] (no prefixes)
 field_merge( `string` )|when given, the join node will do a field merge operation| undefined
 missing_timeout( `duration` )| values that do not arrive within this timeout will be treated as missing | 20s
 tolerance( `duration` )|db fieldnames (mapping for faxe fieldname to table field names)|

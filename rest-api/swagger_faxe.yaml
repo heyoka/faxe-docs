@@ -8,10 +8,68 @@ schemes:
   - https
 basePath: /v1
 paths:
+  /stats/vm:
+    get:
+      summary: Erlang VM stats
+      description: Returns statistics about the erlang VM faxe is running on.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              {
+                "vmstats-vm_uptime": 3743605,
+                "vmstats-run_queue": 1,
+                "vmstats-reductions": 39523,
+                "vmstats-proc_limit": 262144,
+                "vmstats-proc_count": 182,
+                "vmstats-port_limit": 65536,
+                "vmstats-port_count": 9,
+                "vmstats-modules": 1338,
+                "vmstats-messages_in_queues": 0,
+                "vmstats-memory.total": 86.81,
+                "vmstats-memory.procs_used": 31.51,
+                "vmstats-memory.ets": 2.52,
+                "vmstats-memory.binary": 0.49,
+                "vmstats-memory.atom_used": 1.43,
+                "vmstats-io.bytes_out": 0,
+                "vmstats-io.bytes_in": 0,
+                "vmstats-gc.words_reclaimed": 261675,
+                "vmstats-gc.count": 4,
+                "vmstats-error_logger_queue_len": 0,
+                "vmstats-atom_count": 44524
+              }
+        405:
+          description: Method not allowed
+  /stats/faxe:
+    get:
+      summary: FAXE stats
+      description: Returns statistics the faxe application.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              {
+                "running_temp_tasks": 0,
+                "running_tasks": 0,
+                "registered_templates": 4,
+                "registered_tasks": 18,
+                "permanent_tasks": 0,
+                "faxe_version": "0.8.1",
+                "data_throughput_sec": 11,
+                "data_paths_known": 0
+              }
+        405:
+          description: Method not allowed
   /tasks:
     get:
-      summary: Returns a list of all tasks currently registered with this faxe instance.
-      description: A list of task-representations
+      summary: List of tasks
+      description: Returns a (possibly filtered) list of all  tasks.
       produces:
         - application/json
       responses:
@@ -21,9 +79,18 @@ paths:
             $ref: '#/definitions/ArrayOfTasks'
         405:
           description: "Method not allowed"
+    parameters:
+      - in: query
+        name: order_by
+        type: string
+        description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
+      - in: query
+        name: dir
+        type: string
+        description: direction for ordering, 'asc' or (default) 'desc'
   /tasks/running:
     get:
-      summary: Returns a list of all tasks currently running.
+      summary: List of running tasks.
       description: none
       produces:
         - application/json
@@ -34,10 +101,67 @@ paths:
             $ref: '#/definitions/ArrayOfTasks'
         405:
           description: "Method not allowed"
+    parameters:
+      - in: query
+        name: order_by
+        type: string
+        description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
+      - in: query
+        name: dir
+        type: string
+        description: direction for ordering, 'asc' or (default) 'desc'
+  /tasks/by_template/{template_id}:
+    get:
+      summary: Tasks by Template
+      description: Get a list of all tasks, that were created using the template with the given id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ArrayOfTasks'
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: query
+        name: order_by
+        type: string
+        default: changed
+        description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
+      - in: query
+        name: dir
+        type: string
+        default: desc
+        description: direction for ordering, 'asc' or (default) 'desc'
+  /tasks/by_tags/{tags}:
+    get:
+      summary: Tasks by tags
+      description: Get a list of all tasks, that have at least one of the given tags associated with them. Give a comma-separated list of tag-strings
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ArrayOfTasks'
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: query
+        name: order_by
+        type: string
+        default: changed
+        description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
+      - in: query
+        name: dir
+        type: string
+        default: desc
+        description: direction for ordering, 'asc' or (default) 'desc'
   /task/{task_id}:
     get:
-      summary: Get a task by its id
-      description: none
+      summary: Get a task
+      description: Get a task by its id
       produces:
         - application/json
       responses:
@@ -133,7 +257,7 @@ paths:
           type: "integer"
   /task/register:
     post:
-      summary: "Register a task with faxe."
+      summary: "Register a task."
       description: "Provide a dfs script and a name for the new task"
       produces:
         - application/json
@@ -174,9 +298,13 @@ paths:
           name: "dfs"
           description: "A valid dfs script"
           type: "string"
+        - in: "formData"
+          name: "tags"
+          description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          type: string
   /task/update/{task_id}:
     post:
-      summary: "Update an existing task."
+      summary: "Update a task."
       description: "Provide a dfs script and a name, update can be done while a task is running!"
       produces:
         - application/json
@@ -221,7 +349,7 @@ paths:
           type: "string"
   /task/from_template/{template_id}/{task_name}:
     post:
-      summary: "Create a new task from an existing template."
+      summary: "Create task from template."
       description: "Registers a new task with name 'name' from the template with id 'template_id'."
       produces:
         - application/json
@@ -241,9 +369,14 @@ paths:
           name: "task_name"
           type: "string"
           required: true
+        - in: "formData"
+          name: "tags"
+          description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          type: string
   /task/delete/{task_id}:
     delete:
-      summary: "Delete a task by it's id."
+      summary: "Delete a task"
+      description: "Delete a task by it's id."
       produces:
         - application/json
       responses:
@@ -260,19 +393,116 @@ paths:
           name: "task_id"
           type: "integer"
           required: true
-  /templates:
+  /task/add_tags/{task_id}:
+    post:
+      summary: Add tags to a task
+      description: Add a list of tags to the specified task, note that a task will have a tag only once,
+          it does not matter, if a task is added multiple times
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tags were successfully added"
+        404:
+          description: Task with id task_id were not found
+        405:
+          description: Method not allowed
+      parameters:
+        - in: "path"
+          name: "task_id"
+          type: "integer"
+          required: true
+        - in: "formData"
+          name: "tags"
+          required: true
+          description: "A list of tags for the task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          type: string
+  /task/remove_tags/{task_id}:
+    post:
+      summary: Remove tags from a task
+      description: Remove a list of tags from the specified task
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tags were successfully removed"
+        404:
+          description: Task with id task_id were not found
+        405:
+          description: Method not allowed
+      parameters:
+        - in: "path"
+          name: "task_id"
+          type: "integer"
+          required: true
+        - in: "formData"
+          name: "tags"
+          required: true
+          description: "A list of tags, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          type: string
+  /task/logs/{task_id}:
     get:
-      summary: Returns a list of all templates currently registered with this faxe instance.
-      description: A list of template-representations
+      summary: Logs by task
+      description: Get a list of Logs for a task. Logs are ordered by time desc.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: get a list of logs
+          schema:
+            $ref: '#/definitions/Logs'
+      parameters:
+        - in: "path"
+          name: "task_id"
+          type: "integer"
+          required: true
+        - in: "query"
+          name: limit
+          type: "integer"
+          required: false
+          default: 20
+          description: limit the list of logs
+        - in: "query"
+          name: max_age
+          type: integer
+          default: 15
+          description: max age of the logs in minutes
+          required: false
+  /tags:
+    get:
+      summary: List of tags
+      description: Get a list of all tags currently in use
       produces:
         - application/json
       responses:
         200:
           description: OK
+        405:
+          description: Method not allowed
+  /templates:
+    get:
+      summary: List of templates
+      description: Returns a list of all templates currently registered with this faxe instance.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+    parameters:
+      - in: query
+        name: order_by
+        type: string
+        default: changed
+        description: order the list of templates by 'id', 'name' or (default) 'changed'
+      - in: query
+        name: dir
+        type: string
+        default: desc
+        description: direction for ordering, 'asc' or (default) 'desc'
   /template/{template_id}:
     get:
-      summary: Get a template by its id
-      description: none
+      summary: Get a template
+      description: Get a template by it's ID
       produces:
         - application/json
       responses:
@@ -290,7 +520,7 @@ paths:
           type: "integer"      
   /template/register:
     post:
-      summary: "Register a template with faxe."
+      summary: "Register a template"
       description: "Provide a dfs script and a name for the new template"
       produces:
         - application/json
@@ -312,7 +542,7 @@ paths:
           type: "string"  
   /template/delete/{template_id}:
     delete:
-      summary: "Delete a template by it's id."
+      summary: "Delete a template"
       produces:
         - application/json
       responses:
@@ -425,16 +655,24 @@ definitions:
       dfs:
         type: string
         description: The DFS Script
+      tags:
+        $ref: '#/definitions/Tags'
+      vars:
+        $ref: '#/definitions/TemplateVars'
+        description: If created by a template, contains objects of vars used when creating
+      template:
+        type: string
+        description: If created by template, contains the name of the template used for creation
       running:
         type: boolean
         description: Whether the task is running at the moment
       permanent:
         type: boolean
         description: Whether the task is to be started permanent
-      created:
+      changed:
         type: string
         format: ISO8601
-        description: Time the task was created
+        description: Time the task was changed the last time
       last_start:
         type: string
         format: ISO8601
@@ -447,3 +685,56 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/Task'
+  TemplateVar:
+    type: object
+  TemplateVars:
+    type: object
+    example:
+      {"template_vars": {"var1": "val1", "var2": "val2"}}
+  Tags:
+    type: array
+    items:
+      type: string
+    example:
+      ["tag1", "tag2", "tag3"]
+  LogEntry:
+    type: object
+    properties:
+      severity:
+          type: string
+          example:
+            "warning"
+      meta:
+        type: string
+        description: a json string
+        example:
+          "{\"node\":\"faxe1@ubuntu\",\"pid\":\"<0.1684.0>\",\"application\":\"faxe\",\"line\":45,\"module\":\"esp_debug\",\"function\":\"do_log\"}"
+      flow:
+        type: string
+        example: "flow_1"
+      datetime:
+        type: string
+        format: ISO8601
+        example: "2020-02-26T15:40:33.010000Z"
+      comp:
+        type: string
+        description: the flow node
+        example:
+          "crate_query1"
+  LogEntries:
+    type: array
+    items:
+      $ref: '#/definitions/LogEntry'
+  Logs:
+    type: object
+    properties:
+      logs:
+        $ref: '#/definitions/LogEntries'
+
+
+
+
+
+
+
+
