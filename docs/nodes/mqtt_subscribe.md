@@ -1,16 +1,14 @@
 The mqtt_subscribe node
 =====================
 
-Subscribe to an mqtt-broker and get data for a specific topic. 
+Subscribe to an mqtt-broker and get data from one or more topics. 
 
 
 Example
 -------
 
     |mqtt_subscribe()
-    .host('192.168.8.9')
-    .port(1883)
-    .topic('top/grips/#')
+    .topics('top/grips/#')
     .dt_field('UTC-Stamp')
     .dt_format('float_micro')
 
@@ -20,9 +18,9 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-host( `string` )| Ip address or hostname of the broker|
-port( `integer` )| The broker's port | 1883
-topic( `string` )| mqtt topic to use| 
+host( `string` )| Ip address or hostname of the broker| from config file
+port( `integer` )| The broker's port | 1883 from config file
+topics( `string_list` )| mqtt topic to use| 
 qos( `integer` )|Quality of service, one of 0, 1 or 2| 1
 retained( is_set )| whether the message should be retained on the broker| false (not set)
 dt_field( `string` )|name of the timestamp field that is expected|'ts'

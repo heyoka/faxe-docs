@@ -3,17 +3,16 @@ The join node
 
 Join data from two or more nodes, given a list of prefixes, for each row.
 
-If the 'field_merge' parameter is given, the node will merge the field given from every in-node, instead of
+If the `field_merge` parameter is given, the node will merge the field given from every in-node, instead of
 joining.
 
-When considering the "fill" option, the following rules apply:
+When considering the `fill` option, the following rules apply:
 
-* none - (default) skip rows where a point is missing, inner join.
-* null - fill missing points with null, full outer join.
-* Any numerical value - fill fields with given value, full outer join.
+* 'none' - (default) skip rows where a point is missing, inner join.
+* 'null' - fill missing points with null, full outer join.
+* Any value - fill fields with given value, full outer join.
 
 Note, that this node will produce a completely new stream.
-
 
 
 Example

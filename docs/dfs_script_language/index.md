@@ -5,7 +5,7 @@ Dfs is heavily influenced by InfluxData's `TICKScript`, in fact faxe started out
 
 To get a basic understanding of dfs, you can therefore read [Introducing the TICKscript language](https://docs.influxdata.com/kapacitor/v1.5/tick/introduction/).
 
-Some notable differencies between TICKScript and dfs include:
+Some notable differences between TICKScript and dfs include:
 
 * dfs uses the `def` keyword for declarations
 * for comments the `%` sign is used
@@ -79,7 +79,7 @@ Variables and literals
 ======================
 Variables are declared using the keyword `def` at the start of a declaration. 
 Variables are immutable and cannot be reassigned new values later on in the script, 
-though they can be used in other declarations and can be passed into methods. 
+though they can be used in other declarations and can be passed into functions, property calls and text-templates.
   
 Variable declarations
 ---------------------
@@ -105,22 +105,25 @@ Variable declarations
 Datatypes
 ---------
 
-DFS recognizes six types, the type of the literal will be interpreted from its declaration.
+DFS recognizes six basic types, the type of the literal will be interpreted from its declaration.
 
 Type name | Description | Examples
 ----------|-------------|---------
 string    | String type. Single quotes are used for string, string can also be multiline | 'this_is_a_string'
+binary    | Same as 'string', internally faxe does not have a string type, all strings a binaries | 'this_is_a_binary'
 text      | Text type. Mostly used where strings are used | <<< SELECT MEAN(obj['current']) FROM mytable >>>
 integer   | Integer type. Arbitrarily big ints are allowed | 123456789987654321, 55
 float     | Floating point number. May be arbitrarily big  | 12.343422023, 5.6
+double    | Same as float  | 12.343422023, 5.6
 duration  | A duration literal. See section below.         | 34s, 500ms, 2d
-lambda    | A lambda expression. See extra section in this documentarion| lambda: str_downcase('BIG')
-    
+lambda    | A lambda expression. See extra section in this documentation| lambda: str_downcase('BIG')
+
 ### Duration literals 
 
 Duration literals define a span of time. 
 
-A duration literal is comprised of two parts: an integer and a duration unit. It is essentially an integer terminated by one or a pair of reserved characters, which represent a unit of time.
+A duration literal is comprised of two parts: an integer and a duration unit.
+It is essentially an integer terminated by one or a pair of reserved characters, which represent a unit of time.
 
 The following table presents the time units used in declaring duration types.
 
@@ -145,3 +148,34 @@ Internally all time and duration related values are converted to milliseconds in
     |win_time()
     .period(1h)
     .every(30m)
+    
+
+## Text templates
+
+    {{variable_name}}
+    
+-----------------------
+
+    def this_portion = 'it'
+    def text_template = <<< Some text where {{this_portion}} will get replaced >>>
+    
+In the above example, after compilation of the dfs script the variable `text_template` will hold the following value:
+
+`Some text where it will get replaced`
+
+Text templates can be used in variable declarations like in the above example, they can be used in node-parameter and option-parameter calls.
+While the above example seems to be useless, when used in template scripts they can be very powerful.
+The variable `this_portion` could be overwritten with a new value for every instantiation of a template script.
+
+There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:
+    
+    {{"value_name"}}
+    
+----------------------
+
+    |email()
+    .body(<<<
+        No data since {{datetime}} on topic 'ttgw/energy', last value was {{val}}. 
+        >>>)
+    
+ Here the values for `datetime` and `val` will be taken from the current data_point in the email node.

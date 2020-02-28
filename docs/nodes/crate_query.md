@@ -40,12 +40,12 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-host( `string` )| CrateDB host |
-port( `integer` )| CrateDB port |
-user( `string` )| username|
-pass( `string` )|password| ''
-database( `string` )|Database name|
-query( `string` `text` )|'SELECT-FROM' clause of the db query
+host( `string` )| CrateDB host | from config file
+port( `integer` )| CrateDB port | from config file
+user( `string` )| username| from config file
+pass( `string` )|password| from config file
+database( `string` )|Database name| from config file
+query( `string` `text` )|'SELECT-FROM' query clause
 time_field( `string` )|name of the timefield to use |'ts'
 every( `duration` )|time between query execution|5s
 period( `duration` )|time span of data to query|1h
