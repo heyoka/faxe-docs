@@ -695,6 +695,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../nodes/set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../nodes/shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -888,13 +900,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1173,41 +1185,41 @@
                 <h2 id="modbus-to-mqtt">Modbus to MQTT</h2>
 <p>In this example we write a simple DFS which reads energy data from a modbus-tcp device periodically and
 publishes to an mqtt broker.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def device_id = 255
-def modbus_ip = &#39;127.0.0.1&#39;
-def mqtt_broker = &#39;10.14.204.3&#39;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">device_id</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">255</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">modbus_ip</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;127.0.0.1&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">mqtt_broker</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;10.14.204.3&#39;</span>
 
-|modbus()
-.ip(&#39;127.0.0.1&#39;)
-%% not the default port here
-.port(8899)
-.device(device_id)
-%% we read the values every second
-.every(1s)
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">modbus()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% not the default port here</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8899</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">device</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">device_id</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% we read the values every second</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">1s</span><span style="color: #f8f8f2">)</span>
 
-%% we read 3 values 
-.function(&#39;coils&#39;, &#39;hregs&#39;, &#39;iregs&#39;)
-%% start addresses
-.from(2127, 3008, 104)
-%% amount of data for each value
-.count(1, 2, 2)
-%% we want these resulting fieldnames
-.as(&#39;ActiveEnergyConsumption&#39;, &#39;MaximalCurrentValue&#39;, &#39;BlindEnergyDelivered&#39;)
+<span style="color: #75715e">%% we read 3 values </span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">function</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;coils&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;iregs&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% start addresses</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">from</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2127</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3008</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">104</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% amount of data for each value</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% we want these resulting fieldnames</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;ActiveEnergyConsumption&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;MaximalCurrentValue&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;BlindEnergyDelivered&#39;</span><span style="color: #f8f8f2">)</span> 
 
-%% add some default values to each message
+<span style="color: #75715e">%% add some default values to each message</span>
 
-|default()
-.fields(&#39;id&#39;, &#39;vs&#39;, &#39;df&#39;)
-.field_values(&#39;my_id_string&#39;, 1, &#39;01.010&#39;)
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">default()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field_values</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my_id_string&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;01.010&#39;</span><span style="color: #f8f8f2">)</span>
 
-%% publish to mqtt broker
+<span style="color: #75715e">%% publish to mqtt broker</span>
 
-|mqtt_publish()
-.host(mqtt_broker)
-.port(1883)
-.qos(1)
-.topic(&#39;ttopic/energy&#39;)
-.retained()
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_publish()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">mqtt_broker</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1883</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">qos</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;ttopic/energy&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">retained</span><span style="color: #f8f8f2">()</span>
 </pre></div>
                 
                   

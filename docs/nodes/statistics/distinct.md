@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |distinct()
-    .field('status') 
 
+```dfs     
+|distinct()
+.field('status') 
+```
 
 Parameters
 ----------

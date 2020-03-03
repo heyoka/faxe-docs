@@ -13,11 +13,13 @@ The values will be held in an non persistent ets term storage.
 
 Example
 -------
+```dfs  
+|mem()
+.type('set')
+.field('topic')
+.key('topics_seen')
 
-    |mem()
-    .type('set')
-    .field('topic')
-    .key('topics_seen')
+```
  
 Holds a set of values from the field named `topic`.
 The set of values is available in lambda expression (within the same flow) with the key `topics_seen`.

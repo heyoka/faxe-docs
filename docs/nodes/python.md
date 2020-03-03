@@ -17,7 +17,9 @@ module: "double", class: "Double"
 
 A custom python node is used with an `@` as node sign instead of `|` in dfs!
 
-    @my_custom_python_node()
+```dfs  
+@my_custom_python_node()
+```
 
 Parameters
 ----------
@@ -89,7 +91,8 @@ class Double(Faxe):
 ```
 
 Use in a dfs script:
-
->        @double()
->        .field('val')
->        .as('double_val')
+```dfs  
+@double()
+.field('val')
+.as('double_val')
+```

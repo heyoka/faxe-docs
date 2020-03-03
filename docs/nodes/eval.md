@@ -10,10 +10,11 @@ This means that a lambda can use the result of a previous expression.
 
 Examples
 --------
-
-    |eval()
-    .lambdas(lambda: "val" * 2, lambda: "double" / 2)
-    .as('double', 'val')
+```dfs  
+|eval()
+.lambdas(lambda: "val" * 2, lambda: "double" / 2)
+.as('double', 'val')
+```
 
 This example demonstrates the 'serial' behaviour of the `eval` node.
 The second expression uses the field `double`, which the first expression just created.

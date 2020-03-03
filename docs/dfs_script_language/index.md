@@ -83,7 +83,7 @@ though they can be used in other declarations and can be passed into functions, 
   
 Variable declarations
 ---------------------
-
+```dfs
     def string = 'this is a string !'
     def text = <<< this is a text with some weird chars :// %& >>>
     def func = lambda: "value" / 3
@@ -101,7 +101,7 @@ Variable declarations
     % it can then be used like so
     in1
         |debug()
-    
+```
 Datatypes
 ---------
 
@@ -140,7 +140,7 @@ w|week
 Internally all time and duration related values are converted to milliseconds in faxe.
 
 #### Examples
-    
+```dfs
     def span = 10s
     def frequency = 10m
     def short = 50ms
@@ -148,17 +148,18 @@ Internally all time and duration related values are converted to milliseconds in
     |win_time()
     .period(1h)
     .every(30m)
-    
+```
 
 ## Text templates
 
+```dfs
     {{variable_name}}
-    
+```
 -----------------------
-
+```dfs
     def this_portion = 'it'
     def text_template = <<< Some text where {{this_portion}} will get replaced >>>
-    
+```
 In the above example, after compilation of the dfs script the variable `text_template` will hold the following value:
 
 `Some text where it will get replaced`
@@ -168,14 +169,14 @@ While the above example seems to be useless, when used in template scripts they 
 The variable `this_portion` could be overwritten with a new value for every instantiation of a template script.
 
 There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:
-    
+```dfs
     {{"value_name"}}
-    
+```
 ----------------------
-
+```dfs
     |email()
     .body(<<<
         No data since {{datetime}} on topic 'ttgw/energy', last value was {{val}}. 
         >>>)
-    
+```
  Here the values for `datetime` and `val` will be taken from the current data_point in the email node.

@@ -706,6 +706,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1192,17 +1204,17 @@
 <p>Sends data to a CRATE DB HTTP endpoint using Crate's HTTP Api.
 If any errors occur during the request, the node will attempt to retry sending.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def db_table = &#39;grip_log_fulltext3&#39;
-def db_fields = [&#39;id&#39;, &#39;df&#39;, &#39;vs&#39;, &#39;topic&#39;]
-def faxe_fields = [&#39;id&#39;, &#39;df&#39;, &#39;vs&#39;, &#39;topic&#39;]
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_table</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;grip_log_fulltext3&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">faxe_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>
 
-|http_post_crate()
-.host(&lt;&lt;&lt; http://deves-crate.internal &gt;&gt;&gt;)
-.port(4201) 
-.table(db_table)
-.db_fields(db_fields)
-.faxe_fields(faxe_fields)
-.remaining_fields_as(&#39;data_obj&#39;)
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">http_post_crate()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #a6e22e">http</span><span style="color: #f8f8f2">:</span><span style="color: #960050; background-color: #1e0010">//deves-crate.internal &gt;&gt;&gt;)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4201</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">table</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db_table</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remaining_fields_as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data_obj&#39;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

@@ -746,6 +746,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -939,13 +951,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1280,24 +1292,24 @@ joining.</p>
 </ul>
 <p>Note, that this node will produce a completely new stream.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def v1 =
-|value_emitter()
-.every(3s)
-.type(point)
-.align()
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">()</span>
 
-def v2 =
-|value_emitter()
-.every(5s)
-.type(point)
-.align()
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v2</span> <span style="color: #f92672">=</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">5s</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">()</span>
 
-v1
-    |join(v2)
-    .prefix(&#39;v1.joined&#39;, &#39;v2.joined&#39;)
-    .tolerance(3s)
-    .missing_timeout(3s)
-    .fill(none)
+<span style="color: #a6e22e">v1</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">join(</span><span style="color: #a6e22e">v2</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;v1.joined&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;v2.joined&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tolerance</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">missing_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">none</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 
@@ -1359,31 +1371,31 @@ v1
 <h3 id="merge-example">Merge example</h3>
 <p>Let's look at an example where the streams coming out of two nodes are not joined with prefixes, but
 a merge operation is performed. </p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def v1 =
-|json_emitter()
-.every(3s)
-.json(&lt;&lt;&lt; {&quot;condition&quot;: {&quot;id&quot;: 0, &quot;name&quot;: &quot;OK&quot;, &quot;sub_cond&quot;:
-        [{&quot;value&quot;: 33}]}, &quot;condition_reason&quot;: &quot;&quot;,
-        &quot;predicted_maintenance_time&quot;: 1584246411783,
-        &quot;vac_on_without_contact&quot;: [1.2, 2.5, 4.33]} &gt;&gt;&gt;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
+     <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&quot;value&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">33</span><span style="color: #f8f8f2">}]},</span> <span style="color: #e6db74">&quot;condition_reason&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
+     <span style="color: #e6db74">&quot;predicted_maintenance_time&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1584246411783</span><span style="color: #f8f8f2">,</span>
+     <span style="color: #e6db74">&quot;vac_on_without_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1.2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2.5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4.33</span><span style="color: #f8f8f2">]}</span> <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
 
-def v2 =
-|json_emitter()
-.every(3s)
-.json(&lt;&lt;&lt; {&quot;condition&quot;: {&quot;id1&quot;: 0, &quot;name1&quot;: &quot;OK&quot;, &quot;sub_cond&quot;:
-        [{&quot;number&quot;: 44}]}, &quot;condition_reason&quot;: &quot;&quot;,
-        &quot;predicted_maintenance_time&quot;: 1584246411783,
-        &quot;vac_on_without_contact&quot;: [2.2, 2.5, 4.33],
-        &quot;vac_on_with_contact&quot;: [5.6, 45.98, 7.012]} &gt;&gt;&gt;)
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v2</span> <span style="color: #f92672">=</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;id1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;name1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
+     <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&quot;number&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">44</span><span style="color: #f8f8f2">}]},</span> <span style="color: #e6db74">&quot;condition_reason&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
+     <span style="color: #e6db74">&quot;predicted_maintenance_time&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1584246411783</span><span style="color: #f8f8f2">,</span>
+     <span style="color: #e6db74">&quot;vac_on_without_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">2.2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2.5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4.33</span><span style="color: #f8f8f2">],</span>
+     <span style="color: #e6db74">&quot;vac_on_with_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">5.6</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">45.98</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7.012</span><span style="color: #f8f8f2">]}</span> <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
 
-v1
-    |join(v2)
-    .field_merge(&#39;data&#39;)
-    .tolerance(20ms)
-    .missing_timeout(30ms)
-    .fill(null)
+<span style="color: #a6e22e">v1</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">join(</span><span style="color: #a6e22e">v2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field_merge</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tolerance</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">20ms</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">missing_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">30ms</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">null</span><span style="color: #f8f8f2">)</span>
 
-|debug()
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 </pre></div>
 
 

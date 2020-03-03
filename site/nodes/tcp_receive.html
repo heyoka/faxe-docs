@@ -661,6 +661,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -906,13 +918,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1213,13 +1225,13 @@ The parser will then try to convert the data to faxe's internal format and emit 
 <p>If the <code>changed</code> option is given, the node will only emit on changed values (crc32 checksum comparison).</p>
 <p>The tcp listener is protected against flooding with the {active, once} inet option.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def parser = &#39;parser_robot_plc_v1&#39;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">parser</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;parser_robot_plc_v1&#39;</span>
 
-|tcp_recv()
-.ip(212.14.149.8)
-.port(9715)
-.parser(parser)
-.as(&#39;data&#39;)
+<span style="color: #f92672">|</span><span style="color: #a6e22e">tcp_recv</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;212.14.149.8&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">9715</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">parser</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parser</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

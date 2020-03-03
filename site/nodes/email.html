@@ -706,6 +706,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1191,13 +1203,13 @@
                 <h1 id="the-email-node">The email node</h1>
 <p>Send an email to one or more recipients</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|email()
-.to(&lt;&lt;&lt;name@email.com&gt;&gt;&gt;,&lt;&lt;&lt;another@email.com&gt;&gt;&gt;)
-.subject(&#39;Alert #ex3 EnergyData&#39;)
-.body(&lt;&lt;&lt;
-    No data since {{&quot;datetime&quot;}} on topic &#39;home/garage/energy&#39;, 
-    last value was {{&quot;val&quot;}}. 
-    &gt;&gt;&gt;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span><span style="color: #a6e22e">name</span><span style="color: #66d9ef">@</span><span style="color: #f8f8f2">email.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&lt;&lt;&lt;</span><span style="color: #a6e22e">another</span><span style="color: #66d9ef">@</span><span style="color: #f8f8f2">email.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">subject</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Alert #ex3 EnergyData&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span>
+    <span style="color: #a6e22e">No</span> <span style="color: #a6e22e">data</span> <span style="color: #a6e22e">since</span> <span style="color: #f8f8f2">{{</span><span style="color: #e6db74">&quot;datetime&quot;</span><span style="color: #f8f8f2">}}</span> <span style="color: #a6e22e">on</span> <span style="color: #a6e22e">topic</span> <span style="color: #e6db74">&#39;home/garage/energy&#39;</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #a6e22e">last</span> <span style="color: #a6e22e">value</span> <span style="color: #a6e22e">was</span> <span style="color: #f8f8f2">{{</span><span style="color: #e6db74">&quot;val&quot;</span><span style="color: #f8f8f2">}}.</span> 
+    <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

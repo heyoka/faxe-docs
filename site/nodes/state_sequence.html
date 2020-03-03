@@ -661,6 +661,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1202,17 +1214,17 @@ Normally this would not reset the sequence of evaluation, in this mode, it will.
 <p>On a successful evaluation of the whole sequence, the node will simply output the last value, that completed the sequence.</p>
 <p>The state_sequence node can be used with one or many input nodes.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>in1
-|state_sequence(in2, in3) %% can use any number of nodes
-.states(
-    lambda: &quot;data.topic&quot; == &#39;in1&#39;, %% state 1
-    lambda: &quot;data.topic&quot; == &#39;in2&#39;, %% state 2
-    lambda: &quot;data.topic&quot; == &#39;in3&#39;  %% state 3
-)
-.within(
-    25s, %% transition-time from state 1 to state 2
-    20s  %% transition-time from state 2 to state 3
-    )
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">in1</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">state_sequence(</span><span style="color: #a6e22e">in2</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">in3</span><span style="color: #f8f8f2">)</span> <span style="color: #75715e">%% can use any number of nodes</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">states</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;in1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">%% state 1</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;in2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">%% state 2</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;in3&#39;</span>  <span style="color: #75715e">%% state 3</span>
+<span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">within</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">25s</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">%% transition-time from state 1 to state 2</span>
+    <span style="color: #e6db74">20s</span>  <span style="color: #75715e">%% transition-time from state 2 to state 3</span>
+    <span style="color: #f8f8f2">)</span> 
 </pre></div>
 
 

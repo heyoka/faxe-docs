@@ -699,6 +699,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -892,13 +904,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1178,24 +1190,22 @@
 <h2 id="parameters">Parameters</h2>
 <p>Faxe nodes can have <code>2 types of parameters</code>:</p>
 <ol>
-<li>
-<p><strong>Node parameters</strong> provided to the node declaration function</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>% the level parameter is given to the node declaration function
-|debug(&#39;notice&#39;)
-</pre></div>
-
-
-</li>
-<li>
-<p><strong>Option parameters</strong> provided to an option call</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>% the level parameter is given as an extra option function
-|debug()
-.level(&#39;notice&#39;)
-</pre></div>
-
-
-</li>
+<li><strong>Node parameters</strong> provided to the node declaration function</li>
 </ol>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">% the level parameter is given to the node declaration function</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug(</span><span style="color: #e6db74">&#39;notice&#39;</span><span style="color: #f8f8f2">)</span>
+</pre></div>
+
+
+<ol>
+<li><strong>Option parameters</strong> provided to an option call</li>
+</ol>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">% the level parameter is given as an extra option function</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">level</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;notice&#39;</span><span style="color: #f8f8f2">)</span>
+</pre></div>
+
+
 <p>Some parameters are required and others are optional.</p>
 <p><strong>Every parameter with no default value is mandatory !</strong></p>
 <p>The following is a list of all possible parameter types faxe supports based on the basic data-types:</p>

@@ -706,6 +706,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1197,20 +1209,22 @@
 <li>For value comparison erlang's strict equals (=:=) is used, so 1.0 is not equal to 1</li>
 </ul>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>%% detects any changes
-|change_detect()
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">%% detects any changes</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect()</span>
 
 
-%% detect changes in one field, with timeout
-|change_detect()
-.fields(&#39;val&#39;)
-.reset_timeout(3s)
+<span style="color: #75715e">%% detect changes in one field, with timeout</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">reset_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
 
 
 
-in example json notation: {&quot;data&quot;; {&quot;x&quot;: {&quot;temp&quot;: 32.4564}, &quot;y&quot; : {&quot;temp&quot; : 31.15155}} }
-|change_detect()
-.fields(&#39;data.x.temp&#39;, &#39;data.y.temp&#39;)
+<span style="color: #75715e">% in example json notation: </span>
+<span style="color: #75715e">% {&quot;data&quot;: {&quot;x&quot;: {&quot;temp&quot;: 32.4564}, &quot;y&quot; : {&quot;temp&quot; : 31.15155}} }</span>
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.x.temp&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.y.temp&#39;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

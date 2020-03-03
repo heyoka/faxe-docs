@@ -5,10 +5,10 @@ Log incoming data to a file in json format (line by line)
 
 Example
 -------
-    
-    |log()
-    .file('topics.txt') 
-
+```dfs  
+|log()
+.file('topics.txt') 
+```
 
 Parameters
 ----------

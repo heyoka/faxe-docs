@@ -713,6 +713,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -906,13 +918,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1206,13 +1218,13 @@
 <p>Consume data from an amqp-broker like rabbitmq.
 When <code>prefetch</code> is given and is &gt; 1, then this node will emit a data_batch instead of a data_point.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|amqp_consume()
-.host(&#39;deves-amqp-cluster1.internal&#39;) 
-.routing_key(&#39;my.routing.key&#39;)
-.exchange(&#39;x_xchange&#39;)
-.queue(&#39;faxe_test&#39;)
-.dt_field(&#39;UTC-Time&#39;)
-.dt_format(&#39;float_micro&#39;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_consume()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;deves-amqp-cluster1.internal&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">routing_key</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my.routing.key&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exchange</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;x_xchange&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queue</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;faxe_test&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;UTC-Time&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_format</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;float_micro&#39;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

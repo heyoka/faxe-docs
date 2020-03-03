@@ -8,13 +8,15 @@ Note: time based sampling is not supported with this version
 
 Example
 -------
-    
-    |sample(5)
-  
+```dfs  
+|sample(5)
+```
 Keep every 5th data_point or data_batch.
 
-    ~~|sample(10s)~~
-    
+```dfs  
+~~|sample(10s)~~
+```
+
 ~~Keep every point or batch, that falls in a 10 second interval.~~
 
 

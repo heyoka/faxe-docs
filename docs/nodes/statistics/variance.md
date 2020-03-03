@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |variance()
-    .field('temperature') 
-
+  
+```dfs    
+|variance()
+.field('temperature') 
+```
 
 Parameters
 ----------

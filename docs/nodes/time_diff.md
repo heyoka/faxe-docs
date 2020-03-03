@@ -11,10 +11,11 @@ The unit for output values is milliseconds.
 
 Example
 -------
-    
-    |time_diff()
-    .as('time_diff')
-     
+  
+```dfs    
+|time_diff()
+.as('time_diff')
+```     
 
 
 Parameters

@@ -15,10 +15,12 @@ and does not affect the state count.
 
 Example
 -------
-     
-     |state_count()
-    .lambda(lambda: "val" < 7)
-    .as('val_below_7')
+
+```dfs       
+|state_count()
+.lambda(lambda: "val" < 7)
+.as('val_below_7')
+```
 
 Counts the number of consecutive points which have the value of the `val` field `below 7`.
 

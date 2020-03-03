@@ -7,11 +7,12 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |percentile()
-    .perc(95)
-    .field('temperature') 
 
+```dfs   
+|percentile()
+.perc(95)
+.field('temperature') 
+```
 
 Parameters
 ----------

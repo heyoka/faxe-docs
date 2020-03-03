@@ -7,11 +7,14 @@ It periodically emits random values.
 
 Example
 -------
-    
-    |value_emitter()
-    .every(1s)
-    .type(point)
-     
+
+```dfs  
+
+|value_emitter()
+.every(1s)
+.type(point)
+```
+ 
 Emit a data_point with a random value in field val every second.
 
 Parameters

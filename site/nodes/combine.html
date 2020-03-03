@@ -706,6 +706,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1198,23 +1210,23 @@ The node will never emit on port 2 values.</p>
 To rename these fields, parameter <code>prefix</code> or <code>aliases</code> can be used.
 With <code>prefix_delimiter</code> a delimiter can be given, defaults to: <code>'_'</code></p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def in1 =
-    |value_emitter()
-    .every(500ms)
-    .type(point)
-    .fields(&#39;val&#39;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span> <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">in1</span> <span style="color: #f92672">=</span>
+  <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
 
-def in2 =
-    |value_emitter()
-    .every(4s)
-    .type(point)
-    .fields(&#39;val2&#39;, &#39;val3&#39;)
+ <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">in2</span> <span style="color: #f92672">=</span>
+  <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">4s</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;val2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;val3&#39;</span><span style="color: #f8f8f2">)</span> 
 
-in1
-    |combine(in2)
-    .fields(&#39;val2&#39;, &#39;val3&#39;)
-    .prefix(&#39;comb&#39;)
-    .prefix_delimiter(&#39;_&#39;)
+ <span style="color: #a6e22e">in1</span>
+  <span style="color: #f92672">|</span><span style="color: #f8f8f2">combine(</span><span style="color: #a6e22e">in2</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;val2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;val3&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;comb&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prefix_delimiter</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;_&#39;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

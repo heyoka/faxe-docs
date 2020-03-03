@@ -17,25 +17,26 @@ Note, that this node will produce a completely new stream.
 
 Example
 -------
-    
-    def v1 =
-    |value_emitter()
+```dfs  
+def v1 =
+|value_emitter()
     .every(3s)
     .type(point)
     .align()
 
-    def v2 =
-    |value_emitter()
+def v2 =
+|value_emitter()
     .every(5s)
     .type(point)
     .align()
 
-    v1
-        |join(v2)
-        .prefix('v1.joined', 'v2.joined')
-        .tolerance(3s)
-        .missing_timeout(3s)
-        .fill(none)
+v1
+|join(v2)
+    .prefix('v1.joined', 'v2.joined')
+    .tolerance(3s)
+    .missing_timeout(3s)
+    .fill(none)
+```
 
 Joins the fields of `v1` and `v2` and produces a stream, that has the fields `v1.joined.val` and `v2.joined.val`
 
@@ -63,33 +64,33 @@ fill( 'none' 'null' `any` )|fill missing values / join behaviour|'none'
 
 Let's look at an example where the streams coming out of two nodes are not joined with prefixes, but
 a merge operation is performed. 
+```dfs  
+def v1 =
+|json_emitter()
+.every(3s)
+.json(<<< {"condition": {"id": 0, "name": "OK", "sub_cond":
+     [{"value": 33}]}, "condition_reason": "",
+     "predicted_maintenance_time": 1584246411783,
+     "vac_on_without_contact": [1.2, 2.5, 4.33]} >>>)
 
-    def v1 =
-    |json_emitter()
-    .every(3s)
-    .json(<<< {"condition": {"id": 0, "name": "OK", "sub_cond":
-            [{"value": 33}]}, "condition_reason": "",
-            "predicted_maintenance_time": 1584246411783,
-            "vac_on_without_contact": [1.2, 2.5, 4.33]} >>>)
-    
-    def v2 =
-    |json_emitter()
-    .every(3s)
-    .json(<<< {"condition": {"id1": 0, "name1": "OK", "sub_cond":
-            [{"number": 44}]}, "condition_reason": "",
-            "predicted_maintenance_time": 1584246411783,
-            "vac_on_without_contact": [2.2, 2.5, 4.33],
-            "vac_on_with_contact": [5.6, 45.98, 7.012]} >>>)
-    
-    v1
-        |join(v2)
-        .field_merge('data')
-        .tolerance(20ms)
-        .missing_timeout(30ms)
-        .fill(null)
+def v2 =
+|json_emitter()
+.every(3s)
+.json(<<< {"condition": {"id1": 0, "name1": "OK", "sub_cond":
+     [{"number": 44}]}, "condition_reason": "",
+     "predicted_maintenance_time": 1584246411783,
+     "vac_on_without_contact": [2.2, 2.5, 4.33],
+     "vac_on_with_contact": [5.6, 45.98, 7.012]} >>>)
 
-    |debug()
-    
+v1
+|join(v2)
+.field_merge('data')
+.tolerance(20ms)
+.missing_timeout(30ms)
+.fill(null)
+
+|debug()
+```
 #### v1 node data-field (in json format for readability):
    
 ```json

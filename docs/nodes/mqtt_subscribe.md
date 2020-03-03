@@ -6,11 +6,13 @@ Subscribe to an mqtt-broker and get data from one or more topics.
 
 Example
 -------
+```dfs  
+|mqtt_subscribe()
+.topics('top/grips/#')
+.dt_field('UTC-Stamp')
+.dt_format('float_micro')
 
-    |mqtt_subscribe()
-    .topics('top/grips/#')
-    .dt_field('UTC-Stamp')
-    .dt_format('float_micro')
+```
 
 
 Parameters

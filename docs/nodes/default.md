@@ -6,15 +6,16 @@ Does not overwrite or update any fields or tags.
 
 Note: 
 This nodes checks for existence of fields before writing them. 
-Consider using the [set node](/nodes/set), if you just want some fields set.
+Consider using the [set node](/nodes/set.html), if you just want some fields set.
 It is more performant especially with high frequency data streams.
 
 Example
 -------
-
-    |default()
-    .fields('id', 'vs', 'df')
-    .field_values('some_id', 1, '05.043')
+```dfs  
+|default()
+.fields('id', 'vs', 'df')
+.field_values('some_id', 1, '05.043')
+```
 
 The above example will set the field `id` to the value 'some_id' , if a field with the name `id` does not already exist.
 Accordingly `vs` will be set to 1, `df` will be set to '05.043'.

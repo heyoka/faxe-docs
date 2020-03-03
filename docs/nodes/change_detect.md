@@ -11,22 +11,24 @@ Emits new point-values only if different from the previous point.
 
 Example
 -------
+```dfs  
+%% detects any changes
+|change_detect()
 
-    %% detects any changes
-    |change_detect()
-    
 
-    %% detect changes in one field, with timeout
-    |change_detect()
-    .fields('val')
-    .reset_timeout(3s)
-    
-    
+%% detect changes in one field, with timeout
+|change_detect()
+.fields('val')
+.reset_timeout(3s)
 
-    in example json notation: {"data"; {"x": {"temp": 32.4564}, "y" : {"temp" : 31.15155}} }
-    |change_detect()
-    .fields('data.x.temp', 'data.y.temp')
 
+
+% in example json notation: 
+% {"data": {"x": {"temp": 32.4564}, "y" : {"temp" : 31.15155}} }
+
+|change_detect()
+.fields('data.x.temp', 'data.y.temp')
+```
 
 Parameters
 ----------

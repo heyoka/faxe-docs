@@ -9,10 +9,11 @@ Data points received from each parent are passed onto children nodes without mod
 
 Example
 -------
-    
-    in1
-        |union(in2, in3) 
- 
+
+```dfs  
+in1
+  |union(in2, in3) 
+```
 
 The union of 3 nodes (chain expressions)
 

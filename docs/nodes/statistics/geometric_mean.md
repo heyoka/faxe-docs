@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |geometric_mean()
-    .field('pressure') 
-
+   
+```dfs   
+|geometric_mean()
+.field('pressure') 
+```
 
 Parameters
 ----------

@@ -670,6 +670,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../nodes/set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../nodes/shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -863,13 +875,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1298,23 +1310,23 @@ of <code>dfs</code>, here is also were the differences between TICKScript and df
 Variables are immutable and cannot be reassigned new values later on in the script, 
 though they can be used in other declarations and can be passed into functions, property calls and text-templates.</p>
 <h2 id="variable-declarations">Variable declarations</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def string = &#39;this is a string !&#39;
-def text = &lt;&lt;&lt; this is a text with some weird chars :// %&amp; &gt;&gt;&gt;
-def func = lambda: &quot;value&quot; / 3
-def meas = 4.44
-% A lambda expression as literal
-def func2 = lambda: int(meas / 13)
-def an_int = 32342
-def a_float = 2131.342
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">string</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;this is a string !&#39;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">text</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&lt;&lt;&lt; this is a text with some weird chars :// %&amp; &gt;&gt;&gt;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">func</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;value&quot;</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">3</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">meas</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4.44</span>
+    <span style="color: #75715e">% A lambda expression as literal</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">func2</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">meas</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">13</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">an_int</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">32342</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">a_float</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2131.342</span>
 
-% a chain can also be bound to a declaration
-def in1 =
-    |mqtt_subscribe()
-    .host(&#39;127.0.0.1&#39;)
-    .topic(&#39;some/topic&#39;)
-% it can then be used like so
-in1
-    |debug()
+    <span style="color: #75715e">% a chain can also be bound to a declaration</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">in1</span> <span style="color: #f92672">=</span>
+        <span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_subscribe()</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;some/topic&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #75715e">% it can then be used like so</span>
+    <span style="color: #a6e22e">in1</span>
+        <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 </pre></div>
 
 
@@ -1412,24 +1424,24 @@ It is essentially an integer terminated by one or a pair of reserved characters,
 </table>
 <p>Internally all time and duration related values are converted to milliseconds in faxe.</p>
 <h4 id="examples">Examples</h4>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def span = 10s
-def frequency = 10m
-def short = 50ms
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">span</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10s</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">frequency</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10m</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">short</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">50ms</span>
 
-|win_time()
-.period(1h)
-.every(30m)
+    <span style="color: #f92672">|</span><span style="color: #f8f8f2">win_time()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">period</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">1h</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">30m</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 
 <h2 id="text-templates">Text templates</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>{{variable_name}}
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">variable_name</span><span style="color: #f8f8f2">}}</span>
 </pre></div>
 
 
 <hr />
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def this_portion = &#39;it&#39;
-def text_template = &lt;&lt;&lt; Some text where {{this_portion}} will get replaced &gt;&gt;&gt;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">this_portion</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;it&#39;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">text_template</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&lt;&lt;&lt; Some text where {{this_portion}} will get replaced &gt;&gt;&gt;</span>
 </pre></div>
 
 
@@ -1439,15 +1451,15 @@ def text_template = &lt;&lt;&lt; Some text where {{this_portion}} will get repla
 While the above example seems to be useless, when used in template scripts they can be very powerful.
 The variable <code>this_portion</code> could be overwritten with a new value for every instantiation of a template script.</p>
 <p>There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>{{&quot;value_name&quot;}}
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #f8f8f2">{{</span><span style="color: #e6db74">&quot;value_name&quot;</span><span style="color: #f8f8f2">}}</span>
 </pre></div>
 
 
 <hr />
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|email()
-.body(&lt;&lt;&lt;
-    No data since {{datetime}} on topic &#39;ttgw/energy&#39;, last value was {{val}}. 
-    &gt;&gt;&gt;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span>
+        <span style="color: #a6e22e">No</span> <span style="color: #a6e22e">data</span> <span style="color: #a6e22e">since</span> <span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">datetime</span><span style="color: #f8f8f2">}}</span> <span style="color: #a6e22e">on</span> <span style="color: #a6e22e">topic</span> <span style="color: #e6db74">&#39;ttgw/energy&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">last</span> <span style="color: #a6e22e">value</span> <span style="color: #a6e22e">was</span> <span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">val</span><span style="color: #f8f8f2">}}.</span> 
+        <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

@@ -13,9 +13,11 @@ if there is no last message yet, an empty message will be emitted
 
 Example
 -------
-    
-    |deadman(15s) 
-
+```dfs   
+ 
+|deadman(15s)
+ 
+```
 
 Parameters
 ----------

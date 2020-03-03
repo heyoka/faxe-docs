@@ -5,11 +5,11 @@ Keep only those fields and tags specified by the parameters.
 
 Example
 -------
-    
-    |keep()
-    .fields('data.topic', 'data.temperature')
-    .as('topic', 'temperature')
-
+```dfs  
+|keep()
+.fields('data.topic', 'data.temperature')
+.as('topic', 'temperature')
+```
 
 Parameters
 ----------

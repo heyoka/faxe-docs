@@ -706,6 +706,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1194,19 +1206,19 @@ Incoming data is converted to JSON before sending.</p>
 <p>If the <code>save()</code> parameter is given, every message first gets stored to an on-disk queue before sending,
 this way we can make sure no message gets lost when disconnected from the broker.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def topic = &#39;top/track/pressure&#39;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;top/track/pressure&#39;</span>
 
-|mqtt_publish() 
-.topic(topic)
-.retained()
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_publish()</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">retained</span><span style="color: #f8f8f2">()</span>
 </pre></div>
 
 
 <p>Using a lambda expression for the topic:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def topic_base = &#39;top/&#39;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_base</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;top/&#39;</span>
 
-|mqtt_publish()
-.topic_lambda(lambda: str_concat([topic_base, &quot;type&quot;, &#39;/&#39;, &quot;measurement&quot;])
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_publish()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic_lambda</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_concat</span><span style="color: #f8f8f2">([</span><span style="color: #a6e22e">topic_base</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;measurement&quot;</span><span style="color: #f8f8f2">])</span>
 </pre></div>
 
 

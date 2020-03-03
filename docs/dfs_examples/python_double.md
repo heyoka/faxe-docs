@@ -5,18 +5,21 @@ Here data is produced every 2s, then accumulated to a data_batch of length 6, th
 to our custom python node, which doubles all values of the field `val`.
  
 ### dfs
-    |value_emitter()
-    .every(2s)
-    .type(point)
 
-    |win_event()
-    .every(6) 
+```dfs  
+|value_emitter()
+.every(2s)
+.type(point)
 
-    @double()
-    .field('val')
-    .as('double_val')
+|win_event()
+.every(6) 
 
-    |debug()
+@double()
+.field('val')
+.as('double_val')
+
+|debug()
+```
 
 ### python
 ```python

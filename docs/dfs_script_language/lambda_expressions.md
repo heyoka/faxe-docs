@@ -6,9 +6,9 @@ DFS uses lambda expressions to define transformations on data points as well as 
 Lambda expressions wrap mathematical operations, Boolean operations, internal function calls or a combination of all three.  
 
 All lambda expressions in DFS begin with the `lambda:` keyword.
-    
-    .where(lambda: "topic" == 'ttop/grap/prec')
-    
+```dfs
+|where(lambda: "topic" == 'ttop/grap/prec')
+```
 In the above example `"topic"` is used to access the value of a field called `topic` 
 from the current data_point and compared against the string `'ttop/grap/prec'`.
 Note here that literal string values are declared using single quotes, 
@@ -66,9 +66,9 @@ Function                         | Description
 `month(ts)` -> integer            | month within the year [1, 12]
 
 Example:
-    
-    lambda: hour("ts") >= 8 AND hour("ts") < 19
-    
+```dfs    
+lambda: hour("ts") >= 8 AND hour("ts") < 19
+```
 The above expression evaluates to true if the hour of the day for the data point falls between 08:00 and 19:00.
 
 
@@ -161,10 +161,10 @@ Returns the result of its operands depending on the value of the first argument.
 The second and third arguments must return the same type.
 
 Example:
-
-    |eval(lambda: if("field.val1" > threshold AND "field.val1" != 0, 'true', 'false'))
-    .as('value')
- 
+```dfs  
+|eval(lambda: if("field.val1" > threshold AND "field.val1" != 0, 'true', 'false'))
+.as('value')
+```
 The value of the field `value` in the above example will be the string `true` or `false`, 
 depending on the condition passed as the first argument.
 

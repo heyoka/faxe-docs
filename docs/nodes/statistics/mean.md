@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |mean()
-    .field('current') 
 
+```dfs    
+|mean()
+.field('current') 
+```
 
 Parameters
 ----------

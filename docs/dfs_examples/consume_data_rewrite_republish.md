@@ -1,7 +1,7 @@
 ## Data cleaning and publishing
 
 Consume data from an MQTT-Broker and do some cleaning, at the end republish this data.
-
+```dfs
     def topic_in = 'ttgw/grip/rovolutionwels/reasoning/schedulers_ol_log'
     def topic_out = 'ttgw/data/grip/rovolutionwels/reasoning/schedulers_ol_log'
     def host = '10.14.204.3'
@@ -39,4 +39,4 @@ Consume data from an MQTT-Broker and do some cleaning, at the end republish this
         .qos(1)
         .topic(topic_out)
         .retained()
-
+```

@@ -6,18 +6,21 @@ Faxe nodes can have `2 types of parameters`:
 
 1. **Node parameters** provided to the node declaration function
 
-        
-        % the level parameter is given to the node declaration function
-        |debug('notice')
+```dfs  
+% the level parameter is given to the node declaration function
+|debug('notice')
+```
 
 
     
 2. **Option parameters** provided to an option call
 
+```dfs  
+% the level parameter is given as an extra option function
+|debug()
+.level('notice')
 
-        % the level parameter is given as an extra option function
-        |debug()
-        .level('notice')
+```
 
     
     

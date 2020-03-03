@@ -9,12 +9,12 @@ See [rest api](./faxe_rest_api.html) for how to read the produced logs.
 
 Example
 -------
-
-    |debug()
+```dfs  
+|debug()
     
     
-    |debug('error')
-
+|debug('error')
+```
 
 Parameters
 ----------

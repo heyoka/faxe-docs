@@ -695,6 +695,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../nodes/set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../nodes/shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -888,13 +900,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1172,43 +1184,43 @@
                 
                 <h2 id="data-cleaning-and-publishing">Data cleaning and publishing</h2>
 <p>Consume data from an MQTT-Broker and do some cleaning, at the end republish this data.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def topic_in = &#39;ttgw/grip/rovolutionwels/reasoning/schedulers_ol_log&#39;
-def topic_out = &#39;ttgw/data/grip/rovolutionwels/reasoning/schedulers_ol_log&#39;
-def host = &#39;10.14.204.3&#39;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_in</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;ttgw/grip/rovolutionwels/reasoning/schedulers_ol_log&#39;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_out</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;ttgw/data/grip/rovolutionwels/reasoning/schedulers_ol_log&#39;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;10.14.204.3&#39;</span>
 
-|mqtt_subscribe()
-.host(host) 
-.topic(topic_in)
-.dt_field(&#39;UTC-Time&#39;)
-.dt_format(&#39;float_micro&#39;)
+    <span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_subscribe()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">)</span> 
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">topic_in</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;UTC-Time&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_format</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;float_micro&#39;</span><span style="color: #f8f8f2">)</span>
 
-%% here is were we clean data
+    <span style="color: #75715e">%% here is were we clean data</span>
 
-|eval()
-.lambdas(
-    lambda: int(&quot;sku_length&quot; * 1000),
-    lambda: int(&quot;sku_width&quot; * 1000),
-    lambda: int(&quot;source_lc_quantity&quot;),
-    lambda: int(&quot;pcs_lost&quot;)
-)
-%% overwrite the original fields 
-.as(
-    &#39;sku_length&#39;,
-    &#39;sku_width&#39;,
-    &#39;source_lc_quantity&#39;,
-    &#39;pcs_lost&#39;
-    )
+    <span style="color: #f92672">|</span><span style="color: #f8f8f2">eval()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">lambdas</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;sku_length&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;sku_width&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;source_lc_quantity&quot;</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;pcs_lost&quot;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">)</span>
+    <span style="color: #75715e">%% overwrite the original fields </span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #e6db74">&#39;sku_length&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;sku_width&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;source_lc_quantity&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;pcs_lost&#39;</span>
+        <span style="color: #f8f8f2">)</span>
 
-|delete()
-.fields(&#39;UTC-Time&#39;)
+    <span style="color: #f92672">|</span><span style="color: #f8f8f2">delete()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;UTC-Time&#39;</span><span style="color: #f8f8f2">)</span>
 
-% publish the resulting message
+    <span style="color: #75715e">% publish the resulting message </span>
 
-|mqtt_publish()
-    .host(host) 
-    .qos(1)
-    .topic(topic_out)
-    .retained()
+    <span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_publish()</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">)</span> 
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">qos</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">topic_out</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">retained</span><span style="color: #f8f8f2">()</span>
 </pre></div>
                 
                   

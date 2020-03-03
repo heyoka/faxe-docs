@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |last()
-    .field('chair') 
-
+ 
+```dfs     
+|last()
+.field('chair') 
+```
 
 Parameters
 ----------

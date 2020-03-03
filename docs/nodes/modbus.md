@@ -14,20 +14,19 @@ occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so
 
 Example
 -------
-    
-    def energy =
-    |modbus()
-    .ip('127.0.0.1') 
-    .device(255)
-    .every(1s)
+```dfs  
 
-    .function('coils', 'hregs', 'iregs')
-    .from(2127, 3008, 104)
-    .count(1, 2, 2)
-    .as('Energy.ActiveEnergyConsumption', 'Energy.MaximalCurrentValue', 'Energy.BlindEnergyDelivered')
-    .output('int16', 'float32', 'float32')
-    .signed(true, true, false) 
-
+|modbus()
+.ip('127.0.0.1') 
+.device(255)
+.every(1s)
+.function('coils', 'hregs', 'iregs')
+.from(2127, 3008, 104)
+.count(1, 2, 2)
+.as('Energy.EnergyConsumption', 'Energy.CurrentValue', 'Energy.EnergyDelivered')
+.output('int16', 'float32', 'float32')
+.signed(true, true, false) 
+```
 
 Parameters
 ----------

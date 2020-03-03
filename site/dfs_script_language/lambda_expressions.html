@@ -754,6 +754,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../nodes/set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../nodes/shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -947,13 +959,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1289,7 +1301,7 @@
 <p>DFS uses lambda expressions to define transformations on data points as well as define Boolean conditions that act as filters. 
 Lambda expressions wrap mathematical operations, Boolean operations, internal function calls or a combination of all three.  </p>
 <p>All lambda expressions in DFS begin with the <code>lambda:</code> keyword.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>.where(lambda: &quot;topic&quot; == &#39;ttop/grap/prec&#39;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">where(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;ttop/grap/prec&#39;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 
@@ -1381,7 +1393,7 @@ to reference them:</p>
 </tbody>
 </table>
 <p>Example:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>lambda: hour(&quot;ts&quot;) &gt;= 8 AND hour(&quot;ts&quot;) &lt; 19
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">8</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">19</span>
 </pre></div>
 
 
@@ -1689,8 +1701,8 @@ to reference them:</p>
 <p>Returns the result of its operands depending on the value of the first argument. 
 The second and third arguments must return the same type.</p>
 <p>Example:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|eval(lambda: if(&quot;field.val1&quot; &gt; threshold AND &quot;field.val1&quot; != 0, &#39;true&#39;, &#39;false&#39;))
-.as(&#39;value&#39;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">threshold</span> <span style="color: #f92672">AND</span> <span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;true&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;false&#39;</span><span style="color: #f8f8f2">))</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

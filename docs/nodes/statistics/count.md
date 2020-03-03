@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |count()
-    .field('over_ts') 
 
+```dfs  
+|count()
+.field('over_ts') 
+```
 
 Parameters
 ----------

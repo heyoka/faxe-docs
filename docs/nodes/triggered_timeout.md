@@ -22,33 +22,36 @@ This node can have any number of input-nodes.
 
 Example
 -------
-    
-    def timeout = 30s
-    % ...
-    
-    in1
-    |triggered_timeout(in2)
-    .timeout(timeout)
-    .timeout_trigger(lambda: "data.topic" == 'in1')
-    
-    
-    def condition_reason = 'oh no !!'
-    
-    robot_state
-    |triggered_timeout(orderlog)
-    .timeout(timeout)
-    .fields(
-        'combined.condition.name', 
-        'combined.condition_reason', 
-        'combined.condition.id')
-    .field_values(
-        'ERROR', 
-        condition_reason, 
-        2)
-    %.cancel_fields('combined.condition.name', 'combined.condition_reason', 'combined.condition.id')
-    %.cancel_field_values('OK', '', 0)
+
+```dfs  
+
+def timeout = 30s
+% ...
+
+in1
+|triggered_timeout(in2)
+.timeout(timeout)
+.timeout_trigger(lambda: "data.topic" == 'in1')
+
+
+def condition_reason = 'oh no !!'
+
+robot_state
+|triggered_timeout(orderlog)
+.timeout(timeout)
+.fields(
+    'combined.condition.name', 
+    'combined.condition_reason', 
+    'combined.condition.id')
+.field_values(
+    'ERROR', 
+    condition_reason, 
+    2)
+%.cancel_fields('combined.condition.name', 'combined.condition_reason', 'combined.condition.id')
+%.cancel_field_values('OK', '', 0)
  
- 
+```
+
  
 Parameters
 ----------

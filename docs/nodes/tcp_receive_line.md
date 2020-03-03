@@ -13,15 +13,16 @@ The tcp listener is protected against flooding with the {active, once} inet opti
 
 Example
 -------
-    
-    def parser = 'parser_conv_tracking_v1'
-    
-    |tcp_recv_line()
-    .ip(212.14.149.3)
-    .port(2004)
-    .parser(parser)
-    .as('data')
+```dfs    
+def parser = 'parser_conv_tracking_v1'
+
+|tcp_recv_line()
+.ip('212.14.149.3')
+.port(2004)
+.parser(parser)
+.as('data')
      
+```
 
 
 Parameters

@@ -6,12 +6,14 @@ Incoming data is converted to JSON before sending.
 
 Example
 -------
+```dfs  
 
-    |amqp_publish()
-    .host('127.0.0.1') 
-    .routing_key('my.routing.key')
-    .exchange('x_xchange')
+|amqp_publish()
+.host('127.0.0.1') 
+.routing_key('my.routing.key')
+.exchange('x_xchange')
 
+```
 
 Parameters
 ----------

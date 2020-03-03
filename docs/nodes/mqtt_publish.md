@@ -10,20 +10,22 @@ this way we can make sure no message gets lost when disconnected from the broker
 
 Example
 -------
+```dfs  
+def topic = 'top/track/pressure'
 
-    def topic = 'top/track/pressure'
-    
-    |mqtt_publish() 
-    .topic(topic)
-    .retained()
-    
+|mqtt_publish() 
+.topic(topic)
+.retained()
+
+```    
     
 Using a lambda expression for the topic:
-    
-    def topic_base = 'top/'
+```dfs  
+def topic_base = 'top/'
 
-    |mqtt_publish()
-    .topic_lambda(lambda: str_concat([topic_base, "type", '/', "measurement"])
+|mqtt_publish()
+.topic_lambda(lambda: str_concat([topic_base, "type", '/', "measurement"])
+```
 
 Here the topic string is built with a lambda expression using the `topic_base` declaration, the `string '/'` and
 two fields from the current data_point.

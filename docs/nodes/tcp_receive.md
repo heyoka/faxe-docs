@@ -14,15 +14,16 @@ The tcp listener is protected against flooding with the {active, once} inet opti
 
 Example
 -------
-    
-    def parser = 'parser_robot_plc_v1'
-    
-    |tcp_recv()
-    .ip(212.14.149.8)
-    .port(9715)
-    .parser(parser)
-    .as('data')
-     
+
+```dfs  
+def parser = 'parser_robot_plc_v1'
+
+|tcp_recv()
+.ip('212.14.149.8')
+.port(9715)
+.parser(parser)
+.as('data')
+```     
 
 
 Parameters

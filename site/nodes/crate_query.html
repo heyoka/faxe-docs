@@ -706,6 +706,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1193,27 +1205,27 @@
 <p>The select statement will be executed periodically according to the <code>every</code> parameter.
 Each time the database is queried, the timestamps will be set according to <code>period</code>.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def host = &#39;10.14.204.8&#39;
-def port = 5433 
-def query = &lt;&lt;&lt;
-    SELECT
-      avg(data_obj[&#39;x&#39;][&#39;cur&#39;]) AS x_cur, avg(data_obj[&#39;y&#39;][&#39;cur&#39;]) AS y_cur,
-      avg(data_obj[&#39;z&#39;][&#39;cur&#39;]) AS z_cur, avg(data_obj[&#39;yaw&#39;][&#39;cur&#39;]) AS yaw_cur,
-      avg(data_obj[&#39;pitch&#39;][&#39;cur&#39;]) AS pitch_cur
-    FROM robotplc_parted;
-&gt;&gt;&gt;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span> <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;10.14.204.8&#39;</span>
+ <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">port</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">5433</span> 
+ <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">query</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&lt;&lt;&lt;</span>
+<span style="color: #e6db74">  SELECT</span>
+<span style="color: #e6db74"> avg(data_obj[&#39;x&#39;][&#39;cur&#39;]) AS x_cur, avg(data_obj[&#39;y&#39;][&#39;cur&#39;]) AS y_cur,</span>
+<span style="color: #e6db74"> avg(data_obj[&#39;z&#39;][&#39;cur&#39;]) AS z_cur, avg(data_obj[&#39;yaw&#39;][&#39;cur&#39;]) AS yaw_cur,</span>
+<span style="color: #e6db74"> avg(data_obj[&#39;pitch&#39;][&#39;cur&#39;]) AS pitch_cur</span>
+<span style="color: #e6db74">  FROM robotplc_parted;</span>
+<span style="color: #e6db74"> &gt;&gt;&gt;</span>
 
-def s =
-    |crate_query()
-    .host(host)
-    .port(port)
-    .user(&#39;crate&#39;)
-    .database(&#39;doc&#39;)
-    .query(query)
-    .group_by_time(3m)
-    .every(15s)
-    .period(30m)
-    .align()
+ <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">s</span> <span style="color: #f92672">=</span>
+  <span style="color: #f92672">|</span><span style="color: #f8f8f2">crate_query()</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">user</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;crate&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">database</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;doc&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">group_by_time</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3m</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">15s</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">period</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">30m</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">()</span>
 </pre></div>
 
 

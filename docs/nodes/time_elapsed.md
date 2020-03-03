@@ -9,10 +9,12 @@ The unit for output values is milliseconds.
 
 Example
 -------
-    
-    |time_elapsed()
-    .as('time_dur')
-     
+
+```dfs  
+|time_elapsed()
+.as('time_dur')
+
+```   
 
 
 Parameters

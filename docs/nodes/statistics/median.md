@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |median()
-    .field('temperature') 
 
+```dfs  
+|median()
+.field('temperature') 
+```
 
 Parameters
 ----------

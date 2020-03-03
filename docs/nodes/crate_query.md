@@ -9,29 +9,30 @@ Each time the database is queried, the timestamps will be set according to `peri
 
 Example
 -------
+```dfs
+ def host = '10.14.204.8'
+ def port = 5433 
+ def query = <<<
+  SELECT
+ avg(data_obj['x']['cur']) AS x_cur, avg(data_obj['y']['cur']) AS y_cur,
+ avg(data_obj['z']['cur']) AS z_cur, avg(data_obj['yaw']['cur']) AS yaw_cur,
+ avg(data_obj['pitch']['cur']) AS pitch_cur
+  FROM robotplc_parted;
+ >>>
 
-    def host = '10.14.204.8'
-    def port = 5433 
-    def query = <<<
-        SELECT
-          avg(data_obj['x']['cur']) AS x_cur, avg(data_obj['y']['cur']) AS y_cur,
-          avg(data_obj['z']['cur']) AS z_cur, avg(data_obj['yaw']['cur']) AS yaw_cur,
-          avg(data_obj['pitch']['cur']) AS pitch_cur
-        FROM robotplc_parted;
-    >>>
+ def s =
+  |crate_query()
+  .host(host)
+  .port(port)
+  .user('crate')
+  .database('doc')
+  .query(query)
+  .group_by_time(3m)
+  .every(15s)
+  .period(30m)
+  .align()
 
-    def s =
-        |crate_query()
-        .host(host)
-        .port(port)
-        .user('crate')
-        .database('doc')
-        .query(query)
-        .group_by_time(3m)
-        .every(15s)
-        .period(30m)
-        .align()
-
+```
  
 The above example will execute the query every 15 seconds. It get data which is in the timerange `now -30 minutes` and `now`.
 

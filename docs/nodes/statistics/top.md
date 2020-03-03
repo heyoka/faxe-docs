@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |sum()
-    .field('temperature') 
 
+```dfs      
+|top()
+.field('temperature') 
+```
 
 Parameters
 ----------

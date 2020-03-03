@@ -16,10 +16,11 @@ and does not affect the state duration..
 
 Example
 -------
-     
-     |state_duration()
-    .lambda(lambda: "val" < 7)
 
+```dfs       
+|state_duration()
+.lambda(lambda: "val" < 7)
+```
 
 Parameters
 ----------

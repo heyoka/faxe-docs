@@ -10,19 +10,21 @@ This only applies if the `period` is greater than the `every` value.
 
 Examples
 -------
-    
-    |win_event()
-    .every(5)
-    .period(15)
-    .fill_period() 
-     
+```dfs  
+|win_event()
+.every(5)
+.period(15)
+.fill_period() 
+``` 
+
 The window will emit it's contents every 5 incoming points, but only after the window is filled with 15 points.
 
+```dfs  
+|win_event()
+.every(5)
+.period(15)
+```
 
-    |win_event()
-    .every(5)
-    .period(15)
-    
 The window will emit it's contents every 5 incoming points. On first emit 5 points will be outputted, on the second emit 10
 points will be emitted. From the third emit onwards, the window will output 15 points. Starting with the 4th emit, the window
 will output 15 data_points - with 10 old and 5 new  points (Tumbling window).

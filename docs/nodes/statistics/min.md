@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |min()
-    .field('temperature') 
 
+```dfs     
+|min()
+.field('temperature') 
+```
 
 Parameters
 ----------

@@ -9,11 +9,12 @@ As soon as the node has collected size points it will emit them in a data_batch.
 
 Example
 -------
+```dfs  
+|batch(12)
 
-    |batch(12)
-    
-    |batch(5)
-    .timeout(3s)
+|batch(5)
+.timeout(3s)
+```
 
 The second example will output a batch with 5 points. 
 If the points come in within 3 seconds the node will emit them in a databatch and reset the timeout.

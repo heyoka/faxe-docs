@@ -661,6 +661,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1205,30 +1217,30 @@ the <code>timeout_trigger</code> parameter) or is coming in on any port except t
 <p>Data for the outgoing data-point can be defined with the <code>fields</code> and <code>field_values</code> parameters.
 This node can have any number of input-nodes.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>def timeout = 30s
-% ...
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">timeout</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">30s</span>
+<span style="color: #75715e">% ...</span>
 
-in1
-|triggered_timeout(in2)
-.timeout(timeout)
-.timeout_trigger(lambda: &quot;data.topic&quot; == &#39;in1&#39;)
+<span style="color: #a6e22e">in1</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">triggered_timeout(</span><span style="color: #a6e22e">in2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">timeout_trigger</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;in1&#39;</span><span style="color: #f8f8f2">)</span>
 
 
-def condition_reason = &#39;oh no !!&#39;
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">condition_reason</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;oh no !!&#39;</span>
 
-robot_state
-|triggered_timeout(orderlog)
-.timeout(timeout)
-.fields(
-    &#39;combined.condition.name&#39;, 
-    &#39;combined.condition_reason&#39;, 
-    &#39;combined.condition.id&#39;)
-.field_values(
-    &#39;ERROR&#39;, 
-    condition_reason, 
-    2)
-%.cancel_fields(&#39;combined.condition.name&#39;, &#39;combined.condition_reason&#39;, &#39;combined.condition.id&#39;)
-%.cancel_field_values(&#39;OK&#39;, &#39;&#39;, 0)
+<span style="color: #a6e22e">robot_state</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">triggered_timeout(</span><span style="color: #f92672">or</span><span style="color: #a6e22e">derlog</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&#39;combined.condition.name&#39;</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #e6db74">&#39;combined.condition_reason&#39;</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #e6db74">&#39;combined.condition.id&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field_values</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&#39;ERROR&#39;</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #a6e22e">condition_reason</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%.cancel_fields(&#39;combined.condition.name&#39;, &#39;combined.condition_reason&#39;, &#39;combined.condition.id&#39;)</span>
+<span style="color: #75715e">%.cancel_field_values(&#39;OK&#39;, &#39;&#39;, 0)</span>
 </pre></div>
 
 

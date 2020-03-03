@@ -12,23 +12,25 @@ See table below for more information.
 
 Example
 -------
+```dfs  
+|s7poll()
+.ip(10.10.204.15)
+.port(102)
+.rack(0)
+.slot(2)
+.every(3s) 
+.vars(
+    'DB1140.DBX4.0', 'DB1140.DBX4.1',
+    'DB1140.DBX4.4', 'DB1140.DBX4.5'
+    )
 
-    |s7poll()
-    .ip(10.10.204.15)
-    .port(102)
-    .rack(0)
-    .slot(2)
-    .every(3s) 
-    .vars(
-        'DB1140.DBX4.0', 'DB1140.DBX4.1',
-        'DB1140.DBX4.4', 'DB1140.DBX4.5'
-        )
+.as(
+    'data.tbo[1].ix_OcM1', 'data.tbo[1].ix_OcM2',
+    'data.tbo[1].ix_Lift_PosTop', 'data.tbo[1].ix_Lift_PosBo'
+    )
 
-    .as(
-        'data.tbo[1].ix_OcM1', 'data.tbo[1].ix_OcM2',
-        'data.tbo[1].ix_Lift_PosTop', 'data.tbo[1].ix_Lift_PosBo'
-        )
-    
+```  
+
 Read 4 values (BOOL in this case) from a plc every 3 seconds and name them with a deep json path.
 
 

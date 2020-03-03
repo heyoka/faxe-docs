@@ -706,6 +706,18 @@
 
 
   <li class="md-nav__item">
+    <a href="set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -899,13 +911,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1196,19 +1208,19 @@
 </ul>
 <p>The case node works in a similar way CASE expressions in SQL work.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|case(
-    lambda: &quot;data.condition.name&quot; == &#39;OK&#39;,
-    lambda: &quot;data.condition.name&quot; == &#39;Warning&#39;,
-    lambda: &quot;data.condition.name&quot; == &#39;Error&#39;
-    )
-.values(
-    &lt;&lt;&lt;{&quot;cond&quot;: &quot;Everything OK!&quot;}&gt;&gt;&gt;,
-    &lt;&lt;&lt;{&quot;cond&quot;: &quot;Oh, oh, a Warning!&quot;}&gt;&gt;&gt;,
-    &lt;&lt;&lt;{&quot;cond&quot;: &quot;Damn, Error!&quot;}&gt;&gt;&gt;
-    )
- .json()
- .as(&#39;data&#39;)
- .default(&lt;&lt;&lt;{&quot;cond&quot;: &quot;Nothing matched!!!&quot;}&gt;&gt;&gt;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">case(</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.condition.name&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;OK&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.condition.name&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;Warning&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.condition.name&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;Error&#39;</span>
+<span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">values</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&lt;&lt;&lt;{&quot;cond&quot;: &quot;Everything OK!&quot;}&gt;&gt;&gt;,</span>
+<span style="color: #e6db74">    &lt;&lt;&lt;{&quot;cond&quot;: &quot;Oh, oh, a Warning!&quot;}&gt;&gt;&gt;,</span>
+<span style="color: #e6db74">    &lt;&lt;&lt;{&quot;cond&quot;: &quot;Damn, Error!&quot;}&gt;&gt;&gt;</span>
+<span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.default(</span><span style="color: #f92672">&lt;&lt;&lt;</span><span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;cond&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;Nothing matched!!!&quot;</span><span style="color: #f8f8f2">}</span><span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
 

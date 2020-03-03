@@ -715,6 +715,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../nodes/set.html" title="Set" class="md-nav__link">
+      Set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../nodes/shift.html" title="Shift" class="md-nav__link">
       Shift
     </a>
@@ -908,13 +920,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-46" type="checkbox" id="nav-4-46">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-47" type="checkbox" id="nav-4-47">
     
-    <label class="md-nav__link" for="nav-4-46">
+    <label class="md-nav__link" for="nav-4-47">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-46">
+      <label class="md-nav__title" for="nav-4-47">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1215,18 +1227,18 @@
 Here data is produced every 2s, then accumulated to a data_batch of length 6, the result gets then forwarded
 to our custom python node, which doubles all values of the field <code>val</code>.</p>
 <h3 id="dfs">dfs</h3>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|value_emitter()
-.every(2s)
-.type(point)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">2s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
 
-|win_event()
-.every(6)
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">win_event()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span> 
 
-@double()
-.field(&#39;val&#39;)
-.as(&#39;double_val&#39;)
+<span style="color: #66d9ef">@</span><span style="color: #a6e22e">double</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;double_val&#39;</span><span style="color: #f8f8f2">)</span>
 
-|debug()
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 </pre></div>
 
 

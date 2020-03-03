@@ -23,19 +23,21 @@ The state_sequence node can be used with one or many input nodes.
 
 Example
 -------
-    in1
-    |state_sequence(in2, in3) %% can use any number of nodes
-    .states(
-        lambda: "data.topic" == 'in1', %% state 1
-        lambda: "data.topic" == 'in2', %% state 2
-        lambda: "data.topic" == 'in3'  %% state 3
-    )
-    .within(
-        25s, %% transition-time from state 1 to state 2
-        20s  %% transition-time from state 2 to state 3
-        ) 
 
+```dfs  
+in1
+|state_sequence(in2, in3) %% can use any number of nodes
+.states(
+    lambda: "data.topic" == 'in1', %% state 1
+    lambda: "data.topic" == 'in2', %% state 2
+    lambda: "data.topic" == 'in3'  %% state 3
+)
+.within(
+    25s, %% transition-time from state 1 to state 2
+    20s  %% transition-time from state 2 to state 3
+    ) 
 
+```
 
 
 Parameters

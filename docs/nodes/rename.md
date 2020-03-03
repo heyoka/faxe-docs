@@ -5,11 +5,11 @@ Rename existing fields and/or tags.
 
 Example
 -------
-    
-    |rename()
-    .fields('topic', 'temperature') 
-    .as_fields('cipot', 'mean_temp')
-
+```dfs  
+|rename()
+.fields('topic', 'temperature') 
+.as_fields('cipot', 'mean_temp')
+```
 
 Parameters
 ----------

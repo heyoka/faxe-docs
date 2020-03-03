@@ -15,12 +15,16 @@ This only applies if the `period` is greater than the `every` value.
 
 Example
 -------
-    
-    |win_clock()
-    .every(5s)
-    .period(15s)
-    .fill_period()
-    .align()
+
+```dfs   
+
+|win_clock()
+.every(5s)
+.period(15s)
+.fill_period()
+.align()
+
+```
      
 The window will emit every 5 seconds, but only after initially 15 seconds have passed (due to `fill_period`),
 it has its boundaries aligned to 5 second intervals.

@@ -15,24 +15,25 @@ With `prefix_delimiter` a delimiter can be given, defaults to: `'_'`
 
 Example
 -------
-
-    def in1 =
-        |value_emitter()
-        .every(500ms)
-        .type(point)
-        .fields('val')
-    
-    def in2 =
-        |value_emitter()
-        .every(4s)
-        .type(point)
-        .fields('val2', 'val3') 
-    
-    in1
-        |combine(in2)
-        .fields('val2', 'val3')
-        .prefix('comb')
-        .prefix_delimiter('_')
+```dfs  
+ def in1 =
+  |value_emitter()
+  .every(500ms)
+  .type(point)
+  .fields('val')
+ 
+ def in2 =
+  |value_emitter()
+  .every(4s)
+  .type(point)
+  .fields('val2', 'val3') 
+ 
+ in1
+  |combine(in2)
+  .fields('val2', 'val3')
+  .prefix('comb')
+  .prefix_delimiter('_')
+```
 
 In this example values from the stream called `in1` will be enriched with values from `in2`.
 Outputfields will be called: `val`, `comb_val2` and `comb_val3` .

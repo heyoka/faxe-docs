@@ -7,10 +7,11 @@ See the [stats node](/nodes/stats)
 
 Example
 -------
-    
-    |kurtosis()
-    .field('temperature') 
 
+```dfs  
+|kurtosis()
+.field('temperature') 
+```
 
 Parameters
 ----------

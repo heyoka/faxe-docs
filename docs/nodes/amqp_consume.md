@@ -7,15 +7,15 @@ When `prefetch` is given and is > 1, then this node will emit a data_batch inste
 
 Example
 -------
-
-    |amqp_consume()
-    .host('deves-amqp-cluster1.internal') 
-    .routing_key('my.routing.key')
-    .exchange('x_xchange')
-    .queue('faxe_test')
-    .dt_field('UTC-Time')
-    .dt_format('float_micro')
-
+```dfs  
+|amqp_consume()
+.host('deves-amqp-cluster1.internal') 
+.routing_key('my.routing.key')
+.exchange('x_xchange')
+.queue('faxe_test')
+.dt_field('UTC-Time')
+.dt_format('float_micro')
+```
 
 Parameters
 ----------

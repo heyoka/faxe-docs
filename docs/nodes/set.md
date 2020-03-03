@@ -7,10 +7,11 @@ Overwrites any existing fields or tags.
 
 Example
 -------
-
-    |set()
-    .fields('id', 'vs', 'df')
-    .field_values('some_id', 1, '05.043')
+```dfs  
+|set()
+.fields('id', 'vs', 'df')
+.field_values('some_id', 1, '05.043')
+```
 
 The above example will set the field `id` to the value 'some_id'.
 Accordingly `vs` will be set to 1, `df` will be set to '05.043'.

@@ -8,9 +8,12 @@ See the [stats node](/nodes/stats)
 Example
 -------
     
-    |elapsed()
-    .field('trigger') 
+```dfs  
 
+|elapsed()
+.field('trigger') 
+
+```
 
 Parameters
 ----------

@@ -11,21 +11,22 @@ The case node works in a similar way CASE expressions in SQL work.
 
 Example
 -------
+```dfs  
+|case(
+    lambda: "data.condition.name" == 'OK',
+    lambda: "data.condition.name" == 'Warning',
+    lambda: "data.condition.name" == 'Error'
+)
+.values(
+    <<<{"cond": "Everything OK!"}>>>,
+    <<<{"cond": "Oh, oh, a Warning!"}>>>,
+    <<<{"cond": "Damn, Error!"}>>>
+)
+.json()
+.as('data')
+.default(<<<{"cond": "Nothing matched!!!"}>>>)
 
-    |case(
-        lambda: "data.condition.name" == 'OK',
-        lambda: "data.condition.name" == 'Warning',
-        lambda: "data.condition.name" == 'Error'
-        )
-    .values(
-        <<<{"cond": "Everything OK!"}>>>,
-        <<<{"cond": "Oh, oh, a Warning!"}>>>,
-        <<<{"cond": "Damn, Error!"}>>>
-        )
-     .json()
-     .as('data')
-     .default(<<<{"cond": "Nothing matched!!!"}>>>)
- 
+``` 
 
 
 Parameters
