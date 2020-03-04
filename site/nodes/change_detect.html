@@ -1214,17 +1214,15 @@
 
 
 <span style="color: #75715e">%% detect changes in one field, with timeout</span>
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect(</span><span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">reset_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
 
 
 
-<span style="color: #75715e">% in example json notation: </span>
+<span style="color: #75715e">% in-example json notation: </span>
 <span style="color: #75715e">% {&quot;data&quot;: {&quot;x&quot;: {&quot;temp&quot;: 32.4564}, &quot;y&quot; : {&quot;temp&quot; : 31.15155}} }</span>
 
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.x.temp&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.y.temp&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect(</span><span style="color: #e6db74">&#39;data.x.temp&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.y.temp&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 
@@ -1239,7 +1237,7 @@
 </thead>
 <tbody>
 <tr>
-<td>fields( <code>string_list</code> )</td>
+<td>[node] fields( <code>string_list</code> )</td>
 <td>List of fields to monitor</td>
 <td>optional</td>
 </tr>

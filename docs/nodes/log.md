@@ -6,8 +6,8 @@ Log incoming data to a file in json format (line by line)
 Example
 -------
 ```dfs  
-|log()
-.file('topics.txt') 
+|log('topics.txt') 
+
 ```
 
 Parameters
@@ -15,4 +15,4 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-file( `string` )| valid writeable filepath |
+[node] file( `string` )| valid writeable filepath |

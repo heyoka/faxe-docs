@@ -17,8 +17,7 @@ Example
 -------
 
 ```dfs       
-|state_count()
-.lambda(lambda: "val" < 7)
+|state_count(lambda: "val" < 7)
 .as('val_below_7')
 ```
 
@@ -29,5 +28,5 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-lambda( `lambda` )| state lambda expression | 
-as( `string` )|name for the added count field|'state_count'
+[node] lambda( `lambda` )| state lambda expression | 
+as( `string` )|name for the added count field| 'state_count'

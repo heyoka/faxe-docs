@@ -11,20 +11,20 @@ This means that a lambda can use the result of a previous expression.
 Examples
 --------
 ```dfs  
-|eval()
-.lambdas(lambda: "val" * 2, lambda: "double" / 2)
+|eval(lambda: "val" * 2, lambda: "double" / 2)
 .as('double', 'val')
 ```
 
 This example demonstrates the 'serial' behaviour of the `eval` node.
 The second expression uses the field `double`, which the first expression just created.
 
-
-    |eval()
-    .lambdas(
-        lambda: int(str_concat(string(int("val")),string(int("val"))))
-    )
-    .as('concat_string.int')
+```dfs 
+|eval()
+.lambdas(
+    lambda: int(str_concat(string(int("val")),string(int("val"))))
+)
+.as('concat_string.int')
+```
 
 The above example uses several built in casting and string functions to demonstrate complex expressions.
 
@@ -37,6 +37,6 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-lambdas( `lambda_list` )| list of lambda expressions |
+[node] lambdas( `lambda_list` )| list of lambda expressions |
 as( `string_list` )| list of output fieldnames (must have the same length as `lambdas`)|
 tags ( `string_list` )|list of output tagnames | []

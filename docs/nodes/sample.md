@@ -2,9 +2,10 @@ The sample node
 =====================
 
 Samples the incoming points or batches.
-One point will be emitted every count ~~or duration~~ specified.
+One point will be emitted every count or duration specified.
 
-Note: time based sampling is not supported with this version
+When a duration is given, this node will emit the first data-item arriving after the timeout, 
+then the timeout starts again.
 
 Example
 -------
@@ -14,10 +15,10 @@ Example
 Keep every 5th data_point or data_batch.
 
 ```dfs  
-~~|sample(10s)~~
+|sample(10s)
 ```
 
-~~Keep every point or batch, that falls in a 10 second interval.~~
+Keep the first point or batch after a 10 second interval.
 
 
 Parameters
@@ -25,4 +26,4 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-node-param **rate**( `integer` `duration` )| sample rate | 
+[node] **rate**( `integer` `duration` )| sample rate | 

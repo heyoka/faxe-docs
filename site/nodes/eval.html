@@ -1206,19 +1206,18 @@ For an explanation of lambdas, see <a href="../dfs_script_language/lambda_expres
 <p>The list of lambda expressions given, will be evaluated in a serial fashion.
 This means that a lambda can use the result of a previous expression.</p>
 <h2 id="examples">Examples</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">lambdas</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;val&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;double&quot;</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;val&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;double&quot;</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;double&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 
 <p>This example demonstrates the 'serial' behaviour of the <code>eval</code> node.
 The second expression uses the field <code>double</code>, which the first expression just created.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>|eval()
-.lambdas(
-    lambda: int(str_concat(string(int(&quot;val&quot;)),string(int(&quot;val&quot;))))
-)
-.as(&#39;concat_string.int&#39;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">lambdas</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">str_concat</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">string</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;val&quot;</span><span style="color: #f8f8f2">)),</span><span style="color: #a6e22e">string</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;val&quot;</span><span style="color: #f8f8f2">))))</span>
+<span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;concat_string.int&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 
@@ -1235,7 +1234,7 @@ The second expression uses the field <code>double</code>, which the first expres
 </thead>
 <tbody>
 <tr>
-<td>lambdas( <code>lambda_list</code> )</td>
+<td>[node] lambdas( <code>lambda_list</code> )</td>
 <td>list of lambda expressions</td>
 <td></td>
 </tr>

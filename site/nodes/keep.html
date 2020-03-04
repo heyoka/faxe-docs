@@ -1203,8 +1203,7 @@
                 <h1 id="the-keep-node">The keep node</h1>
 <p>Keep only those fields and tags specified by the parameters.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">keep()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.topic&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.temperature&#39;</span><span style="color: #f8f8f2">)</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">keep(</span><span style="color: #e6db74">&#39;data.topic&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.temperature&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;temperature&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
@@ -1220,9 +1219,9 @@
 </thead>
 <tbody>
 <tr>
-<td>fields( <code>string_list</code> )</td>
+<td>[node] fields( <code>string_list</code> )</td>
 <td>list of fieldnames to keep from the incoming data</td>
-<td>[]</td>
+<td></td>
 </tr>
 <tr>
 <td>tags( <code>string_list</code> )</td>

@@ -1202,19 +1202,20 @@
                 
                 <h1 id="the-sample-node">The sample node</h1>
 <p>Samples the incoming points or batches.
-One point will be emitted every count ~~or duration~~ specified.</p>
-<p>Note: time based sampling is not supported with this version</p>
+One point will be emitted every count or duration specified.</p>
+<p>When a duration is given, this node will emit the first data-item arriving after the timeout, 
+then the timeout starts again.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">sample(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 
 <p>Keep every 5th data_point or data_batch.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">~~|</span><span style="color: #f8f8f2">sample(</span><span style="color: #e6db74">10s</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">~~</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">sample(</span><span style="color: #e6db74">10s</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 
-<p>~~Keep every point or batch, that falls in a 10 second interval.~~</p>
+<p>Keep the first point or batch after a 10 second interval.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1226,7 +1227,7 @@ One point will be emitted every count ~~or duration~~ specified.</p>
 </thead>
 <tbody>
 <tr>
-<td>node-param <strong>rate</strong>( <code>integer</code> <code>duration</code> )</td>
+<td>[node] <strong>rate</strong>( <code>integer</code> <code>duration</code> )</td>
 <td>sample rate</td>
 <td></td>
 </tr>

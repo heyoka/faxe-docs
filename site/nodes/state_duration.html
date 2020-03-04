@@ -1210,8 +1210,7 @@ If the expression evaluates to false, the value will be -1.</p>
 <p>When the lambda expression generates an error during evaluation, the point is discarded
 and does not affect the state duration..</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">state_duration()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;val&quot;</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">)</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">state_duration(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;val&quot;</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 
@@ -1226,7 +1225,7 @@ and does not affect the state duration..</p>
 </thead>
 <tbody>
 <tr>
-<td>lambda( <code>lambda</code> )</td>
+<td>[node] lambda( <code>lambda</code> )</td>
 <td>state lambda expression</td>
 <td></td>
 </tr>

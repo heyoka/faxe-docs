@@ -17,17 +17,16 @@ Example
 
 
 %% detect changes in one field, with timeout
-|change_detect()
-.fields('val')
+|change_detect('val')
 .reset_timeout(3s)
 
 
 
-% in example json notation: 
+% in-example json notation: 
 % {"data": {"x": {"temp": 32.4564}, "y" : {"temp" : 31.15155}} }
 
-|change_detect()
-.fields('data.x.temp', 'data.y.temp')
+|change_detect('data.x.temp', 'data.y.temp')
+
 ```
 
 Parameters
@@ -35,6 +34,6 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-fields( `string_list` )| List of fields to monitor| optional
+[node] fields( `string_list` )| List of fields to monitor| optional
 reset_timeout( `duration` )| Previous values TTL | 3h 
  

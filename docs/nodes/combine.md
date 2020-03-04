@@ -46,6 +46,7 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
+[node] (`port`)| input node for port 2 |
 fields( `string_list` )| List of fields to include| []
 tags( `string_list` )| List of tags to include | []
 aliases( `string_list` )| List of field aliases to use instead of the original field names| []

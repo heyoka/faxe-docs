@@ -65,7 +65,7 @@ For example the eval node requires the lambdas parameter to be of type `lambda_l
 
 |eval(
     lambda: sqrt("base") + const,
-    lambda: if(hour("ts") > 18 AND day_of_week("ts") < 6, 'late_for_work', 'ok')
+    lambda: if(hour("ts") > 18 AND day_of_week("ts") < 6, 'late_for_work', 'ok'),
     lambda: abs("ts" - "ts_previous")
 )
 

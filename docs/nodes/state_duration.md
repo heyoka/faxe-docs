@@ -18,8 +18,7 @@ Example
 -------
 
 ```dfs       
-|state_duration()
-.lambda(lambda: "val" < 7)
+|state_duration(lambda: "val" < 7)
 ```
 
 Parameters
@@ -27,5 +26,5 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-lambda( `lambda` )| state lambda expression | 
+[node] lambda( `lambda` )| state lambda expression | 
 as( `string` )|name for the added duration field|'state_duration'
