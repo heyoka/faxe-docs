@@ -57,12 +57,16 @@ we just provide 1 or more of the same data-type separated be commas.
 
 For example the eval node requires the lambdas parameter to be of type `lambda_list`, the following calls would be valid:
 
-    |eval(lambda: str_concat("strval", '_postfix')
-    
-    |eval(lambda: str_starts_with("strval", 'pre'), lambda: 3 * ("val1" + "val2"))
-    
-    |eval(
-        lambda: sqrt("base") + const,
-        lambda: if(hour("ts") > 18 AND day_of_week("ts") < 6, 'late_for_work', 'ok')
-        lambda: abs("ts" - "ts_previous")
-    )
+```dfs
+
+|eval(lambda: str_concat("strval", '_postfix')
+
+|eval(lambda: str_starts_with("strval", 'pre'), lambda: 3 * ("val1" + "val2"))
+
+|eval(
+    lambda: sqrt("base") + const,
+    lambda: if(hour("ts") > 18 AND day_of_week("ts") < 6, 'late_for_work', 'ok')
+    lambda: abs("ts" - "ts_previous")
+)
+
+```

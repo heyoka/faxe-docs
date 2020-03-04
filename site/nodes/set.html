@@ -1203,6 +1203,8 @@
                 <h1 id="the-set-node">The set node</h1>
 <p>Set fields and/or tags to a data_point or batch.
 Overwrites any existing fields or tags.</p>
+<p>If fields or tags should be written only if they do not already exist, 
+use the <a href="default.html">default node</a>.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">set()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">)</span>

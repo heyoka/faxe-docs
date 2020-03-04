@@ -1314,15 +1314,15 @@
 If a node requires a <code>_list</code> type for any parameter, 
 we just provide 1 or more of the same data-type separated be commas.</p>
 <p>For example the eval node requires the lambdas parameter to be of type <code>lambda_list</code>, the following calls would be valid:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>|eval(lambda: str_concat(&quot;strval&quot;, &#39;_postfix&#39;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_concat</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;strval&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;_postfix&#39;</span><span style="color: #f8f8f2">)</span>
 
-|eval(lambda: str_starts_with(&quot;strval&quot;, &#39;pre&#39;), lambda: 3 * (&quot;val1&quot; + &quot;val2&quot;))
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_starts_with</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;strval&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;pre&#39;</span><span style="color: #f8f8f2">),</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">3</span> <span style="color: #f92672">*</span> <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;val1&quot;</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;val2&quot;</span><span style="color: #f8f8f2">))</span>
 
-|eval(
-    lambda: sqrt(&quot;base&quot;) + const,
-    lambda: if(hour(&quot;ts&quot;) &gt; 18 AND day_of_week(&quot;ts&quot;) &lt; 6, &#39;late_for_work&#39;, &#39;ok&#39;)
-    lambda: abs(&quot;ts&quot; - &quot;ts_previous&quot;)
-)
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">sqrt</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;base&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">const</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">18</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">day_of_week</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;late_for_work&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;ok&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">abs</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span> <span style="color: #f92672">-</span> <span style="color: #e6db74">&quot;ts_previous&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
 </code></pre></div>
                 
                   

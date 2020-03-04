@@ -4,6 +4,9 @@ The set node
 Set fields and/or tags to a data_point or batch.
 Overwrites any existing fields or tags.
 
+If fields or tags should be written only if they do not already exist, 
+use the [default node](default.md).
+
 
 Example
 -------
