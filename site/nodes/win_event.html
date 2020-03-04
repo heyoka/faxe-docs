@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1206,18 +1206,18 @@
 <p>With <code>fill_period</code> given, the window will only emit when it is filled with period points.
 This only applies if the <code>period</code> is greater than the <code>every</code> value.</p>
 <h2 id="examples">Examples</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">win_event()</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">win_event()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">period</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill_period</span><span style="color: #f8f8f2">()</span> 
-</pre></div>
+</code></pre></div>
 
 
 <p>The window will emit it's contents every 5 incoming points, but only after the window is filled with 15 points.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">win_event()</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">win_event()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">period</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The window will emit it's contents every 5 incoming points. On first emit 5 points will be outputted, on the second emit 10
@@ -1321,7 +1321,7 @@ will output 15 data_points - with 10 old and 5 new  points (Tumbling window).</p
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>

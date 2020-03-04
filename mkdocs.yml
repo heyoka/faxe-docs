@@ -9,3 +9,12 @@ markdown_extensions:
         use_pygments: True
         noclasses: True
         pygments_style: monokai
+plugins:
+  - search
+#  - mkpdfs:
+#      author: Alexander Minichmair
+#  - pdf-export:
+#      verbose: false
+#      media_type: print
+#      enabled_if_env: ENABLE_PDF_EXPORT
+#      combined: false

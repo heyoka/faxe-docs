@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1292,7 +1292,7 @@ joining.</p>
 </ul>
 <p>Note, that this node will produce a completely new stream.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
@@ -1310,7 +1310,7 @@ joining.</p>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tolerance</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">missing_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">none</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Joins the fields of <code>v1</code> and <code>v2</code> and produces a stream, that has the fields <code>v1.joined.val</code> and <code>v2.joined.val</code></p>
@@ -1371,7 +1371,7 @@ joining.</p>
 <h3 id="merge-example">Merge example</h3>
 <p>Let's look at an example where the streams coming out of two nodes are not joined with prefixes, but
 a merge operation is performed. </p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
@@ -1396,30 +1396,30 @@ a merge operation is performed. </p>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">null</span><span style="color: #f8f8f2">)</span>
 
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4 id="v1-node-data-field-in-json-format-for-readability">v1 node data-field (in json format for readability):</h4>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
             <span style="color: #f8f8f2">[{</span><span style="color: #f92672">&quot;value&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">33</span><span style="color: #f8f8f2">}]},</span> <span style="color: #f92672">&quot;condition_reason&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;Reason&quot;</span><span style="color: #f8f8f2">,</span>
  <span style="color: #f92672">&quot;predicted_maintenance_time&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1584246411783</span><span style="color: #f8f8f2">,</span>
  <span style="color: #f92672">&quot;vac_on_without_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1.2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2.5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4.33</span><span style="color: #f8f8f2">]</span>
             <span style="color: #f8f8f2">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4 id="v2-node-data-field">v2 node data-field:</h4>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;id1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;name1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;id1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;name1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
             <span style="color: #f8f8f2">[{</span><span style="color: #f92672">&quot;number&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">44</span><span style="color: #f8f8f2">}]},</span> <span style="color: #f92672">&quot;condition_reason&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
  <span style="color: #f92672">&quot;predicted_maintenance_time&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1584246411785</span><span style="color: #f8f8f2">,</span>
  <span style="color: #f92672">&quot;vac_on_without_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">2.2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2.5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4.33</span><span style="color: #f8f8f2">],</span>
  <span style="color: #f92672">&quot;vac_on_with_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">5.6</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">45.98</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7.012</span><span style="color: #f8f8f2">]</span>
             <span style="color: #f8f8f2">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The result data-field after merge (json format here):</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span>
          <span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;name1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
          <span style="color: #f92672">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:[{</span><span style="color: #f92672">&quot;number&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">44</span><span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;value&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">33</span><span style="color: #f8f8f2">}]</span>
          <span style="color: #f8f8f2">},</span>
@@ -1428,7 +1428,7 @@ a merge operation is performed. </p>
  <span style="color: #f92672">&quot;vac_on_with_contact&quot;</span><span style="color: #f8f8f2">:[</span><span style="color: #ae81ff">5.6</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">45.98</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">7.012</span><span style="color: #f8f8f2">],</span>
  <span style="color: #f92672">&quot;condition_reason&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;&quot;</span>
          <span style="color: #f8f8f2">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Objects and lists and lists of objects will be merged.</p>
@@ -1506,7 +1506,7 @@ Except for lists, which will be merged ("vac_on_without_contact").</p>
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>

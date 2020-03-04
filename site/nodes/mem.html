@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1210,18 +1210,18 @@
 </ul>
 <p>The values will be held in an non persistent ets term storage.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;set&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;topics_seen&#39;</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Holds a set of values from the field named <code>topic</code>.
 The set of values is available in lambda expression (within the same flow) with the key <code>topics_seen</code>.</p>
 <p>The above set can be used in lambda expressions with the functions: <code>ls_mem</code>, <code>ls_mem_list</code>, <code>ls_mem_set</code>.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|where(lambda: if( member(&quot;topic&quot;, ls_mem_set(&#39;topics_seen&#39;)), false, true) )
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>|where(lambda: if( member(&quot;topic&quot;, ls_mem_set(&#39;topics_seen&#39;)), false, true) )
+</code></pre></div>
 
 
 <p>This will filter out all points that have a topic field, which has already be stored in the mem set.
@@ -1324,7 +1324,7 @@ Thus the <code>where</code> node will only output points with a unique topic val
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>

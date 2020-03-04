@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1227,7 +1227,7 @@
 Here data is produced every 2s, then accumulated to a data_batch of length 6, the result gets then forwarded
 to our custom python node, which doubles all values of the field <code>val</code>.</p>
 <h3 id="dfs">dfs</h3>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">2s</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
 
@@ -1239,11 +1239,11 @@ to our custom python node, which doubles all values of the field <code>val</code
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;double_val&#39;</span><span style="color: #f8f8f2">)</span>
 
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3 id="python">python</h3>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">from</span> <span style="color: #f8f8f2">faxe</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Faxe</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">from</span> <span style="color: #f8f8f2">faxe</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Faxe</span>
 
 
 <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Double</span><span style="color: #f8f8f2">(Faxe):</span>
@@ -1272,7 +1272,7 @@ to our custom python node, which doubles all values of the field <code>val</code
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">calc</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">point_dict):</span>
         <span style="color: #f8f8f2">point_dict[self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">asfieldname]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">point_dict[self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">fieldname]</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">2</span>
         <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_dict</span>
-</pre></div>
+</code></pre></div>
                 
                   
                 
@@ -1344,7 +1344,7 @@ to our custom python node, which doubles all values of the field <code>val</code
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>

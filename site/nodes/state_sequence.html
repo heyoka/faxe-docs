@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1214,7 +1214,7 @@ Normally this would not reset the sequence of evaluation, in this mode, it will.
 <p>On a successful evaluation of the whole sequence, the node will simply output the last value, that completed the sequence.</p>
 <p>The state_sequence node can be used with one or many input nodes.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">in1</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #a6e22e">in1</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">state_sequence(</span><span style="color: #a6e22e">in2</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">in3</span><span style="color: #f8f8f2">)</span> <span style="color: #75715e">%% can use any number of nodes</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">states</span><span style="color: #f8f8f2">(</span>
     <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;in1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">%% state 1</span>
@@ -1225,7 +1225,7 @@ Normally this would not reset the sequence of evaluation, in this mode, it will.
     <span style="color: #e6db74">25s</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">%% transition-time from state 1 to state 2</span>
     <span style="color: #e6db74">20s</span>  <span style="color: #75715e">%% transition-time from state 2 to state 3</span>
     <span style="color: #f8f8f2">)</span> 
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="parameters">Parameters</h2>
@@ -1331,7 +1331,7 @@ Normally this would not reset the sequence of evaluation, in this mode, it will.
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>

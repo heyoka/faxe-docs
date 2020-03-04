@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1310,7 +1310,7 @@ of <code>dfs</code>, here is also were the differences between TICKScript and df
 Variables are immutable and cannot be reassigned new values later on in the script, 
 though they can be used in other declarations and can be passed into functions, property calls and text-templates.</p>
 <h2 id="variable-declarations">Variable declarations</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">string</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;this is a string !&#39;</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">string</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;this is a string !&#39;</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">text</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&lt;&lt;&lt; this is a text with some weird chars :// %&amp; &gt;&gt;&gt;</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">func</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;value&quot;</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">3</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">meas</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4.44</span>
@@ -1327,7 +1327,7 @@ though they can be used in other declarations and can be passed into functions, 
     <span style="color: #75715e">% it can then be used like so</span>
     <span style="color: #a6e22e">in1</span>
         <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="datatypes">Datatypes</h2>
@@ -1424,25 +1424,25 @@ It is essentially an integer terminated by one or a pair of reserved characters,
 </table>
 <p>Internally all time and duration related values are converted to milliseconds in faxe.</p>
 <h4 id="examples">Examples</h4>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">span</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10s</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">span</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10s</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">frequency</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10m</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">short</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">50ms</span>
 
     <span style="color: #f92672">|</span><span style="color: #f8f8f2">win_time()</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">period</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">1h</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">30m</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="text-templates">Text templates</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">variable_name</span><span style="color: #f8f8f2">}}</span>
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>    <span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">variable_name</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
 
 
 <hr />
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">this_portion</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;it&#39;</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">this_portion</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;it&#39;</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">text_template</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&lt;&lt;&lt; Some text where {{this_portion}} will get replaced &gt;&gt;&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>In the above example, after compilation of the dfs script the variable <code>text_template</code> will hold the following value:</p>
@@ -1451,16 +1451,16 @@ It is essentially an integer terminated by one or a pair of reserved characters,
 While the above example seems to be useless, when used in template scripts they can be very powerful.
 The variable <code>this_portion</code> could be overwritten with a new value for every instantiation of a template script.</p>
 <p>There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #f8f8f2">{{</span><span style="color: #e6db74">&quot;value_name&quot;</span><span style="color: #f8f8f2">}}</span>
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>    <span style="color: #f8f8f2">{{</span><span style="color: #e6db74">&quot;value_name&quot;</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
 
 
 <hr />
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>    <span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>    <span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span>
         <span style="color: #a6e22e">No</span> <span style="color: #a6e22e">data</span> <span style="color: #a6e22e">since</span> <span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">datetime</span><span style="color: #f8f8f2">}}</span> <span style="color: #a6e22e">on</span> <span style="color: #a6e22e">topic</span> <span style="color: #e6db74">&#39;ttgw/energy&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">last</span> <span style="color: #a6e22e">value</span> <span style="color: #a6e22e">was</span> <span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">val</span><span style="color: #f8f8f2">}}.</span> 
         <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Here the values for <code>datetime</code> and <code>val</code> will be taken from the current data_point in the email node.</p>
@@ -1535,7 +1535,7 @@ The variable <code>this_portion</code> could be overwritten with a new value for
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>

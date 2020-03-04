@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1192,18 +1192,18 @@
 <ol>
 <li><strong>Node parameters</strong> provided to the node declaration function</li>
 </ol>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">% the level parameter is given to the node declaration function</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #75715e">% the level parameter is given to the node declaration function</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug(</span><span style="color: #e6db74">&#39;notice&#39;</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <ol>
 <li><strong>Option parameters</strong> provided to an option call</li>
 </ol>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">% the level parameter is given as an extra option function</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #75715e">% the level parameter is given as an extra option function</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">level</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;notice&#39;</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Some parameters are required and others are optional.</p>
@@ -1314,7 +1314,7 @@
 If a node requires a <code>_list</code> type for any parameter, 
 we just provide 1 or more of the same data-type separated be commas.</p>
 <p>For example the eval node requires the lambdas parameter to be of type <code>lambda_list</code>, the following calls would be valid:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>|eval(lambda: str_concat(&quot;strval&quot;, &#39;_postfix&#39;)
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>|eval(lambda: str_concat(&quot;strval&quot;, &#39;_postfix&#39;)
 
 |eval(lambda: str_starts_with(&quot;strval&quot;, &#39;pre&#39;), lambda: 3 * (&quot;val1&quot; + &quot;val2&quot;))
 
@@ -1323,7 +1323,7 @@ we just provide 1 or more of the same data-type separated be commas.</p>
     lambda: if(hour(&quot;ts&quot;) &gt; 18 AND day_of_week(&quot;ts&quot;) &lt; 6, &#39;late_for_work&#39;, &#39;ok&#39;)
     lambda: abs(&quot;ts&quot; - &quot;ts_previous&quot;)
 )
-</pre></div>
+</code></pre></div>
                 
                   
                 
@@ -1395,7 +1395,7 @@ we just provide 1 or more of the same data-type separated be commas.</p>
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>

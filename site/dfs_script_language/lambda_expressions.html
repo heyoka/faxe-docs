@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.4.3">
     
     
       
@@ -86,7 +86,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo">
+        <a href=".." title="Faxe" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -156,7 +156,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Faxe" class="md-nav__button md-logo">
+    <a href=".." title="Faxe" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -1301,8 +1301,8 @@
 <p>DFS uses lambda expressions to define transformations on data points as well as define Boolean conditions that act as filters. 
 Lambda expressions wrap mathematical operations, Boolean operations, internal function calls or a combination of all three.  </p>
 <p>All lambda expressions in DFS begin with the <code>lambda:</code> keyword.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">where(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;ttop/grap/prec&#39;</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">where(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;ttop/grap/prec&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
 
 
 <p>In the above example <code>"topic"</code> is used to access the value of a field called <code>topic</code> 
@@ -1313,11 +1313,11 @@ while double quotes are used only in lambda expressions to access the values of 
 <p>As field and tag values can be deeply nested maps and lists, it is possible to use a <code>JSON-path</code> like syntax
 to reference them:</p>
 <p>Valid examples:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>&quot;averages&quot;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>&quot;averages&quot;
 &quot;axis.z.cur&quot;
 &quot;value.sub[2].data&quot;
 &quot;averages.emitted[5]&quot;
-</pre></div>
+</code></pre></div>
 
 
 <hr />
@@ -1325,23 +1325,23 @@ to reference them:</p>
 <h3 id="type-conversion">Type conversion</h3>
 <p>With a few exceptions every type can be converted to every other type.</p>
 <p><strong>Bool</strong></p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>bool(a_value) -&gt; true|false
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>bool(a_value) -&gt; true|false
+</code></pre></div>
 
 
 <p><strong>Integer</strong></p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>int(value) -&gt; integer
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>int(value) -&gt; integer
+</code></pre></div>
 
 
 <p><strong>Float</strong></p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>float(value) -&gt; float
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>float(value) -&gt; float
+</code></pre></div>
 
 
 <p><strong>String</strong></p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>string(val) -&gt; string
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>string(val) -&gt; string
+</code></pre></div>
 
 
 <h3 id="time-functions">Time functions</h3>
@@ -1393,8 +1393,8 @@ to reference them:</p>
 </tbody>
 </table>
 <p>Example:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">8</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">19</span>
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">8</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">19</span>
+</code></pre></div>
 
 
 <p>The above expression evaluates to true if the hour of the day for the data point falls between 08:00 and 19:00.</p>
@@ -1701,16 +1701,16 @@ to reference them:</p>
 <p>Returns the result of its operands depending on the value of the first argument. 
 The second and third arguments must return the same type.</p>
 <p>Example:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">threshold</span> <span style="color: #f92672">AND</span> <span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;true&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;false&#39;</span><span style="color: #f8f8f2">))</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">threshold</span> <span style="color: #f92672">AND</span> <span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;true&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;false&#39;</span><span style="color: #f8f8f2">))</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The value of the field <code>value</code> in the above example will be the string <code>true</code> or <code>false</code>, 
 depending on the condition passed as the first argument.</p>
 <p>The if function’s return type is the same type as its second and third arguments.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>if(condition, true expression, false expression)
-</pre></div>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>if(condition, true expression, false expression)
+</code></pre></div>
                 
                   
                 
@@ -1782,7 +1782,7 @@ depending on the condition passed as the first argument.</p>
     
       <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>
