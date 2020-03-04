@@ -3,7 +3,7 @@ The time_elapsed node
 
 The time_elapsed node adds a field to the current data-item containing the difference in arrival time of consecutive items.
 
-See the [time_diff node](./time_diff.html).
+See the [time_diff node](./time_diff.md).
  
 The unit for output values is milliseconds.
 

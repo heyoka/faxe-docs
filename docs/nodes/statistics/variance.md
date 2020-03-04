@@ -3,7 +3,7 @@ The variance node
 
 Compute the data's variance.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

@@ -3,7 +3,7 @@ The elapsed node
 
 Compute the elapsed time between points.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

@@ -3,7 +3,7 @@ The top node
 
 Select the top num points.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

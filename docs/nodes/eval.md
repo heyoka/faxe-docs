@@ -2,7 +2,7 @@ The eval node
 =====================
 
 Evaluate one or more lambda expressions.
-For an explanation of lambdas, see [lambda](../dfs_script_language/lambda_expressions.html).
+For an explanation of lambdas, see [lambda](../dfs_script_language/lambda_expressions.md).
 
 The list of lambda expressions given, will be evaluated in a serial fashion.
 This means that a lambda can use the result of a previous expression.
@@ -29,7 +29,7 @@ The second expression uses the field `double`, which the first expression just c
 The above example uses several built in casting and string functions to demonstrate complex expressions.
 
 
-For more lambda examples see [lambda](../dfs_script_language/lambda_expressions.html)
+For more lambda examples see [lambda](../dfs_script_language/lambda_expressions.md)
 
 
 Parameters

@@ -3,7 +3,7 @@ The min node
 
 Compute the minimum of data.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

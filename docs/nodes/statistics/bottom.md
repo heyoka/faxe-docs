@@ -3,7 +3,7 @@ The sum node
 
 Select the bottom num points for field.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

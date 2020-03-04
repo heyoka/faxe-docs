@@ -3,7 +3,7 @@ The last node
 
 Select the last, that means the newest point.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

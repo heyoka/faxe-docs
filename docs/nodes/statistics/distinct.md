@@ -3,7 +3,7 @@ The distinct node
 
 Select unique values.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

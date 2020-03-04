@@ -3,7 +3,7 @@ The stddev node
 
 Compute the standard deviation of the data.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

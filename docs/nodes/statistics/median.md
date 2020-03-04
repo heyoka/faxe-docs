@@ -3,7 +3,7 @@ The median node
 
 Compute the median of data.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

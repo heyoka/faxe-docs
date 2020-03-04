@@ -3,7 +3,7 @@ The kurtosis node
 
 Compute the kurtosis of data.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

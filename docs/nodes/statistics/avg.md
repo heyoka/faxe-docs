@@ -3,7 +3,7 @@ The avg node
 
 Compute the average.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

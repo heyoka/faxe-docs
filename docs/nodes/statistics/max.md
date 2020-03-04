@@ -3,7 +3,7 @@ The max node
 
 Compute the maximum value.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

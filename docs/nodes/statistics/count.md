@@ -3,7 +3,7 @@ The count node
 
 Count the number of points.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

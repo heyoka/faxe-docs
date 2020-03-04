@@ -6,7 +6,7 @@ Does not overwrite or update any fields or tags.
 
 Note: 
 This nodes checks for existence of fields before writing them. 
-Consider using the [set node](/nodes/set.html), if you just want some fields set.
+Consider using the [set node](set.md), if you just want some fields set.
 It is more performant especially with high frequency data streams.
 
 Example

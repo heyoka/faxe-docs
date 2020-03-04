@@ -3,7 +3,7 @@ The geometric_mean node
 
 Compute the geometric_mean.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

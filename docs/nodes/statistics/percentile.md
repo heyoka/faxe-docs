@@ -3,7 +3,7 @@ The percentile node
 
 Select a point at the given percentile. This is a selector function, no interpolation between points is performed.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------

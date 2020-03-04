@@ -3,7 +3,7 @@ The first node
 
 Select the first that means the oldest point.
 
-See the [stats node](/nodes/stats)
+See the [stats node](../stats.md)
 
 Example
 -------
