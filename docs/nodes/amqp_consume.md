@@ -23,11 +23,13 @@ Parameters
 Parameter     | Description | Default 
 --------------|-------------|---------
 host( `string` )| Ip address or hostname of the broker|
-port( `integer` )| The broker's port | 5672
+port( `integer` )| The broker's port | 5672 / from config file
+user( `string` )| AMQP user | from config file
+pass( `string` )| AMQP password | from config file
 vhost( `string` )| vhost to connect to on the broker| '/'
 routing_key( `string` )| routing key to use for queue binding|
 queue( `string` )|name of the queue to bind to the exchange|
-exchange( `string` )|name of the exchange to bind to the source|
+exchange( `string` )|name of the exchange to bind to the source exchange |
 prefetch( `integer` )|prefetch count to use| 1
 dt_field( `string` )|name of the timestamp field that is expected|'ts'
 dt_format( `string` )|timestamp or datetime format that is expected (see table below)| 'millisecond'

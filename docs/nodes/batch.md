@@ -27,5 +27,5 @@ Parameters
 Parameter     | Description | Default 
 --------------|-------------|---------
 [node] size( `integer` )| Number of points to batch |
-timeout( `duration` )|   | optional 
+timeout( `duration` )|   | 1h 
  

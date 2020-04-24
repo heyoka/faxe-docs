@@ -25,4 +25,5 @@ Parameter     | Description | Default
 --------------|-------------|--------- 
 host( `string` )| hostname or ip address of endpoint |
 port( `integer` )|port number|
+tls( `is_set` ) | whether to use tls ie. https | false (not set)
 path( `string` )| URI path of the http endpoint | ''  

@@ -34,6 +34,7 @@ Parameter     | Description | Default
 --------------|-------------|--------- 
 host( `string` )| hostname or ip address of endpoint |
 port( `integer` )|port number|
+tls( `is_set` ) | whether to use tls ie. https | false (not set)
 table( `string` )| database tablename | 'doc'
 db_fields( `string_list` )|db fieldnames (mapping for faxe fieldname to table field names)|
 faxe_fields( `string_list` )|faxe fieldnames (mapping for faxe fieldname to table field names)|

@@ -21,7 +21,9 @@ Parameters
 Parameter     | Description | Default 
 --------------|-------------|---------
 host( `string` )| Ip address or hostname of the broker|
-port( `integer` )| The broker's port | 5672
+port( `integer` )| The broker's port | 5672 / from config file
+user( `string` )| AMQP user | from config file
+pass( `string` )| AMQP password | from config file
 vhost( `string` )| vhost to connect to on the broker| '/'
 routing_key( `string` )| routing key for the published messages|
 exchange( `string` )|name of the exchange to publish to|

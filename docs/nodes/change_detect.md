@@ -4,7 +4,7 @@ The change_detect node
 Emits new point-values only if different from the previous point.
  
 * Multiple fields can be monitored for change by this node
-* If no fields are given, a new datapoint is used to compare
+* If no fields are given, the complete data-item is compared to the last one
 * If reset_timeout is given, all previous values are reset, if there are no points coming in for this amount of time 
 * For value comparison erlang's strict equals (=:=) is used, so 1.0 is not equal to 1
 
