@@ -176,7 +176,7 @@ There is another version of text-templating which uses a value inside the curren
 ```dfs
     |email()
     .body(<<<
-        No data since {{datetime}} on topic 'ttgw/energy', last value was {{val}}. 
+        No data since {{"datetime"}} on topic 'ttgw/energy', last value was {{"val"}}. 
         >>>)
 ```
  Here the values for `datetime` and `val` will be taken from the current data_point in the email node.

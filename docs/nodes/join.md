@@ -3,7 +3,7 @@ The join node
 
 Join data from two or more nodes, given a list of prefixes, for each row.
 
-If the `field_merge` parameter is given, the node will merge the field given from every in-node, instead of
+If the `merge_field` parameter is given, the node will merge the field given from every in-node, instead of
 joining.
 
 When considering the `fill` option, the following rules apply:
@@ -14,6 +14,7 @@ When considering the `fill` option, the following rules apply:
 
 Note, that this node will produce a completely new stream.
 
+If you want to enrich a stream of data with a second stream consider using the [combine node](combine.md).
 
 Example
 -------
@@ -54,7 +55,7 @@ Parameters
 Parameter     | Description | Default 
 --------------|-------------|--------- 
 prefix( `string_list` )| list of prefixes (used in join mode) | ['', ''] (no prefixes)
-field_merge( `string` )|when given, the join node will do a field merge operation| undefined
+merge_field( `string` )|when given, the join node will do a field merge operation| undefined
 missing_timeout( `duration` )| values that do not arrive within this timeout will be treated as missing | 20s
 tolerance( `duration` )|db fieldnames (mapping for faxe fieldname to table field names)|
 fill( 'none' 'null' `any` )|fill missing values / join behaviour|'none'
@@ -84,7 +85,7 @@ def v2 =
 
 v1
 |join(v2)
-.field_merge('data')
+.merge_field('data')
 .tolerance(20ms)
 .missing_timeout(30ms)
 .fill(null)

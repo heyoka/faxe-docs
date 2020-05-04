@@ -19,8 +19,7 @@ This example demonstrates the 'serial' behaviour of the `eval` node.
 The second expression uses the field `double`, which the first expression just created.
 
 ```dfs 
-|eval()
-.lambdas(
+|eval( 
     lambda: int(str_concat(string(int("val")),string(int("val"))))
 )
 .as('concat_string.int')

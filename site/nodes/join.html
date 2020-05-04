@@ -1294,7 +1294,7 @@
                 
                 <h1 id="the-join-node">The join node</h1>
 <p>Join data from two or more nodes, given a list of prefixes, for each row.</p>
-<p>If the <code>field_merge</code> parameter is given, the node will merge the field given from every in-node, instead of
+<p>If the <code>merge_field</code> parameter is given, the node will merge the field given from every in-node, instead of
 joining.</p>
 <p>When considering the <code>fill</code> option, the following rules apply:</p>
 <ul>
@@ -1303,6 +1303,7 @@ joining.</p>
 <li>Any value - fill fields with given value, full outer join.</li>
 </ul>
 <p>Note, that this node will produce a completely new stream.</p>
+<p>If you want to enrich a stream of data with a second stream consider using the <a href="combine.html">combine node</a>.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
@@ -1359,7 +1360,7 @@ joining.</p>
 <td>['', ''] (no prefixes)</td>
 </tr>
 <tr>
-<td>field_merge( <code>string</code> )</td>
+<td>merge_field( <code>string</code> )</td>
 <td>when given, the join node will do a field merge operation</td>
 <td>undefined</td>
 </tr>
@@ -1402,7 +1403,7 @@ a merge operation is performed. </p>
 
 <span style="color: #a6e22e">v1</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">join(</span><span style="color: #a6e22e">v2</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field_merge</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">merge_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tolerance</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">20ms</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">missing_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">30ms</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">null</span><span style="color: #f8f8f2">)</span>

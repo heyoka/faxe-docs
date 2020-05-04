@@ -354,6 +354,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#conditional-functions" class="md-nav__link">
     Conditional functions
   </a>
@@ -1280,6 +1287,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#conditional-functions" class="md-nav__link">
     Conditional functions
   </a>
@@ -1366,6 +1380,10 @@ to reference them:</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>now()</code> -&gt; integer</td>
+<td>returns a utc timestamp in milliseconds</td>
+</tr>
 <tr>
 <td><code>to_iso8601(ts)</code> -&gt; string</td>
 <td>converts the timestamp to an ISO8601 string</td>
@@ -1705,6 +1723,53 @@ to reference them:</p>
 <tr>
 <td>str_upcase/1</td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="misc">Misc</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is defined in the current data-item</td>
+</tr>
+<tr>
+<td><code>undefined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is NOT defined in the current data-item</td>
+</tr>
+<tr>
+<td><code>member(Ele, List)</code> -&gt; bool</td>
+<td>check for list/set membership</td>
+</tr>
+<tr>
+<td><code>not_member(Ele, List)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>random(N)</code> -&gt; integer</td>
+<td>generate a random integer between 1 and N</td>
+</tr>
+<tr>
+<td><code>random_real(N)</code> -&gt; float</td>
+<td>generate a random float between 0.0 and 1.0, that gets multiplied by N</td>
+</tr>
+<tr>
+<td><code>ls_mem(Key)</code> -&gt; any</td>
+<td>get the single value associated with Key from the flow-memory</td>
+</tr>
+<tr>
+<td><code>ls_mem_list(Key)</code> -&gt; any</td>
+<td>get the list value associated with Key from the flow-memory</td>
+</tr>
+<tr>
+<td><code>ls_mem_set()</code> -&gt; any</td>
+<td>get the set value associated with Key from the flow-memory</td>
 </tr>
 </tbody>
 </table>

@@ -412,8 +412,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#fields" class="md-nav__link">
+    fields
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    merge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1182,8 +1196,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#fields" class="md-nav__link">
+    fields
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    merge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1213,15 +1241,26 @@
                 
                 
                 <h1 id="the-combine-node">The combine node</h1>
-<p>Combine the values of 2 nodes, use to enrich data from one node.</p>
-<p>Port 1 is the trigger port. 
+<p>Combine the values from 2 nodes, used to enrich a stream of data.</p>
+<p>Port 1 is the trigger port. Port 2 is the where enrichment data come from.
 Every time a value is received on the trigger port, the node will emit a value, combined with whatever current value on port 2.
 The node will never emit on port 2 values.</p>
 <p>No output is given, as long as there has not arrived a value on port 2 to combine with.</p>
+<hr />
+<h4 id="fields">fields</h4>
 <p>The <code>fields</code> parameter defines the fields to inject into the combination for the stream on port 2.
 To rename these fields, parameter <code>prefix</code> or <code>aliases</code> can be used.
 With <code>prefix_delimiter</code> a delimiter can be given, defaults to: <code>'_'</code></p>
-<h2 id="example">Example</h2>
+<hr />
+<h4 id="merge">merge</h4>
+<p>When <code>merge_field</code> is given, the node will merge the values from the input port 2 with the values from port 1.
+Objects and lists and lists of objects will be merged.</p>
+<p>If a path exists in both streams, the value in the first stream is superseded by the value in
+the second stream (in2). Except for lists, which will be combined.</p>
+<hr />
+<p>Either fields(optionally with <code>prefix</code> or <code>aliases</code>) or merge_field must be given. </p>
+<p>If you want to join 2 or more streams consider using the <a href="join.html">join node</a>.</p>
+<h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code> <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">in1</span> <span style="color: #f92672">=</span>
   <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
   <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span>
@@ -1245,6 +1284,63 @@ With <code>prefix_delimiter</code> a delimiter can be given, defaults to: <code>
 <p>In this example values from the stream called <code>in1</code> will be enriched with values from <code>in2</code>.
 Outputfields will be called: <code>val</code>, <code>comb_val2</code> and <code>comb_val3</code> .
 The flow will emit every 500 milliseconds after 4 seconds have past initially.</p>
+<hr />
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code> <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">in1</span> <span style="color: #f92672">=</span>
+  <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.val&#39;</span><span style="color: #f8f8f2">)</span>
+
+ <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">in2</span> <span style="color: #f92672">=</span>
+  <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">4s</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.val2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.val3&#39;</span><span style="color: #f8f8f2">)</span> 
+
+ <span style="color: #a6e22e">in1</span>
+  <span style="color: #f92672">|</span><span style="color: #f8f8f2">combine(</span><span style="color: #a6e22e">in2</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">merge_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+
+<p>This example will merge data from <code>in2</code> into <code>in1</code>, such that the resulting data-point will have 
+the fields: <code>data.val</code>, <code>data.val2</code>, <code>data.val3</code></p>
+<hr />
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">1s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&quot;value&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">33</span><span style="color: #f8f8f2">}]},</span> <span style="color: #e6db74">&quot;condition_reason&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;predicted_maintenance_time&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1584246411783</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;vac_on_without_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1.2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2.5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4.33</span><span style="color: #f8f8f2">]}</span> <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v2</span> <span style="color: #f92672">=</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">5s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;condition&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;id1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;name1&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;OK&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;sub_cond&quot;</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&quot;number&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">44</span><span style="color: #f8f8f2">}]},</span> <span style="color: #e6db74">&quot;condition_reason&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;predicted_maintenance_time&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1584246411785</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;vac_on_without_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">2.2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2.5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4.33</span><span style="color: #f8f8f2">],</span>
+        <span style="color: #e6db74">&quot;vac_on_with_contact&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">5.6</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">45.98</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7.012</span><span style="color: #f8f8f2">]}</span> <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #a6e22e">v1</span>
+    <span style="color: #f92672">|</span><span style="color: #f8f8f2">combine(</span><span style="color: #a6e22e">v2</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">merge_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+
+<p>The output from the above example will be:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code>{&quot;data&quot;:
+    {&quot;condition&quot;: {&quot;id1&quot;:0,&quot;id&quot;:0,&quot;name1&quot;:&quot;OK&quot;,&quot;name&quot;:&quot;OK&quot;,
+    &quot;sub_cond&quot;:[{&quot;number&quot;:44},{&quot;value&quot;:33}]},
+    &quot;condition_reason&quot;:&quot;&quot;,
+    &quot;predicted_maintenance_time&quot;:1584246411785,
+    &quot;vac_on_without_contact&quot;:[1.2,2.2,2.5,2.5,4.33,4.33],
+    &quot;vac_on_with_contact&quot;:[5.6,45.98,7.012]
+    }
+</code></pre></div>
+
+
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1259,6 +1355,11 @@ The flow will emit every 500 milliseconds after 4 seconds have past initially.</
 <td>[node] (<code>port</code>)</td>
 <td>input node for port 2</td>
 <td></td>
+</tr>
+<tr>
+<td>merge_field( <code>string</code> )</td>
+<td>Base field for the merge operation</td>
+<td>[]</td>
 </tr>
 <tr>
 <td>fields( <code>string_list</code> )</td>

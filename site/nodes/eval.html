@@ -1225,8 +1225,7 @@ This means that a lambda can use the result of a previous expression.</p>
 
 <p>This example demonstrates the 'serial' behaviour of the <code>eval</code> node.
 The second expression uses the field <code>double</code>, which the first expression just created.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">lambdas</span><span style="color: #f8f8f2">(</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span> 
     <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">str_concat</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">string</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;val&quot;</span><span style="color: #f8f8f2">)),</span><span style="color: #a6e22e">string</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;val&quot;</span><span style="color: #f8f8f2">))))</span>
 <span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;concat_string.int&#39;</span><span style="color: #f8f8f2">)</span>

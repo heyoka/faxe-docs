@@ -55,6 +55,7 @@ Every data_point in faxe contains a field called **`ts`** .
 
 Function                         | Description
 ---------------------------------|--------------------------------------------
+`now()` -> integer | returns a utc timestamp in milliseconds
 `to_iso8601(ts)` -> string | converts the timestamp to an ISO8601 string
 `millisecond(ts)` -> integer         | milliseconds within the second [0, 999]
 `second(ts)` -> integer            | second within the minute [0, 59]
@@ -151,6 +152,20 @@ str_starts_with_any/2|
 str_strip/1|
 str_strip/2|
 str_upcase/1|
+
+### Misc
+
+Function | Description
+---------| -----------
+`defined(Key)` -> bool | whether the given Key is defined in the current data-item
+`undefined(Key)` -> bool | whether the given Key is NOT defined in the current data-item
+`member(Ele, List)` -> bool | check for list/set membership
+`not_member(Ele, List)` -> bool | 
+`random(N)` -> integer   | generate a random integer between 1 and N
+`random_real(N)` -> float | generate a random float between 0.0 and 1.0, that gets multiplied by N
+`ls_mem(Key)` -> any| get the single value associated with Key from the flow-memory
+`ls_mem_list(Key)` -> any|get the list value associated with Key from the flow-memory
+`ls_mem_set()` -> any|get the set value associated with Key from the flow-memory
 
 
 ### Conditional functions
