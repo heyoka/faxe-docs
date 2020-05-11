@@ -397,6 +397,18 @@
 
 
   <li class="md-nav__item">
+    <a href="crate_out.html" title="Crate out" class="md-nav__link">
+      Crate out
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="crate_query.html" title="Crate query" class="md-nav__link">
       Crate query
     </a>
@@ -501,45 +513,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Http post crate
-      </label>
-    
     <a href="http_post_crate.html" title="Http post crate" class="md-nav__link md-nav__link--active">
       Http post crate
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    Parameters
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -694,6 +670,18 @@
 
 
   <li class="md-nav__item">
+    <a href="s7read.html" title="S7read" class="md-nav__link">
+      S7read
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="sample.html" title="Sample" class="md-nav__link">
       Sample
     </a>
@@ -720,6 +708,18 @@
   <li class="md-nav__item">
     <a href="shift.html" title="Shift" class="md-nav__link">
       Shift
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="state_change.html" title="State change" class="md-nav__link">
+      State change
     </a>
   </li>
 
@@ -923,13 +923,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-48" type="checkbox" id="nav-4-48">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-51" type="checkbox" id="nav-4-51">
     
-    <label class="md-nav__link" for="nav-4-48">
+    <label class="md-nav__link" for="nav-4-51">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-48">
+      <label class="md-nav__title" for="nav-4-51">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1178,29 +1178,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    Parameters
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1213,72 +1190,7 @@
                 
                 
                 <h1 id="the-http_post_crate-node">The http_post_crate node</h1>
-<p>Sends data to a CRATE DB HTTP endpoint using Crate's HTTP Api.
-If any errors occur during the request, the node will attempt to retry sending.</p>
-<h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_table</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;grip_log_fulltext3&#39;</span>
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">faxe_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>
-
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">http_post_crate()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #a6e22e">http</span><span style="color: #f8f8f2">:</span><span style="color: #960050; background-color: #1e0010">//deves-crate.internal &gt;&gt;&gt;)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4201</span><span style="color: #f8f8f2">)</span> 
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">table</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db_table</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remaining_fields_as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data_obj&#39;</span><span style="color: #f8f8f2">)</span>
-</code></pre></div>
-
-
-<p>Inserts the faxe-fields <code>id</code>, <code>df</code>, <code>vs</code>, <code>topic</code> into the db-fields with the same names and all remaining fields into
-the db-field named <code>data_obj</code> (which is of type 'OBJECT') in the table <code>grip_log_fulltext3</code> .</p>
-<h2 id="parameters">Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>host( <code>string</code> )</td>
-<td>hostname or ip address of endpoint</td>
-<td></td>
-</tr>
-<tr>
-<td>port( <code>integer</code> )</td>
-<td>port number</td>
-<td></td>
-</tr>
-<tr>
-<td>tls( <code>is_set</code> )</td>
-<td>whether to use tls ie. https</td>
-<td>false (not set)</td>
-</tr>
-<tr>
-<td>table( <code>string</code> )</td>
-<td>database tablename</td>
-<td>'doc'</td>
-</tr>
-<tr>
-<td>db_fields( <code>string_list</code> )</td>
-<td>db fieldnames (mapping for faxe fieldname to table field names)</td>
-<td></td>
-</tr>
-<tr>
-<td>faxe_fields( <code>string_list</code> )</td>
-<td>faxe fieldnames (mapping for faxe fieldname to table field names)</td>
-<td></td>
-</tr>
-<tr>
-<td>remaining_fields_as( <code>string</code> )</td>
-<td>if given inserts all fields not in faxe_fields into the given field, which must be of type 'object'</td>
-<td>undefined</td>
-</tr>
-</tbody>
-</table>
+<p><strong>renamed to <a href="crate_out.html"><code>crate_out</code></a></strong> .</p>
                 
                   
                 

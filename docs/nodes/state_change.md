@@ -1,0 +1,96 @@
+The state_change node
+=====================
+
+Computes the duration and count of points of a given state. The state is defined via a lambda expression.
+
+For each consecutive point for which the expression evaluates as true, state count and duration will be incremented.
+
+This node can be used to track state in data and produce new data based on the state-events.
+It can produce new data-points every time the state is `entered` and/or `left`. 
+
+### Enter data-point
+
+The new data-point will have a field, named with the `enter_as` option, set to `1`.
+The fieldname defaults to `state_entered`.
+
+
+### Leave data-point
+
+Fields for the data-point emitted on state-leave:
+
+Name         | Description
+-------------|------------
+`state_left` | set to `1`
+`state_start_ts` | timestamp at which the state has been entered
+`state_end_ts` | timestamp at which the state-expression has been satisfied the last time
+`state_duration` | duration of the state in `milliseconds`
+`state_count` | number of points, the number of consecutive data-points for which the state-expression returned true
+
+
+ 
+When the lambda expression generates an error during evaluation, the current point is discarded
+and does not affect any calculations.
+
+Example
+-------
+
+```dfs    
+
+%% the lambda defines our state    
+|state_change(lambda: "val" < 7 AND "err" != 0)
+%% the node will emit a data-point on state-leave only
+.leave()
+%% we keep these fields for the new state-leave data-point
+.leave_keep('err', 'err_code')
+
+```
+Example output in json:
+```json
+
+{
+    "ts": 1232154654655, 
+    "err": 1, "err_code": 1492, "state_left": 1, 
+    "state_start_ts": 1232154644655, "state_end_ts" : 1232154654655,
+    "state_duration": 10000, "state_count": 22
+}
+
+```
+------------
+```dfs    
+
+%% the lambda defines our state    
+|state_change(lambda: "val" > 2 OR "err" == 1)
+%% the node will emit a data-point on state-enter
+.enter()
+%% the node will emit a data-point on state-leave
+.leave()
+%% we keep these fields for the new state-enter data-point
+.enter_keep('err', 'err_code')
+%% we keep these fields for the new state-leave data-point
+.leave_keep('err', 'err_code')
+
+```
+Example output in json for the enter data-point:
+```json
+
+{
+    "ts": 1232154654655, 
+    "err": 1, "err_code": 1492, "state_entered": 1
+}
+```
+ 
+
+Parameters
+----------
+
+Parameter     | Description | Default 
+--------------|-------------|--------- 
+[node] lambda( `lambda` )| state lambda expression | 
+enter( is_set )| emit a datapoint on state-enter| undefined
+leave( is_set )| emit a datapoint on state-leave| undefined
+enter_as( `string` )|name for the "enter" field, it will be set to true|'state_entered'
+leave_as( `string` )|name for the "leave" field, it will be set to true|'state_left'
+enter_keep( `string_list` )|a list of fieldnames that should be kept for the `enter` data-point|[]
+leave_keep( `string_list` )|a list of fieldnames that should be kept for the `leave` data-point|[]
+
+At least one of the `enter | leave` option must be given.

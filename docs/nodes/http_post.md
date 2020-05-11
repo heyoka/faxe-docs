@@ -9,10 +9,12 @@ If any errors occur during the request, the node will attempt to retry sending.
 Example
 -------
 ```dfs  
+
 |http_post()
 .host('remote.com')
 .port(8088)
-.path('/receive/json')
+.path('/receive/json') 
+
 ```
 
 Sends all incoming data to http://remote.com:8088/receive/json in JSON format.

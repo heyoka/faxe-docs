@@ -22,10 +22,6 @@ Example
 
  def s =
   |crate_query()
-  .host(host)
-  .port(port)
-  .user('crate')
-  .database('doc')
   .query(query)
   .group_by_time(3m)
   .every(15s)

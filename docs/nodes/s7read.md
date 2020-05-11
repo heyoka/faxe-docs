@@ -1,29 +1,22 @@
-The s7poll node
+The s7read node
 =====================
 
-**deprecated: use the [s7read node](s7read.md)**
-
-With the s7read node more data can be read in one go.
-
-------------------------
-Periodically pull data from a siemens s7 plc via the snap7 library using the `iso on tcp protocol`.
+Periodically read data from a siemens s7 plc via the snap7 library using the `iso on tcp protocol`.
 
 Data `addressing` can be done in a `Step7` schema or with a sligthly different schema used in node-red
 (although the step7 variant is preferred). 
 
 See table below for more information.
 
-`Note: max 19 values can be read with one s7poll node at the moment.`
+`Note: data transfer size is limited to 128 bytes.`
 
 Example
 -------
 ```dfs  
-|s7poll()
-.ip(10.10.204.15)
-.port(102)
+|s7read() 
 .rack(0)
 .slot(2)
-.every(3s) 
+.every(300ms) 
 .vars(
     'DB1140.DBX4.0', 'DB1140.DBX4.1',
     'DB1140.DBX4.4', 'DB1140.DBX4.5'
