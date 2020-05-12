@@ -1418,11 +1418,15 @@ to reference them:</p>
 <tbody>
 <tr>
 <td><code>now()</code> -&gt; integer</td>
-<td>returns a utc timestamp in milliseconds</td>
+<td>returns an utc timestamp in milliseconds</td>
 </tr>
 <tr>
 <td><code>to_iso8601(ts)</code> -&gt; string</td>
-<td>converts the timestamp to an ISO8601 string</td>
+<td>converts the timestamp to an ISO8601 datetime string</td>
+</tr>
+<tr>
+<td><code>to_rfc3339(ts)</code> -&gt; string</td>
+<td>converts the timestamp to an RFC3339 datetime string</td>
 </tr>
 <tr>
 <td><code>millisecond(ts)</code> -&gt; integer</td>
@@ -1546,8 +1550,20 @@ to reference them:</p>
 <td></td>
 </tr>
 <tr>
+<td><code>max(list)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
 <td><code>min(x, y)</code> -&gt; number</td>
 <td></td>
+</tr>
+<tr>
+<td><code>min(list)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pi() -&gt; float</code></td>
+<td>gives pi</td>
 </tr>
 <tr>
 <td><code>pow(x, y)</code> -&gt; float</td>
@@ -1593,64 +1609,52 @@ to reference them:</p>
 </thead>
 <tbody>
 <tr>
-<td>str_at/2</td>
-<td></td>
+<td><code>str_at(x, pos)</code> -&gt; string/undefined</td>
+<td>Returns the grapheme in the position of the given utf8 string. If position is greater than string length, then it returns undefined. Negative offsets count back from the end of the string.</td>
 </tr>
 <tr>
-<td>str_capitalize/1</td>
-<td></td>
+<td><code>str_capitalize(x)</code> -&gt; string</td>
+<td>Converts the first character in the given string to uppercase and the remaining to lowercase</td>
 </tr>
 <tr>
-<td>str_chunk/2</td>
-<td></td>
+<td><code>str_contains(x, contents)</code> -&gt; bool</td>
+<td>Check if string contains any of the given contents</td>
 </tr>
 <tr>
-<td>str_codepoints/1</td>
-<td></td>
+<td><code>str_downcase(x)</code> -&gt; string</td>
+<td>Convert all characters on the given string to lowercase</td>
 </tr>
 <tr>
-<td>str_contains/2</td>
-<td></td>
+<td><code>str_ends_with(x, suffix)</code> -&gt; string</td>
+<td>Returns true if string ends with suffix, otherwise false.</td>
 </tr>
 <tr>
-<td>str_downcase/1</td>
-<td></td>
+<td><code>str_ends_with_any(x, suffixes)</code> -&gt; string</td>
+<td>Returns true if string ends with any of the suffixes given, otherwise false.</td>
 </tr>
 <tr>
-<td>str_ends_with/2</td>
-<td></td>
+<td><code>str_eqi(x,y)</code> -&gt; bool</td>
+<td>Compares strings case insensitively</td>
 </tr>
 <tr>
-<td>str_ends_with_any/2</td>
-<td></td>
+<td><code>str_first(x)</code> -&gt; string/undefined</td>
+<td>Returns the first grapheme from an utf8 string, undefined if the string is empty</td>
 </tr>
 <tr>
-<td>str_eqi/2</td>
-<td></td>
+<td><code>str_last(x)</code> -&gt; string/undefined</td>
+<td>Returns the last grapheme from an utf8 string, undefined if the string is empty</td>
 </tr>
 <tr>
-<td>str_first/1</td>
-<td></td>
+<td><code>str_length(x)</code> -&gt; int</td>
+<td>Returns the number of unicode graphemes in an utf8 string</td>
 </tr>
 <tr>
-<td>str_last/1</td>
-<td></td>
+<td><code>str_lstrip(x)</code> -&gt; string</td>
+<td>Returns a string where leading Unicode whitespace has been removed</td>
 </tr>
 <tr>
-<td>str_length/1</td>
-<td></td>
-</tr>
-<tr>
-<td>str_lstrip/1</td>
-<td></td>
-</tr>
-<tr>
-<td>str_lstrip/2</td>
-<td></td>
-</tr>
-<tr>
-<td>str_next_codepoint/1</td>
-<td></td>
+<td><code>str_lstrip(x, char)</code> -&gt; string</td>
+<td>Returns a string where leading char have been removed</td>
 </tr>
 <tr>
 <td>str_normalize/2</td>
@@ -1673,40 +1677,40 @@ to reference them:</p>
 <td></td>
 </tr>
 <tr>
-<td>str_replace/3</td>
-<td></td>
+<td><code>str_replace(x, patt, repl)</code> -&gt; string</td>
+<td>Returns a new string based on subject by replacing the parts matching pattern by replacement.</td>
 </tr>
 <tr>
 <td>str_replace_leading/3</td>
-<td></td>
-</tr>
-<tr>
-<td>str_replace_prefix/3</td>
-<td></td>
-</tr>
-<tr>
-<td>str_replace_suffix/3</td>
-<td></td>
+<td>Replaces all leading occurrences of match by replacement of match in string.</td>
 </tr>
 <tr>
 <td>str_replace_trailing/3</td>
-<td></td>
+<td>Replaces all trailing occurrences of match by replacement of match in string.</td>
 </tr>
 <tr>
-<td>str_reverse/1</td>
-<td></td>
+<td><code>str_replace_prefix(x, match, repl)</code> -&gt; string</td>
+<td>Replaces prefix in string by replacement if it matches match. Returns the string untouched if there is no match. If match is an empty string (""), replacement is just prepended to string.</td>
 </tr>
 <tr>
-<td>str_rstrip/1</td>
-<td></td>
+<td><code>str_replace_suffix(x, match, repl)</code> -&gt; string</td>
+<td>Replaces suffix in string by replacement if it matches match. Returns the string untouched if there is no match. If match is an empty string (""), replacement is just appended to string.</td>
 </tr>
 <tr>
-<td>str_rstrip/2</td>
-<td></td>
+<td><code>str_reverse(x)</code> -&gt; string</td>
+<td>Reverses the given string.</td>
 </tr>
 <tr>
-<td>str_slice/3</td>
-<td></td>
+<td><code>str_rstrip(x)</code> -&gt; string</td>
+<td>Returns a string where trailing Unicode whitespace has been removed</td>
+</tr>
+<tr>
+<td><code>str_rstrip(x, char)</code> -&gt; string</td>
+<td>Returns a string where trailing char have been removed</td>
+</tr>
+<tr>
+<td><code>str_slice(x, start, len)</code> -&gt; string</td>
+<td>Returns a substring starting at the offset given by the first, and a length given by the second param, if offset is negative, count back from end of string.</td>
 </tr>
 <tr>
 <td>str_split/1</td>
@@ -1741,24 +1745,24 @@ to reference them:</p>
 <td></td>
 </tr>
 <tr>
-<td>str_starts_with/2</td>
-<td></td>
+<td><code>str_starts_with(x, pre)</code> -&gt; bool</td>
+<td>Returns true if string starts with Prefix</td>
 </tr>
 <tr>
-<td>str_starts_with_any/2</td>
-<td></td>
+<td><code>str_starts_with_any(x, prefixes)</code> -&gt; bool</td>
+<td>Returns true if string starts with any of the prefixes given, otherwise false.</td>
 </tr>
 <tr>
-<td>str_strip/1</td>
-<td></td>
+<td><code>str_strip(x)</code> -&gt; string</td>
+<td>Returns a string where leading/trailing Unicode whitespace has been removed</td>
 </tr>
 <tr>
-<td>str_strip/2</td>
-<td></td>
+<td><code>str_strip(x, char)</code> -&gt; string</td>
+<td>Returns a string where leading/trailing char have been removed</td>
 </tr>
 <tr>
-<td>str_upcase/1</td>
-<td></td>
+<td><code>str_upcase(x)</code> -&gt; string</td>
+<td>Convert all characters on the given string to uppercase</td>
 </tr>
 </tbody>
 </table>
