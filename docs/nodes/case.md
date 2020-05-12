@@ -34,7 +34,7 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-[node] lambdas( `lambda_list` )|  list of lambda expressions |
+_[node]_ lambdas( `lambda_list` )|  list of lambda expressions |
 values( `string_list\|text_list` )| corresponding values |
 json( `is_set` ) | if set, will treat the `values` and `default` parameters as json strings| false, not set
 as (`string`) | field-path for the output value|

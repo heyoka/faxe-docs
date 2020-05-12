@@ -8,19 +8,21 @@ For each consecutive point for which the expression evaluates as true, state cou
 This node can be used to track state in data and produce new data based on the state-events.
 It can produce new data-points every time the state is `entered` and/or `left`. 
 
-### Enter data-point
+### The enter data-point
 
-The new data-point will have a field, named with the `enter_as` option, set to `1`.
-The fieldname defaults to `state_entered`.
+If the `.enter()` option is set, a new data-point will be emitted on state-enter.
+The new data-point will have a field, named with the `.enter_as()` option, set to `1`.
+This fieldname defaults to `state_entered`.
 
 
-### Leave data-point
+### The leave data-point
 
-Fields for the data-point emitted on state-leave:
+If the `.leave()` option is set, a new data-point will be emitted on state-leave.
+Fields for this data-point:
 
 Name         | Description
 -------------|------------
-`state_left` | set to `1`
+`state_left` | stateflag, set to `1`
 `state_start_ts` | timestamp at which the state has been entered
 `state_end_ts` | timestamp at which the state-expression has been satisfied the last time
 `state_duration` | duration of the state in `milliseconds`
@@ -30,6 +32,9 @@ Name         | Description
  
 When the lambda expression generates an error during evaluation, the current point is discarded
 and does not affect any calculations.
+
+_Note that while state-count is 1, state-duration will be 0, if there is exactly 1 data-point within the state-window._
+
 
 Example
 -------
@@ -68,6 +73,8 @@ Example output in json:
 .enter_keep('err', 'err_code')
 %% we keep these fields for the new state-leave data-point
 .leave_keep('err', 'err_code')
+%% prefix all fields written by this node with 'my_'
+.prefix('my_')
 
 ```
 Example output in json for the enter data-point:
@@ -75,7 +82,7 @@ Example output in json for the enter data-point:
 
 {
     "ts": 1232154654655, 
-    "err": 1, "err_code": 1492, "state_entered": 1
+    "err": 1, "err_code": 1492, "my_state_entered": 1
 }
 ```
  
@@ -85,12 +92,13 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-[node] lambda( `lambda` )| state lambda expression | 
+_[node]_ lambda( `lambda` )| state lambda expression | 
 enter( is_set )| emit a datapoint on state-enter| undefined
 leave( is_set )| emit a datapoint on state-leave| undefined
 enter_as( `string` )|name for the "enter" field, it will be set to true|'state_entered'
 leave_as( `string` )|name for the "leave" field, it will be set to true|'state_left'
 enter_keep( `string_list` )|a list of fieldnames that should be kept for the `enter` data-point|[]
 leave_keep( `string_list` )|a list of fieldnames that should be kept for the `leave` data-point|[]
+prefix( `string` )|prefix fields added by this node with a string (`keep`-fields stay untouched)| '' (empty string)
 
-At least one of the `enter | leave` option must be given.
+At least one of the `enter | leave` options must be given.

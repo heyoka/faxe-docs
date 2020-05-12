@@ -34,6 +34,6 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-[node] fields( `string_list` )| List of fields to monitor| optional
+_[node]_ fields( `string_list` )| List of fields to monitor| optional
 reset_timeout( `duration` )| Previous values TTL | 3h 
  

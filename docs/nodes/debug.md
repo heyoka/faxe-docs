@@ -21,7 +21,7 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-[node] level (`string`) | log level (see below) | 'notice'
+_[node]_ level (`string`) | log level (see below) | 'notice'
 
 
 The level parameter must have one of the following values:

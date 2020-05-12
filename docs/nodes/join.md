@@ -46,7 +46,7 @@ Node Parameters
 ---------------
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-nodes( `node_list` )| list of node (chains) to merge  | []
+_[node]_ nodes( `node_list` )| list of node (chains) to merge  | []
 
 
 Parameters

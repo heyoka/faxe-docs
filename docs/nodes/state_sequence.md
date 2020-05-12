@@ -45,7 +45,7 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-[node] nodes_in( `node_list` )| a list of node(chains) | optional
+_[node]_ nodes_in( `node_list` )| a list of node(chains) | optional
 states (`lambda_list`) | the states |
 within( `duration_list` )| one timeout for every state-transition |  
 strict( `is_set` ) | whether the state sequence must be transition exactly | false (not set)

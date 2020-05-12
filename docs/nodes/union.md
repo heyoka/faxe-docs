@@ -22,5 +22,5 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-[node] nodes_in( `node_list` )|   | optional
+_[node]_ nodes_in( `node_list` )|   | optional
  

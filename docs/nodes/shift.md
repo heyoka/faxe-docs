@@ -24,4 +24,4 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-[node] **offset**( `duration` )| time offset | 
+_[node]_ **offset**( `duration` )| time offset | 

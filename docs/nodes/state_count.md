@@ -28,5 +28,5 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-[node] lambda( `lambda` )| state lambda expression | 
+_[node]_ lambda( `lambda` )| state lambda expression | 
 as( `string` )|name for the added count field| 'state_count'

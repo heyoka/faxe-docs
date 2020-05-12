@@ -26,4 +26,4 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|--------- 
-[node] **rate**( `integer` `duration` )| sample rate | 
+_[node]_ **rate**( `integer` `duration` )| sample rate | 

@@ -22,4 +22,4 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------  
-[node] lambda( `lambda` ) | The lambda filter expression|
+_[node]_ lambda( `lambda` ) | The lambda filter expression|

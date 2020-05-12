@@ -122,7 +122,7 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-[node] (`port`)| input node for port 2 |
+_[node]_ (`port`)| input node for port 2 |
 merge_field( `string` )| Base field for the merge operation | []
 fields( `string_list` )| List of fields to include| []
 tags( `string_list` )| List of tags to include | []

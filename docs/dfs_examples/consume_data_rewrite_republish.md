@@ -14,8 +14,7 @@ Consume data from an MQTT-Broker and do some cleaning, at the end republish this
      
     %% here is were we clean data
     
-    |eval()
-    .lambdas(
+    |eval(
         lambda: int("sku_length" * 1000),
         lambda: int("sku_width" * 1000),
         lambda: int("source_lc_quantity"),
@@ -29,8 +28,7 @@ Consume data from an MQTT-Broker and do some cleaning, at the end republish this
         'pcs_lost'
         )
 
-    |delete()
-    .fields('UTC-Time')
+    |delete('UTC-Time')
 
     % publish the resulting message 
 

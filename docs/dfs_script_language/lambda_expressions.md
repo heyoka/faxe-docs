@@ -163,7 +163,8 @@ Function | Description
 `not_member(Ele, List)` -> bool | 
 `random(N)` -> integer   | generate a random integer between 1 and N
 `random_real(N)` -> float | generate a random float between 0.0 and 1.0, that gets multiplied by N
-`ls_mem(Key)` -> any| get the single value associated with Key from the flow-memory
+`mem` values are set with the [mem node](../nodes/mem.md)
+`ls_mem(Key)` -> any| get the single value associated with Key from the flow-memory, 
 `ls_mem_list(Key)` -> any|get the list value associated with Key from the flow-memory
 `ls_mem_set()` -> any|get the set value associated with Key from the flow-memory
 

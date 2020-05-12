@@ -1251,10 +1251,12 @@
                 <h1 id="the-eval-node">The eval node</h1>
 <p>Evaluate one or more lambda expressions.
 For an explanation of lambdas, see <a href="../dfs_script_language/lambda_expressions.html">lambda</a>.</p>
-<p>The list of lambda expressions given, will be evaluated in a serial fashion.
+<p>The list of lambda expressions given, will be evaluated top down.
 This means that a lambda can use the result of a previous expression.</p>
+<p>The resulting fields named with the <code>as</code> parameter will be added to the current data-point.</p>
 <h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;val&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;double&quot;</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% &#39;double&#39; is also used in the second expression above</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;double&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
@@ -1268,7 +1270,8 @@ The second expression uses the field <code>double</code>, which the first expres
 </code></pre></div>
 
 
-<p>The above example uses several built in casting and string functions to demonstrate complex expressions.</p>
+<p>The string value of the field 'val' is concatenated to itself, this is then casted to an int value and 
+added to the current data-point as the field 'concat_string.int'. </p>
 <p>For more lambda examples see <a href="../dfs_script_language/lambda_expressions.html">lambda</a></p>
 <h2 id="parameters">Parameters</h2>
 <table>
@@ -1281,7 +1284,7 @@ The second expression uses the field <code>double</code>, which the first expres
 </thead>
 <tbody>
 <tr>
-<td>[node] lambdas( <code>lambda_list</code> )</td>
+<td><em>[node]</em> lambdas( <code>lambda_list</code> )</td>
 <td>list of lambda expressions</td>
 <td></td>
 </tr>
