@@ -124,6 +124,11 @@ paths:
         405:
           description: "Method not allowed"
     parameters:
+      - in: "path"
+        name: "template_id"
+        description: "Id of the template"
+        required: true
+        type: "integer"
       - in: query
         name: order_by
         type: string
@@ -148,6 +153,11 @@ paths:
         405:
           description: "Method not allowed"
     parameters:
+      - in: "path"
+        name: "tags"
+        description: "comma seperated list of tags"
+        required: true
+        type: "string"
       - in: query
         name: order_by
         type: string
@@ -294,14 +304,17 @@ paths:
           name: "name"
           description: "Name for the newly registered task"
           type: "string"
+          required: true
         - in: "formData"
           name: "dfs"
           description: "A valid dfs script"
           type: "string"
+          required: true
         - in: "formData"
           name: "tags"
           description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
           type: string
+          required: false
   /task/update/{task_id}:
     post:
       summary: "Update a task."
@@ -339,6 +352,11 @@ paths:
         405:
           description: "Method not allowed"
       parameters:
+        - in: "path"
+          name: "task_id"
+          description: "Id of the task, that should be updated"
+          required: true
+          type: "integer"
         - in: "formData"
           name: "name"
           description: "Task name"
@@ -634,6 +652,12 @@ paths:
               success:
                 type: boolean
                 default: false
+      parameters:
+        - in: "path"
+          name: "task_id"
+          description: "Id of the task"
+          required: true
+          type: "integer"
 
 definitions:
   started:
@@ -735,11 +759,3 @@ definitions:
     properties:
       logs:
         $ref: '#/definitions/LogEntries'
-
-
-
-
-
-
-
-
