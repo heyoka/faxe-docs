@@ -347,6 +347,11 @@ paths:
           name: "dfs"
           description: "A valid dfs script"
           type: "string"
+          required: true
+        - in: "formData"
+          name: "tags"
+          description: "A list of tags for the task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          type: "string"
   /task/from_template/{template_id}/{task_name}:
     post:
       summary: "Create task from template."

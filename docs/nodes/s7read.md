@@ -3,14 +3,30 @@ The s7read node
 
 Periodically read data from a siemens s7 plc via the snap7 library using the `iso on tcp protocol`.
 
-Data `addressing` can be done in a `Step7` schema or with a sligthly different schema used in node-red
+* Data `addressing` can be done in a `Step7` schema or with a sligthly different schema used in node-red
 (although the step7 variant is preferred). 
+See table below for more information about addressing.
 
-See table below for more information.
+* The node will optimize reading by treating contiguous values as on reading var.
+Thus more data can be read in one go.
+
+* Connections to a PLC are handled by a connection pool, which can grow and shrink as needed.
+Min and Max connection count can be set in faxe configuration. Defaults to 2 and 16.
+
+### Strings
+A String is defined as a sequence of contiguous char (byte) addresses.
+For strings faxe uses a special syntax not found in step7 addressing: 
+`DB5.DBS7.4 ` would read 4 bytes starting at byte 7 of DB 5 and output a string value.
+
+`Note`: Characters with an ascii value below 32 will be stripped from the char-sequence.
+Also for strings the above mentioned read-optimization will not be used.
+
+----
+
 
 `Note: data transfer size is limited to 128 bytes.`
 
-Example
+Examples
 -------
 ```dfs  
 |s7read() 
@@ -30,6 +46,19 @@ Example
 ```  
 
 Read 4 values (BOOL in this case) from a plc every 3 seconds and name them with a deep json path.
+
+
+```dfs
+|s7read() 
+.rack(0)
+.slot(2)
+.every(300ms) 
+.vars('DB12004.DBS36.30')
+.as('data.LcBc')
+
+
+```
+Read a sequence of 30 bytes as a string.
 
 
 Parameters
@@ -66,7 +95,7 @@ DB57,WORD4|	DB57.DBW4|	Number	|Unsigned 16-bit number at byte 4 of DB 57
 DB13,DI5 or DB13,DINT5|	DB13.DBD5|	Number|	Signed 32-bit number at byte 5 of DB 13
 DB19,DW6 or DB19,DWORD6|	DB19.DBD6|	Number|	Unsigned 32-bit number at byte 6 of DB 19
 DB21,DR7 or DB21,REAL7|	DB19.DBD6	|Number	|Floating point 32-bit number at byte 7 of DB 21
-DB2,S7.10*	|-	|String	|String of length 10 starting at byte 7 of DB 2
+DB2,S7.10*	|`DB2.DBS7.10` (faxe only)	|String	|String of length 10 starting at byte 7 of DB 2
 I1.0 or E1.0|	I1.0 or E1.0|	Boolean|	Bit 0 of byte 1 of input area
 Q2.1 or A2.1|	Q2.1 or A2.1|	Boolean|	Bit 1 of byte 2 of output area
 M3.2|	QM3.2|	Boolean|	Bit 2 of byte 3 of memory area

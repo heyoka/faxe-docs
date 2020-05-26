@@ -111,6 +111,7 @@ Function                    | Description
 
 
 ### String functions
+String positions start with index 0.
 
 Function                    | Description
 ----------------------------|------------
