@@ -172,8 +172,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../index.html" title="Faxe" class="md-nav__link">
-      Faxe
+    <a href="../index.html" title="Generell" class="md-nav__link">
+      Generell
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configuration.html" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics.html" title="Metrics" class="md-nav__link">
+      Metrics
     </a>
   </li>
 
@@ -185,13 +209,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
-    <label class="md-nav__link" for="nav-2">
+    <label class="md-nav__link" for="nav-4">
       Dfs examples
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
+      <label class="md-nav__title" for="nav-4">
         Dfs examples
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -245,13 +269,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-5">
       Dfs script language
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-5">
         Dfs script language
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -295,13 +319,13 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-6">
       Nodes
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-6">
         Nodes
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -387,6 +411,18 @@
   <li class="md-nav__item">
     <a href="combine.html" title="Combine" class="md-nav__link">
       Combine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="conn_status.html" title="Conn status" class="md-nav__link">
+      Conn status
     </a>
   </li>
 
@@ -567,6 +603,18 @@
   <li class="md-nav__item">
     <a href="mem.html" title="Mem" class="md-nav__link">
       Mem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="metrics.html" title="Metrics" class="md-nav__link">
+      Metrics
     </a>
   </li>
 
@@ -959,13 +1007,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-51" type="checkbox" id="nav-4-51">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-53" type="checkbox" id="nav-6-53">
     
-    <label class="md-nav__link" for="nav-4-51">
+    <label class="md-nav__link" for="nav-6-53">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-51">
+      <label class="md-nav__title" for="nav-6-53">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1251,6 +1299,7 @@
                 <h1 id="the-modbus-node">The modbus node</h1>
 <p>Pull data via modbus tcp, supported read functions are :
 ['coils', 'hregs', 'iregs', 'inputs', 'memory']</p>
+<p>Reading can be done periodically (if <code>every</code> is given) and/or via a trigger.</p>
 <p>Read multiple values with possibly different functions at once</p>
 <p>If the <code>align</code> property is set, the nodes's read times will be truncated to the every property
 (For example, if the node is started at 12:06 and the every property is 5m then the next read will 
@@ -1292,7 +1341,7 @@ occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so
 <tr>
 <td>every( <code>duration</code> )</td>
 <td>time between reads</td>
-<td>1s</td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>align( is_set )</td>
@@ -1337,8 +1386,18 @@ occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so
 </tbody>
 </table>
 <p>Note that, if given, all read parameters(<code>function, from, count, as, output, signed</code>) must have the same length, this means if you have two
-values you want to read -&gt; .function('coils', 'hregs') all corresponding read params must have the same length
--&gt; .as('val1', 'val2').output(int16, float32).from(1,2).count(2,4).signed(true, true)</p>
+values you want to read :</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">function</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;coils&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">)</span><span style="color: #e6db74">` </span>
+</code></pre></div>
+
+
+<p>all corresponding read params (if given) must have the same length:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;val1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;val2&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">output</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">int16</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">float32</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">from</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signed</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
                 
                   
                 
@@ -1359,7 +1418,7 @@ values you want to read -&gt; .function('coils', 'hregs') all corresponding read
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="mem.html" title="Mem" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="metrics.html" title="Metrics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1368,7 +1427,7 @@ values you want to read -&gt; .function('coils', 'hregs') all corresponding read
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Mem
+                Metrics
               </span>
             </div>
           </a>

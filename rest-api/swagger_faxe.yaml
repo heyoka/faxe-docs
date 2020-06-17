@@ -491,6 +491,20 @@ paths:
           default: 15
           description: max age of the logs in minutes
           required: false
+  /graph/{task_id}:
+    get:
+      summary: Get the graph representation for a task
+      description: The graph representation contains all nodes and edges, as well as some information about external connections a node may establish
+      produces:
+        - application/json
+      responses:
+        200:
+      parameters:
+        - in: "path"
+          name: "task_id"
+          type: "integer"
+          required: true
+
   /tags:
     get:
       summary: List of tags

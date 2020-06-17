@@ -172,8 +172,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../index.html" title="Faxe" class="md-nav__link">
-      Faxe
+    <a href="../index.html" title="Generell" class="md-nav__link">
+      Generell
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configuration.html" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics.html" title="Metrics" class="md-nav__link">
+      Metrics
     </a>
   </li>
 
@@ -185,13 +209,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
-    <label class="md-nav__link" for="nav-2">
+    <label class="md-nav__link" for="nav-4">
       Dfs examples
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
+      <label class="md-nav__title" for="nav-4">
         Dfs examples
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -245,13 +269,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-5">
       Dfs script language
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-5">
         Dfs script language
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -295,13 +319,13 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-6">
       Nodes
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-6">
         Nodes
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -387,6 +411,18 @@
   <li class="md-nav__item">
     <a href="combine.html" title="Combine" class="md-nav__link">
       Combine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="conn_status.html" title="Conn status" class="md-nav__link">
+      Conn status
     </a>
   </li>
 
@@ -612,6 +648,18 @@
   <li class="md-nav__item">
     <a href="mem.html" title="Mem" class="md-nav__link">
       Mem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="metrics.html" title="Metrics" class="md-nav__link">
+      Metrics
     </a>
   </li>
 
@@ -959,13 +1007,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-51" type="checkbox" id="nav-4-51">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-53" type="checkbox" id="nav-6-53">
     
-    <label class="md-nav__link" for="nav-4-51">
+    <label class="md-nav__link" for="nav-6-53">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-51">
+      <label class="md-nav__title" for="nav-6-53">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1252,12 +1300,12 @@
 <p>Emits a point, if there is no point coming in for the given amount of time.
 For output there are two options:</p>
 <ul>
-<li>If repeat_last param if set, the node will output the last message it saw incoming as the dead-message,
+<li>If <code>repeat_last</code> param is set, the node will output the last message it saw incoming as the dead-message,
 if there is no last message yet, an empty message will be emitted</li>
-<li>Multiple field and field_value can be provided to be included in the output</li>
-<li>If no fields (and field_values) parameter and is given, an empty datapoint will be emitted</li>
-<li>The repeat_last parameter will always override the fields and field_values parameter</li>
-<li>The node will forward every message it gets by default, this can be changed by using the no_forward flag</li>
+<li>With <code>fields</code> and <code>field_values</code> a list of values can be provided to be included in the output.</li>
+<li>If no fields (and field_values) parameter and is given, an empty datapoint will be emitted.</li>
+<li>The <code>repeat_last</code> parameter will always override the <code>fields</code> and <code>field_values</code> parameter</li>
+<li>The node will forward every message it gets by default, this can be changed by using the <code>no_forward</code> flag</li>
 </ul>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">deadman(</span><span style="color: #e6db74">15s</span><span style="color: #f8f8f2">)</span>
@@ -1275,29 +1323,29 @@ if there is no last message yet, an empty message will be emitted</li>
 </thead>
 <tbody>
 <tr>
-<td><em>[node]</em> lambdas( <code>lambda_list</code> )</td>
-<td>list of lambda expressions</td>
+<td><em>[node]</em> timeout( <code>duration</code> )</td>
+<td>timeout value for the node</td>
 <td></td>
 </tr>
 <tr>
-<td>values( <code>string_list\|text_list</code> )</td>
-<td>corresponding values</td>
+<td>fields( <code>string_list</code> )</td>
 <td></td>
+<td>undefined</td>
 </tr>
 <tr>
-<td>json( <code>is_set</code> )</td>
-<td>if set, will treat the <code>values</code> and <code>default</code> parameters as json strings</td>
+<td>field_values (<code>string_list</code>)</td>
+<td></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>repeat_last( is_set)</td>
+<td>whether to output the last value seen</td>
 <td>false, not set</td>
 </tr>
 <tr>
-<td>as (<code>string</code>)</td>
-<td>field-path for the output value</td>
-<td></td>
-</tr>
-<tr>
-<td>default(<code>any</code>)</td>
-<td>default value to use, if no case clause matches</td>
-<td></td>
+<td>no_forward( is_set)</td>
+<td>whether to output every message that comes in (pass through)</td>
+<td>false, not set</td>
 </tr>
 </tbody>
 </table>

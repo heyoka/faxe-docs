@@ -24,12 +24,21 @@ Example
 Holds a set of values from the field named `topic`.
 The set of values is available in lambda expression (within the same flow) with the key `topics_seen`.
 
-The above set can be used in lambda expressions with the functions: `ls_mem`, `ls_mem_list`, `ls_mem_set`.
 
-    |where(lambda: if( member("topic", ls_mem_set('topics_seen')), false, true) )
+
+The above set can be used in lambda expressions with the functions: `ls_mem`, `ls_mem_list`, `ls_mem_set`.
+```dfs
+
+|where(
+    lambda: member("topic", ls_mem_set('topics_seen')) 
+)
+```
     
 This will filter out all points that have a topic field, which has already be stored in the mem set.
 Thus the `where` node will only output points with a unique topic value.
+
+_For a list of lambda_library functions see [lambda_functions](../dfs_script_language)._
+
 
 Parameters
 ----------

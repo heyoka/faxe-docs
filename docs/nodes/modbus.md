@@ -4,6 +4,7 @@ The modbus node
 Pull data via modbus tcp, supported read functions are :
 ['coils', 'hregs', 'iregs', 'inputs', 'memory']
 
+Reading can be done periodically (if `every` is given) and/or via a trigger.
 
 Read multiple values with possibly different functions at once
 
@@ -35,7 +36,7 @@ Parameter     | Description | Default
 --------------|-------------|--------- 
 ip( `string` )| ip address of modbus device |
 port( `integer` )| port of modbus device|502
-every( `duration` )|time between reads|1s
+every( `duration` )|time between reads|undefined
 align( is_set )|align read intervals according to every|false (not set)
 device( `integer` )|modbus device id (0-255)|255
 function( `string_list` )|list of read functions, one of `['coils', 'hregs', 'iregs', 'inputs', 'memory']`|
@@ -47,5 +48,20 @@ signed( `atom_list` true/false)|list of values indicating if values are signed|u
 
 
 Note that, if given, all read parameters(`function, from, count, as, output, signed`) must have the same length, this means if you have two
-values you want to read -> .function('coils', 'hregs') all corresponding read params must have the same length
--> .as('val1', 'val2').output(int16, float32).from(1,2).count(2,4).signed(true, true)
+values you want to read :
+```dfs
+.function('coils', 'hregs')` 
+```
+
+all corresponding read params (if given) must have the same length:
+
+
+```dfs
+
+.as('val1', 'val2')
+.output(int16, float32)
+.from(1,2) 
+.count(2,4)
+.signed(true, true)
+
+```

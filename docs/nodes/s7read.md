@@ -1,7 +1,9 @@
 The s7read node
 =====================
 
-Periodically read data from a siemens s7 plc via the snap7 library using the `iso on tcp protocol`.
+Read data from a siemens s7 plc via the snap7 library using the `iso on tcp protocol`.
+Reading can be done periodically and/or triggered via incoming data-items.
+If the `every` parameter is not given, reading will be done only with trigger data-items.
 
 * Data `addressing` can be done in a `Step7` schema or with a sligthly different schema used in node-red
 (although the step7 variant is preferred). 
@@ -11,7 +13,8 @@ See table below for more information about addressing.
 Thus more data can be read in one go.
 
 * Connections to a PLC are handled by a connection pool, which can grow and shrink as needed.
-Min and Max connection count can be set in faxe configuration. Defaults to 2 and 16.
+The number of 
+Min and Max connection count can be set in faxe [configuration](../configuration.md). Defaults to 2 and 16.
 
 ### Strings
 A String is defined as a sequence of contiguous char (byte) addresses.
@@ -47,6 +50,26 @@ Examples
 
 Read 4 values (BOOL in this case) from a plc every 3 seconds and name them with a deep json path.
 
+```dfs  
+def db_number = 1140
+def db = 'DB{{db_number}}.DB'
+|s7read()  
+.as_prefix('data.tbo.') 
+.vars_prefix(db)
+.vars(
+    'X4.0', 'X4.1',
+    'X4.4', 'X4.5'
+    )
+
+.as(
+    'ix_OcM1', 'ix_OcM2',
+    'ix_Lift_PosTop', 'ix_Lift_PosBo'
+    )
+
+```  
+
+Use of as_prefix and vars_prefix, also the s7read node will not read the vars periodically (no every parameter), but
+only when a trigger in form of any data-item comes in.
 
 ```dfs
 |s7read() 
@@ -68,12 +91,14 @@ Parameter     | Description | Default
 --------------|-------------|--------- 
 ip( `string` )| ip address of plc |
 port( `integer` )| port of modbus device|102
-every( `duration` )|time between reads|1s
+every( `duration` )|time between reads| undefined
 align( is_set )|align read intervals according to every|false (not set)
 slot( `integer` )| plc slot number|0
 rack( `integer` )| plc rack number|0
 vars( `string_list` )|list of s7 addresses ie: 'DB3.DBX2.5' (see table below)|
 as( `string_list` )|output names for the read values|
+vars_prefix( `string` )|vars  will be prefixed with this value| undefined
+as_prefix( `string` )|as values will be prefixed with this value| undefined
 diff( is_set )|when given, only output values different to previous values|false (not set)
 
 

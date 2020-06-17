@@ -44,3 +44,5 @@ Parser name            | Description
 -----------------------|-------------------------------------------------
 `parser_robot_plc_v1`  | parses the special robotplc binary data format
 `parser_conv_tracking_v1`|parser for the conveyor tracking ascii-protocol
+`parser_wms_rmst_v1`| 
+`parser_lrep_v1`|parser for lrep ascii-protocol
