@@ -2,7 +2,10 @@
 
 Flow based data-collector and time-centric data-processor.
 
+Faxe's inner core is based on a dataflow computing engine and it's components also called `nodes` can be
+freely combined into an acyclic graph.
 
+Unlike other flowbased frameworks (node_red, ...) in Faxe computing graphs are built with a DSL called [`dfs`](dfs_script_language/index.md). 
 
 
 ## Rest Api
@@ -14,7 +17,7 @@ FAXE can be managed via its [rest api](./faxe_rest_api.html).
 
 ### Data in faxe
 
-In faxe we deal with `data_points` and `data_batches`.
+In faxe we deal with `data_points` and `data_batches`. These `data-items` are emitted by nodes 
 
 Every `data_point` consists of a `ts` field, `fields` and `tags`.
 The value of the ts field is always: **unix-timestamp in millisecond precision without a timezone**.

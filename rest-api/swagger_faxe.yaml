@@ -298,34 +298,34 @@ paths:
                 type: string
                 description: error message
         405:
-          description: "Method not allowed"
+          description: "Method not allowed."
       parameters:
         - in: "formData"
           name: "name"
-          description: "Name for the newly registered task"
+          description: "Name for the newly registered task."
           type: "string"
           required: true
         - in: "formData"
           name: "dfs"
-          description: "A valid dfs script"
+          description: "A valid dfs script."
           type: "string"
           required: true
         - in: "formData"
           name: "tags"
-          description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])."
           type: string
           required: false
   /task/update/{task_id}:
     post:
       summary: "Update a task."
-      description: "Provide a dfs script and a name, update can be done while a task is running!"
+      description: "Provide a dfs script and a name, update can be done while a task is running."
       produces:
         - application/json
       consumes:
         - application/x-www-form-urlencoded
       responses:
         200:
-          description: "Successfully updated task"
+          description: "Successfully updated task."
           schema:
             properties:
               id:
@@ -338,7 +338,7 @@ paths:
                 type: boolean
                 default: true
         400:
-          description: "Error updating the task"
+          description: "Error updating the task."
           schema:
             properties:
               success:
@@ -348,13 +348,13 @@ paths:
                 type: string
                 description: error message
         404:
-          description: "Task not found"
+          description: "Task not found."
         405:
-          description: "Method not allowed"
+          description: "Method not allowed."
       parameters:
         - in: "path"
           name: "task_id"
-          description: "Id of the task, that should be updated"
+          description: "Id of the task, that should be updated."
           required: true
           type: "integer"
         - in: "formData"
@@ -363,12 +363,12 @@ paths:
           type: "string"
         - in: "formData"
           name: "dfs"
-          description: "A valid dfs script"
+          description: "A valid dfs script."
           type: "string"
           required: true
         - in: "formData"
           name: "tags"
-          description: "A list of tags for the task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          description: "A list of tags for the task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])."
           type: "string"
   /task/from_template/{template_id}/{task_name}:
     post:
@@ -378,7 +378,7 @@ paths:
         - application/json
       responses:
         200: 
-          description: "Task successfully registered"
+          description: "Task successfully registered."
         404:
           description: "Template with id 'template_id' not found."
         405:
@@ -394,7 +394,11 @@ paths:
           required: true
         - in: "formData"
           name: "tags"
-          description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
+          description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])."
+          type: string
+        - in: "formData"
+          name: "vars"
+          description: "A json object with vars for the new task, example: {\"var1\": 33}. Every definition (keyword 'def') in the template dfs can be overritten."
           type: string
   /task/delete/{task_id}:
     delete:
@@ -420,7 +424,7 @@ paths:
     post:
       summary: Add tags to a task
       description: Add a list of tags to the specified task, note that a task will have a tag only once,
-          it does not matter, if a task is added multiple times
+          it does not matter, if a task is added multiple times.
       produces:
         - application/json
       responses:
@@ -499,6 +503,11 @@ paths:
         - application/json
       responses:
         200:
+          description: OK
+        404:
+          description: Not found
+        405:
+          description: Method not allowed
       parameters:
         - in: "path"
           name: "task_id"
