@@ -12,7 +12,7 @@ All lambda expressions in DFS begin with the `lambda:` keyword.
 In the above example `"topic"` is used to access the value of a field called `topic` 
 from the current data_point and compared against the string `'ttop/grap/prec'`.
 Note here that literal string values are declared using single quotes, 
-while double quotes are used only in lambda expressions to access the values of tags and fields.
+while double quotes are used to access the values of tags and fields.
 
 ## !
 As field and tag values can be deeply nested maps and lists, it is possible to use a `JSON-path` like syntax
@@ -21,8 +21,11 @@ to reference them:
 Valid examples:
 
     "averages"
+    
     "axis.z.cur"
+    
     "value.sub[2].data"
+    
     "averages.emitted[5]"
 
 ------------------------------------------------------------------------

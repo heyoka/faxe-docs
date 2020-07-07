@@ -1,9 +1,10 @@
 The combine node
 =====================
 
-Combine the values from 2 nodes, used to enrich a stream of data.
+Combine the values from 2 nodes, used to enrich a stream of data with data from another stream, that has lower frequency.
 
-Port 1 is the trigger port. Port 2 is the where enrichment data come from.
+Port 1 is the trigger port and its the port where data to be enriched comes into the node. 
+Port 2 is the one where enrichment data come in.
 Every time a value is received on the trigger port, the node will emit a value, combined with whatever current value on port 2.
 The node will never emit on port 2 values.
 

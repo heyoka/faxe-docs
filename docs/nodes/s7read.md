@@ -9,7 +9,7 @@ If the `every` parameter is not given, reading will be done only with trigger da
 (although the step7 variant is preferred). 
 See table below for more information about addressing.
 
-* The node will optimize reading by treating contiguous values as on reading var.
+* The node will optimize reading by treating contiguous values as one reading var.
 Thus more data can be read in one go.
 
 * Connections to a PLC are handled by a connection pool, which can grow and shrink as needed.

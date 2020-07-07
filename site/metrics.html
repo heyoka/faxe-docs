@@ -231,6 +231,46 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-fields" class="md-nav__link">
+    Common fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fields-by-metrics-type" class="md-nav__link">
+    Fields by metrics-type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flow-metrics" class="md-nav__link">
+    Flow Metrics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     Configuration
   </a>
@@ -359,6 +399,18 @@
   <li class="md-nav__item">
     <a href="dfs_script_language/lambda_expressions.html" title="Lambda expressions" class="md-nav__link">
       Lambda expressions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="dfs_script_language/node_connection.html" title="Node connection" class="md-nav__link">
+      Node connection
     </a>
   </li>
 
@@ -599,6 +651,18 @@
   <li class="md-nav__item">
     <a href="nodes/http_post_crate.html" title="Http post crate" class="md-nav__link">
       Http post crate
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="nodes/influx_out.html" title="Influx out" class="md-nav__link">
+      Influx out
     </a>
   </li>
 
@@ -1018,13 +1082,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-53" type="checkbox" id="nav-6-53">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-54" type="checkbox" id="nav-6-54">
     
-    <label class="md-nav__link" for="nav-6-53">
+    <label class="md-nav__link" for="nav-6-54">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-53">
+      <label class="md-nav__title" for="nav-6-54">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1285,6 +1349,46 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-fields" class="md-nav__link">
+    Common fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fields-by-metrics-type" class="md-nav__link">
+    Fields by metrics-type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flow-metrics" class="md-nav__link">
+    Flow Metrics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     Configuration
   </a>
@@ -1400,6 +1504,156 @@ Metrics are collected for each individual node and a summery for whole tasks.</p
 </tr>
 </tbody>
 </table>
+<h3 id="examples">Examples</h3>
+<p>some metric example datapoints in json-format</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592386096330</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.001&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span><span style="color: #f92672">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;counter&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;node_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;default3&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;metric_name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;processing_errors&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;41ef642f-e5ee-4c48-8bd9-565de810f242&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;counter&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592386096330</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.001&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span><span style="color: #f92672">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;histogram&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;node_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;default3&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;n&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;min&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.011</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;metric_name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;processing_time&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;mean&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.016625</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;max&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.028</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;41ef642f-e5ee-4c48-8bd9-565de810f242&quot;</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592386076289</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.001&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span><span style="color: #f92672">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;gauge&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;node_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;default3&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;metric_name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;msg_q_size&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;gauge&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;41ef642f-e5ee-4c48-8bd9-565de810f242&quot;</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592386076289</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.001&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span><span style="color: #f92672">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;meter&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;one&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.2</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;node_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;default3&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;metric_name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;items_out&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;instant&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.2</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;five&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.2</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;fifteen&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.2</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;count&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;41ef642f-e5ee-4c48-8bd9-565de810f242&quot;</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
+
+
+<h4 id="common-fields">Common fields</h4>
+<table>
+<thead>
+<tr>
+<th>field name</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data.type</td>
+<td>the metric type, see table below</td>
+</tr>
+<tr>
+<td>data.node_id</td>
+<td>the nodes id</td>
+</tr>
+<tr>
+<td>data.flow_id</td>
+<td>id of the flow, the node belongs to</td>
+</tr>
+</tbody>
+</table>
+<h4 id="fields-by-metrics-type">Fields by metrics-type</h4>
+<table>
+<thead>
+<tr>
+<th>metric-type</th>
+<th>field</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>counter</td>
+<td>counter</td>
+<td>total counted number</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>meter</td>
+<td>instant</td>
+<td>number of occurrences in the last 5 sec</td>
+</tr>
+<tr>
+<td>meter</td>
+<td>one</td>
+<td>1 min exponentially weighted moving average</td>
+</tr>
+<tr>
+<td>meter</td>
+<td>five</td>
+<td>5 min exponentially weighted moving average</td>
+</tr>
+<tr>
+<td>meter</td>
+<td>fifteen</td>
+<td>15 min exponentially weighted moving average</td>
+</tr>
+<tr>
+<td>meter</td>
+<td>count</td>
+<td>total number</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>gauge</td>
+<td>gauge</td>
+<td>point-in-time single value</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>histogram</td>
+<td>mean</td>
+<td>mean value</td>
+</tr>
+<tr>
+<td>histogram</td>
+<td>min</td>
+<td>minimum value</td>
+</tr>
+<tr>
+<td>histogram</td>
+<td>max</td>
+<td>maximum value</td>
+</tr>
+<tr>
+<td>histogram</td>
+<td>n</td>
+<td>number of values</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flow-metrics">Flow Metrics</h2>
+<p>For every task there is a summary of the node metrics:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592393302700</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.002&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span>
+    <span style="color: #f92672">&quot;processing_time&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.129</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;processing_errors&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;msg_q_size&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;mem_used&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">53976</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;items_out&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;items_in&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;e6450a2b-0b71-4d10-8011-67dfac1ce676&quot;</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</code></pre></div>
+
+
 <h3 id="configuration">Configuration</h3>
 <p>Faxe has 2 different metrics-handlers that can be configured.
 MQTT and AMQP metrics emitter. See <a href="configuration.html">config</a> section for details.</p>
@@ -1410,8 +1664,54 @@ MQTT and AMQP metrics emitter. See <a href="configuration.html">config</a> secti
 <p>Faxe tracks the status of every external connection it opens and exposes events.
 These events can be used in tasks with the <a href="nodes/conn_status.html">conn_status</a> node.</p>
 <p>They can also be sent to a mqtt and/or amqp broker. </p>
+<h3 id="examples_1">Examples</h3>
+<p>connecting to an mqtt-broker on ip 10.14.204.3 and port 2883 ...</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592386056299</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.003&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span><span style="color: #f92672">&quot;status&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;port&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">2883</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;peer&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;10.14.204.3&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;node_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;sys&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;sys&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;connected&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #66d9ef">false</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;conn_type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;mqtt&quot;</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
+
+
+<p>connected to the mqtt-broker </p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592386056319</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.003&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span><span style="color: #f92672">&quot;status&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;port&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1883</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;peer&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;10.14.204.3&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;node_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;sys&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;sys&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;connected&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;conn_type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;mqtt&quot;</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
+
+
+<p>The connection status is represented by the boolean value <code>connected</code> and an enum <code>status</code>.</p>
+<table>
+<thead>
+<tr>
+<th><code>connected</code></th>
+<th><code>status</code></th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>false</td>
+<td>0</td>
+<td>not connected</td>
+</tr>
+<tr>
+<td>false</td>
+<td>2</td>
+<td>connecting</td>
+</tr>
+<tr>
+<td>true</td>
+<td>1</td>
+<td>connected</td>
+</tr>
+</tbody>
+</table>
 <h3 id="configuration_1">Configuration</h3>
 <p>As stated above, FAXE has 2 different conn_status-handlers that can be configured :
+See <a href="configuration.html">config</a> section for details.</p>
+<h2 id="debug">Debug</h2>
+<p>For debugging purposes faxe flows can expose events on items going in and out of every node in a flow.
+Like with metrics and conn_status events, these events can be published to an mqtt/amqp broker. 
 See <a href="configuration.html">config</a> section for details.</p>
                 
                   

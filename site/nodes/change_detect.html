@@ -305,6 +305,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dfs_script_language/node_connection.html" title="Node connection" class="md-nav__link">
+      Node connection
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -588,6 +600,18 @@
   <li class="md-nav__item">
     <a href="http_post_crate.html" title="Http post crate" class="md-nav__link">
       Http post crate
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="influx_out.html" title="Influx out" class="md-nav__link">
+      Influx out
     </a>
   </li>
 
@@ -1007,13 +1031,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-53" type="checkbox" id="nav-6-53">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-54" type="checkbox" id="nav-6-54">
     
-    <label class="md-nav__link" for="nav-6-53">
+    <label class="md-nav__link" for="nav-6-54">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-53">
+      <label class="md-nav__title" for="nav-6-54">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1299,21 +1323,24 @@
                 <h1 id="the-change_detect-node">The change_detect node</h1>
 <p>Emits new point-values only if different from the previous point.</p>
 <ul>
-<li>Multiple fields can be monitored for change by this node</li>
-<li>If no fields are given, the complete data-item is compared to the last one</li>
-<li>If reset_timeout is given, all previous values are reset, if there are no points coming in for this amount of time </li>
-<li>For value comparison erlang's strict equals (=:=) is used, so 1.0 is not equal to 1</li>
+<li>Multiple fields can be monitored for change by this node.</li>
+<li>If no fields are given, the complete data-item is compared to the last one.</li>
+<li>If a reset_timeout is given, all previous values will be reset when no value is received within this amount of time.
+So that after the timeout the first data_item will be emitted. </li>
+<li>For value comparison erlang's strict equals (=:=) is used, so 1.0 is not equal to 1.</li>
 </ul>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #75715e">%% detects any changes</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #75715e">%% detects any changes in data_items</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect()</span>
 
-
 <span style="color: #75715e">%% detect changes in one field, with timeout</span>
+<span style="color: #75715e">%% outputs at least the first data_item coming in after a 3 second timeout</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect(</span><span style="color: #e6db74">&#39;val&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">reset_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
 
-
+<span style="color: #75715e">%% detect changes in two fields, with timeout</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">change_detect(</span><span style="color: #e6db74">&#39;data.State.Err&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.State.Msg&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">reset_timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">60s</span><span style="color: #f8f8f2">)</span> 
 
 <span style="color: #75715e">% in-example json notation: </span>
 <span style="color: #75715e">% {&quot;data&quot;: {&quot;x&quot;: {&quot;temp&quot;: 32.4564}, &quot;y&quot; : {&quot;temp&quot; : 31.15155}} }</span>

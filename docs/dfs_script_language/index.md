@@ -137,7 +137,7 @@ d|day
 w|week
 
 
-Internally all time and duration related values are converted to milliseconds in faxe.
+Internally all time and duration related values are converted to milliseconds.
 
 #### Examples
 ```dfs
@@ -155,17 +155,21 @@ Internally all time and duration related values are converted to milliseconds in
 ```dfs
     {{variable_name}}
 ```
------------------------
+
+#### Use
+
 ```dfs
     def this_portion = 'it'
-    def text_template = <<< Some text where {{this_portion}} will get replaced >>>
+    def text_template = 'Some string/text where {{this_portion}} will get replaced'
 ```
 In the above example, after compilation of the dfs script the variable `text_template` will hold the following value:
 
-`Some text where it will get replaced`
+`Some string/text where it will get replaced`
 
-Text templates can be used in variable declarations like in the above example, they can be used in node-parameter and option-parameter calls.
-While the above example seems to be useless, when used in template scripts they can be very powerful.
+Text templates can be used in variable declarations like in the above example, 
+they can be used in node-parameter and option-parameter calls.
+
+When used in template scripts string/text templates can be very powerful.
 The variable `this_portion` could be overwritten with a new value for every instantiation of a template script.
 
 There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:
@@ -179,4 +183,8 @@ There is another version of text-templating which uses a value inside the curren
         No data since {{"datetime"}} on topic 'ttgw/energy', last value was {{"val"}}. 
         >>>)
 ```
- Here the values for `datetime` and `val` will be taken from the current data_point in the email node.
+Note: We use double quotes to reference a field in the current data_item.
+
+Here the values for `datetime` and `val` will be taken from the current data_point in the email node.
+ 
+If a field used in a text_template is not present in the current data_point, the string 'undefined' will be used.

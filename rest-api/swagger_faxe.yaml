@@ -128,7 +128,7 @@ paths:
         name: "template_id"
         description: "Id of the template"
         required: true
-        type: "integer"
+        type: "string | integer"
       - in: query
         name: order_by
         type: string
@@ -188,7 +188,7 @@ paths:
           name: "task_id"
           description: "Id of the task to read"
           required: true
-          type: "integer"
+          type: "string | integer"
   /task/start/{task_id}:
     get:
       summary: Start a task.
@@ -206,7 +206,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be started"
           required: true
-          type: "integer"
+          type: "string | integer"
   /task/start/{task_id}/true:
     get:
       summary: Start a task permanently.
@@ -227,7 +227,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be started permanently"
           required: true
-          type: "integer"
+          type: "string | integer"
   /task/stop/{task_id}:
     get:
       summary: Stop a task.
@@ -245,7 +245,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be stopped"
           required: true
-          type: "integer"
+          type: "string | integer"
   /task/stop/{task_id}/true:
     get:
       summary: Stop a task permanently.
@@ -264,7 +264,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be stopped permanently"
           required: true
-          type: "integer"
+          type: "string | integer"
   /task/register:
     post:
       summary: "Register a task."
@@ -356,7 +356,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be updated."
           required: true
-          type: "integer"
+          type: "string | integer"
         - in: "formData"
           name: "name"
           description: "Task name"
@@ -386,7 +386,7 @@ paths:
       parameters:
         - in: "path"
           name: "template_id"
-          type: "integer"
+          type: "string | integer"
           required: true
         - in: "path"
           name: "task_name"
@@ -418,7 +418,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "integer"
+          type: "string | integer"
           required: true
   /task/add_tags/{task_id}:
     post:
@@ -437,7 +437,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "integer"
+          type: "string | integer"
           required: true
         - in: "formData"
           name: "tags"
@@ -460,7 +460,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "integer"
+          type: "string | integer"
           required: true
         - in: "formData"
           name: "tags"
@@ -481,7 +481,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "integer"
+          type: "string | integer"
           required: true
         - in: "query"
           name: limit
@@ -511,7 +511,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "integer"
+          type: "string | integer"
           required: true
 
   /tags:
@@ -563,7 +563,7 @@ paths:
           name: "template_id"
           description: "Id of the template to read"
           required: true
-          type: "integer"      
+          type: "string | integer"
   /template/register:
     post:
       summary: "Register a template"
@@ -601,7 +601,7 @@ paths:
       parameters:
         - in: "path"
           name: "template_id"
-          type: "integer"
+          type: "string | integer"
           required: true
   /task/start_temp:
     post:
@@ -680,7 +680,7 @@ paths:
           name: "task_id"
           description: "Id of the task"
           required: true
-          type: "integer"
+          type: string
 
 definitions:
   started:

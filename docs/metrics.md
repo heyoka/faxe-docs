@@ -153,3 +153,10 @@ true      | 1      | connected
 
 As stated above, FAXE has 2 different conn_status-handlers that can be configured :
 See [config](configuration.md) section for details.
+
+
+## Debug 
+
+For debugging purposes faxe flows can expose events on items going in and out of every node in a flow.
+Like with metrics and conn_status events, these events can be published to an mqtt/amqp broker. 
+See [config](configuration.md) section for details.

@@ -45,6 +45,17 @@ Here are the simple rules of the syntax:
             ]
             }]}
       ]},
+    {debug_trace, [
+            {handler, [
+                {mqtt, [
+                    {host, <<"10.14.204.3">>},
+                    {port, 2883},
+                    %{user, <<"admin">>},
+                    %{pass, <<"admin">>},
+                    {base_topic, <<"ttgw/sys/faxe/">>}
+                ]}
+            ]}
+          ]},
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       %% default configs
       {s7pool_initial_size, 2},

@@ -305,6 +305,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dfs_script_language/node_connection.html" title="Node connection" class="md-nav__link">
+      Node connection
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -602,6 +614,18 @@
   <li class="md-nav__item">
     <a href="http_post_crate.html" title="Http post crate" class="md-nav__link">
       Http post crate
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="influx_out.html" title="Influx out" class="md-nav__link">
+      Influx out
     </a>
   </li>
 
@@ -1021,13 +1045,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-53" type="checkbox" id="nav-6-53">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-54" type="checkbox" id="nav-6-54">
     
-    <label class="md-nav__link" for="nav-6-53">
+    <label class="md-nav__link" for="nav-6-54">
       Statistics
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-53">
+      <label class="md-nav__title" for="nav-6-54">
         Statistics
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1325,8 +1349,9 @@
                 
                 
                 <h1 id="the-combine-node">The combine node</h1>
-<p>Combine the values from 2 nodes, used to enrich a stream of data.</p>
-<p>Port 1 is the trigger port. Port 2 is the where enrichment data come from.
+<p>Combine the values from 2 nodes, used to enrich a stream of data with data from another stream, that has lower frequency.</p>
+<p>Port 1 is the trigger port and its the port where data to be enriched comes into the node. 
+Port 2 is the one where enrichment data come in.
 Every time a value is received on the trigger port, the node will emit a value, combined with whatever current value on port 2.
 The node will never emit on port 2 values.</p>
 <p>No output is given, as long as there has not arrived a value on port 2 to combine with.</p>
