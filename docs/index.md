@@ -1,4 +1,4 @@
-# Generell
+# General
 
 Flow based data-collector and time-centric data-processor.
 

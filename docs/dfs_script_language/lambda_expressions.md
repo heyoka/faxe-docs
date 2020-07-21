@@ -53,7 +53,7 @@ With a few exceptions every type can be converted to every other type.
     
 ### Time functions
 
-Every data_point in faxe contains a field called **`ts`** .
+Every data_point in faxe contains a field called **`ts`**, which holds a UTC timestamp in milliseconds.
 
 
 Function                         | Description

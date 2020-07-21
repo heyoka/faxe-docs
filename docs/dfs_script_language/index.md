@@ -1,28 +1,18 @@
 # Introducing the DFS Script Language
 
-Faxe uses a DSL called **dfs** (Dataflow Scripting Language).
-Dfs is heavily influenced by InfluxData's `TICKScript`, in fact faxe started out as a clone of Kapacitor.
 
-To get a basic understanding of dfs, you can therefore read [Introducing the TICKscript language](https://docs.influxdata.com/kapacitor/v1.5/tick/introduction/).
+Faxe  uses a Domain Specific Language(DSL) named **dfs** (Dataflow Scripting Language) to define dataflow tasks 
+involving the extraction, collection, transformation and loading and writing of data and involving, moreover, 
+the tracking of arbitrary changes and the detection of events within data. 
 
-Some notable differences between TICKScript and dfs include:
+Dfs is heavily influenced by InfluxData's [TICKScript](https://docs.influxdata.com/kapacitor/v1.5/tick/introduction/).
 
-* dfs uses the `def` keyword for declarations
-* for comments the `%` sign is used
-* in dfs there are no top-level `stream` or `batch` nodes
-* lambda expression use different functions
-* regular expressions start and end with '?'
+Dfs is used in .dfs files to define pipelines and graphs for processing data. 
+The Dfs language is designed to chain together the invocation of data processing operations defined in nodes.
 
-There is more, we will get to that ...
+At the heart of its's engine, faxe will run an acyclic graph of computing nodes (processes) .
 
-In general dfs is used to build up DAGs (Directed Acyclic Graph) of computing nodes via a script language.
-
-While reading [TICKscript syntax](https://docs.influxdata.com/kapacitor/v1.5/tick/syntax/) will help you get more understanding
-of `dfs`, here is also were the differences between TICKScript and dfs start to get bigger (tough not so much in syntax, so reading is recommended).
-
-After that, lets dive right in and override some details you just read about TICKScript:
-
-DFS
+DFS Definitions
 === 
 
 Keywords
@@ -63,14 +53,15 @@ OR | or
 rem| remainder
 div|integer division
 
-These operators are mainly used in Lambda expressions in faxe.
+These operators are mainly used in Lambda expressions.
 
 Chaining operators
 ------------------
 
 Operator | Usage | Example
 ---------|-------|--------
-\|       | Used to declare a new node instance and chains it to the node above it (if any)| `|some_node() |debug()` 
+ `|`     | Used to declare a new node instance and chains it to the node above it (if any)| `|some_node() |debug()` 
+ `||`     | Used to reference a macro script| `||some_macro().some_param(3)` 
 .        | Declares a property (or parameter) call, setting or changing an internal param in the node to which it belongs| `|log() .file('log1.txt')`
 @        | Declares a user defined node written in python. Same as  \|, but for user defined nodes | `|some_node() ... @mynode()`
  

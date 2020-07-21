@@ -38,3 +38,6 @@ Consume data from an MQTT-Broker and do some cleaning, at the end republish this
         .topic(topic_out)
         .retained()
 ```
+
+`Note:`
+If topic_in = topic_out we create a loop, something we do not want normally.

@@ -1,11 +1,28 @@
-# Metrics
+# Metrics, Connection status, Debug events and Logs
 
-Faxe exposes internal metric as well as connection status events.
+For debugging and observability Faxe exposes internal metric as well as connection status events.
+Furthermore every running flow can emit debugging and log events.
+
+All these events can be published to an mqtt broker.
+
+### Topics and routing keys
+Topic for the mqtt emitters can be prefixed with the config-value `base_topic` (see [config](configuration.md)).
+Note: MQTT topics should not start with a `/` character.
+
+
+type | topic | base_topic default
+-----|-------|-------------------
+metrics per node| {`base_topic`}/metrics/{flow_id}/{node_id}/{metric_name} | sys/
+metrics per flow| {`base_topic`}/metrics/{flow_id} | sys/
+conn_status| {`base_topic`}/conn_status/{flow_id}/{node_id} | sys/
+debug per node| {`base_topic`}/debug/{flow_id}/{node_id}/{debug_type} | sys/
+logs per node| {`base_topic`}/log/{flow_id}/{node_id} | sys/
+
+
+## Node Metrics
 
 Faxe will collect and periodically emit various metrics to configurable endpoints.
 Metrics are collected for each individual node and a summery for whole tasks.
-
-## Node Metrics
 
 These are the metrics that will be collected for every node running in a task:
 
@@ -112,13 +129,13 @@ MQTT and AMQP metrics emitter. See [config](configuration.md) section for detail
 
 ### Use metrics in tasks
 
-Faxe's internal metrics can be used in tasks(flows) with the [metrics](nodes/metrics.md) node.
+Faxe's internal metrics can be used in tasks(flows) with the [metrics](nodes/debug/metrics.md) node.
 
 ---------------------------------------
 # Connection status
 
 Faxe tracks the status of every external connection it opens and exposes events.
-These events can be used in tasks with the [conn_status](nodes/conn_status.md) node.
+These events can be used in tasks with the [conn_status](nodes/debug/conn_status.md) node.
 
 They can also be sent to a mqtt and/or amqp broker. 
  
@@ -155,8 +172,46 @@ As stated above, FAXE has 2 different conn_status-handlers that can be configure
 See [config](configuration.md) section for details.
 
 
-## Debug 
+## Debug and Logs
 
 For debugging purposes faxe flows can expose events on items going in and out of every node in a flow.
 Like with metrics and conn_status events, these events can be published to an mqtt/amqp broker. 
+Debug and Log events must be started explicitly and they will be published for a certain configurable amount of time.
+(This is for debugging purposes). 
+
+See [rest api](./faxe_rest_api.html) for how to temporarily activate debugging.
+
 See [config](configuration.md) section for details.
+
+Example debug data item:
+```json
+{"ts":1594627419206,"id":"00000","df":"00.000", 
+"data":
+    {"meta":
+        {"type":"item_in","port":1,"node_id":"win_time6","flow_id":"trace_test"},
+    "data_item":"{\"ts\":1594627419205,\"id\":\"00000\",\"df\":\"00.000\",\"data\":{\"val\":4.770044683775623}}"}}
+
+```
+
+Example log
+
+```json
+
+{"ts":1595317825817,"id":"00000","df":"00.000",
+    "data":
+        {"node_id":"eval26","meta":
+            {"pid":"<0.1750.0>","node":"faxe@ubuntu",
+            "module":"df_component","line":316,
+            "function":"handle_info","application":"faxe"},
+            "message":"'error' in component esp_eval caught when processing item: 
+            {1,{data_point,1595317823813,#{<<\"esp_avg\">> => 6.0685635225505425,
+                <<\"factored\">> => 3.0342817612752713},#{},<<>>}} -- \"\\n    
+                gen_server:try_dispatch/4 line 637\\n    df_component:handle_info/2 line 314\\n    
+                esp_eval:process/3 line 39\\n    esp_eval:eval/4 line 44\\n    lists:foldl/3 line 1263\\n    
+                esp_eval:'-eval/4-fun-0-'/4 line 47\\n    faxe_lambda:execute/3 line 34\\n    
+                erlang:'/'(undefined, 2)\\nEXIT:badarith\"","level":"error","flow_id":"script5"}}
+
+
+```
+
+A data_point caused an error in an [eval](nodes/logic/eval.md) node.

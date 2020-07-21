@@ -648,6 +648,40 @@ paths:
           type: "integer"
           required: true
 
+  /task/start_debug/{task_id}:
+    get:
+      summary: Start debugging task with task_id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        404:
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: "task_id"
+          required: true
+          type: "string | integer"
+  /task/stop_debug/{task_id}:
+    get:
+      summary: Stop debugging task with task_id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        404:
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: "task_id"
+          required: true
+          type: "string | integer"
   /task/ping/{task_id}:
     post:
       summary: "Extend the lifetime of a temporary task"
