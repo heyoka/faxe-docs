@@ -1641,6 +1641,26 @@ only when a trigger in form of any data-item comes in.</p>
 
 
 <p>Read a sequence of 30 bytes as a string.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_number</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1140</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB{{db_number}}.DB&#39;</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span>  
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.tbo.&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">byte_offset</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&#39;X0.0&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;X0.1&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;X0.4&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;X0.5&#39;</span>
+    <span style="color: #f8f8f2">)</span>
+
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&#39;ix_OcM1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;ix_OcM2&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;ix_Lift_PosTop&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;ix_Lift_PosBo&#39;</span>
+    <span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+
+<p>In the last example <code>byte_offset</code> of 4 is used, so effectively the following addresses will be used:
+<code>X4.0, X4.1, X4.4, X4.5</code></p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1700,6 +1720,11 @@ only when a trigger in form of any data-item comes in.</p>
 <td>as_prefix( <code>string</code> )</td>
 <td>as values will be prefixed with this value</td>
 <td>undefined</td>
+</tr>
+<tr>
+<td>byte_offset( <code>integer</code> )</td>
+<td>offset for addressing, every address in vars gets this offset added</td>
+<td>0</td>
 </tr>
 <tr>
 <td>diff( is_set )</td>

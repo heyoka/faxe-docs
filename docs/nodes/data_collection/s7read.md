@@ -84,6 +84,27 @@ only when a trigger in form of any data-item comes in.
 Read a sequence of 30 bytes as a string.
 
 
+```dfs
+def db_number = 1140
+def db = 'DB{{db_number}}.DB'
+|s7read()  
+.as_prefix('data.tbo.') 
+.vars_prefix(db)
+.byte_offset(4)
+.vars(
+    'X0.0', 'X0.1',
+    'X0.4', 'X0.5'
+    )
+
+.as(
+    'ix_OcM1', 'ix_OcM2',
+    'ix_Lift_PosTop', 'ix_Lift_PosBo'
+    )
+```
+
+In the last example `byte_offset` of 4 is used, so effectively the following addresses will be used:
+`X4.0, X4.1, X4.4, X4.5`
+
 Parameters
 ----------
 
@@ -99,6 +120,7 @@ vars( `string_list` )|list of s7 addresses ie: 'DB3.DBX2.5' (see table below)|
 as( `string_list` )|output names for the read values|
 vars_prefix( `string` )|vars  will be prefixed with this value| undefined
 as_prefix( `string` )|as values will be prefixed with this value| undefined
+byte_offset( `integer` )|offset for addressing, every address in vars gets this offset added| 0
 diff( is_set )|when given, only output values different to previous values|false (not set)
 
 
