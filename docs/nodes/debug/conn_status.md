@@ -2,7 +2,7 @@ The conn_status node
 =====================
 
 Subscribe to internal connection status events of running tasks.
-For more information on these events make yourself familiar with faxe's [metrics](../metrics.md).
+For more information on these events make yourself familiar with faxe's [metrics](../../metrics.md).
 
 Example
 -------

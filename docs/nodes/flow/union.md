@@ -5,7 +5,7 @@ Union of multiple streams.
 
 The union node takes the union of all of its parents as a simple pass through.
 
-Data points received from each parent are passed onto child nodes without modification.
+Data items received from each parent are passed onto child nodes without modification.
 
 Example
 -------

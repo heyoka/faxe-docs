@@ -17,8 +17,8 @@ Example
 ```
 
 The second example will output a batch with 5 points. 
-If the points come in within 3 seconds the node will emit them in a databatch and reset the timeout.
-If after 3 seconds there are less than 5 points in the buffer, the node will emit them, regardless of the number.
+A data-batch message will be emitted, if either 5 points have been collected 
+or 3 seconds have past since the first data-point came in.
 
 
 Parameters

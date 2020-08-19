@@ -20,7 +20,7 @@ n1
 ... which results in the same computing flow.
 
 Here we see that we can actively manipulate the connections in a flow by binding a node to a declaration with the `def` keyword.
-Whole chains of nodes ie: sub-graph can be bound to a variable.
+Whole chains of nodes ie: sub-graphs can be bound to a variable.
 This is called a `chain-declaration`.
 
 With the above example we can connect another node to n1:
@@ -52,7 +52,7 @@ def n3 = |node3()
 In the above example, node3 and node4 are not connected to node2, as a consequence of using the `def` keyword.
 Instead we have 2 chains in this flow: 1. Node1 connected to node2 and 2. node3 connected node4.
 
-If we'd like to union these 2 node chains:
+If we'd like to [union](../nodes/flow/union.md) these 2 node chains:
 
 ```dfs
 def in1 =
@@ -69,7 +69,7 @@ in1
 ```
 
 
-There are several node-types in faxe that deal with more than one input node, for example the `combine` node.
+There are several node-types in faxe that deal with more than one input node, for example the [combine](../nodes/flow/combine.md) node.
 Here the use of `chain-declarations` is necessary:
 
 ```dfs

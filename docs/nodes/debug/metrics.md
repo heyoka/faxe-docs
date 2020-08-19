@@ -2,7 +2,7 @@ The metrics node
 =====================
  
 Subscribe to internal metric events of running tasks.
-For more information on these events make yourself familiar with faxe's [metrics](../metrics.md).
+For more information on these events make yourself familiar with faxe's [metrics](../../metrics.md).
 
 Note: It is not possible to subscribe to metrics for the task the metrics node belongs to.
 
@@ -30,5 +30,5 @@ Parameter     | Description | Default
 --------------|-------------|---------
 flow( `string` )| Id of task|
 node( `string` )| Id of node| undefined
-metrics( `string_list` )| List of [metric_names](../metrics.md)| undefined
+metrics( `string_list` )| List of [metric_names](../../metrics.md)| undefined
  

@@ -33,6 +33,7 @@ Examples
 -------
 ```dfs  
 |s7read() 
+.ip(10.1.1.5)
 .rack(0)
 .slot(2)
 .every(300ms) 
@@ -48,12 +49,13 @@ Examples
 
 ```  
 
-Read 4 values (BOOL in this case) from a plc every 3 seconds and name them with a deep json path.
+Read 4 values (BOOL in this case) from a plc every 300 milliseconds and name them with a deep json path.
 
 ```dfs  
 def db_number = 1140
 def db = 'DB{{db_number}}.DB'
 |s7read()  
+.ip(10.1.1.5)
 .as_prefix('data.tbo.') 
 .vars_prefix(db)
 .vars(
@@ -68,11 +70,12 @@ def db = 'DB{{db_number}}.DB'
 
 ```  
 
-Use of as_prefix and vars_prefix, also the s7read node will not read the vars periodically (no every parameter), but
-only when a trigger in form of any data-item comes in.
+Use of `as_prefix` and `vars_prefix`. The node will not read data on its own, because it has no every parameter.
+instead reading is done on data input from another node.
 
 ```dfs
-|s7read() 
+|s7read()
+.ip(10.1.1.5)
 .rack(0)
 .slot(2)
 .every(300ms) 
@@ -87,7 +90,8 @@ Read a sequence of 30 bytes as a string.
 ```dfs
 def db_number = 1140
 def db = 'DB{{db_number}}.DB'
-|s7read()  
+|s7read()
+.ip(10.1.1.5)
 .as_prefix('data.tbo.') 
 .vars_prefix(db)
 .byte_offset(4)
@@ -111,7 +115,7 @@ Parameters
 Parameter     | Description | Default 
 --------------|-------------|--------- 
 ip( `string` )| ip address of plc |
-port( `integer` )| port of modbus device|102
+port( `integer` )| network port | 102 (standard s7 port)
 every( `duration` )|time between reads| undefined
 align( is_set )|align read intervals according to every|false (not set)
 slot( `integer` )| plc slot number|0
