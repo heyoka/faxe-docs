@@ -7,6 +7,7 @@ schemes:
   - http
   - https
 basePath: /v1
+host: example.com:8081
 paths:
   /stats/vm:
     get:
