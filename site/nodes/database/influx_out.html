@@ -1542,8 +1542,31 @@
 <p>Write data to <a href="https://docs.influxdata.com/influxdb/v1.8/">InfluxDB</a> via it's HTTP API.
 This node supports InfluxDB up to version 1.8.</p>
 <p>If any errors occur during the request, the node will attempt to retry sending.</p>
+<p>Since FAXE and InfluxDB share the notion of <code>tags</code>, this node will write all fields to InfluxDB fields and all tags as
+Influx tags.</p>
+<p>If you want to control which fields and tags get written to the database, use one of the flowdata-nodes,
+ie. use <a href="../flowdata/delete.html">delete</a> to
+delete some fields and/or tags before writing data with this node.</p>
+<p>Note: it is recommended to <a href="../flowdata/batch.html">batch</a> single data-points.</p>
 <h2 id="example">Example</h2>
+<p>Simple:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">influx_out</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8086</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">measurement</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;m1&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">database</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;mydb&#39;</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+
+<p>Use delete and batch before writing to InfluxDB:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">delete()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;calc.avg_temp&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tags</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;is_on&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;color&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">batch(</span><span style="color: #ae81ff">25</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #a6e22e">influx_out</span><span style="color: #f8f8f2">()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8086</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">measurement</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;m1&#39;</span><span style="color: #f8f8f2">)</span>
