@@ -3,7 +3,7 @@ The where node
 
 Filter points and batches with a lambda expression, which returns a boolean value.
 
-Data-items for which the lambda expression evaluates as false will be discarded. 
+Data-items for which the lambda expression evaluates as `false` will be discarded. 
 
 Example
 -------
@@ -14,7 +14,7 @@ Example
 
 ```
      
-Filters points who's timestamp is not between 09:00 and 18:00.
+Discards every point who's timestamp is not between 09:00 and 18:00 UTC.
 
 
 Parameters
