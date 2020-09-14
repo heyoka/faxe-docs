@@ -129,7 +129,7 @@ paths:
         name: "template_id"
         description: "Id of the template"
         required: true
-        type: "string | integer"
+        type: string
       - in: query
         name: order_by
         type: string
@@ -156,7 +156,7 @@ paths:
     parameters:
       - in: "path"
         name: "tags"
-        description: "comma seperated list of tags"
+        description: "comma separated list of tags"
         required: true
         type: "string"
       - in: query
@@ -189,7 +189,7 @@ paths:
           name: "task_id"
           description: "Id of the task to read"
           required: true
-          type: "string | integer"
+          type: string
   /task/start/{task_id}:
     get:
       summary: Start a task.
@@ -207,7 +207,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be started"
           required: true
-          type: "string | integer"
+          type: string
   /task/start/{task_id}/true:
     get:
       summary: Start a task permanently.
@@ -399,7 +399,7 @@ paths:
           type: string
         - in: "formData"
           name: "vars"
-          description: "A json object with vars for the new task, example: {\"var1\": 33}. Every definition (keyword 'def') in the template dfs can be overritten."
+          description: "A json object with vars for the new task, example: {\"var1\": 33}. Every definition (keyword 'def') in the template dfs can be overwritten."
           type: string
   /task/delete/{task_id}:
     delete:
@@ -607,15 +607,14 @@ paths:
   /task/start_temp:
     post:
       summary: "Start a temporary task"
-      description: "Start the given dfs script with a TTL, runtime can be extended with a call to /task/ping/:task_id;
-      when the timeout is over the task will stop and delete itself. Temporary tasks can not be restarted or updated!"
+      description: "Start the given dfs script with a TTL, runtime can be extended with a call to /task/ping/:task_id \n when the timeout is over the task will stop and delete itself. Temporary tasks can not be restarted or updated!"
       produces:
         - 'application/json'
       consumes:
         - 'application/x-www-form-urlencoded'
       responses:
         200:
-          description: "Sucessfully parsed the DFS script and started the task with the given ttl"
+          description: "Successfully parsed the DFS script and started the task with the given ttl"
           schema:
             properties:
               id:

@@ -118,7 +118,7 @@ ip( `string` )| ip address of plc |
 port( `integer` )| network port | 102 (standard s7 port)
 every( `duration` )|time between reads| undefined
 align( is_set )|align read intervals according to every|false (not set)
-slot( `integer` )| plc slot number|0
+slot( `integer` )| plc slot number|1
 rack( `integer` )| plc rack number|0
 vars( `string_list` )|list of s7 addresses ie: 'DB3.DBX2.5' (see table below)|
 as( `string_list` )|output names for the read values|
