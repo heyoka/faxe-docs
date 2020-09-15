@@ -228,7 +228,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be started permanently"
           required: true
-          type: "string | integer"
+          type: string
   /task/stop/{task_id}:
     get:
       summary: Stop a task.
@@ -246,7 +246,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be stopped"
           required: true
-          type: "string | integer"
+          type: string
   /task/stop/{task_id}/true:
     get:
       summary: Stop a task permanently.
@@ -265,7 +265,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be stopped permanently"
           required: true
-          type: "string | integer"
+          type: string
   /task/register:
     post:
       summary: "Register a task."
@@ -357,7 +357,7 @@ paths:
           name: "task_id"
           description: "Id of the task, that should be updated."
           required: true
-          type: "string | integer"
+          type: string
         - in: "formData"
           name: "name"
           description: "Task name"
@@ -377,6 +377,8 @@ paths:
       description: "Registers a new task with name 'name' from the template with id 'template_id'."
       produces:
         - application/json
+      consumes:
+        - application/x-www-form-urlencoded
       responses:
         200: 
           description: "Task successfully registered."
@@ -387,7 +389,7 @@ paths:
       parameters:
         - in: "path"
           name: "template_id"
-          type: "string | integer"
+          type: string
           required: true
         - in: "path"
           name: "task_name"
@@ -419,7 +421,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "string | integer"
+          type: string
           required: true
   /task/add_tags/{task_id}:
     post:
@@ -428,6 +430,8 @@ paths:
           it does not matter, if a task is added multiple times.
       produces:
         - application/json
+      consumes:
+        - application/x-www-form-urlencoded
       responses:
         200:
           description: "Tags were successfully added"
@@ -438,7 +442,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "string | integer"
+          type: string
           required: true
         - in: "formData"
           name: "tags"
@@ -451,6 +455,8 @@ paths:
       description: Remove a list of tags from the specified task
       produces:
         - application/json
+      consumes:
+        - application/x-www-form-urlencoded
       responses:
         200:
           description: "Tags were successfully removed"
@@ -461,7 +467,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "string | integer"
+          type: string
           required: true
         - in: "formData"
           name: "tags"
@@ -482,7 +488,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "string | integer"
+          type: string
           required: true
         - in: "query"
           name: limit
@@ -512,7 +518,7 @@ paths:
       parameters:
         - in: "path"
           name: "task_id"
-          type: "string | integer"
+          type: string
           required: true
 
   /tags:
@@ -564,7 +570,7 @@ paths:
           name: "template_id"
           description: "Id of the template to read"
           required: true
-          type: "string | integer"
+          type: string
   /template/register:
     post:
       summary: "Register a template"
@@ -602,7 +608,7 @@ paths:
       parameters:
         - in: "path"
           name: "template_id"
-          type: "string | integer"
+          type: string
           required: true
   /task/start_temp:
     post:
@@ -664,7 +670,7 @@ paths:
         - in: "path"
           name: "task_id"
           required: true
-          type: "string | integer"
+          type: string
   /task/stop_debug/{task_id}:
     get:
       summary: Stop debugging task with task_id
@@ -681,7 +687,7 @@ paths:
         - in: "path"
           name: "task_id"
           required: true
-          type: "string | integer"
+          type: string
   /task/ping/{task_id}:
     post:
       summary: "Extend the lifetime of a temporary task"
@@ -723,12 +729,6 @@ definitions:
       ok:
         type: string
         description: "started"
-  stopped:
-    type: object
-    properties:
-      error:
-        type: string
-        description: error string
   Task:
     type: object
     properties:
@@ -771,8 +771,6 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/Task'
-  TemplateVar:
-    type: object
   TemplateVars:
     type: object
     example:
