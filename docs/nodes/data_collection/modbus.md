@@ -1,19 +1,24 @@
 The modbus node
 =====================
 
-Pull data via modbus tcp, supported read functions are :
+Read data via **modbus tcp**, supported read functions are :
 ['coils', 'hregs', 'iregs', 'inputs', 'memory']
 
-Reading can be done periodically (if `every` is given) and/or via a trigger.
+Reading can be done periodically (if `every` is given) and/or via a trigger (incoming value).
 
-Read multiple values with possibly different functions at once
+Read multiple values with possibly different functions at once.
+
+The node will optimize reading by treating contiguous values as one reading var. 
+Normally the node will open one connection for every variable (after read optimization is applied). 
+The maximum number of connections can be set with the `max_connections` option. 
 
 If the `align` property is set, the nodes's read times will be truncated to the every property
 (For example, if the node is started at 12:06 and the every property is 5m then the next read will 
 occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so on).
 
 
-Example
+
+Examples
 -------
 ```dfs  
 
@@ -28,6 +33,22 @@ Example
 .output('int16', 'float32', 'float32')
 .signed(true, true, false) 
 ```
+
+
+```dfs  
+
+|modbus()
+.ip('127.0.0.1')  
+.every(2m)
+.function('hregs', 'hregs', 'hregs')
+.from(2127, 2125, 104)
+.count(2, 2, 2)
+.as('Energy.EnergyConsumption', 'Energy.CurrentValue', 'Energy.EnergyDelivered')
+.output('float32', 'float32', 'float32') 
+```
+The above modbus node will open 2 connections to the given modbus device, because the start values 2125 (2 bytes) and 2127 (2 bytes)
+can be treated as one single value.
+
 
 Parameters
 ----------
@@ -45,6 +66,7 @@ count( `integer_list`)|list of count values, how much data to read for every fun
 as( `string_list` )|output names for the read values|
 output( `string_list` )|list of output formats one of `['int16', 'int32', 'float32', 'coils', 'ascii', 'binary']`|undefined
 signed( `atom_list` true/false)|list of values indicating if values are signed|undefined
+max_connections( `integer` )|number of connections to the modbus device|`auto`, meaning 1 connection for every variable (after read optimization)
 
 
 Note that, if given, all read parameters(`function, from, count, as, output, signed`) must have the same length, this means if you have two
