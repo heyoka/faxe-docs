@@ -169,6 +169,73 @@ paths:
         type: string
         default: desc
         description: direction for ordering, 'asc' or (default) 'desc'
+  /tasks/start_permanent:
+    get:
+      summary: Start all permanent tasks
+      description: Start all tasks marked permanent
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tasks started successfully"
+        405:
+          description: "Method not allowed"
+  /tasks/stop_all:
+    get:
+      summary: Stop all tasks
+      description: Stop all tasks currently running
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tasks stopped successfully"
+        405:
+          description: "Method not allowed"
+  /tasks/start/{ids}:
+    get:
+      summary: Start tasks by their ids
+      description: Start a list of tasks by their ids. Give a comma-separated list of task-ids
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tasks started successfully"
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: "path"
+        name: "ids"
+        description: "comma separated list of task-ids"
+        required: true
+        type: "string"
+  /tasks/stop/{ids}:
+    get:
+      summary: Stop tasks by their ids
+      description: Stop a list of running tasks by their ids. Give a comma-separated list of task-ids.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Task stopped successfully"
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: "path"
+        name: "ids"
+        description: "comma separated list of task-ids"
+        required: true
+        type: "string"
+  /tasks/update:
+    get:
+      summary: Update/reload all tasks
+      description: Update all tasks, running or not, so that updates on templates and/or macros get applied to all tasks at once.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tasks updated successfully"
+        405:
+          description: "Method not allowed"
   /task/{task_id}:
     get:
       summary: Get a task

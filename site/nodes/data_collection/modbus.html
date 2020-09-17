@@ -493,8 +493,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -514,18 +514,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="s7poll.html" title="S7poll" class="md-nav__link">
-      S7poll
-    </a>
   </li>
 
         
@@ -1508,8 +1496,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1539,14 +1527,17 @@
                 
                 
                 <h1 id="the-modbus-node">The modbus node</h1>
-<p>Pull data via modbus tcp, supported read functions are :
+<p>Read data via <strong>modbus tcp</strong>, supported read functions are :
 ['coils', 'hregs', 'iregs', 'inputs', 'memory']</p>
-<p>Reading can be done periodically (if <code>every</code> is given) and/or via a trigger.</p>
-<p>Read multiple values with possibly different functions at once</p>
+<p>Reading can be done periodically (if <code>every</code> is given) and/or via a trigger (incoming value).</p>
+<p>Read multiple values with possibly different functions at once.</p>
+<p>The node will optimize reading by treating contiguous values as one reading var. 
+Normally the node will open one connection for every variable (after read optimization is applied). 
+The maximum number of connections can be set with the <code>max_connections</code> option. </p>
 <p>If the <code>align</code> property is set, the nodes's read times will be truncated to the every property
 (For example, if the node is started at 12:06 and the every property is 5m then the next read will 
 occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so on).</p>
-<h2 id="example">Example</h2>
+<h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">modbus()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">device</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">)</span>
@@ -1554,12 +1545,25 @@ occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">function</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;coils&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;iregs&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">from</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2127</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3008</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">104</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Energy.EnergyConsumption&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Energy.CurrentValue&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Energy.EnergyDelivered&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.EnergyConsumption&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.CurrentValue&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.EnergyDelivered&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">output</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;int16&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signed</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
 
 
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">modbus()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span>  
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">2m</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">function</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">from</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2127</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2125</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">104</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.EnergyConsumption&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.CurrentValue&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.EnergyDelivered&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">output</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+
+<p>The above modbus node will open 2 connections to the given modbus device, because the start values 2125 (2 bytes) and 2127 (2 bytes)
+can be treated as one single value.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1625,6 +1629,11 @@ occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so
 <td>list of values indicating if values are signed</td>
 <td>undefined</td>
 </tr>
+<tr>
+<td>max_connections( <code>integer</code> )</td>
+<td>number of connections to the modbus device</td>
+<td><code>auto</code>, meaning 1 connection for every variable (after read optimization)</td>
+</tr>
 </tbody>
 </table>
 <p>Note that, if given, all read parameters(<code>function, from, count, as, output, signed</code>) must have the same length, this means if you have two
@@ -1675,13 +1684,13 @@ values you want to read :</p>
           </a>
         
         
-          <a href="s7poll.html" title="S7poll" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="s7read.html" title="S7read" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                S7poll
+                S7read
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

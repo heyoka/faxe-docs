@@ -476,18 +476,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../data_collection/s7poll.html" title="S7poll" class="md-nav__link">
-      S7poll
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../data_collection/s7read.html" title="S7read" class="md-nav__link">
       S7read
     </a>
@@ -1540,13 +1528,13 @@
                 
                 <h1 id="the-where-node">The where node</h1>
 <p>Filter points and batches with a lambda expression, which returns a boolean value.</p>
-<p>Data-items for which the lambda expression evaluates as false will be discarded. </p>
+<p>Data-items for which the lambda expression evaluates as <code>false</code> will be discarded. </p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">where(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">18</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">8</span> <span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 
-<p>Filters points who's timestamp is not between 09:00 and 18:00.</p>
+<p>Discards every point who's timestamp is not between 09:00 and 18:00 UTC.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>

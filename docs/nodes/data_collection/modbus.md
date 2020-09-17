@@ -29,7 +29,7 @@ Examples
 .function('coils', 'hregs', 'iregs')
 .from(2127, 3008, 104)
 .count(1, 2, 2)
-.as('Energy.EnergyConsumption', 'Energy.CurrentValue', 'Energy.EnergyDelivered')
+.as('data.EnergyConsumption', 'data.CurrentValue', 'data.EnergyDelivered')
 .output('int16', 'float32', 'float32')
 .signed(true, true, false) 
 ```
@@ -43,7 +43,7 @@ Examples
 .function('hregs', 'hregs', 'hregs')
 .from(2127, 2125, 104)
 .count(2, 2, 2)
-.as('Energy.EnergyConsumption', 'Energy.CurrentValue', 'Energy.EnergyDelivered')
+.as('data.EnergyConsumption', 'data.CurrentValue', 'data.EnergyDelivered')
 .output('float32', 'float32', 'float32') 
 ```
 The above modbus node will open 2 connections to the given modbus device, because the start values 2125 (2 bytes) and 2127 (2 bytes)
