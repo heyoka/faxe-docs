@@ -236,6 +236,37 @@ paths:
           description: "Tasks updated successfully"
         405:
           description: "Method not allowed"
+  /tasks/import:
+    post:
+      summary: "Import a list of tasks."
+      description: "Import a list of json encoded task definitions. Such a list can be retrieved with the '/tasks' method for example."
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "Successfully parsed and/or imported tasks"
+          schema:
+            $ref: '#/definitions/ImportListResult'
+        400:
+          description: "Error decoding the task-list"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: false
+              error:
+                type: string
+                description: error message
+        405:
+          description: "Method not allowed."
+      parameters:
+        - in: "formData"
+          name: "tasks"
+          description: "A json encoded list of tasks."
+          type: "string"
+          required: true
   /task/{task_id}:
     get:
       summary: Get a task
@@ -619,6 +650,37 @@ paths:
         type: string
         default: desc
         description: direction for ordering, 'asc' or (default) 'desc'
+  /templates/import:
+    post:
+      summary: "Import a list of templates."
+      description: "Import a list of json encoded template definitions. Such a list can be retrieved with the '/templates' method for example."
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "Successfully parsed and/or imported templates"
+          schema:
+            $ref: '#/definitions/ImportTemplateListResult'
+        400:
+          description: "Error decoding the template-list"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: false
+              error:
+                type: string
+                description: error message
+        405:
+          description: "Method not allowed."
+      parameters:
+        - in: "formData"
+          name: "templates"
+          description: "A json encoded list of templates."
+          type: "string"
+          required: true
   /template/{template_id}:
     get:
       summary: Get a template
@@ -812,28 +874,28 @@ definitions:
         $ref: '#/definitions/Tags'
       vars:
         $ref: '#/definitions/TemplateVars'
-        description: If created by a template, contains objects of vars used when creating
+        description: If created by a template, contains objects of vars used when creating.
       template:
         type: string
-        description: If created by template, contains the name of the template used for creation
+        description: If created by template, contains the name of the template used for creation.
       running:
         type: boolean
-        description: Whether the task is running at the moment
+        description: Whether the task is running at the moment.
       permanent:
         type: boolean
-        description: Whether the task is to be started permanent
+        description: Whether the task is to be started permanent.
       changed:
         type: string
         format: ISO8601
-        description: Time the task was changed the last time
+        description: Time the task was changed the last time.
       last_start:
         type: string
         format: ISO8601
-        description: Time the task was last started
+        description: Time the task was last started.
       last_stop:
         type: string
         format: ISO8601
-        description: Time the task was last stopped
+        description: Time the task was last stopped.
   ArrayOfTasks:
     type: array
     items:
@@ -848,6 +910,42 @@ definitions:
       type: string
     example:
       ["tag1", "tag2", "tag3"]
+  ImportListResult:
+    type: object
+    properties:
+      total:
+        type: integer
+        description: The number of total tasks found in the task list.
+      successful:
+        type: integer
+        description: The number of successfully imported tasks.
+      errors:
+        type: integer
+        description: The number of tasks that could not be imported.
+      messages:
+        type: array
+        items:
+          $ref: '#/definitions/ImportErrorMessage'
+  ImportErrorMessage:
+    type: object
+    example:
+      { "name": "error-message" }
+  ImportTemplateListResult:
+    type: object
+    properties:
+      total:
+        type: integer
+        description: The number of total items found in the template list.
+      successful:
+        type: integer
+        description: The number of successfully imported templates.
+      errors:
+        type: integer
+        description: The number of templates that could not be imported.
+      messages:
+        type: array
+        items:
+          $ref: '#/definitions/ImportErrorMessage'
   LogEntry:
     type: object
     properties:
