@@ -5,7 +5,7 @@ Read data from a siemens s7 plc via the snap7 library using the `iso on tcp prot
 Reading can be done periodically and/or triggered via incoming data-items.
 If the `every` parameter is not given, reading will be done only with trigger data-items.
 
-* Data `addressing` can be done in a `Step7` schema or with a sligthly different schema used in node-red
+* Data `addressing` can be done in a `Step7` schema or with a slightly different schema used in node-red
 (although the step7 variant is preferred). 
 See table below for more information about addressing.
 
