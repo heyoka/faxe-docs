@@ -9,6 +9,40 @@ schemes:
 basePath: /v1
 host: example.com:8081
 paths:
+  /config:
+    get:
+      summary: FAXE Configuration
+      description: Returns hand-picked config settings currently active.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              {
+                "metrics": {
+                  "port": 1883,
+                  "host": "127.0.0.1",
+                  "enable": "false",
+                  "base_topic": "ttgw/sys/faxe/10_10_2_15/metrics"
+                },
+                "debug_time_ms": 25000,
+                "debug": {
+                  "port": 1883,
+                  "host": "127.0.0.1",
+                  "enable": "false",
+                  "base_topic": "ttgw/sys/faxe/10_10_2_15/debug"
+                },
+                "conn_status": {
+                  "port": 1883,
+                  "host": "127.0.0.1",
+                  "enable": "true",
+                  "base_topic": "ttgw/sys/faxe/10_10_2_15/conn_status"
+                }
+              }
+        405:
+          description: Method not allowed
   /stats/vm:
     get:
       summary: Erlang VM stats
@@ -208,6 +242,23 @@ paths:
         description: "comma separated list of task-ids"
         required: true
         type: "string"
+  /tasks/start/by_tags/{tags}:
+    get:
+      summary: Start tasks by their tags
+      description: Start a list of tasks by tags. Give a comma-separated list of tags.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tasks started successfully"
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: "path"
+        name: "ids"
+        description: "comma separated list of tags"
+        required: true
+        type: "string"
   /tasks/stop/{ids}:
     get:
       summary: Stop tasks by their ids
@@ -223,6 +274,23 @@ paths:
       - in: "path"
         name: "ids"
         description: "comma separated list of task-ids"
+        required: true
+        type: "string"
+  /tasks/stop/by_tags/{tags}:
+    get:
+      summary: Stop tasks by tags.
+      description: Stop a list of running tasks by their tags. Give a comma-separated list of tags.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Task stopped successfully"
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: "path"
+        name: "ids"
+        description: "comma separated list of tags"
         required: true
         type: "string"
   /tasks/update:
