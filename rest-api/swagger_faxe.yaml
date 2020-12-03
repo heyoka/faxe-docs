@@ -923,7 +923,35 @@ paths:
         - in: "formData"
           name: "dfs"
           description: "A valid dfs script"
-          type: "string"  
+          type: "string"
+  /import/python:
+    post:
+      summary: "Upload python source code files"
+      description: "Upload one or more python source code files, that will be placed in the python script folder defined in faxe's config."
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "Uploaded file(s)"
+          examples:
+            application/json:
+              {"files" :
+                [ {
+                  "uploaded": "filename.py",
+                  "stored": "/path/to/pythonfolder/filename.py"
+                },
+                  {
+                  "error" : "filename.py",
+                  "message" :  "what went wrong"
+                  }
+                ]
+              }
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed"
   /template/delete/{template_id}:
     delete:
       summary: "Delete a template"

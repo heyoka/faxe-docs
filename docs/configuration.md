@@ -11,16 +11,15 @@ Here are the simple rules of the syntax:
 Every config item can be overwritten with OS Environment variables (see 'ENV-Key'). 
 
 ```cfg
-
 ## Name of the Erlang node
 ## 
-## Default: faxe
+## Default: faxe_dev1
 ## 
 ## ENV-Key: FAXE_NODENAME
 ## 
 ## Acceptable values:
 ##   - text
-nodename = faxe
+nodename = faxe_dev1
 
 ## Cookie for distributed node communication.  All nodes in the
 ## same cluster should use the same cookie or they will not be able to
@@ -95,26 +94,58 @@ erlang.max_ports = 262144
 ## --------------------------------------------------------------
 ## whether to start tasks marked "permanent" automatically on node startup
 ## 
-## Default: off
+## Default: on
 ## 
 ## ENV-Key: FAXE_FLOW_AUTO_START
 ## 
 ## Acceptable values:
 ##   - on or off
-## flow_auto_start = off
+## flow_auto_start = on
 
 ## --------------------------------------------------------------
 ## DFS
 ## --------------------------------------------------------------
 ## path to folder where dfs scripts live
 ## 
-## Default: /dfs/
+## Default: /home/user/faxe/dfs/
 ## 
 ## ENV-Key: FAXE_DFS_SCRIPT_PATH
 ## 
 ## Acceptable values:
 ##   - the path to a directory
-## dfs.script_path = /dfs/
+## dfs.script_path = /home/user/faxe/dfs/
+
+## ----------------------------------------------------------------
+## API USER - default user, that will be created on first startup
+## ----------------------------------------------------------------
+## anonymous access to the api endpoint
+## set to false for production use
+## 
+## Default: true
+## 
+## ENV-Key: FAXE_ALLOW_ANONYMOUS
+## 
+## Acceptable values:
+##   - true or false
+allow_anonymous = true
+
+## 
+## Default: user
+## 
+## ENV-Key: FAXE_DEFAULT_USERNAME
+## 
+## Acceptable values:
+##   - text
+## default_username = user
+
+## 
+## Default: pass
+## 
+## ENV-Key: FAXE_DEFAULT_PASSWORD
+## 
+## Acceptable values:
+##   - text
+## default_password = pass
 
 ## ----------------------------------------------------------------
 ## REST API
@@ -129,7 +160,48 @@ erlang.max_ports = 262144
 ##   - an integer
 http_api_port = 8081
 
-## -----------------------------------------------------------------
+## http-api tls
+## enable the use of tls for the http-api
+## 
+## Default: on
+## 
+## ENV-Key: FAXE_HTTP_API_TLS_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+## http_api.tls.enable = on
+
+## http-api ssl certificate
+## 
+## Default: /path/to/certfile.pem
+## 
+## ENV-Key: FAXE_HTTP_API_SSL_CERTFILE
+## 
+## Acceptable values:
+##   - the path to a file
+## http_api.ssl.certfile = /path/to/certfile.pem
+
+## http-api ssl ca certificate
+## 
+## Default: /path/to/cacertfile.pem
+## 
+## ENV-Key: FAXE_HTTP_API_SSL_CACERTFILE
+## 
+## Acceptable values:
+##   - the path to a file
+## http_api.ssl.cacertfile = /path/to/cacertfile.pem
+
+## http-api ssl key file
+## 
+## Default: /path/to/keyfile.key
+## 
+## ENV-Key: FAXE_HTTP_API_SSL_KEYFILE
+## 
+## Acceptable values:
+##   - the path to a file
+## http_api.ssl.keyfile = /path/to/cert.key
+
+## -----------------------------------------------------------
 ## PYTHON
 ## -----------------------------------------------------------------
 ## python version
@@ -144,13 +216,13 @@ http_api_port = 8081
 
 ## path to custom python files
 ## 
-## Default: /python/
+## Default: /home/user/python/
 ## 
 ## ENV-Key: FAXE_PYTHON_SCRIPT_PATH
 ## 
 ## Acceptable values:
 ##   - the path to a directory
-python.script_path = /python/
+python.script_path = /home/user/python/
 
 ## -------------------------------------------------------------------
 ## ESQ
@@ -223,13 +295,13 @@ s7pool.max_size = 16
 ## -------------------------------------------------------------------------------
 ## mqtt host
 ## 
-## Default: example.com
+## Default: 127.0.0.1
 ## 
 ## ENV-Key: FAXE_MQTT_HOST
 ## 
 ## Acceptable values:
 ##   - text
-mqtt.host = example.com
+mqtt.host = 127.0.0.1
 
 ## mqtt port
 ## 
@@ -297,13 +369,13 @@ mqtt.port = 1883
 ## -------------------------------------------------------------------------------
 ## amqp host
 ## 
-## Default: example.com
+## Default: 127.0.0.1
 ## 
 ## ENV-Key: FAXE_AMQP_HOST
 ## 
 ## Acceptable values:
 ##   - text
-amqp.host = example.com
+amqp.host = 127.0.0.1
 
 ## amqp port
 ## 
@@ -386,13 +458,13 @@ amqp.port = 5672
 ## rabbitmq default exchange
 ## the amqp_publish node will use this exchange as default
 ## 
-## Default: x_root
+## Default: x_lm_fanout
 ## 
 ## ENV-Key: FAXE_RABBITMQ_ROOT_EXCHANGE
 ## 
 ## Acceptable values:
 ##   - text
-rabbitmq.root_exchange = x_root
+rabbitmq.root_exchange = x_lm_fanout
 
 ## -------------------------------------------------------------------------------
 ## CrateDB defaults (postgreSQL connect)
@@ -450,23 +522,23 @@ crate.database = doc
 ## -------------------------------------------------------------------------------
 ## CrateDB host
 ## 
-## Default: example.com
+## Default: 127.0.0.1
 ## 
 ## ENV-Key: FAXE_CRATE_HTTP_HOST
 ## 
 ## Acceptable values:
 ##   - text
-crate_http.host = example.com
+crate_http.host = 10.1.1.2
 
 ## CrateDB port
 ## 
-## Default: 4200
+## Default: 4201
 ## 
 ## ENV-Key: FAXE_CRATE_HTTP_PORT
 ## 
 ## Acceptable values:
 ##   - an integer
-crate_http.port = 4200
+crate_http.port = 4201
 
 ## CrateDB user
 ## 
@@ -560,6 +632,26 @@ email.from = noreply@example.com
 ##   - text
 email.smtp = smtp.example.com
 
+## email smtp port
+## 
+## Default: 25
+## 
+## ENV-Key: FAXE_EMAIL_PORT
+## 
+## Acceptable values:
+##   - an integer
+email.port = 25
+
+## email smtp tls, whether to use tls
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_EMAIL_TLS
+## 
+## Acceptable values:
+##   - on or off
+email.tls = off
+
 ## email smtp user
 ## 
 ## ENV-Key: FAXE_EMAIL_USER
@@ -569,6 +661,8 @@ email.smtp = smtp.example.com
 ## email.user = username
 
 ## email smtp pass
+## 
+## Default: password
 ## 
 ## ENV-Key: FAXE_EMAIL_PASS
 ## 
@@ -622,7 +716,7 @@ metrics.handler.mqtt.enable = off
 ## The mqtt handler will prefix its topic with this value,
 ## note that it must be a valid mqtt topic string.
 ## 
-## Default: ttgw/sys/faxe
+## Default: sys/faxe
 ## 
 ## ENV-Key: FAXE_METRICS_HANDLER_MQTT_BASE_TOPIC
 ## 
@@ -658,7 +752,7 @@ conn_status.handler.mqtt.enable = on
 
 ## connection status handler mqtt base topic
 ## 
-## Default: ttgw/sys/faxe
+## Default: sys/faxe
 ## 
 ## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_BASE_TOPIC
 ## 
@@ -696,7 +790,7 @@ debug.handler.mqtt.enable = off
 
 ## debug_trace handler mqtt base topic
 ## 
-## Default: ttgw/sys/faxe
+## Default: sys/faxe
 ## 
 ## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_BASE_TOPIC
 ## 
@@ -713,6 +807,7 @@ debug.handler.mqtt.enable = off
 ## Acceptable values:
 ##   - a time duration with units, e.g. '10s' for 10 seconds
 debug.time = 25s
+
 
 
 
