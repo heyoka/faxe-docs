@@ -9,6 +9,74 @@ schemes:
 basePath: /v1
 host: example.com:8081
 paths:
+  /users:
+    get:
+      summary: Get a list of all users.
+      description: Returns a json list of all users currently known to the system.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              [
+                {
+                  "role": "admin",
+                  "pass": "pass",
+                  "name": "user"
+                }
+              ]
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
+  /user/add:
+    post:
+      summary: Add or update a User.
+      description: Add or update a user record if it alread exists.
+      produces:
+          - application/json
+      consumes:
+          - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "User was successfully added/updated"
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
+      parameters:
+        - in: "formData"
+          name: "name"
+          required: true
+          description: "The name of the user to be added/updated"
+          type: string
+        - in: "formData"
+          name: "pass"
+          required: true
+          description: "The user's password"
+          type: string
+  /user/delete/{username}:
+    delete:
+      summary: "Delete a user"
+      description: "Delete a user by it's name."
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "User successfully deleted."
+        401:
+          description: Unauthorized
+        404:
+          description: "User with name 'username' could not be found."
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: "username"
+          type: string
+          required: true
   /config:
     get:
       summary: FAXE Configuration
@@ -41,6 +109,8 @@ paths:
                   "base_topic": "ttgw/sys/faxe/10_10_2_15/conn_status"
                 }
               }
+        401:
+          description: Unauthorized
         405:
           description: Method not allowed
   /stats/vm:
@@ -76,6 +146,8 @@ paths:
                 "vmstats-error_logger_queue_len": 0,
                 "vmstats-atom_count": 44524
               }
+        401:
+          description: Unauthorized
         405:
           description: Method not allowed
   /stats/faxe:
@@ -99,6 +171,8 @@ paths:
                 "data_throughput_sec": 11,
                 "data_paths_known": 0
               }
+        401:
+          description: Unauthorized
         405:
           description: Method not allowed
   /tasks:
@@ -112,6 +186,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/ArrayOfTasks'
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -134,6 +210,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/ArrayOfTasks'
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -156,6 +234,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/ArrayOfTasks'
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -185,6 +265,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/ArrayOfTasks'
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -212,6 +294,8 @@ paths:
       responses:
         200:
           description: "Tasks started successfully"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
   /tasks/stop_all:
@@ -223,6 +307,8 @@ paths:
       responses:
         200:
           description: "Tasks stopped successfully"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
   /tasks/start/{ids}:
@@ -234,6 +320,8 @@ paths:
       responses:
         200:
           description: "Tasks started successfully"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -251,6 +339,8 @@ paths:
       responses:
         200:
           description: "Tasks started successfully"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -268,6 +358,8 @@ paths:
       responses:
         200:
           description: "Task stopped successfully"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -285,6 +377,8 @@ paths:
       responses:
         200:
           description: "Task stopped successfully"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
     parameters:
@@ -302,6 +396,8 @@ paths:
       responses:
         200:
           description: "Tasks updated successfully"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
   /tasks/import:
@@ -327,6 +423,8 @@ paths:
               error:
                 type: string
                 description: error message
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed."
       parameters:
@@ -346,6 +444,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Task'
+        401:
+          description: Unauthorized
         404:
           description: "Task not found"
         405:
@@ -364,6 +464,8 @@ paths:
       responses:
         200:
           description: "Task started successfully"
+        401:
+          description: Unauthorized
         404:
           description: "Task could not be found"
         405:
@@ -385,6 +487,8 @@ paths:
           description: "Task started successfully"
           schema:
             $ref: '#/definitions/started'
+        401:
+          description: Unauthorized
         404:
           description: "Task could not be found"
         405:
@@ -403,6 +507,8 @@ paths:
       responses:
         200:
           description: "Task stopped successfully"
+        401:
+          description: Unauthorized
         404:
           description: "Task could not be found"
         405:
@@ -422,6 +528,8 @@ paths:
       responses:
         200:
           description: "Task stopped successfully"
+        401:
+          description: Unauthorized
         404:
           description: "Task could not be found"
         405:
@@ -464,6 +572,8 @@ paths:
               error:
                 type: string
                 description: error message
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed."
       parameters:
@@ -514,6 +624,8 @@ paths:
               error:
                 type: string
                 description: error message
+        401:
+          description: Unauthorized
         404:
           description: "Task not found."
         405:
@@ -548,6 +660,8 @@ paths:
       responses:
         200: 
           description: "Task successfully registered."
+        401:
+          description: Unauthorized
         404:
           description: "Template with id 'template_id' not found."
         405:
@@ -578,6 +692,8 @@ paths:
       responses:
         200:
           description: "Task successfully deleted."
+        401:
+          description: Unauthorized
         404:
           description: "Task with id 'task_id' could not be found."
         405:
@@ -601,6 +717,8 @@ paths:
       responses:
         200:
           description: "Tags were successfully added"
+        401:
+          description: Unauthorized
         404:
           description: Task with id task_id were not found
         405:
@@ -626,6 +744,8 @@ paths:
       responses:
         200:
           description: "Tags were successfully removed"
+        401:
+          description: Unauthorized
         404:
           description: Task with id task_id were not found
         405:
@@ -651,6 +771,8 @@ paths:
           description: get a list of logs
           schema:
             $ref: '#/definitions/Logs'
+        401:
+          description: Unauthorized
       parameters:
         - in: "path"
           name: "task_id"
@@ -677,6 +799,8 @@ paths:
       responses:
         200:
           description: OK
+        401:
+          description: Unauthorized
         404:
           description: Not found
         405:
@@ -696,6 +820,8 @@ paths:
       responses:
         200:
           description: OK
+        401:
+          description: Unauthorized
         405:
           description: Method not allowed
   /templates:
@@ -707,6 +833,8 @@ paths:
       responses:
         200:
           description: OK
+        401:
+          description: Unauthorized
     parameters:
       - in: query
         name: order_by
@@ -741,6 +869,8 @@ paths:
               error:
                 type: string
                 description: error message
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed."
       parameters:
@@ -758,6 +888,8 @@ paths:
       responses:
         200:
           description: OK
+        401:
+          description: Unauthorized
         404:
           description: "Template not found"
         405:
@@ -779,6 +911,8 @@ paths:
       responses:
         200:
           description: "Successfully parsed and registered template"
+        401:
+          description: Unauthorized
         405:
           description: "Method not allowed"
       parameters:
@@ -798,6 +932,8 @@ paths:
       responses:
         200:
           description: "Template successfully deleted."
+        401:
+          description: Unauthorized
         404:
           description: "Template with id 'task_id' could not be found."
         405:
@@ -839,6 +975,8 @@ paths:
               success:
                 type: boolean
                 default: false
+        401:
+          description: Unauthorized
       parameters:
         - in: "formData"
           name: "dfs"
@@ -859,6 +997,8 @@ paths:
       responses:
         200:
           description: OK
+        401:
+          description: Unauthorized
         404:
           description: "Task not found"
         405:
@@ -876,6 +1016,8 @@ paths:
       responses:
         200:
           description: OK
+        401:
+          description: Unauthorized
         404:
           description: "Task not found"
         405:
@@ -912,6 +1054,8 @@ paths:
               success:
                 type: boolean
                 default: false
+        401:
+          description: Unauthorized
       parameters:
         - in: "path"
           name: "task_id"
