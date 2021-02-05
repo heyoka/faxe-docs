@@ -7,10 +7,11 @@ the tracking of arbitrary changes and the detection of events within data.
 
 Dfs is heavily influenced by InfluxData's [TICKScript](https://docs.influxdata.com/kapacitor/v1.5/tick/introduction/).
 
-Dfs is used in .dfs files to define pipelines and graphs for processing data. 
+Dfs is used in .dfs files or via API to define pipelines and graphs for processing data. 
 The Dfs language is designed to chain together the invocation of data processing operations defined in nodes.
 
-At the heart of its's engine, faxe will run an acyclic graph of computing nodes (processes) .
+At the heart of its's engine, faxe will run an acyclic graph of computing nodes. 
+Every node runs in its own erlang process.
 
 DFS Definitions
 === 
