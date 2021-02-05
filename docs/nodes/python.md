@@ -13,7 +13,7 @@ module: "double", class: "Double"
      * `handle_batch(self, batch_data`) -> batch_data is a list of dicts (points)
 * the callbacks need not return anything except for the options method
 * to emit data the method `self.emit(data)` has to be used, where data is a dict or a list of dicts
-
+* All fields of data-item going in and out of a custom python node are placed under the root-object `data`.
 
 A custom python node is used with an `@` as node sign instead of `|` in dfs!
 
@@ -24,8 +24,8 @@ A custom python node is used with an `@` as node sign instead of `|` in dfs!
 Parameters
 ----------
 
-Parameters can be freely defined by the python callback class via the static `options()` method (See example blow).
-Note that parameter definition must be in `bytes` type.
+Parameters can be freely defined by the python callback class via the static `options()` method (See example below).
+Note that parameter definition must be in python's `bytes` type.
 
 
 Example Callback
@@ -73,7 +73,7 @@ class Double(Faxe):
         called when a data_point comes in to this node
         :param point_data: dict
         """
-        self.emit(self.calc(point_data))
+        self.emit(self.calc(point_data["data"]))
 
     def handle_batch(self, batch_data):
         """
@@ -82,7 +82,7 @@ class Double(Faxe):
         """
         out_list = list()
         for point in batch_data:
-            out_list.append(self.calc(point))
+            out_list.append(self.calc(point["data"]))
         self.emit(out_list)
 
     def calc(self, point_dict):

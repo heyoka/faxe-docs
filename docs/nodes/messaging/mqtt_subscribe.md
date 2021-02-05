@@ -29,6 +29,9 @@ qos( `integer` )|Quality of service, one of 0, 1 or 2| 1
 retained( is_set )| whether the message should be retained on the broker| false (not set)
 dt_field( `string` )|name of the timestamp field that is expected|'ts'
 dt_format( `string` )|timestamp or datetime format that is expected (see table below)| 'millisecond'
+include_topic ( `bool` ) |whether to include the mqtt-topic in the resulting datapoints | true
+topic_as ( `string` ) | if `include_topic` is true, this will be the fieldname for the mqtt-topic value | 'topic' 
+as ( `string` ) | base object for the output data-point | undefined
 ssl( is_set ) | whether to use ssl | false (not set)
  
  

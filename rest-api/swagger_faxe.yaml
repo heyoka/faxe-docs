@@ -400,6 +400,44 @@ paths:
           description: Unauthorized
         405:
           description: "Method not allowed"
+  /tasks/update_by_tags/{tags}:
+    get:
+      summary: Update/reload all tasks by a list of tags.
+      description: Update all tasks by a list of tags, running or not, so that updates on templates and/or macros get applied to these tasks at once.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tasks updated successfully"
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: "path"
+        name: "tags"
+        description: "comma separated list of tags"
+        required: true
+        type: "string"
+  /tasks/update_by_template/{template_id}:
+    get:
+      summary: Update/reload all tasks created with the specified template.
+      description: Update all tasks by a specified template, running or not, so that updates on templates and/or macros get applied to these tasks at once.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Tasks updated successfully"
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed"
+    parameters:
+      - in: "path"
+        name: "template_id"
+        description: "The template_id"
+        required: true
+        type: "string"
   /tasks/import:
     post:
       summary: "Import a list of tasks."
@@ -540,6 +578,95 @@ paths:
           description: "Id of the task, that should be stopped permanently"
           required: true
           type: string
+  /task/start_group/{task_id}/{concurrency}:
+    get:
+      summary: Start a task-group concurrently.
+      description: Starts 'concurrency' copies of the task with id 'task_id'.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Task group started successfully"
+        401:
+          description: Unauthorized
+        404:
+          description: "Task could not be found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: "task_id"
+          description: "Id of the task, that should be started concurrently"
+          required: true
+          type: string
+  /task/stop_group/{groupname}:
+    get:
+      summary: Stop a task-group.
+      description: Stop a running task-group given the groups-name (Name of the group_leader task).
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Task group stopped successfully"
+        401:
+          description: Unauthorized
+        404:
+          description: "Task could not be found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: groupname
+          description: "Name of the task-group that should be stopped."
+          required: true
+          type: string
+  /task/delete_group/{groupname}:
+    delete:
+      summary: Delete a task-group.
+      description: Delete a task-group given the group-name (Name of the group_leader task).
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Task group deleted successfully"
+        401:
+          description: Unauthorized
+        404:
+          description: "Task-group could not be found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: groupname
+          description: "Name of the task-group that should be deleted."
+          required: true
+          type: string
+  /task/group_size/{groupname}/{group_size}:
+    get:
+      summary: Change the size of a task-group
+      description: Change the number of copies a task-group should run. This method is to be called on a running task or task-group.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Task group size changed successfully"
+        401:
+          description: Unauthorized
+        404:
+          description: "Task-group could not be found or is not running"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: groupname
+          description: "Name of the task-group."
+          required: true
+          type: string
+        - in: path
+          description: "New number of copies to run for this task-group"
+          name: group_size
+          type: integer
+          required: true
   /task/register:
     post:
       summary: "Register a task."
@@ -1136,6 +1263,12 @@ definitions:
         type: string
         format: ISO8601
         description: Time the task was last stopped.
+      group_leader:
+        type: boolean
+        description: Whether this task is group_leader.
+      group:
+        type: string
+        description: Name of the flow-group this task belongs to.
   ArrayOfTasks:
     type: array
     items:

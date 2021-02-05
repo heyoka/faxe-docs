@@ -3,6 +3,7 @@ theme: material
 use_directory_urls: false
 extra_css:
   - 'stylesheets/extra.css'
+docs_dir: docs
 markdown_extensions:
   - codehilite:
         guess_lang: False
@@ -11,6 +12,7 @@ markdown_extensions:
         pygments_style: monokai
 plugins:
   - search
+  - macros
 #  - mkpdfs:
 #      author: Alexander Minichmair
 #  - pdf-export:

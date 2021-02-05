@@ -130,6 +130,7 @@ tags( `string_list` )| List of tags to include | []
 aliases( `string_list` )| List of field aliases to use instead of the original field names| []
 prefix( `string` )|Prefix for the injected fields from stream 2| undefined
 prefix_delimiter( `string` )|Used to separate prefix and the original field name from stream 2|'_'
+nofill ( `isset` ) | if set, dataoutput will happen regardless of a initial input on port 2 | false (not set)
 
 When `merge_field` is given the params fields, prefix and prefix_delimiter have no effect.
 Otherwise either `prefix` or `aliases` must be given these are mutually exclusive parameters. 
