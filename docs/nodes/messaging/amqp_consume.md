@@ -2,7 +2,10 @@ The amqp_consume node
 =====================
 
 Consume data from an amqp-broker like rabbitmq.
-When `prefetch` is given and is > 1, then this node will emit a data_batch instead of a data_point.
+Once a data-item is received by the node, it will immediately stored in an internal on-disk queue for data-safety.
+Only after this will the item be acknowledged to the amqp broker.
+
+At the moment this node can only setup and work with `topic` exchanges.
 
 
 Example
@@ -10,7 +13,7 @@ Example
 ```dfs  
 |amqp_consume()
 .host('deves-amqp-cluster1.internal') 
-.routing_key('my.routing.key')
+.bindings('my.routing.key')
 .exchange('x_xchange')
 .queue('faxe_test')
 .dt_field('UTC-Time')
@@ -27,12 +30,16 @@ port( `integer` )| The broker's port | 5672 / from config file
 user( `string` )| AMQP user | from config file
 pass( `string` )| AMQP password | from config file
 vhost( `string` )| vhost to connect to on the broker| '/'
-routing_key( `string` )| routing key to use for queue binding|
+routing_key( `string` )| routing key to use for queue binding|undefined
+bindings( `string_list` )| queue-bindings| [] 
 queue( `string` )|name of the queue to bind to the exchange|
 exchange( `string` )|name of the exchange to bind to the source exchange |
-prefetch( `integer` )|prefetch count to use| 1
+prefetch( `integer` )|prefetch count to use| 10
 dt_field( `string` )|name of the timestamp field that is expected|'ts'
 dt_format( `string` )|timestamp or datetime format that is expected (see table below)| 'millisecond'
+include_topic ( `bool` ) |whether to include the routingkey in the resulting datapoints | true
+topic_as ( `string` ) | if `include_topic` is true, this will be the fieldname for the routingkey value | 'topic' 
+as ( `string` ) | base object for the output data-point | undefined
 ssl( is_set ) | whether to use ssl | false (not set)
 
 

@@ -1253,6 +1253,18 @@
   
   
     <li class="md-nav__item">
+      <a href="mqtt_amqp_bridge.html" class="md-nav__link">
+        Mqtt amqp bridge
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="mqtt_publish.html" class="md-nav__link">
         Mqtt publish
       </a>
@@ -1652,11 +1664,13 @@
                 
                 <h1 id="the-amqp_consume-node">The amqp_consume node</h1>
 <p>Consume data from an amqp-broker like rabbitmq.
-When <code>prefetch</code> is given and is &gt; 1, then this node will emit a data_batch instead of a data_point.</p>
+Once a data-item is received by the node, it will immediately stored in an internal on-disk queue for data-safety.
+Only after this will the item be acknowledged to the amqp broker.</p>
+<p>At the moment this node can only setup and work with <code>topic</code> exchanges.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_consume()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;deves-amqp-cluster1.internal&#39;</span><span style="color: #f8f8f2">)</span> 
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">routing_key</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my.routing.key&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bindings</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my.routing.key&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exchange</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;x_xchange&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queue</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;faxe_test&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;UTC-Time&#39;</span><span style="color: #f8f8f2">)</span>
@@ -1701,7 +1715,12 @@ When <code>prefetch</code> is given and is &gt; 1, then this node will emit a da
 <tr>
 <td>routing_key( <code>string</code> )</td>
 <td>routing key to use for queue binding</td>
-<td></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>bindings( <code>string_list</code> )</td>
+<td>queue-bindings</td>
+<td>[]</td>
 </tr>
 <tr>
 <td>queue( <code>string</code> )</td>
@@ -1716,7 +1735,7 @@ When <code>prefetch</code> is given and is &gt; 1, then this node will emit a da
 <tr>
 <td>prefetch( <code>integer</code> )</td>
 <td>prefetch count to use</td>
-<td>1</td>
+<td>10</td>
 </tr>
 <tr>
 <td>dt_field( <code>string</code> )</td>
@@ -1727,6 +1746,21 @@ When <code>prefetch</code> is given and is &gt; 1, then this node will emit a da
 <td>dt_format( <code>string</code> )</td>
 <td>timestamp or datetime format that is expected (see table below)</td>
 <td>'millisecond'</td>
+</tr>
+<tr>
+<td>include_topic ( <code>bool</code> )</td>
+<td>whether to include the routingkey in the resulting datapoints</td>
+<td>true</td>
+</tr>
+<tr>
+<td>topic_as ( <code>string</code> )</td>
+<td>if <code>include_topic</code> is true, this will be the fieldname for the routingkey value</td>
+<td>'topic'</td>
+</tr>
+<tr>
+<td>as ( <code>string</code> )</td>
+<td>base object for the output data-point</td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>ssl( is_set )</td>

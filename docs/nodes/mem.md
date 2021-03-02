@@ -7,9 +7,9 @@ There are 3 types of memories:
 
 * 'single' holds a single value
 * 'list' holds a list of values, value order is preserved within the list
-* 'set' holds a list of values, where values have not duplicates
+* 'set' holds a list of values, where values have no duplicates
 
-The values will be held in an non persistent ets term storage.
+The values will be held in a non persistent ets term storage.
 
 Example
 -------
@@ -34,7 +34,7 @@ The above set can be used in lambda expressions with the functions: `ls_mem`, `l
 )
 ```
     
-This will filter out all points that have a topic field, which has already be stored in the mem set.
+This will filter out all points that have a topic field, which has already been stored in the mem set.
 Thus the `where` node will only output points with a unique topic value.
 
 _For a list of lambda_library functions see [lambda_functions](../dfs_script_language)._

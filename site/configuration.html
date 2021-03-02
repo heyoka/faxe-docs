@@ -1206,6 +1206,18 @@
   
   
     <li class="md-nav__item">
+      <a href="nodes/messaging/mqtt_amqp_bridge.html" class="md-nav__link">
+        Mqtt amqp bridge
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="nodes/messaging/mqtt_publish.html" class="md-nav__link">
         Mqtt publish
       </a>
@@ -1585,13 +1597,13 @@ Here are the simple rules of the syntax:</p>
 <p>Every config item can be overwritten with OS Environment variables (see 'ENV-Key'). </p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">## Name of the Erlang node</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: faxe_dev1</span>
+<span style="color: #75715e">## Default: faxe@127.0.0.1</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_NODENAME</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">nodename</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">faxe_dev1</span>
+<span style="color: #a6e22e">nodename</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">faxe@127.0.0.1</span>
 
 <span style="color: #75715e">## Cookie for distributed node communication.  All nodes in the</span>
 <span style="color: #75715e">## same cluster should use the same cookie or they will not be able to</span>
@@ -1666,26 +1678,26 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## --------------------------------------------------------------</span>
 <span style="color: #75715e">## whether to start tasks marked &quot;permanent&quot; automatically on node startup</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## Default: off</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_FLOW_AUTO_START</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - on or off</span>
-<span style="color: #75715e">## flow_auto_start = on</span>
+<span style="color: #75715e">## flow_auto_start = off</span>
 
 <span style="color: #75715e">## --------------------------------------------------------------</span>
 <span style="color: #75715e">## DFS</span>
 <span style="color: #75715e">## --------------------------------------------------------------</span>
 <span style="color: #75715e">## path to folder where dfs scripts live</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: /home/user/faxe/dfs/</span>
+<span style="color: #75715e">## Default: /home/heyoka/workspace/faxe/dfs/</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DFS_SCRIPT_PATH</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - the path to a directory</span>
-<span style="color: #75715e">## dfs.script_path = /home/user/faxe/dfs/</span>
+<span style="color: #75715e">## dfs.script_path = /home/heyoka/workspace/faxe/dfs/</span>
 
 <span style="color: #75715e">## ----------------------------------------------------------------</span>
 <span style="color: #75715e">## API USER - default user, that will be created on first startup</span>
@@ -1735,7 +1747,7 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## http-api tls</span>
 <span style="color: #75715e">## enable the use of tls for the http-api</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## Default: off</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_HTTP_API_TLS_ENABLE</span>
 <span style="color: #75715e">## </span>
@@ -1773,6 +1785,16 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - the path to a file</span>
 <span style="color: #75715e">## http_api.ssl.keyfile = /path/to/cert.key</span>
 
+<span style="color: #75715e">## a list of ciphers to use for the http listener</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: ECDHE-RSA-AES256-GCM-SHA384, ECDHE-RSA-AES128-GCM-SHA256, DHE-RSA-AES256-GCM-SHA384, DHE-RSA-AES128-GCM-SHA256, TLS_AES_256_GCM_SHA384,ECDHE-RSA-AES256-GCM-SHA384</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_HTTP_API_CIPHERS</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #75715e">## http_api.ciphers = ECDHE-RSA-AES256-GCM-SHA384, ECDHE-RSA-AES128-GCM-SHA256, DHE-RSA-AES256-GCM-SHA384, DHE-RSA-AES128-GCM-SHA256, TLS_AES_256_GCM_SHA384,ECDHE-RSA-AES256-GCM-SHA384</span>
+
 <span style="color: #75715e">## -----------------------------------------------------------</span>
 <span style="color: #75715e">## PYTHON</span>
 <span style="color: #75715e">## -----------------------------------------------------------------</span>
@@ -1788,13 +1810,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## path to custom python files</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: /home/user/python/</span>
+<span style="color: #75715e">## Default: /home/heyoka/workspace/faxe/python/</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_PYTHON_SCRIPT_PATH</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - the path to a directory</span>
-<span style="color: #a6e22e">python.script_path</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">/home/user/python/</span>
+<span style="color: #a6e22e">python.script_path</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">/home/heyoka/workspace/faxe/python/</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------</span>
 <span style="color: #75715e">## ESQ</span>
@@ -1835,6 +1857,40 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
 <span style="color: #a6e22e">queue_tts</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">300ms</span>
 
+<span style="color: #75715e">## queue time to flight</span>
+<span style="color: #75715e">## ttf message time-to-flight in milliseconds,</span>
+<span style="color: #75715e">## the time required to deliver message acknowledgment before it reappears to client(s) again.</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 20000ms</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_QUEUE_TTF</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">queue_ttf</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">20000ms</span>
+
+<span style="color: #75715e">## capacity defines the size of in-memory queue.</span>
+<span style="color: #75715e">## The queue would not fetch anything from disk into memory buffer if capacity is 0.</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 10</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_QUEUE_CAPACITY</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">queue_capacity</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10</span>
+
+<span style="color: #75715e">## dequeue interval.</span>
+<span style="color: #75715e">## Interval at which the queue is asked for an element.</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 15ms</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_DEQUEUE_INTERVAL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">dequeue_interval</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">15ms</span>
+
 <span style="color: #75715e">## -------------------------------------------------------------------------</span>
 <span style="color: #75715e">## S7 DEFAULTS</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------</span>
@@ -1867,13 +1923,13 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## mqtt host</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 127.0.0.1</span>
+<span style="color: #75715e">## Default: 10.14.204.3</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_MQTT_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">mqtt.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">127.0.0.1</span>
+<span style="color: #a6e22e">mqtt.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.3</span>
 
 <span style="color: #75715e">## mqtt port</span>
 <span style="color: #75715e">## </span>
@@ -1887,6 +1943,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## mqtt user</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: username</span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_MQTT_USER</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -1894,6 +1952,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## mqtt.user = username</span>
 
 <span style="color: #75715e">## mqtt pass</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: password</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_MQTT_PASS</span>
 <span style="color: #75715e">## </span>
@@ -1914,6 +1974,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## mqtt ssl certificate</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_MQTT_SSL_CERTFILE</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -1922,6 +1984,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## mqtt ssl ca certificate</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_MQTT_SSL_CACERTFILE</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -1929,6 +1993,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## mqtt.ssl.cacertfile = /path/to/cacertfile.pem</span>
 
 <span style="color: #75715e">## mqtt ssl key file</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_MQTT_SSL_KEYFILE</span>
 <span style="color: #75715e">## </span>
@@ -1941,13 +2007,13 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## amqp host</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 127.0.0.1</span>
+<span style="color: #75715e">## Default: 10.14.204.3</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_AMQP_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">amqp.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">127.0.0.1</span>
+<span style="color: #a6e22e">amqp.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.3</span>
 
 <span style="color: #75715e">## amqp port</span>
 <span style="color: #75715e">## </span>
@@ -2002,6 +2068,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## amqp ssl certificate</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_AMQP_SSL_CERTFILE</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2009,6 +2077,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## amqp.ssl.certfile = /path/to/certfile.pem</span>
 
 <span style="color: #75715e">## amqp ssl ca certificate</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_AMQP_SSL_CACERTFILE</span>
 <span style="color: #75715e">## </span>
@@ -2018,11 +2088,23 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## amqp ssl key file</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_AMQP_SSL_KEYFILE</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - the path to a file</span>
 <span style="color: #75715e">## amqp.ssl.keyfile = /path/to/cert.key</span>
+
+<span style="color: #75715e">## amqp ssl peer verification</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: verify_none</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_AMQP_SSL_VERIFY</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: verify_none, verify_peer</span>
+<span style="color: #75715e">## amqp.ssl.verify = verify_none</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## RabbitMQ defaults</span>
@@ -2073,6 +2155,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## CrateDB password</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CRATE_PASS</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2094,13 +2178,13 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## CrateDB host</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 127.0.0.1</span>
+<span style="color: #75715e">## Default: 10.14.204.8</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CRATE_HTTP_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">crate_http.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.1.1.2</span>
+<span style="color: #a6e22e">crate_http.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.8</span>
 
 <span style="color: #75715e">## CrateDB port</span>
 <span style="color: #75715e">## </span>
@@ -2123,6 +2207,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #a6e22e">crate_http.user</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">crate</span>
 
 <span style="color: #75715e">## CrateDB password</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CRATE_HTTP_PASS</span>
 <span style="color: #75715e">## </span>
@@ -2175,6 +2261,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## InfluxDB pass</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_INFLUX_HTTP_PASS</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2226,6 +2314,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## email smtp user</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: username</span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_EMAIL_USER</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2270,6 +2360,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## metrics handler mqtt host</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_METRICS_HANDLER_MQTT_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2277,6 +2369,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## metrics.handler.mqtt.host = example.com</span>
 
 <span style="color: #75715e">## metrics handler mqtt port</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 1883</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_METRICS_HANDLER_MQTT_PORT</span>
 <span style="color: #75715e">## </span>
@@ -2288,7 +2382,7 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## The mqtt handler will prefix its topic with this value,</span>
 <span style="color: #75715e">## note that it must be a valid mqtt topic string.</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: ttgw/sys/faxe</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_METRICS_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
@@ -2308,6 +2402,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #a6e22e">conn_status.handler.mqtt.enable</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">on</span>
 
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2315,6 +2411,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## conn_status.handler.mqtt.host = example.com</span>
 
 <span style="color: #75715e">## connection status handler mqtt port</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 1883</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_PORT</span>
 <span style="color: #75715e">## </span>
@@ -2324,7 +2422,7 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## connection status handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: ttgw/sys/faxe</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
@@ -2346,6 +2444,8 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## debug_trace handler mqtt host</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2353,6 +2453,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## debug.handler.mqtt.host = example.com</span>
 
 <span style="color: #75715e">## debug_trace handler mqtt port</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 1883</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_PORT</span>
 <span style="color: #75715e">## </span>
@@ -2362,7 +2464,7 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## debug_trace handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: ttgw/sys/faxe</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
@@ -2379,6 +2481,8 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
 <span style="color: #a6e22e">debug.time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">25s</span>
+
+<span style="color: #a6e22e">include conf.d/*.conf</span>
 </code></pre></div>
                 
               

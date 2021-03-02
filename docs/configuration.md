@@ -11,15 +11,16 @@ Here are the simple rules of the syntax:
 Every config item can be overwritten with OS Environment variables (see 'ENV-Key'). 
 
 ```cfg
+
 ## Name of the Erlang node
 ## 
-## Default: faxe_dev1
+## Default: faxe@127.0.0.1
 ## 
 ## ENV-Key: FAXE_NODENAME
 ## 
 ## Acceptable values:
 ##   - text
-nodename = faxe_dev1
+nodename = faxe@127.0.0.1
 
 ## Cookie for distributed node communication.  All nodes in the
 ## same cluster should use the same cookie or they will not be able to
@@ -94,26 +95,26 @@ erlang.max_ports = 262144
 ## --------------------------------------------------------------
 ## whether to start tasks marked "permanent" automatically on node startup
 ## 
-## Default: on
+## Default: off
 ## 
 ## ENV-Key: FAXE_FLOW_AUTO_START
 ## 
 ## Acceptable values:
 ##   - on or off
-## flow_auto_start = on
+## flow_auto_start = off
 
 ## --------------------------------------------------------------
 ## DFS
 ## --------------------------------------------------------------
 ## path to folder where dfs scripts live
 ## 
-## Default: /home/user/faxe/dfs/
+## Default: /home/heyoka/workspace/faxe/dfs/
 ## 
 ## ENV-Key: FAXE_DFS_SCRIPT_PATH
 ## 
 ## Acceptable values:
 ##   - the path to a directory
-## dfs.script_path = /home/user/faxe/dfs/
+## dfs.script_path = /home/heyoka/workspace/faxe/dfs/
 
 ## ----------------------------------------------------------------
 ## API USER - default user, that will be created on first startup
@@ -163,7 +164,7 @@ http_api_port = 8081
 ## http-api tls
 ## enable the use of tls for the http-api
 ## 
-## Default: on
+## Default: off
 ## 
 ## ENV-Key: FAXE_HTTP_API_TLS_ENABLE
 ## 
@@ -201,6 +202,16 @@ http_api_port = 8081
 ##   - the path to a file
 ## http_api.ssl.keyfile = /path/to/cert.key
 
+## a list of ciphers to use for the http listener
+## 
+## Default: ECDHE-RSA-AES256-GCM-SHA384, ECDHE-RSA-AES128-GCM-SHA256, DHE-RSA-AES256-GCM-SHA384, DHE-RSA-AES128-GCM-SHA256, TLS_AES_256_GCM_SHA384,ECDHE-RSA-AES256-GCM-SHA384
+## 
+## ENV-Key: FAXE_HTTP_API_CIPHERS
+## 
+## Acceptable values:
+##   - text
+## http_api.ciphers = ECDHE-RSA-AES256-GCM-SHA384, ECDHE-RSA-AES128-GCM-SHA256, DHE-RSA-AES256-GCM-SHA384, DHE-RSA-AES128-GCM-SHA256, TLS_AES_256_GCM_SHA384,ECDHE-RSA-AES256-GCM-SHA384
+
 ## -----------------------------------------------------------
 ## PYTHON
 ## -----------------------------------------------------------------
@@ -216,13 +227,13 @@ http_api_port = 8081
 
 ## path to custom python files
 ## 
-## Default: /home/user/python/
+## Default: /home/heyoka/workspace/faxe/python/
 ## 
 ## ENV-Key: FAXE_PYTHON_SCRIPT_PATH
 ## 
 ## Acceptable values:
 ##   - the path to a directory
-python.script_path = /home/user/python/
+python.script_path = /home/heyoka/workspace/faxe/python/
 
 ## -------------------------------------------------------------------
 ## ESQ
@@ -263,6 +274,40 @@ queue_ttl = 4h
 ##   - a time duration with units, e.g. '10s' for 10 seconds
 queue_tts = 300ms
 
+## queue time to flight
+## ttf message time-to-flight in milliseconds,
+## the time required to deliver message acknowledgment before it reappears to client(s) again.
+## 
+## Default: 20000ms
+## 
+## ENV-Key: FAXE_QUEUE_TTF
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+queue_ttf = 20000ms
+
+## capacity defines the size of in-memory queue.
+## The queue would not fetch anything from disk into memory buffer if capacity is 0.
+## 
+## Default: 10
+## 
+## ENV-Key: FAXE_QUEUE_CAPACITY
+## 
+## Acceptable values:
+##   - an integer
+queue_capacity = 10
+
+## dequeue interval.
+## Interval at which the queue is asked for an element.
+## 
+## Default: 15ms
+## 
+## ENV-Key: FAXE_DEQUEUE_INTERVAL
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+dequeue_interval = 15ms
+
 ## -------------------------------------------------------------------------
 ## S7 DEFAULTS
 ## -------------------------------------------------------------------------
@@ -295,13 +340,13 @@ s7pool.max_size = 16
 ## -------------------------------------------------------------------------------
 ## mqtt host
 ## 
-## Default: 127.0.0.1
+## Default: 10.14.204.3
 ## 
 ## ENV-Key: FAXE_MQTT_HOST
 ## 
 ## Acceptable values:
 ##   - text
-mqtt.host = 127.0.0.1
+mqtt.host = 10.14.204.3
 
 ## mqtt port
 ## 
@@ -315,6 +360,8 @@ mqtt.port = 1883
 
 ## mqtt user
 ## 
+## Default: username
+## 
 ## ENV-Key: FAXE_MQTT_USER
 ## 
 ## Acceptable values:
@@ -322,6 +369,8 @@ mqtt.port = 1883
 ## mqtt.user = username
 
 ## mqtt pass
+## 
+## Default: password
 ## 
 ## ENV-Key: FAXE_MQTT_PASS
 ## 
@@ -342,6 +391,8 @@ mqtt.port = 1883
 
 ## mqtt ssl certificate
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_MQTT_SSL_CERTFILE
 ## 
 ## Acceptable values:
@@ -350,6 +401,8 @@ mqtt.port = 1883
 
 ## mqtt ssl ca certificate
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_MQTT_SSL_CACERTFILE
 ## 
 ## Acceptable values:
@@ -357,6 +410,8 @@ mqtt.port = 1883
 ## mqtt.ssl.cacertfile = /path/to/cacertfile.pem
 
 ## mqtt ssl key file
+## 
+## Default: 
 ## 
 ## ENV-Key: FAXE_MQTT_SSL_KEYFILE
 ## 
@@ -369,13 +424,13 @@ mqtt.port = 1883
 ## -------------------------------------------------------------------------------
 ## amqp host
 ## 
-## Default: 127.0.0.1
+## Default: 10.14.204.3
 ## 
 ## ENV-Key: FAXE_AMQP_HOST
 ## 
 ## Acceptable values:
 ##   - text
-amqp.host = 127.0.0.1
+amqp.host = 10.14.204.3
 
 ## amqp port
 ## 
@@ -430,6 +485,8 @@ amqp.port = 5672
 
 ## amqp ssl certificate
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_AMQP_SSL_CERTFILE
 ## 
 ## Acceptable values:
@@ -437,6 +494,8 @@ amqp.port = 5672
 ## amqp.ssl.certfile = /path/to/certfile.pem
 
 ## amqp ssl ca certificate
+## 
+## Default: 
 ## 
 ## ENV-Key: FAXE_AMQP_SSL_CACERTFILE
 ## 
@@ -446,11 +505,23 @@ amqp.port = 5672
 
 ## amqp ssl key file
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_AMQP_SSL_KEYFILE
 ## 
 ## Acceptable values:
 ##   - the path to a file
 ## amqp.ssl.keyfile = /path/to/cert.key
+
+## amqp ssl peer verification
+## 
+## Default: verify_none
+## 
+## ENV-Key: FAXE_AMQP_SSL_VERIFY
+## 
+## Acceptable values:
+##   - one of: verify_none, verify_peer
+## amqp.ssl.verify = verify_none
 
 ## -------------------------------------------------------------------------------
 ## RabbitMQ defaults
@@ -501,6 +572,8 @@ crate.user = crate
 
 ## CrateDB password
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_CRATE_PASS
 ## 
 ## Acceptable values:
@@ -522,13 +595,13 @@ crate.database = doc
 ## -------------------------------------------------------------------------------
 ## CrateDB host
 ## 
-## Default: 127.0.0.1
+## Default: 10.14.204.8
 ## 
 ## ENV-Key: FAXE_CRATE_HTTP_HOST
 ## 
 ## Acceptable values:
 ##   - text
-crate_http.host = 10.1.1.2
+crate_http.host = 10.14.204.8
 
 ## CrateDB port
 ## 
@@ -551,6 +624,8 @@ crate_http.port = 4201
 crate_http.user = crate
 
 ## CrateDB password
+## 
+## Default: 
 ## 
 ## ENV-Key: FAXE_CRATE_HTTP_PASS
 ## 
@@ -603,6 +678,8 @@ influx_http.user = influx
 
 ## InfluxDB pass
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_INFLUX_HTTP_PASS
 ## 
 ## Acceptable values:
@@ -654,6 +731,8 @@ email.tls = off
 
 ## email smtp user
 ## 
+## Default: username
+## 
 ## ENV-Key: FAXE_EMAIL_USER
 ## 
 ## Acceptable values:
@@ -698,6 +777,8 @@ metrics.handler.mqtt.enable = off
 
 ## metrics handler mqtt host
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_METRICS_HANDLER_MQTT_HOST
 ## 
 ## Acceptable values:
@@ -705,6 +786,8 @@ metrics.handler.mqtt.enable = off
 ## metrics.handler.mqtt.host = example.com
 
 ## metrics handler mqtt port
+## 
+## Default: 1883
 ## 
 ## ENV-Key: FAXE_METRICS_HANDLER_MQTT_PORT
 ## 
@@ -716,7 +799,7 @@ metrics.handler.mqtt.enable = off
 ## The mqtt handler will prefix its topic with this value,
 ## note that it must be a valid mqtt topic string.
 ## 
-## Default: sys/faxe
+## Default: ttgw/sys/faxe
 ## 
 ## ENV-Key: FAXE_METRICS_HANDLER_MQTT_BASE_TOPIC
 ## 
@@ -736,6 +819,8 @@ metrics.handler.mqtt.enable = off
 conn_status.handler.mqtt.enable = on
 
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_HOST
 ## 
 ## Acceptable values:
@@ -743,6 +828,8 @@ conn_status.handler.mqtt.enable = on
 ## conn_status.handler.mqtt.host = example.com
 
 ## connection status handler mqtt port
+## 
+## Default: 1883
 ## 
 ## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_PORT
 ## 
@@ -752,7 +839,7 @@ conn_status.handler.mqtt.enable = on
 
 ## connection status handler mqtt base topic
 ## 
-## Default: sys/faxe
+## Default: ttgw/sys/faxe
 ## 
 ## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_BASE_TOPIC
 ## 
@@ -774,6 +861,8 @@ debug.handler.mqtt.enable = off
 
 ## debug_trace handler mqtt host
 ## 
+## Default: 
+## 
 ## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_HOST
 ## 
 ## Acceptable values:
@@ -781,6 +870,8 @@ debug.handler.mqtt.enable = off
 ## debug.handler.mqtt.host = example.com
 
 ## debug_trace handler mqtt port
+## 
+## Default: 1883
 ## 
 ## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_PORT
 ## 
@@ -790,7 +881,7 @@ debug.handler.mqtt.enable = off
 
 ## debug_trace handler mqtt base topic
 ## 
-## Default: sys/faxe
+## Default: ttgw/sys/faxe
 ## 
 ## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_BASE_TOPIC
 ## 
@@ -807,6 +898,8 @@ debug.handler.mqtt.enable = off
 ## Acceptable values:
 ##   - a time duration with units, e.g. '10s' for 10 seconds
 debug.time = 25s
+
+include conf.d/*.conf
 
 
 

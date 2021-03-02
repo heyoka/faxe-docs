@@ -1244,6 +1244,18 @@
   
   
     <li class="md-nav__item">
+      <a href="messaging/mqtt_amqp_bridge.html" class="md-nav__link">
+        Mqtt amqp bridge
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="messaging/mqtt_publish.html" class="md-nav__link">
         Mqtt publish
       </a>
@@ -1640,9 +1652,9 @@
 <ul>
 <li>'single' holds a single value</li>
 <li>'list' holds a list of values, value order is preserved within the list</li>
-<li>'set' holds a list of values, where values have not duplicates</li>
+<li>'set' holds a list of values, where values have no duplicates</li>
 </ul>
-<p>The values will be held in an non persistent ets term storage.</p>
+<p>The values will be held in a non persistent ets term storage.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;set&#39;</span><span style="color: #f8f8f2">)</span>
@@ -1658,7 +1670,7 @@ The set of values is available in lambda expression (within the same flow) with 
 <span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>This will filter out all points that have a topic field, which has already be stored in the mem set.
+<p>This will filter out all points that have a topic field, which has already been stored in the mem set.
 Thus the <code>where</code> node will only output points with a unique topic value.</p>
 <p><em>For a list of lambda_library functions see <a href="../dfs_script_language">lambda_functions</a>.</em></p>
 <h2 id="parameters">Parameters</h2>
