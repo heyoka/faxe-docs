@@ -16,3 +16,7 @@ element.style {
 .md-typeset table:not([class]) {
     background-color: inherit;
 }
+
+.md-typeset code {
+    box-shadow: none;
+}
