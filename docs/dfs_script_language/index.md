@@ -25,7 +25,8 @@ true | boolean true
 false | boolean false
 TRUE | boolean true
 FALSE | boolean false
-lambda: | used to denote lambda expression
+lambda: | used to denote [lambda expression](./lambda_expressions.md)
+e: | used to denote [script expressions](./script_expressions.md)
 def | starts a variable declaration
 
 

@@ -10,7 +10,7 @@ This node starts 1 mqtt-subscriber and up to `max_publishers` number of amqp-pub
 The node does only work standalone at the moment, meaning you cannot connect it to other nodes.
 
 The mqtt_amqp_bridge is completely unaware of the message content.
-For performance reasons the node does not parse incoming date or use data_items as every other node
+For performance reasons the node does not parse incoming data or use data_items as every other node
 in faxe does, instead internally it will work with the raw binaries received from the mqtt broker and pass them through to the amqp publishers.
 
 
@@ -33,7 +33,6 @@ def topic = 'my/topic/#'
 
 Parameters
 ----------
-
 Parameter     | Description | Default 
 --------------|-------------|---------
 host( `string` )| Ip address or hostname of the mqtt broker| from config 

@@ -383,6 +383,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dfs_script_language/script_expressions.html" class="md-nav__link">
+        Script expressions
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1655,7 +1667,7 @@ Receives data from an mqtt-broker and writes each indiviual topic with an amqp-p
 <p>This node starts 1 mqtt-subscriber and up to <code>max_publishers</code> number of amqp-publishers.</p>
 <p>The node does only work standalone at the moment, meaning you cannot connect it to other nodes.</p>
 <p>The mqtt_amqp_bridge is completely unaware of the message content.
-For performance reasons the node does not parse incoming date or use data_items as every other node
+For performance reasons the node does not parse incoming data or use data_items as every other node
 in faxe does, instead internally it will work with the raw binaries received from the mqtt broker and pass them through to the amqp publishers.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;my/topic/#&#39;</span>

@@ -80,6 +80,7 @@ class DFSLexer(RegexLexer):
             (r'[})\].]', Punctuation),
 
             (r'(lambda|@)\b', Keyword, 'slashstartsregex'),
+            (r'(e|@)\b', Keyword, 'slashstartsregex'),
             (r'(def)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(true|false|TRUE|FALSE)\b', Keyword.Constant),
             (r'(change_detect|combine|crate_query|deadman|debug|default|delete|email|http_post|'
