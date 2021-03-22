@@ -1,5 +1,7 @@
 site_name: Faxe
 theme: material
+palette:
+  scheme: slate
 use_directory_urls: false
 extra_css:
   - 'stylesheets/extra.css'
