@@ -667,6 +667,42 @@ paths:
           name: group_size
           type: integer
           required: true
+  /dfs/validate:
+    post:
+      summary: "Validate a DFS script."
+      description: "Provide a dfs script to validate it's syntax and contents"
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "Successfully validated dfs script"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+        400:
+          description: "Validation was not successful"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: false
+              error:
+                type: string
+                description: error message
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed."
+      parameters:
+        - in: "formData"
+          name: "dfs"
+          description: "A valid dfs script."
+          type: "string"
+          required: true
   /task/register:
     post:
       summary: "Register a task."

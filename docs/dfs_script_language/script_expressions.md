@@ -3,8 +3,9 @@
 Script expressions look the same as [lambda expressions](lambda_expressions.md), but start with `e:` instead of `lambda:`.
 
 There are two main differences between script expressions and lambda expressions:
-* script expressions are evaluated during dfs compilation
-* therefore script expressions can not use "references" to access data in data-items
+
+- script expressions are evaluated during dfs compilation
+- therefore script expressions can not use "references" to access fields in data-items
 
 
 ## Example
@@ -30,7 +31,7 @@ def routing_key = 'this.is.my.topic'
 
 
 ## References
-References are used in lambda expression to access data in data-items (data_points and data_batches).
+References are used in lambda expression to access fields in data-items (data_points and data_batches).
 They cannot be used in script expressions, so the next example will throw an error during script compilation:
 
 ```dfs
@@ -40,6 +41,8 @@ def topic = e: str_concat(base_topic, "data.postfix")
 
 ```
 The above example will fail with the message: `"Reference(s) used in inline-expression: data.postfix"`
+
+> Note: We use double quotes to reference a field in the current data_item.
 
 ## More examples
 

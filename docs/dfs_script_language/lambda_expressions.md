@@ -11,11 +11,12 @@ All lambda expressions in DFS begin with the `lambda:` keyword.
 ```
 In the above example `"topic"` is used to access the value of a field called `topic` 
 from the current data_point and compared against the string `'ttop/grap/prec'`.
-Note here that literal string values are declared using single quotes, 
-while double quotes are used to access the values of tags and fields.
 
-## !
-As field and tag values can be deeply nested maps and lists, it is possible to use a `JSON-path` like syntax
+> Note here that literal string values are declared using single quotes, 
+while double quotes are used to access the values of tags and fields within the current data_item.
+
+## Field paths
+> As field and tag values can be deeply nested maps and lists, it is possible to use a `JSON-path` like syntax
 to reference them:
 
 Valid examples:
@@ -160,18 +161,19 @@ str_split_by_re/3|
 
 ### Misc
 
-Function | Description
----------| -----------
-`defined(Key)` -> bool | whether the given Key is defined in the current data-item
-`undefined(Key)` -> bool | whether the given Key is NOT defined in the current data-item
-`member(Ele, List)` -> bool | check for list/set membership
-`not_member(Ele, List)` -> bool | 
-`random(N)` -> integer   | generate a random integer between 1 and N
-`random_real(N)` -> float | generate a random float between 0.0 and 1.0, that gets multiplied by N
-`mem` values are set with the [mem node](../nodes/mem.md)
-`ls_mem(Key)` -> any| get the single value associated with Key from the flow-memory, 
-`ls_mem_list(Key)` -> any|get the list value associated with Key from the flow-memory
-`ls_mem_set()` -> any|get the set value associated with Key from the flow-memory
+Function | Description | Example
+---------| ------------|--------
+`defined(Key)` -> bool | whether the given Key is defined in the current data-item|
+`undefined(Key)` -> bool | whether the given Key is NOT defined in the current data-item|
+`member(Ele, ListOrMap)` -> bool | check for list/set membership of a value, or when used with a map, check if Ele is a key in the map|
+`not_member(Ele, List)` -> bool | |
+`map_get(Key, Map)` -> any| get a value from a map, 'undefined' is returned, if the key is not present in map |map_get("topic", ls_mem('stream_lookup'))
+`random(N)` -> integer   | generate a random integer between 1 and N | 
+`random_real(N)` -> float | generate a random float between 0.0 and 1.0, that gets multiplied by N |
+`mem` values are set with the [mem node](../nodes/mem.md) | |
+`ls_mem(Key)` -> any| get the single value associated with Key from the flow-memory |
+`ls_mem_list(Key)` -> any|get the list value associated with Key from the flow-memory |
+`ls_mem_set()` -> any|get the set value associated with Key from the flow-memory |
 
 
 ### Conditional functions

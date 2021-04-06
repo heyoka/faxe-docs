@@ -176,7 +176,8 @@ There is another version of text-templating which uses a value inside the curren
         No data since {{"datetime"}} on topic 'ttgw/energy', last value was {{"val"}}. 
         >>>)
 ```
-Note: We use double quotes to reference a field in the current data_item.
+
+> Note: We use double quotes to reference a field in the current data_item.
 
 Here the values for `datetime` and `val` will be taken from the current data_point in the email node.
  
