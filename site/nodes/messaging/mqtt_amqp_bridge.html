@@ -304,6 +304,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dfs_examples/using_mem_node.html" class="md-nav__link">
+        Using mem node
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -853,6 +865,18 @@
     <li class="md-nav__item">
       <a href="../flow/group_by.html" class="md-nav__link">
         Group by
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flow/group_union.html" class="md-nav__link">
+        Group union
       </a>
     </li>
   
@@ -1831,6 +1855,11 @@ in faxe does, instead internally it will work with the raw binaries received fro
 <td>safe( is_set)</td>
 <td>whether to use queue acknowledgement for the internal on-disc queue</td>
 <td>false (not set)</td>
+</tr>
+<tr>
+<td>persistent( <code>bool</code> )</td>
+<td>whether to send the amqp messages with delivery-mode 2 (persistent)</td>
+<td>false (delivery_mode = 1)</td>
 </tr>
 <tr>
 <td>reset_timeout( <code>duration</code> )</td>

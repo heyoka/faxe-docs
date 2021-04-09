@@ -304,6 +304,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dfs_examples/using_mem_node.html" class="md-nav__link">
+        Using mem node
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -853,6 +865,18 @@
     <li class="md-nav__item">
       <a href="../flow/group_by.html" class="md-nav__link">
         Group by
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flow/group_union.html" class="md-nav__link">
+        Group union
       </a>
     </li>
   
@@ -1776,17 +1800,17 @@
 <tr>
 <td>topics( <code>string_list</code> )</td>
 <td>mqtt topic(s) to use</td>
-<td></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>topic( <code>string</code> )</td>
+<td>mqtt topic to use</td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>qos( <code>integer</code> )</td>
 <td>Quality of service, one of 0, 1 or 2</td>
 <td>1</td>
-</tr>
-<tr>
-<td>retained( is_set )</td>
-<td>whether the message should be retained on the broker</td>
-<td>false (not set)</td>
 </tr>
 <tr>
 <td>dt_field( <code>string</code> )</td>
@@ -1820,6 +1844,9 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>One of <code>topic</code>, <code>topics</code> must be specified.</p>
+</blockquote>
 <h2 id="available-datetime-formats">Available datetime formats</h2>
 <table>
 <thead>

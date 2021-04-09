@@ -4,6 +4,10 @@ The group_by node
 The `group_by` node will group the incoming data-items. 
 Each group is then processed independently and concurrently to the other groups, for the rest of the chain.
 
+> Note: The behaviour of using more than 1 `group_by` node is not defined.
+
+See [group_union](group_union.md) for how to 'un-group' a dataflow.
+
 Examples
 -------
 

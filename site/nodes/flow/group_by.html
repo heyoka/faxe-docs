@@ -304,6 +304,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dfs_examples/using_mem_node.html" class="md-nav__link">
+        Using mem node
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -901,6 +913,18 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="group_union.html" class="md-nav__link">
+        Group union
+      </a>
     </li>
   
 
@@ -1723,6 +1747,10 @@
                 <h1 id="the-group_by-node">The group_by node</h1>
 <p>The <code>group_by</code> node will group the incoming data-items. 
 Each group is then processed independently and concurrently to the other groups, for the rest of the chain.</p>
+<blockquote>
+<p>Note: The behaviour of using more than 1 <code>group_by</code> node is not defined.</p>
+</blockquote>
+<p>See <a href="group_union.html">group_union</a> for how to 'un-group' a dataflow.</p>
 <h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>  <span style="color: #f92672">|</span><span style="color: #a6e22e">group_by</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fieldname1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;fieldname2&#39;</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
@@ -1807,13 +1835,13 @@ A computing sub-graph in this example will contain an <code>eval</code> node con
           </a>
         
         
-          <a href="join.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="group_union.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Join
+                Group union
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

@@ -304,6 +304,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfs_examples/using_mem_node.html" class="md-nav__link">
+        Using mem node
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -953,6 +965,18 @@
     <li class="md-nav__item">
       <a href="../nodes/flow/group_by.html" class="md-nav__link">
         Group by
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/group_union.html" class="md-nav__link">
+        Group union
       </a>
     </li>
   
@@ -2256,6 +2280,11 @@ to reference them:</p>
 <td><code>undefined(Key)</code> -&gt; bool</td>
 <td>whether the given Key is NOT defined in the current data-item</td>
 <td></td>
+</tr>
+<tr>
+<td><code>topic_part(TopicString, PartIndex, [Seperator])</code> -&gt; string</td>
+<td>extract a part from a topic string, Separator defaults to '/', the index of the first part is <code>1</code> not 0</td>
+<td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>
 </tr>
 <tr>
 <td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>

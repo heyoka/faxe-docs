@@ -165,6 +165,7 @@ Function | Description | Example
 ---------| ------------|--------
 `defined(Key)` -> bool | whether the given Key is defined in the current data-item|
 `undefined(Key)` -> bool | whether the given Key is NOT defined in the current data-item|
+`topic_part(TopicString, PartIndex, [Seperator])` -> string | extract a part from a topic string, Separator defaults to '/', the index of the first part is `1` not 0 | topic_part('this/is/mytopic', 2) -> 'is'
 `member(Ele, ListOrMap)` -> bool | check for list/set membership of a value, or when used with a map, check if Ele is a key in the map|
 `not_member(Ele, List)` -> bool | |
 `map_get(Key, Map)` -> any| get a value from a map, 'undefined' is returned, if the key is not present in map |map_get("topic", ls_mem('stream_lookup'))

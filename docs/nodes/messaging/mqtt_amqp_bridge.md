@@ -51,6 +51,7 @@ amqp_vhost( `string` )| VHost for the amqp broker| '/'
 amqp_exchange( `string` )| name of the amqp exchange to publish to| 
 max_publishers( `integer` )| max number of amqp publishers that will be started | 3
 safe( is_set) | whether to use queue acknowledgement for the internal on-disc queue | false (not set)
+persistent( `bool` ) | whether to send the amqp messages with delivery-mode 2 (persistent) | false (delivery_mode = 1)
 reset_timeout( `duration` )| when the bridge does not see any new message for a topic for this amount of time, it will try to stop the corresponding queue and amqp-publisher process, if appropiate | 5m
  
 

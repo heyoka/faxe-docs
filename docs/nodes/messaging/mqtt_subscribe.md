@@ -24,9 +24,9 @@ host( `string` )| Ip address or hostname of the broker| from config file
 port( `integer` )| The broker's port | 1883 from config file
 user( `string` )| username| from config file
 pass( `string` )| password| from config file
-topics( `string_list` )| mqtt topic(s) to use| 
-qos( `integer` )|Quality of service, one of 0, 1 or 2| 1
-retained( is_set )| whether the message should be retained on the broker| false (not set)
+topics( `string_list` )| mqtt topic(s) to use| undefined
+topic( `string` )| mqtt topic to use| undefined
+qos( `integer` )|Quality of service, one of 0, 1 or 2| 1 
 dt_field( `string` )|name of the timestamp field that is expected|'ts'
 dt_format( `string` )|timestamp or datetime format that is expected (see table below)| 'millisecond'
 include_topic ( `bool` ) |whether to include the mqtt-topic in the resulting datapoints | true
@@ -34,6 +34,7 @@ topic_as ( `string` ) | if `include_topic` is true, this will be the fieldname f
 as ( `string` ) | base object for the output data-point | undefined
 ssl( is_set ) | whether to use ssl | false (not set)
  
+> One of `topic`, `topics` must be specified.
  
 Available datetime formats
 --------------------------

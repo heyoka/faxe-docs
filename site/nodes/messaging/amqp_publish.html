@@ -304,6 +304,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dfs_examples/using_mem_node.html" class="md-nav__link">
+        Using mem node
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -853,6 +865,18 @@
     <li class="md-nav__item">
       <a href="../flow/group_by.html" class="md-nav__link">
         Group by
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flow/group_union.html" class="md-nav__link">
+        Group union
       </a>
     </li>
   
@@ -1743,7 +1767,7 @@ Incoming data is converted to JSON before sending.</p>
 <tr>
 <td>host( <code>string</code> )</td>
 <td>Ip address or hostname of the broker</td>
-<td></td>
+<td>from config</td>
 </tr>
 <tr>
 <td>port( <code>integer</code> )</td>
@@ -1771,9 +1795,24 @@ Incoming data is converted to JSON before sending.</p>
 <td></td>
 </tr>
 <tr>
+<td>routing_key_lambda( <code>lambda</code> )</td>
+<td>lambda expression producing a routing key for the published messages</td>
+<td></td>
+</tr>
+<tr>
 <td>exchange( <code>string</code> )</td>
 <td>name of the exchange to publish to</td>
 <td></td>
+</tr>
+<tr>
+<td>safe( <code>is_set</code> )</td>
+<td>whether to use acknowledgement for the on-disk queue</td>
+<td>false (not set)</td>
+</tr>
+<tr>
+<td>persistent( <code>bool</code> )</td>
+<td>whether to send the amqp messages with delivery-mode 2 (persistent)</td>
+<td>false (delivery_mode = 1)</td>
 </tr>
 <tr>
 <td>ssl( is_set )</td>
