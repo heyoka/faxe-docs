@@ -8,6 +8,11 @@ schemes:
   - https
 basePath: /v1
 host: example.com:8081
+securityDefinitions:
+  basicAuth:
+    type: basic
+security:
+  - basicAuth: []
 paths:
   /users:
     get:
@@ -345,7 +350,7 @@ paths:
           description: "Method not allowed"
     parameters:
       - in: "path"
-        name: "ids"
+        name: "tags"
         description: "comma separated list of tags"
         required: true
         type: "string"
@@ -383,7 +388,7 @@ paths:
           description: "Method not allowed"
     parameters:
       - in: "path"
-        name: "ids"
+        name: "tags"
         description: "comma separated list of tags"
         required: true
         type: "string"
@@ -599,6 +604,11 @@ paths:
           description: "Id of the task, that should be started concurrently"
           required: true
           type: string
+        - in: "path"
+          name: "concurrency"
+          description: "Number of instances, that should be started concurrently"
+          required: true
+          type: integer
   /task/stop_group/{groupname}:
     get:
       summary: Stop a task-group.
@@ -682,21 +692,23 @@ paths:
             properties:
               success:
                 type: boolean
-                default: true
+              message:
+                type: string
         400:
-          description: "Validation was not successful"
+          description: "Bad Request"
           schema:
             properties:
               success:
                 type: boolean
                 default: false
-              error:
-                type: string
-                description: error message
+              params_missing:
+                type: array
+                items:
+                  type: string
         401:
-          description: Unauthorized
+          description: "Unauthorized"
         405:
-          description: "Method not allowed."
+          description: "Method not allowed"
       parameters:
         - in: "formData"
           name: "dfs"
