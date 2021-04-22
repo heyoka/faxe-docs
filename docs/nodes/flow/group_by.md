@@ -1,12 +1,16 @@
 The group_by node
 =====================
 
-The `group_by` node will group the incoming data-items. 
-Each group is then processed independently and concurrently to the other groups, for the rest of the chain.
+The `group_by` node is used to group a stream of data by the values of one or more fields.  
+Each group is then processed independently and concurrently to the other groups, for the rest of the chain (subgraph).
 
-> Note: The behaviour of using more than 1 `group_by` node is not defined.
+> Note: The behaviour of using more than 1 `group_by` node within a flow is not defined.
 
 See [group_union](group_union.md) for how to 'un-group' a dataflow.
+
+> Be aware of high group cardinality, as for every group, a number of processes (depends on the size of the grouped sub-flow) 
+> will be started in the dataflow engine.
+> In other words, if you have a grouping that has high cardinality (many different values), more resources will be consumed.
 
 Examples
 -------

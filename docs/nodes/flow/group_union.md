@@ -7,7 +7,7 @@ The group_union node acts as a [union](union.md) for grouped dataflows.
 
 If this node is used without a `group_by` node, it will have no effect at all on the data-flow.
 
-> Note: The behaviour of using more than 1 `group_union` node is not defined.
+> Note: The behaviour of using more than 1 `group_union` node within a flow is not defined.
 
 See [group_by](group_by.md) 
 

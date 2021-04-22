@@ -1,8 +1,9 @@
 The amqp_consume node
 =====================
 
-Consume data from an amqp-broker like rabbitmq.
-Once a data-item is received by the node, it will immediately stored in an internal on-disk queue for data-safety.
+Consume data from an amqp-broker like `RabbitMQ`.
+
+Once a data-item is received by the node, it will be immediately stored in an on-disk queue for data-safety.
 Only after this will the item be acknowledged to the amqp broker.
 
 At the moment this node can only setup and work with `topic` exchanges.
@@ -42,7 +43,7 @@ topic_as ( `string` ) | if `include_topic` is true, this will be the fieldname f
 as ( `string` ) | base object for the output data-point | undefined
 ssl( is_set ) | whether to use ssl | false (not set)
 
-
+> Exactly one of these must be provided: `routing_key`, `bindings`.
 
 Available datetime formats
 --------------------------

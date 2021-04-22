@@ -3,7 +3,7 @@ The json_emitter node
 
 This node is for debugging and testing/mocking purposes.
 
-It periodically emits one of the json strings given with the `json` parameter.
+It periodically and randomly emits one of the json strings given with the `json` parameter.
 
 Example
 -------
