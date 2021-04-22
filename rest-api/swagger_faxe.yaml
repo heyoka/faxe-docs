@@ -8,6 +8,11 @@ schemes:
   - https
 basePath: /v1
 host: example.com:8081
+securityDefinitions:
+  basicAuth:
+    type: basic
+security:
+  - basicAuth: []
 paths:
   /users:
     get:
