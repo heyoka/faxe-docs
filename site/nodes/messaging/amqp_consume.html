@@ -1759,8 +1759,8 @@
                 
                 
                 <h1 id="the-amqp_consume-node">The amqp_consume node</h1>
-<p>Consume data from an amqp-broker like rabbitmq.
-Once a data-item is received by the node, it will immediately stored in an internal on-disk queue for data-safety.
+<p>Consume data from an amqp-broker like <code>RabbitMQ</code>.</p>
+<p>Once a data-item is received by the node, it will be immediately stored in an on-disk queue for data-safety.
 Only after this will the item be acknowledged to the amqp broker.</p>
 <p>At the moment this node can only setup and work with <code>topic</code> exchanges.</p>
 <h2 id="example">Example</h2>
@@ -1865,6 +1865,9 @@ Only after this will the item be acknowledged to the amqp broker.</p>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>Exactly one of these must be provided: <code>routing_key</code>, <code>bindings</code>.</p>
+</blockquote>
 <h2 id="available-datetime-formats">Available datetime formats</h2>
 <table>
 <thead>

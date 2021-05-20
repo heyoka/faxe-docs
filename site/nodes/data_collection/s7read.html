@@ -1787,7 +1787,8 @@ See table below for more information about addressing.</p>
 Thus more data can be read in one go.</p>
 </li>
 <li>
-<p>Connections to a PLC are handled by a connection pool, which can grow and shrink as needed.
+<p>Connections to a PLC are handled by a connection pool, if <code>use_pool</code> is set to true, which can grow and shrink as needed.
+(This is especially useful, when connecting to a PLC, that has limited connection resources)
 The number of 
 Min and Max connection count can be set in faxe <a href="../../configuration.html">configuration</a>. Defaults to 2 and 16.</p>
 </li>
@@ -1936,6 +1937,11 @@ instead reading is done on data input from another node.</p>
 <td>diff( is_set )</td>
 <td>when given, only output values different to previous values</td>
 <td>false (not set)</td>
+</tr>
+<tr>
+<td>use_pool ( <code>bool</code> )</td>
+<td>whether to use the built-in connection pool</td>
+<td>false</td>
 </tr>
 </tbody>
 </table>

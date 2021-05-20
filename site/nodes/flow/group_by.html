@@ -1745,12 +1745,17 @@
                 
                 
                 <h1 id="the-group_by-node">The group_by node</h1>
-<p>The <code>group_by</code> node will group the incoming data-items. 
-Each group is then processed independently and concurrently to the other groups, for the rest of the chain.</p>
+<p>The <code>group_by</code> node is used to group a stream of data by the values of one or more fields.<br />
+Each group is then processed independently and concurrently to the other groups, for the rest of the chain (subgraph).</p>
 <blockquote>
-<p>Note: The behaviour of using more than 1 <code>group_by</code> node is not defined.</p>
+<p>Note: The behaviour of using more than 1 <code>group_by</code> node within a flow is not defined.</p>
 </blockquote>
 <p>See <a href="group_union.html">group_union</a> for how to 'un-group' a dataflow.</p>
+<blockquote>
+<p>Be aware of high group cardinality, as for every group, a number of processes (depends on the size of the grouped sub-flow) 
+will be started in the dataflow engine.
+In other words, if you have a grouping that has high cardinality (many different values), more resources will be consumed.</p>
+</blockquote>
 <h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>  <span style="color: #f92672">|</span><span style="color: #a6e22e">group_by</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fieldname1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;fieldname2&#39;</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>

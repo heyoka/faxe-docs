@@ -82,6 +82,77 @@ paths:
           name: "username"
           type: string
           required: true
+  /loglevels:
+    get:
+      summary: List of Loglevels
+      description: Returns a list of log-levels for all configured logging backends.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              {
+                "emit": "warning",
+                "console": "info"
+              }
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed"
+  /loglevel/{backend}:
+    post:
+      summary: Set loglevel
+      description: Given a log-backend, set a new level for logs
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                description: success message
+        400:
+          description: "Parameter error"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: false
+              params_missing:
+                type: array
+                description: list of missing parameters
+              param_invalid:
+                type: string
+                description: name of the invalid parameter
+              possible_values:
+                type: array
+                description: list of possible values for invalid parameters
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed."
+      parameters:
+        - in: "formData"
+          name: "level"
+          description: "The log level."
+          type: "string"
+          required: true
+          enum: [debug, info, notice, warning, error, critical, alert]
+        - in: "path"
+          name: "backend"
+          description: "Defines the log backend, possible values depend on the current configuration"
+          type: string
+          required: true
+          enum: [console, emit, logstash]
   /config:
     get:
       summary: FAXE Configuration
@@ -298,7 +369,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Tasks started successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "started 1 flow"
         401:
           description: Unauthorized
         405:
@@ -311,7 +390,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Tasks stopped successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "stopped 3 flows"
         401:
           description: Unauthorized
         405:
@@ -324,7 +411,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Tasks started successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "started 0 flows"
         401:
           description: Unauthorized
         405:
@@ -343,7 +438,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Tasks started successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "started 4 flows"
         401:
           description: Unauthorized
         405:
@@ -362,7 +465,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task stopped successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "stopped 1 flow"
         401:
           description: Unauthorized
         405:
@@ -381,7 +492,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task stopped successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "stopped 1 flow"
         401:
           description: Unauthorized
         405:
@@ -400,7 +519,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Tasks updated successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "updated 13 flows"
         401:
           description: Unauthorized
         405:
@@ -413,7 +540,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Tasks updated successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "updated 2 flows"
         401:
           description: Unauthorized
         405:
@@ -432,7 +567,15 @@ paths:
         - application/json
       responses:
         200:
-          description: "Tasks updated successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: "updated 7 flows"
         401:
           description: Unauthorized
         405:
@@ -476,6 +619,55 @@ paths:
           description: "A json encoded list of tasks."
           type: "string"
           required: true
+  /task:
+    post:
+      summary: Upsert Task
+      description: Register a new or update an existing task. POST or PUT methods possible.
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      responses:
+        200:
+          description: "Successfully registered or updated a task"
+          schema:
+            properties:
+              id:
+                type: integer
+                description: The task ID
+              success:
+                type: boolean
+                default: true
+        400:
+          description: "Error creating or updating the task"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: false
+              error:
+                type: string
+                description: error message
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed."
+      parameters:
+        - in: "formData"
+          name: "name"
+          description: "Name for the new or existing task."
+          type: "string"
+          required: true
+        - in: "formData"
+          name: "dfs"
+          description: "A valid dfs script."
+          type: "string"
+          required: true
+        - in: "formData"
+          name: "tags"
+          description: "A list of tags for the new task, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])."
+          type: string
+          required: false
   /task/{task_id}:
     get:
       summary: Get a task
@@ -506,7 +698,12 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task started successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
         401:
           description: Unauthorized
         404:
@@ -527,9 +724,12 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task started successfully"
+          description: "OK"
           schema:
-            $ref: '#/definitions/started'
+            properties:
+              success:
+                type: boolean
+                default: true
         401:
           description: Unauthorized
         404:
@@ -549,7 +749,12 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task stopped successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
         401:
           description: Unauthorized
         404:
@@ -570,7 +775,12 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task stopped successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
         401:
           description: Unauthorized
         404:
@@ -591,7 +801,12 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task group started successfully"
+          description: "OK"
+          schema:
+            properties:
+              success:
+                type: boolean
+                default: true
         401:
           description: Unauthorized
         404:
@@ -617,7 +832,7 @@ paths:
         - application/json
       responses:
         200:
-          description: "Task group stopped successfully"
+          description: "OK"
         401:
           description: Unauthorized
         404:

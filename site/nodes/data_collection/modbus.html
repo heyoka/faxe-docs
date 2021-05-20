@@ -1760,12 +1760,12 @@ occur at 12:10, then the next at 12:15 and so on, instead of 12:06, 12:11 and so
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">device</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">1s</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">function</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;coils&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;iregs&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">from</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2127</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3008</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">104</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">function</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;coils&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;iregs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;hregs&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">from</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2127</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3008</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">104</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">30306</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">count</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.EnergyConsumption&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.CurrentValue&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.EnergyDelivered&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">output</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;int16&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signed</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">output</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;int16&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;float32&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;double&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signed</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
 
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">modbus()</span>
@@ -1837,13 +1837,18 @@ can be treated as one single value.</p>
 </tr>
 <tr>
 <td>output( <code>string_list</code> )</td>
-<td>list of output formats one of <code>['int16', 'int32', 'float32', 'coils', 'ascii', 'binary']</code></td>
+<td>list of output formats one of <code>['int16', 'int32', 'float32', 'double', 'coils', 'ascii', 'binary']</code></td>
 <td>undefined</td>
 </tr>
 <tr>
 <td>signed( <code>atom_list</code> true/false)</td>
 <td>list of values indicating if values are signed</td>
 <td>undefined</td>
+</tr>
+<tr>
+<td>round( <code>integer</code> )</td>
+<td>Round all <code>float32</code> and <code>double</code> values with the given precision. If a value has less than the given decimal places, it will be left untouched</td>
+<td>undefined (no rounding)</td>
 </tr>
 <tr>
 <td>max_connections( <code>integer</code> )</td>
