@@ -90,6 +90,57 @@ erlang.max_ports = 262144
 ##   - one of: debug, info, notice, warning, error, alert
 ## log.emit_level = warning
 
+## whether to send logs to logstash
+## logs will be sent via a udp or tcp socket to the configured logstash host
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_LOG_LOGSTASH_BACKEND_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+log.logstash_backend_enable = off
+
+## whether to send logs to logstash using the udp or tcp protocol
+## 
+## Default: udp
+## 
+## ENV-Key: FAXE_LOG_LOGSTASH_BACKEND_PROTOCOL
+## 
+## Acceptable values:
+##   - one of: udp, tcp
+## log.logstash_backend_protocol = udp
+
+## logstash host name or address
+## 
+## Default: 127.0.0.1
+## 
+## ENV-Key: FAXE_LOG_LOGSTASH_HOST
+## 
+## Acceptable values:
+##   - text
+## log.logstash_host = 127.0.0.1
+
+## logstash port
+## 
+## Default: 9125
+## 
+## ENV-Key: FAXE_LOG_LOGSTASH_PORT
+## 
+## Acceptable values:
+##   - an integer
+## log.logstash_port = 9125
+
+## set the log level for the logstash backend
+## 
+## Default: info
+## 
+## ENV-Key: FAXE_LOG_LOGSTASH_LEVEL
+## 
+## Acceptable values:
+##   - one of: debug, info, notice, warning, error, alert
+## log.logstash_level = info
+
 ## --------------------------------------------------------------
 ## AUTO START faxe flows (tasks)
 ## --------------------------------------------------------------
@@ -335,18 +386,28 @@ s7pool.min_size = 2
 ##   - an integer
 s7pool.max_size = 16
 
+## whether to use the s7 pool (default for all s7read nodes)
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_S7POOL_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+s7pool.enable = off
+
 ## -------------------------------------------------------------------------------
 ## MQTT defaults
 ## -------------------------------------------------------------------------------
 ## mqtt host
 ## 
-## Default: 10.14.204.3
+## Default: 10.14.204.20
 ## 
 ## ENV-Key: FAXE_MQTT_HOST
 ## 
 ## Acceptable values:
 ##   - text
-mqtt.host = 10.14.204.3
+mqtt.host = 10.14.204.20
 
 ## mqtt port
 ## 
@@ -424,13 +485,13 @@ mqtt.port = 1883
 ## -------------------------------------------------------------------------------
 ## amqp host
 ## 
-## Default: 10.14.204.3
+## Default: 10.14.204.28
 ## 
 ## ENV-Key: FAXE_AMQP_HOST
 ## 
 ## Acceptable values:
 ##   - text
-amqp.host = 10.14.204.3
+amqp.host = 10.14.204.28
 
 ## amqp port
 ## 
@@ -590,28 +651,39 @@ crate.user = crate
 ##   - text
 crate.database = doc
 
+## crate tls
+## enable the use of tls for crate postgre connections
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_CRATE_TLS_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+## crate.tls.enable = off
+
 ## -------------------------------------------------------------------------------
 ## CrateDB defaults (http api)
 ## -------------------------------------------------------------------------------
 ## CrateDB host
 ## 
-## Default: 10.14.204.8
+## Default: 10.14.204.10
 ## 
 ## ENV-Key: FAXE_CRATE_HTTP_HOST
 ## 
 ## Acceptable values:
 ##   - text
-crate_http.host = 10.14.204.8
+crate_http.host = 10.14.204.10
 
 ## CrateDB port
 ## 
-## Default: 4201
+## Default: 4200
 ## 
 ## ENV-Key: FAXE_CRATE_HTTP_PORT
 ## 
 ## Acceptable values:
 ##   - an integer
-crate_http.port = 4201
+crate_http.port = 4200
 
 ## CrateDB user
 ## 
@@ -642,6 +714,17 @@ crate_http.user = crate
 ## Acceptable values:
 ##   - text
 crate_http.database = doc
+
+## crate tls
+## enable the use of tls for crate http connections
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_CRATE_HTTP_TLS_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+## crate_http.tls.enable = off
 
 ## -------------------------------------------------------------------------------
 ## InfluxDB defaults (http api)
@@ -766,6 +849,18 @@ email.template = /home/user/template.html
 ## There are mqtt handlers for debug, logs, metrics and connection-status events.
 ## Note that the base options for these mqtt connections come from the 'mqtt' options above.
 ## If needed you can override these default mqtt-options for every handler type.
+## 
+## Default: 
+## 
+## ENV-Key: FAXE_REPORT_DEBUG_MQTT_HOST
+## 
+## Acceptable values:
+##   - text
+## report_debug.mqtt_host = example.com
+
+## 
+## ----------------------- METRICS ------------------------------
+## Metrics handler MQTT sends metric events to an mqtt broker
 ## 
 ## Default: off
 ## 

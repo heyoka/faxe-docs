@@ -1769,6 +1769,57 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - one of: debug, info, notice, warning, error, alert</span>
 <span style="color: #75715e">## log.emit_level = warning</span>
 
+<span style="color: #75715e">## whether to send logs to logstash</span>
+<span style="color: #75715e">## logs will be sent via a udp or tcp socket to the configured logstash host</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_LOG_LOGSTASH_BACKEND_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">log.logstash_backend_enable</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">off</span>
+
+<span style="color: #75715e">## whether to send logs to logstash using the udp or tcp protocol</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: udp</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_LOG_LOGSTASH_BACKEND_PROTOCOL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: udp, tcp</span>
+<span style="color: #75715e">## log.logstash_backend_protocol = udp</span>
+
+<span style="color: #75715e">## logstash host name or address</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 127.0.0.1</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_LOG_LOGSTASH_HOST</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #75715e">## log.logstash_host = 127.0.0.1</span>
+
+<span style="color: #75715e">## logstash port</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 9125</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_LOG_LOGSTASH_PORT</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #75715e">## log.logstash_port = 9125</span>
+
+<span style="color: #75715e">## set the log level for the logstash backend</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: info</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_LOG_LOGSTASH_LEVEL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: debug, info, notice, warning, error, alert</span>
+<span style="color: #75715e">## log.logstash_level = info</span>
+
 <span style="color: #75715e">## --------------------------------------------------------------</span>
 <span style="color: #75715e">## AUTO START faxe flows (tasks)</span>
 <span style="color: #75715e">## --------------------------------------------------------------</span>
@@ -2014,18 +2065,28 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - an integer</span>
 <span style="color: #a6e22e">s7pool.max_size</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">16</span>
 
+<span style="color: #75715e">## whether to use the s7 pool (default for all s7read nodes)</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_S7POOL_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">s7pool.enable</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">off</span>
+
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## MQTT defaults</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## mqtt host</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 10.14.204.3</span>
+<span style="color: #75715e">## Default: 10.14.204.20</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_MQTT_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">mqtt.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.3</span>
+<span style="color: #a6e22e">mqtt.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.20</span>
 
 <span style="color: #75715e">## mqtt port</span>
 <span style="color: #75715e">## </span>
@@ -2103,13 +2164,13 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## amqp host</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 10.14.204.3</span>
+<span style="color: #75715e">## Default: 10.14.204.28</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_AMQP_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">amqp.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.3</span>
+<span style="color: #a6e22e">amqp.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.28</span>
 
 <span style="color: #75715e">## amqp port</span>
 <span style="color: #75715e">## </span>
@@ -2269,28 +2330,39 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #a6e22e">crate.database</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">doc</span>
 
+<span style="color: #75715e">## crate tls</span>
+<span style="color: #75715e">## enable the use of tls for crate postgre connections</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_CRATE_TLS_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #75715e">## crate.tls.enable = off</span>
+
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## CrateDB defaults (http api)</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## CrateDB host</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 10.14.204.8</span>
+<span style="color: #75715e">## Default: 10.14.204.10</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CRATE_HTTP_HOST</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">crate_http.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.8</span>
+<span style="color: #a6e22e">crate_http.host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10.14.204.10</span>
 
 <span style="color: #75715e">## CrateDB port</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 4201</span>
+<span style="color: #75715e">## Default: 4200</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CRATE_HTTP_PORT</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - an integer</span>
-<span style="color: #a6e22e">crate_http.port</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">4201</span>
+<span style="color: #a6e22e">crate_http.port</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">4200</span>
 
 <span style="color: #75715e">## CrateDB user</span>
 <span style="color: #75715e">## </span>
@@ -2321,6 +2393,17 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #a6e22e">crate_http.database</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">doc</span>
+
+<span style="color: #75715e">## crate tls</span>
+<span style="color: #75715e">## enable the use of tls for crate http connections</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_CRATE_HTTP_TLS_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #75715e">## crate_http.tls.enable = off</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## InfluxDB defaults (http api)</span>
@@ -2445,6 +2528,18 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## There are mqtt handlers for debug, logs, metrics and connection-status events.</span>
 <span style="color: #75715e">## Note that the base options for these mqtt connections come from the &#39;mqtt&#39; options above.</span>
 <span style="color: #75715e">## If needed you can override these default mqtt-options for every handler type.</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_REPORT_DEBUG_MQTT_HOST</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #75715e">## report_debug.mqtt_host = example.com</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ----------------------- METRICS ------------------------------</span>
+<span style="color: #75715e">## Metrics handler MQTT sends metric events to an mqtt broker</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: off</span>
 <span style="color: #75715e">## </span>

@@ -127,7 +127,7 @@ vars_prefix( `string` )|vars  will be prefixed with this value| undefined
 as_prefix( `string` )|as values will be prefixed with this value| undefined
 byte_offset( `integer` )|offset for addressing, every address in vars gets this offset added| 0
 diff( is_set )|when given, only output values different to previous values|false (not set)
-use_pool ( `bool` ) | whether to use the built-in connection pool | false
+use_pool ( `bool` ) | whether to use the built-in connection pool | from config value
 
 
 
