@@ -1,0 +1,22 @@
+docs_dir: docs
+extra_css:
+- stylesheets/extra.css
+- https://assets.readthedocs.org/static/css/badge_only.css
+- https://assets.readthedocs.org/static/css/readthedocs-doc-embed.css
+extra_javascript:
+- readthedocs-data.js
+- https://assets.readthedocs.org/static/core/js/readthedocs-doc-embed.js
+- https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js
+google_analytics: null
+markdown_extensions:
+- codehilite:
+    guess_lang: false
+    noclasses: true
+    pygments_style: monokai
+    use_pygments: true
+palette:
+  scheme: slate
+plugins:
+- search
+site_name: Faxe 
+use_directory_urls: false
