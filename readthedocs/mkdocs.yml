@@ -1,6 +1,6 @@
-docs_dir: docs
+docs_dir: ../docs
 extra_css:
-- stylesheets/extra.css
+- ../stylesheets/extra.css
 - https://assets.readthedocs.org/static/css/badge_only.css
 - https://assets.readthedocs.org/static/css/readthedocs-doc-embed.css
 extra_javascript:
