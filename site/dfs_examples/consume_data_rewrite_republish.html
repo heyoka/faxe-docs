@@ -1726,9 +1726,9 @@
                 
                 <h2 id="data-cleaning-and-publishing">Data cleaning and publishing</h2>
 <p>Consume data from an MQTT-Broker and do some cleaning, at the end republish this data.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_in</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;ttgw/grip/rovolutionwels/reasoning/schedulers_ol_log&#39;</span>
-    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_out</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;ttgw/data/grip/rovolutionwels/reasoning/schedulers_ol_log&#39;</span>
-    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;10.14.204.3&#39;</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_in</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;my/topic/in&#39;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_out</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;my/topic/out&#39;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;192.168.1.2&#39;</span>
 
     <span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_subscribe()</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">)</span> 
@@ -1739,16 +1739,16 @@
     <span style="color: #75715e">%% here is were we clean data</span>
 
     <span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span>
-        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;sku_length&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">),</span>
-        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;sku_width&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">),</span>
-        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;source_lc_quantity&quot;</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;u_length&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;u_width&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;lc_quantity&quot;</span><span style="color: #f8f8f2">),</span>
         <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">int</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;pcs_lost&quot;</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">)</span>
     <span style="color: #75715e">%% overwrite the original fields </span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span>
-        <span style="color: #e6db74">&#39;sku_length&#39;</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #e6db74">&#39;sku_width&#39;</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #e6db74">&#39;source_lc_quantity&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;u_length&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;u_width&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;lc_quantity&#39;</span><span style="color: #f8f8f2">,</span>
         <span style="color: #e6db74">&#39;pcs_lost&#39;</span>
         <span style="color: #f8f8f2">)</span>
 
@@ -1764,7 +1764,7 @@
 </code></pre></div>
 
 <p><code>Note:</code>
-If topic_in = topic_out we create a loop, something we do not want normally.</p>
+If topic_in = topic_out we create a loop using the mqtt broker, something we do not want normally.</p>
                 
               
               
