@@ -1,3 +1,5 @@
+## View the documentation [here](https://heyoka.github.io/faxe-docs/site).
+
 Documentation for FAXE
 ======================
 
