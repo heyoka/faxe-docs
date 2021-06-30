@@ -8,15 +8,14 @@ extra_javascript:
 - https://assets.readthedocs.org/static/core/js/readthedocs-doc-embed.js
 - https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js
 google_analytics: null
-#markdown_extensions:
-#  - codehilite:
-#      guess_lang: False
-#      use_pygments: True
-#      noclasses: True
-#      pygments_style: monokai
+markdown_extensions:
+  - codehilite:
+      guess_lang: False
+      use_pygments: True
+      noclasses: True
+      pygments_style: monokai
 theme:
   name: readthedocs
-  highlightjs: true
 palette:
   scheme: slate
 plugins:
