@@ -14,6 +14,9 @@ google_analytics: null
 #      use_pygments: True
 #      noclasses: True
 #      pygments_style: monokai
+theme:
+  name: readthedocs
+  highlightjs: true
 palette:
   scheme: slate
 plugins:
