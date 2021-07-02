@@ -53,13 +53,3 @@ packet( `integer` )| packet length | 2
 parser( `string` )| name of parser to use for data conversion, see table below|
 as( `string` ) | name of the field for parsed data|
 changed( is_set )| whether to check for changed data| false (not set) 
-
-Available Parsers
------------------
-
-Parser name            | Description
------------------------|-------------------------------------------------
-`parser_robot_plc_v1`  | parses the special robotplc binary data format
-`parser_conv_tracking_v1`|parser for the conveyor tracking ascii-protocol
-`parser_wms_rmst_v1`| 
-`parser_lrep_v1`|parser for lrep ascii-protocol
