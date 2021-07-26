@@ -697,6 +697,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="mongo_query.html" class="md-nav__link">
+        Mongo query
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -1743,22 +1755,29 @@
                 
                 
                 <h1 id="the-oracle_query-node">The oracle_query node</h1>
-<p>Used to batch a number of points. 
-As soon as the node has collected size points it will emit them in a data_batch.</p>
-<ul>
-<li>A timeout can be set, after which all points currently in the buffer will be emitted, regardless of the number of collected points.</li>
-<li>The timeout is started on the first datapoint coming in to an empty buffer.</li>
-</ul>
+<p>Read data from OracleDB.</p>
 <h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">batch(</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">)</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">host</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;my.oracle.host&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">port</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1521</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">user</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;MY_ORACLE_USER&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">password</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;MY_ORACLE_PASS&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">service_name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;MY.service&#39;</span>
 
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">batch(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">query</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&lt;&lt;&lt;</span>
+<span style="color: #e6db74">    select * from room order by room_number</span>
+<span style="color: #e6db74">&gt;&gt;&gt;</span>
+
+<span style="color: #f92672">|or</span><span style="color: #a6e22e">acle_query</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">user</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">user</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pass</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">password</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">service_name</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">service_name</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">10s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">()</span>
 </code></pre></div>
 
-<p>The second example will output a batch with 5 points. 
-If the points come in within 3 seconds the node will emit them in a databatch and reset the timeout.
-If after 3 seconds there are less than 5 points in the buffer, the node will emit them, regardless of the number.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1770,14 +1789,54 @@ If after 3 seconds there are less than 5 points in the buffer, the node will emi
 </thead>
 <tbody>
 <tr>
-<td>[node] size( <code>integer</code> )</td>
-<td>Number of points to batch</td>
+<td>host ( <code>string</code> )</td>
+<td>host name or ip address</td>
 <td></td>
 </tr>
 <tr>
-<td>timeout( <code>duration</code> )</td>
-<td>Previous values TTL</td>
-<td>optional</td>
+<td>port ( <code>integer</code> )</td>
+<td></td>
+<td>1521</td>
+</tr>
+<tr>
+<td>user ( <code>string</code>)</td>
+<td>username</td>
+<td></td>
+</tr>
+<tr>
+<td>pass ( <code>string</code> )</td>
+<td>the users password</td>
+<td></td>
+</tr>
+<tr>
+<td>service_name ( <code>string</code> )</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>query ( <code>string</code> )</td>
+<td>a valid sql select statement</td>
+<td></td>
+</tr>
+<tr>
+<td>result_type ( <code>string</code> )</td>
+<td>eighter 'batch' or 'point'</td>
+<td>'batch'</td>
+</tr>
+<tr>
+<td>time_field ( <code>string</code> )</td>
+<td>name of the time field</td>
+<td></td>
+</tr>
+<tr>
+<td>every ( <code>duration</code> )</td>
+<td>read interval</td>
+<td>5s</td>
+</tr>
+<tr>
+<td>align ( is_set )</td>
+<td>whether to align every</td>
+<td>false (not set)</td>
 </tr>
 </tbody>
 </table>
@@ -1799,7 +1858,7 @@ If after 3 seconds there are less than 5 points in the buffer, the node will emi
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="influx_out.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="mongo_query.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1808,7 +1867,7 @@ If after 3 seconds there are less than 5 points in the buffer, the node will emi
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Influx out
+                Mongo query
               </div>
             </div>
           </a>

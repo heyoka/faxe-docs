@@ -1,31 +1,48 @@
 The oracle_query node
 =====================
 
-Used to batch a number of points. 
-As soon as the node has collected size points it will emit them in a data_batch.
-
-* A timeout can be set, after which all points currently in the buffer will be emitted, regardless of the number of collected points.
-* The timeout is started on the first datapoint coming in to an empty buffer.
+Read data from OracleDB.
 
 Example
 -------
 ```dfs  
-|batch(12)
+def host = 'my.oracle.host'
+def port = 1521
+def user = 'MY_ORACLE_USER'
+def password = 'MY_ORACLE_PASS'
+def service_name = 'MY.service'
 
-|batch(5)
-.timeout(3s)
+def query = <<<
+    select * from room order by room_number
+>>>
+
+|oracle_query()
+.host(host)
+.port(port)
+.user(user)
+.pass(password)
+.service_name(service_name)
+.query(query)
+.every(10s)
+.align()
+
 ```
 
-The second example will output a batch with 5 points. 
-If the points come in within 3 seconds the node will emit them in a databatch and reset the timeout.
-If after 3 seconds there are less than 5 points in the buffer, the node will emit them, regardless of the number.
-
-
+ 
 Parameters
 ----------
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-[node] size( `integer` )| Number of points to batch |
-timeout( `duration` )| Previous values TTL | optional 
+host ( `string` ) | host name or ip address |
+port ( `integer` )|  | 1521
+user ( `string`) | username | 
+pass ( `string` )|the users password|
+service_name ( `string` )| |
+query ( `string` ) | a valid sql select statement |
+result_type ( `string` ) | eighter 'batch' or 'point' | 'batch'
+time_field ( `string` ) | name of the time field |
+every ( `duration` ) | read interval | 5s
+align ( is_set ) | whether to align every | false (not set) 
+ 
  

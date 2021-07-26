@@ -30,7 +30,7 @@ Example
 
 ```
  
-The above example will execute the query every 15 seconds. It get data which is in the timerange `now -30 minutes` and `now`.
+The above example will execute the query every 15 seconds. It gets data which is in the timerange `now -30 minutes` and `now`.
 
 Parameters
 ----------
