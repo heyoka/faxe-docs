@@ -4,6 +4,8 @@ The http_post node
 Sends incoming data to a specified HTTP endpoint via the POST method as a JSON message.
 If any errors occur during the request, the node will attempt to retry sending.
 
+Content-type header `application/json` will be used.
+
 
 
 Example
