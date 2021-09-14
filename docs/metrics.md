@@ -1,12 +1,12 @@
 # Metrics, Connection status, Debug events and Logs
 
 For debugging and observability Faxe exposes internal metric as well as connection status events.
-Furthermore every running flow can emit debugging and log events.
+Furthermore, every running flow can emit debugging and log events.
 
-All these events can be published to an mqtt broker.
+All these events can be published to a mqtt broker.
 
 ### Topics and routing keys
-Topic for the mqtt emitters can be prefixed with the config-value `base_topic` (see [config](configuration.md)).
+Topics for the mqtt emitters can be prefixed with the config-value `base_topic` (see [config](configuration.md)).
 Note: MQTT topics should not start with a `/` character.
 
 
@@ -31,7 +31,7 @@ metric name | description | metric fields
 `items_in`    | number of items a node received from other nodes or over the network | 
 `items_out`   | number of items a node emitted to other nodes or over some network connection
 `processing_errors`| the number of errors that occurred during processing |
-`mem_used`    | memory usage in Kib |
+`mem_used`    | memory usage in bytes |
 `msg_q_size`  | number of items currently in the node-process' message-queue |
 `processing_time`| time in milliseconds it took the node to process 1 item|
 
@@ -39,11 +39,11 @@ Nodes that start a network connection have additional metrics
 (such as the modbus, s7read, mqtt, ... - nodes): 
 
 metric name | description | metric fields
-------------|-------------|---------------
-`reading_time`|the time in milliseconds it took the node to read data from a network port|
-`bytes_read`  |the number of bytes read from a network port |
-`sending_time`|the time in milliseconds it took the node to send data to some network endpoint|
-`bytes_sent`  |the number of bytes send over the network
+------------|-------------|--------------- 
+`bytes_read`  |the number of bytes read from a network port | see meter
+`bytes_read_size` |the size of packets read or received from a network port in bytes | see histogram
+`bytes_sent`  |the number of bytes send over the network | see meter
+`bytes_sent_size`  |the size of packets sent over a network port in bytes | see histogram
  
 
 ### Examples
@@ -112,17 +112,50 @@ For every task there is a summary of the node metrics:
 ```json
 {"ts":1592393302700,"id":"00000","df":"92.002",
 "data":{
-    "processing_time":0.129,
-    "processing_errors":0,
-    "msg_q_size":0,
-    "mem_used":53976,
-    "items_out":4,
-    "items_in":4,
-    "flow_id":"e6450a2b-0b71-4d10-8011-67dfac1ce676"}
+  "ts": 1631557230000,
+  "processing_time": 0.088,
+  "processing_errors": 0,
+  "msg_q_size": 0,
+  "mem_used": 17768,
+  "items_out": 60,
+  "items_in": 60,
+  "bytes_sent_avg": 123,
+  "bytes_sent": 24.6,
+  "bytes_read_avg": 104,
+  "bytes_read": 20.8,
+  "flow_id": "http_get_test"
+  }
 }
 ```
-            
+
+### Fields in flow metrics
+
+
+metric name | description | note
+------------|-------------|--------------- 
+`processing_time` | average of all flow nodes' processing time |  
+`processing_errors` | sum of errors for all flow nodes |  
+`msg_q_size` | total number of items currently in process-queues for all flow nodes |  
+`mem_used` | total number of bytes the flow and all of its nodes are currently using |  
+`items_out` | maximum of all nodes' `items_out` value |  
+`items_in` |  maximum of all nodes' `items_in` value|  
+`bytes_sent_avg` | sum of bytes sent over the network for all nodes in the flow |  
+`bytes_sent` | sum of the 5-minute exponential moving averages from all nodes' `bytes_sent` metrics |  
+`bytes_read_avg` | sum of bytes received from the network for all nodes in the flow |  
+`bytes_read` | sum of the 5-minute exponential moving averages from all nodes' `bytes_read` metrics |
+
+
+
 ### Configuration
+
+With the configuration setting `metrics.handler.mqtt.enable` you can turn on/off publishing of metrics for a faxe instance.
+If this setting is set to `on` flow metrics get published with the interval set with `metrics.publish_interval`.
+
+To additionally enable publishing of single node metrics for a faxe flow, use the [RestAPI](./faxe_rest_api.html) endpoint `/v1/task/start_metrics_trace/:task_id/[:duration_minutes]`.
+
+`duration_minutes` defaults to the config setting `debug.time`.
+
+#### Publish metrics events
 
 Faxe has 2 different metrics-handlers that can be configured.
 MQTT and AMQP metrics emitter. See [config](configuration.md) section for details.
@@ -168,6 +201,9 @@ true      | 1      | connected
  
 ### Configuration
 
+
+#### Publish connection status events
+
 As stated above, FAXE has 2 different conn_status-handlers that can be configured :
 See [config](configuration.md) section for details.
 
@@ -175,11 +211,13 @@ See [config](configuration.md) section for details.
 ## Debug and Logs
 
 For debugging purposes faxe flows can expose events on items going in and out of every node in a flow.
-Like with metrics and conn_status events, these events can be published to an mqtt/amqp broker. 
-Debug and Log events must be started explicitly and they will be published for a certain configurable amount of time.
-(This is for debugging purposes). 
+Like with metrics and conn_status events, these events can be published to a mqtt/amqp broker. 
+Debug and Log events must be started explicitly, and they will be published for a certain configurable amount of time.
 
-See [rest api](./faxe_rest_api.html) for how to temporarily activate debugging.
+To enable publishing of debug events for a faxe flow, use the [RestAPI](./faxe_rest_api.html) endpoint `/v1/task/start_debug/:task_id/[:duration_minutes]`.
+`duration_minutes` defaults to the config setting `debug.time`.
+
+(This is for debugging purposes).
 
 See [config](configuration.md) section for details.
 

@@ -844,9 +844,9 @@ email.template = /home/user/template.html
 
 ## 
 ## --------------------------------------------------------------------
-## DEBUG, LOGS, METRICS, CONNECTION STATUS
+## DEBUG, LOGS, METRICS, CONNECTION STATUS, FLOW_CHANGED
 ## --------------------------------------------------------------------
-## There are mqtt handlers for debug, logs, metrics and connection-status events.
+## There are mqtt handlers for debug, logs, metrics, connection-status and flow_changed events.
 ## Note that the base options for these mqtt connections come from the 'mqtt' options above.
 ## If needed you can override these default mqtt-options for every handler type.
 ## 
@@ -894,13 +894,24 @@ metrics.handler.mqtt.enable = off
 ## The mqtt handler will prefix its topic with this value,
 ## note that it must be a valid mqtt topic string.
 ## 
-## Default: ttgw/sys/faxe
+## Default: sys/faxe
 ## 
 ## ENV-Key: FAXE_METRICS_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## metrics.handler.mqtt.base_topic = /base/topic
+## metrics.handler.mqtt.base_topic = sys/faxe
+
+## flow-metrics publish interval
+## Interval at which flow-metrics get publish to the handler
+## 
+## Default: 30s
+## 
+## ENV-Key: FAXE_METRICS_PUBLISH_INTERVAL
+## 
+## Acceptable values:
+##   - text
+metrics.publish_interval = 30s
 
 ## ----------------------- CONNECTION STATUS ------------------------
 ## Conn_status handler MQTT sends connection status events to an mqtt broker.
@@ -934,13 +945,13 @@ conn_status.handler.mqtt.enable = on
 
 ## connection status handler mqtt base topic
 ## 
-## Default: ttgw/sys/faxe
+## Default: sys/faxe
 ## 
 ## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## conn_status.handler.mqtt.base_topic = /base/topic
+## conn_status.handler.mqtt.base_topic = sys/faxe
 
 ## ----------------------- DEBUG AND TRACE --------------------------
 ## Debug trace handler MQTT
@@ -976,26 +987,65 @@ debug.handler.mqtt.enable = off
 
 ## debug_trace handler mqtt base topic
 ## 
-## Default: ttgw/sys/faxe
+## Default: sys/faxe
 ## 
 ## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## debug.handler.mqtt.base_topic = base/topic
+## debug.handler.mqtt.base_topic = sys/faxe
 
-## time debug messages will be published to the configured endpoints
+## time debug and node-metric messages will be published to the configured endpoints
 ## 
-## Default: 25s
+## Default: 30s
 ## 
 ## ENV-Key: FAXE_DEBUG_TIME
 ## 
 ## Acceptable values:
 ##   - a time duration with units, e.g. '10s' for 10 seconds
-debug.time = 25s
+debug.time = 30s
 
-include conf.d/*.conf
+## ----------------------- FLOW_CHANGED --------------------------
+## flow_changed handler MQTT
+## enable/disable flow_changed handler mqtt
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+flow_changed.handler.mqtt.enable = off
 
+## flow_changed handler mqtt host
+## 
+## Default: 
+## 
+## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_HOST
+## 
+## Acceptable values:
+##   - text
+## flow_changed.handler.mqtt.host = example.com
+
+## flow_changed handler mqtt port
+## 
+## Default: 1883
+## 
+## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_PORT
+## 
+## Acceptable values:
+##   - an integer
+## flow_changed.handler.mqtt.port = 1883
+
+## flow_changed handler mqtt base topic
+## 
+## Default: sys/faxe
+## 
+## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_BASE_TOPIC
+## 
+## Acceptable values:
+##   - text
+## flow_changed.handler.mqtt.base_topic = sys/faxe
 
 
 

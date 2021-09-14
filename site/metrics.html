@@ -305,9 +305,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#fields-in-flow-metrics" class="md-nav__link">
+    Fields in flow metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     Configuration
   </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publish-metrics-events" class="md-nav__link">
+    Publish metrics events
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1903,9 +1923,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#fields-in-flow-metrics" class="md-nav__link">
+    Fields in flow metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     Configuration
   </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publish-metrics-events" class="md-nav__link">
+    Publish metrics events
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1936,10 +1976,10 @@
                 
                 <h1 id="metrics-connection-status-debug-events-and-logs">Metrics, Connection status, Debug events and Logs</h1>
 <p>For debugging and observability Faxe exposes internal metric as well as connection status events.
-Furthermore every running flow can emit debugging and log events.</p>
-<p>All these events can be published to an mqtt broker.</p>
+Furthermore, every running flow can emit debugging and log events.</p>
+<p>All these events can be published to a mqtt broker.</p>
 <h3 id="topics-and-routing-keys">Topics and routing keys</h3>
-<p>Topic for the mqtt emitters can be prefixed with the config-value <code>base_topic</code> (see <a href="configuration.html">config</a>).
+<p>Topics for the mqtt emitters can be prefixed with the config-value <code>base_topic</code> (see <a href="configuration.html">config</a>).
 Note: MQTT topics should not start with a <code>/</code> character.</p>
 <table>
 <thead>
@@ -2007,7 +2047,7 @@ Metrics are collected for each individual node and a summery for whole tasks.</p
 </tr>
 <tr>
 <td><code>mem_used</code></td>
-<td>memory usage in Kib</td>
+<td>memory usage in bytes</td>
 <td></td>
 </tr>
 <tr>
@@ -2034,24 +2074,24 @@ Metrics are collected for each individual node and a summery for whole tasks.</p
 </thead>
 <tbody>
 <tr>
-<td><code>reading_time</code></td>
-<td>the time in milliseconds it took the node to read data from a network port</td>
-<td></td>
-</tr>
-<tr>
 <td><code>bytes_read</code></td>
 <td>the number of bytes read from a network port</td>
-<td></td>
+<td>see meter</td>
 </tr>
 <tr>
-<td><code>sending_time</code></td>
-<td>the time in milliseconds it took the node to send data to some network endpoint</td>
-<td></td>
+<td><code>bytes_read_size</code></td>
+<td>the size of packets read or received from a network port in bytes</td>
+<td>see histogram</td>
 </tr>
 <tr>
 <td><code>bytes_sent</code></td>
 <td>the number of bytes send over the network</td>
-<td></td>
+<td>see meter</td>
+</tr>
+<tr>
+<td><code>bytes_sent_size</code></td>
+<td>the size of packets sent over a network port in bytes</td>
+<td>see histogram</td>
 </tr>
 </tbody>
 </table>
@@ -2190,17 +2230,90 @@ Metrics are collected for each individual node and a summery for whole tasks.</p
 <p>For every task there is a summary of the node metrics:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1592393302700</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;92.002&quot;</span><span style="color: #f8f8f2">,</span>
 <span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:{</span>
-    <span style="color: #f92672">&quot;processing_time&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0.129</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #f92672">&quot;processing_errors&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #f92672">&quot;msg_q_size&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #f92672">&quot;mem_used&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">53976</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #f92672">&quot;items_out&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #f92672">&quot;items_in&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;e6450a2b-0b71-4d10-8011-67dfac1ce676&quot;</span><span style="color: #f8f8f2">}</span>
+  <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1631557230000</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;processing_time&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0.088</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;processing_errors&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;msg_q_size&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;mem_used&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">17768</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;items_out&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">60</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;items_in&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">60</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;bytes_sent_avg&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">123</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;bytes_sent&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">24.6</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;bytes_read_avg&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">104</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;bytes_read&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">20.8</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;flow_id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;http_get_test&quot;</span>
+  <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">}</span>
 </code></pre></div>
 
+<h3 id="fields-in-flow-metrics">Fields in flow metrics</h3>
+<table>
+<thead>
+<tr>
+<th>metric name</th>
+<th>description</th>
+<th>note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>processing_time</code></td>
+<td>average of all flow nodes' processing time</td>
+<td></td>
+</tr>
+<tr>
+<td><code>processing_errors</code></td>
+<td>sum of errors for all flow nodes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>msg_q_size</code></td>
+<td>total number of items currently in process-queues for all flow nodes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>mem_used</code></td>
+<td>total number of bytes the flow and all of its nodes are currently using</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items_out</code></td>
+<td>maximum of all nodes' <code>items_out</code> value</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items_in</code></td>
+<td>maximum of all nodes' <code>items_in</code> value</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bytes_sent_avg</code></td>
+<td>sum of bytes sent over the network for all nodes in the flow</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bytes_sent</code></td>
+<td>sum of the 5-minute exponential moving averages from all nodes' <code>bytes_sent</code> metrics</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bytes_read_avg</code></td>
+<td>sum of bytes received from the network for all nodes in the flow</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bytes_read</code></td>
+<td>sum of the 5-minute exponential moving averages from all nodes' <code>bytes_read</code> metrics</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="configuration">Configuration</h3>
+<p>With the configuration setting <code>metrics.handler.mqtt.enable</code> you can turn on/off publishing of metrics for a faxe instance.
+If this setting is set to <code>on</code> flow metrics get published with the interval set with <code>metrics.publish_interval</code>.</p>
+<p>To additionally enable publishing of single node metrics for a faxe flow, use the <a href="./faxe_rest_api.html">RestAPI</a> endpoint <code>/v1/task/start_metrics_trace/:task_id/[:duration_minutes]</code>.</p>
+<p><code>duration_minutes</code> defaults to the config setting <code>debug.time</code>.</p>
+<h4 id="publish-metrics-events">Publish metrics events</h4>
 <p>Faxe has 2 different metrics-handlers that can be configured.
 MQTT and AMQP metrics emitter. See <a href="configuration.html">config</a> section for details.</p>
 <h3 id="use-metrics-in-tasks">Use metrics in tasks</h3>
@@ -2251,14 +2364,16 @@ These events can be used in tasks with the <a href="nodes/debug/conn_status.html
 </tbody>
 </table>
 <h3 id="configuration_1">Configuration</h3>
+<h4 id="publish-connection-status-events">Publish connection status events</h4>
 <p>As stated above, FAXE has 2 different conn_status-handlers that can be configured :
 See <a href="configuration.html">config</a> section for details.</p>
 <h2 id="debug-and-logs">Debug and Logs</h2>
 <p>For debugging purposes faxe flows can expose events on items going in and out of every node in a flow.
-Like with metrics and conn_status events, these events can be published to an mqtt/amqp broker. 
-Debug and Log events must be started explicitly and they will be published for a certain configurable amount of time.
-(This is for debugging purposes). </p>
-<p>See <a href="./faxe_rest_api.html">rest api</a> for how to temporarily activate debugging.</p>
+Like with metrics and conn_status events, these events can be published to a mqtt/amqp broker. 
+Debug and Log events must be started explicitly, and they will be published for a certain configurable amount of time.</p>
+<p>To enable publishing of debug events for a faxe flow, use the <a href="./faxe_rest_api.html">RestAPI</a> endpoint <code>/v1/task/start_debug/:task_id/[:duration_minutes]</code>.
+<code>duration_minutes</code> defaults to the config setting <code>debug.time</code>.</p>
+<p>(This is for debugging purposes).</p>
 <p>See <a href="configuration.html">config</a> section for details.</p>
 <p>Example debug data item:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1594627419206</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00000&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&quot;df&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;00.000&quot;</span><span style="color: #f8f8f2">,</span> 

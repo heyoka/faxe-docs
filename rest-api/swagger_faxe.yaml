@@ -1150,36 +1150,6 @@ paths:
           required: true
           description: "A list of tags, provide json list([\"tag1\", \"tag_2\", \"another_tag\"])"
           type: string
-  /task/logs/{task_id}:
-    get:
-      summary: Logs by task
-      description: Get a list of Logs for a task. Logs are ordered by time desc.
-      produces:
-        - application/json
-      responses:
-        200:
-          description: get a list of logs
-          schema:
-            $ref: '#/definitions/Logs'
-        401:
-          description: Unauthorized
-      parameters:
-        - in: "path"
-          name: "task_id"
-          type: string
-          required: true
-        - in: "query"
-          name: limit
-          type: "integer"
-          required: false
-          default: 20
-          description: limit the list of logs
-        - in: "query"
-          name: max_age
-          type: integer
-          default: 15
-          description: max age of the logs in minutes
-          required: false
   /graph/{task_id}:
     get:
       summary: Get the graph representation for a task
@@ -1406,10 +1376,52 @@ paths:
           description: "Timeout in milliseconds"
           type: "integer"
           required: true
-
   /task/start_debug/{task_id}:
     get:
       summary: Start debugging task with task_id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: path
+          name: "task_id"
+          required: true
+          type: string
+  /task/start_debug/{task_id}/{duration_minutes}:
+    get:
+      summary: Start debugging task with task_id for a defined amount of time
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: path
+          name: "task_id"
+          required: true
+          type: string
+        - in: path
+          name: "duration_minutes"
+          description: "duration in minutes the debug/log events should be published"
+          required: true
+          type: integer
+  /task/stop_debug/{task_id}:
+    get:
+      summary: Stop debugging task with task_id
       produces:
         - application/json
       responses:
@@ -1426,9 +1438,52 @@ paths:
           name: "task_id"
           required: true
           type: string
-  /task/stop_debug/{task_id}:
+  /task/start_metrics_trace/{task_id}:
     get:
-      summary: Stop debugging task with task_id
+      summary: Start publishing node metrics for task with task_id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: path
+          name: "task_id"
+          required: true
+          type: string
+  /task/start_metrics_trace/{task_id}/{duration_minutes}:
+    get:
+      summary: Start publishing node metrics for task with task_id for a defined amount of time
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: "Task not found"
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: path
+          name: "task_id"
+          required: true
+          type: string
+        - in: path
+          name: "duration_minutes"
+          description: "duration in minutes node metrics events will be published"
+          required: true
+          type: integer
+  /task/stop_metrics_trace/{task_id}:
+    get:
+      summary: Stop publishing node metrics for task with id task_id
       produces:
         - application/json
       responses:

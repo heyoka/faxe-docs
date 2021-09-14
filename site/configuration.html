@@ -2597,9 +2597,9 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## --------------------------------------------------------------------</span>
-<span style="color: #75715e">## DEBUG, LOGS, METRICS, CONNECTION STATUS</span>
+<span style="color: #75715e">## DEBUG, LOGS, METRICS, CONNECTION STATUS, FLOW_CHANGED</span>
 <span style="color: #75715e">## --------------------------------------------------------------------</span>
-<span style="color: #75715e">## There are mqtt handlers for debug, logs, metrics and connection-status events.</span>
+<span style="color: #75715e">## There are mqtt handlers for debug, logs, metrics, connection-status and flow_changed events.</span>
 <span style="color: #75715e">## Note that the base options for these mqtt connections come from the &#39;mqtt&#39; options above.</span>
 <span style="color: #75715e">## If needed you can override these default mqtt-options for every handler type.</span>
 <span style="color: #75715e">## </span>
@@ -2647,13 +2647,24 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## The mqtt handler will prefix its topic with this value,</span>
 <span style="color: #75715e">## note that it must be a valid mqtt topic string.</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: ttgw/sys/faxe</span>
+<span style="color: #75715e">## Default: sys/faxe</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_METRICS_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## metrics.handler.mqtt.base_topic = /base/topic</span>
+<span style="color: #75715e">## metrics.handler.mqtt.base_topic = sys/faxe</span>
+
+<span style="color: #75715e">## flow-metrics publish interval</span>
+<span style="color: #75715e">## Interval at which flow-metrics get publish to the handler</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 30s</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_METRICS_PUBLISH_INTERVAL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">metrics.publish_interval</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">30s</span>
 
 <span style="color: #75715e">## ----------------------- CONNECTION STATUS ------------------------</span>
 <span style="color: #75715e">## Conn_status handler MQTT sends connection status events to an mqtt broker.</span>
@@ -2687,13 +2698,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## connection status handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: ttgw/sys/faxe</span>
+<span style="color: #75715e">## Default: sys/faxe</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## conn_status.handler.mqtt.base_topic = /base/topic</span>
+<span style="color: #75715e">## conn_status.handler.mqtt.base_topic = sys/faxe</span>
 
 <span style="color: #75715e">## ----------------------- DEBUG AND TRACE --------------------------</span>
 <span style="color: #75715e">## Debug trace handler MQTT</span>
@@ -2729,25 +2740,65 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## debug_trace handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: ttgw/sys/faxe</span>
+<span style="color: #75715e">## Default: sys/faxe</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## debug.handler.mqtt.base_topic = base/topic</span>
+<span style="color: #75715e">## debug.handler.mqtt.base_topic = sys/faxe</span>
 
-<span style="color: #75715e">## time debug messages will be published to the configured endpoints</span>
+<span style="color: #75715e">## time debug and node-metric messages will be published to the configured endpoints</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 25s</span>
+<span style="color: #75715e">## Default: 30s</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_TIME</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
-<span style="color: #a6e22e">debug.time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">25s</span>
+<span style="color: #a6e22e">debug.time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">30s</span>
 
-<span style="color: #a6e22e">include conf.d/*.conf</span>
+<span style="color: #75715e">## ----------------------- FLOW_CHANGED --------------------------</span>
+<span style="color: #75715e">## flow_changed handler MQTT</span>
+<span style="color: #75715e">## enable/disable flow_changed handler mqtt</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">flow_changed.handler.mqtt.enable</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">off</span>
+
+<span style="color: #75715e">## flow_changed handler mqtt host</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_HOST</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #75715e">## flow_changed.handler.mqtt.host = example.com</span>
+
+<span style="color: #75715e">## flow_changed handler mqtt port</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 1883</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_PORT</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #75715e">## flow_changed.handler.mqtt.port = 1883</span>
+
+<span style="color: #75715e">## flow_changed handler mqtt base topic</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_BASE_TOPIC</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #75715e">## flow_changed.handler.mqtt.base_topic = sys/faxe</span>
 </code></pre></div>
                 
               
