@@ -27,13 +27,13 @@ The window will emit it's contents every 5 incoming points, but only after the w
 
 The window will emit it's contents every 5 incoming points. On first emit 5 points will be outputted, on the second emit 10
 points will be emitted. From the third emit onwards, the window will output 15 points. Starting with the 4th emit, the window
-will output 15 data_points - with 10 old and 5 new  points (Tumbling window).
+will output 15 data_points - with 10 old and 5 new  points (Sliding window).
 
 Parameters
 ----------
 
 Parameter     | Description | Default 
 --------------|-------------|---------  
-period( `integer` ) | Window length, number of points| defaults to `every`
+period( `integer` ) | Window length, number of points| defaults to `every` (tumbling window)
 every( `integer` )| Output window contents every n incoming points| 
 fill_period( is_set )|Output only when window is filled| false (not set)

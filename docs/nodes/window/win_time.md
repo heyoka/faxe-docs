@@ -34,6 +34,6 @@ Parameters
 
 Parameter           | Description | Default 
 --------------------|-------------|------------------------------------------------------------
-period( `duration` ) | Window length|defaults to `every`
+period( `duration` ) | Window length|defaults to `every` (giving us a tumbling window)
 every( `duration` )| Output window contents every | 
 fill_period( is_set )|Window output only when period time has accumulated| false (not set)
