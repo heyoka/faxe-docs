@@ -1,7 +1,7 @@
 The win_event node
 =====================
 
-A window node is for batching data_points.
+A window node is for batching data_points, therefore all window nodes will output `data_batch` items.
 
 This window holds `period` number of data_points and emits every `every` incoming point. 
 
