@@ -26,12 +26,12 @@ Examples
 .ip('127.0.0.1') 
 .device(255)
 .every(1s)
-.function('coils', 'hregs', 'iregs')
-.from(2127, 3008, 104)
-.count(1, 2, 2)
+.function('coils', 'hregs', 'iregs', 'hregs')
+.from(2127, 3008, 104, 30306)
+.count(1, 2, 2, 4)
 .as('data.EnergyConsumption', 'data.CurrentValue', 'data.EnergyDelivered')
-.output('int16', 'float32', 'float32')
-.signed(true, true, false) 
+.output('int16', 'float32', 'float32', 'double')
+.signed(true, true, false, false) 
 ```
 
 
@@ -64,8 +64,9 @@ function( `string_list` )|list of read functions, one of `['coils', 'hregs', 'ir
 from( `integer_list` )|list of start values|
 count( `integer_list`)|list of count values, how much data to read for every function given|
 as( `string_list` )|output names for the read values|
-output( `string_list` )|list of output formats one of `['int16', 'int32', 'float32', 'coils', 'ascii', 'binary']`|undefined
+output( `string_list` )|list of output formats one of `['int16', 'int32', 'float32', 'double', 'coils', 'ascii', 'binary']`|undefined
 signed( `atom_list` true/false)|list of values indicating if values are signed|undefined
+round( `integer` ) | Round all `float32` and `double` values with the given precision. If a value has less than the given decimal places, it will be left untouched | undefined (no rounding)
 max_connections( `integer` )|number of connections to the modbus device|`auto`, meaning 1 connection for every variable (after read optimization)
 
 

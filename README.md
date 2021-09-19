@@ -1,3 +1,5 @@
+## View the documentation [here](https://heyoka.github.io/faxe-docs/site).
+
 Documentation for FAXE
 ======================
 
@@ -32,7 +34,5 @@ install custom syntax highlighting for dfs scripts into pygments
 
 build
 
-    redoc-cli bundle rest-api/swagger_faxe.yaml
-    
-after that, rename the resulting html file to "faxe_rest_api.html" and copy it to ./site
+    make 
 

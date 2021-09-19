@@ -12,7 +12,8 @@ See table below for more information about addressing.
 * The node will optimize reading by treating contiguous values as one reading var.
 Thus more data can be read in one go.
 
-* Connections to a PLC are handled by a connection pool, which can grow and shrink as needed.
+* Connections to a PLC are handled by a connection pool, if `use_pool` is set to true, which can grow and shrink as needed.
+(This is especially useful, when connecting to a PLC, that has limited connection resources)
 The number of 
 Min and Max connection count can be set in faxe [configuration](../../configuration.md). Defaults to 2 and 16.
 
@@ -126,6 +127,7 @@ vars_prefix( `string` )|vars  will be prefixed with this value| undefined
 as_prefix( `string` )|as values will be prefixed with this value| undefined
 byte_offset( `integer` )|offset for addressing, every address in vars gets this offset added| 0
 diff( is_set )|when given, only output values different to previous values|false (not set)
+use_pool ( `bool` ) | whether to use the built-in connection pool | from config value
 
 
 
