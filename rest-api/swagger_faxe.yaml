@@ -1159,6 +1159,80 @@ paths:
       responses:
         200:
           description: OK
+          examples:
+            application/json:
+              {
+                "nodes": [
+                  {
+                    "type": "esp_debug",
+                    "name": "debug6",
+                    "group": 1,
+                    "display_name": "debug6"
+                  },
+                  {
+                    "type": "c_python",
+                    "name": "@callback5",
+                    "group": 1,
+                    "display_name": "python_passthrough"
+                  },
+                  {
+                    "type": "esp_batch",
+                    "name": "batch4",
+                    "group": 1,
+                    "display_name": "batch4"
+                  },
+                  {
+                    "type": "c_python",
+                    "name": "@double3",
+                    "group": 1,
+                    "display_name": "python_double"
+                  },
+                  {
+                    "type": "esp_default",
+                    "name": "default2",
+                    "group": 1,
+                    "display_name": "default2"
+                  },
+                  {
+                    "type": "esp_value_emitter",
+                    "name": "value_emitter1",
+                    "group": 1,
+                    "display_name": "emitter"
+                  }
+                ],
+                "edges": [
+                  {
+                    "src_port": 1,
+                    "src": "@double3",
+                    "dest_port": 1,
+                    "dest": "batch4"
+                  },
+                  {
+                    "src_port": 1,
+                    "src": "@callback5",
+                    "dest_port": 1,
+                    "dest": "debug6"
+                  },
+                  {
+                    "src_port": 1,
+                    "src": "default2",
+                    "dest_port": 1,
+                    "dest": "@double3"
+                  },
+                  {
+                    "src_port": 1,
+                    "src": "batch4",
+                    "dest_port": 1,
+                    "dest": "@callback5"
+                  },
+                  {
+                    "src_port": 1,
+                    "src": "value_emitter1",
+                    "dest_port": 1,
+                    "dest": "default2"
+                  }
+                ]
+              }
         401:
           description: Unauthorized
         404:

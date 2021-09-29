@@ -283,6 +283,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../dfs_examples/fun_with_http.html" class="md-nav__link">
+        Fun with http
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../dfs_examples/python_double.html" class="md-nav__link">
         Python double
       </a>
@@ -1377,6 +1389,19 @@
     Parameters
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qos" class="md-nav__link">
+    Qos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1748,6 +1773,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../windows/win_session.html" class="md-nav__link">
+        Win session
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../windows/win_time.html" class="md-nav__link">
         Win time
       </a>
@@ -1802,6 +1839,19 @@
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qos" class="md-nav__link">
+    Qos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1879,9 +1929,14 @@ Incoming data is converted to JSON before sending.</p>
 <td></td>
 </tr>
 <tr>
-<td>safe( <code>is_set</code> )</td>
+<td>~~safe( <code>is_set</code> )</td>
 <td>whether to use acknowledgement for the on-disk queue</td>
-<td>false (not set)</td>
+<td>false (not set)~~</td>
+</tr>
+<tr>
+<td>qos( <code>integer</code> )</td>
+<td>publish quality, see table below for details</td>
+<td>1</td>
 </tr>
 <tr>
 <td>persistent( <code>bool</code> )</td>
@@ -1892,6 +1947,29 @@ Incoming data is converted to JSON before sending.</p>
 <td>ssl( is_set )</td>
 <td>whether to use ssl</td>
 <td>false (not set)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="qos">Qos</h3>
+<table>
+<thead>
+<tr>
+<th>Qos</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>internal queuing of messages in memory, in case of network issues, no publisher confirm is used on the channel</td>
+</tr>
+<tr>
+<td>1</td>
+<td>use internal queue (disc), do not use acknowledgement for it, no publisher confirm is used on the channel</td>
+</tr>
+<tr>
+<td>2</td>
+<td>most safe mode, internal ondisc queue + acknowledgment according to acknowledgement from the amqp broker</td>
 </tr>
 </tbody>
 </table>

@@ -28,7 +28,14 @@ vhost( `string` )| vhost to connect to on the broker| '/'
 routing_key( `string` )| routing key for the published messages|
 routing_key_lambda( `lambda` )| lambda expression producing a routing key for the published messages|
 exchange( `string` )|name of the exchange to publish to|
-safe( `is_set` ) | whether to use acknowledgement for the on-disk queue | false (not set)
+~~safe( `is_set` ) | whether to use acknowledgement for the on-disk queue | false (not set)~~
+qos( `integer` ) | publish quality, see table below for details | 1
 persistent( `bool` ) | whether to send the amqp messages with delivery-mode 2 (persistent) | false (delivery_mode = 1)
 ssl( is_set ) | whether to use ssl | false (not set)
 
+### Qos
+Qos | description
+----|------------
+0   | internal queuing of messages in memory, in case of network issues, no publisher confirm is used on the channel
+1   | use internal queue (disc), do not use acknowledgement for it, no publisher confirm is used on the channel
+2   | most safe mode, internal ondisc queue + acknowledgment according to acknowledgement from the amqp broker

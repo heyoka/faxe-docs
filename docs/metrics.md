@@ -133,7 +133,7 @@ For every task there is a summary of the node metrics:
 
 metric name | description | note
 ------------|-------------|--------------- 
-`processing_time` | average of all flow nodes' processing time |  
+`processing_time` | average processing time for the flow in milliseconds |  
 `processing_errors` | sum of errors for all flow nodes |  
 `msg_q_size` | total number of items currently in process-queues for all flow nodes |  
 `mem_used` | total number of bytes the flow and all of its nodes are currently using |  

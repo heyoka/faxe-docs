@@ -283,6 +283,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../dfs_examples/fun_with_http.html" class="md-nav__link">
+        Fun with http
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../dfs_examples/python_double.html" class="md-nav__link">
         Python double
       </a>
@@ -1755,6 +1767,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../windows/win_session.html" class="md-nav__link">
+        Win session
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../windows/win_time.html" class="md-nav__link">
         Win time
       </a>
@@ -1905,7 +1929,7 @@ Only after this will the item be acknowledged to the amqp broker.</p>
 <tr>
 <td>prefetch( <code>integer</code> )</td>
 <td>prefetch count to use</td>
-<td>10</td>
+<td>70</td>
 </tr>
 <tr>
 <td>dt_field( <code>string</code> )</td>
@@ -1936,6 +1960,16 @@ Only after this will the item be acknowledged to the amqp broker.</p>
 <td>ssl( is_set )</td>
 <td>whether to use ssl</td>
 <td>false (not set)</td>
+</tr>
+<tr>
+<td>confirm ( <code>boolean</code> )</td>
+<td>whether to acknowledge consumed messages to the amqp broker, when set to <code>false</code>, throughput can be increased with the danger of data-loss</td>
+<td>true</td>
+</tr>
+<tr>
+<td>safe ( <code>boolean</code> )</td>
+<td>whether to use faxe's internal queue. If <code>true</code>, messages consumed from the amqp broker will be stored in an internal ondisc queue before they get sent to downstream nodes, to avoid losing data.</td>
+<td>false</td>
 </tr>
 </tbody>
 </table>
