@@ -1,7 +1,7 @@
 The win_time node
 =====================
 
-A window node is for batching data_points.
+A window node is for batching data_points, therefore all window nodes will output `data_batch` items.
 
 This window refers it's timing to the timestamp contained in the incoming data-items.
 
@@ -34,6 +34,6 @@ Parameters
 
 Parameter           | Description | Default 
 --------------------|-------------|------------------------------------------------------------
-period( `duration` ) | Window length|defaults to `every`
+period( `duration` ) | Window length|defaults to `every` (giving us a tumbling window)
 every( `duration` )| Output window contents every | 
 fill_period( is_set )|Window output only when period time has accumulated| false (not set)
