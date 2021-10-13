@@ -281,7 +281,7 @@ paths:
           description: "Method not allowed"
     parameters:
       - in: query
-        name: order_by
+        name: orderby
         type: string
         description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
       - in: query
@@ -305,7 +305,7 @@ paths:
           description: "Method not allowed"
     parameters:
       - in: query
-        name: order_by
+        name: orderby
         type: string
         description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
       - in: query
@@ -334,7 +334,7 @@ paths:
         required: true
         type: string
       - in: query
-        name: order_by
+        name: orderby
         type: string
         default: changed
         description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
@@ -365,7 +365,7 @@ paths:
         required: true
         type: "string"
       - in: query
-        name: order_by
+        name: orderby
         type: string
         default: changed
         description: order the list of tasks by 'id', 'name', 'last_start', 'last_stop' or (default) 'changed'
@@ -1284,7 +1284,7 @@ paths:
           description: Unauthorized
     parameters:
       - in: query
-        name: order_by
+        name: orderby
         type: string
         default: changed
         description: order the list of templates by 'id', 'name' or (default) 'changed'

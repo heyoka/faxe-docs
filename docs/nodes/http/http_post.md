@@ -6,7 +6,7 @@ If any errors occur during the request, the node will attempt to retry sending.
 
 Content-type header `application/json` will be used.
 
-
+> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
 
 Example
 -------

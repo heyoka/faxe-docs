@@ -1870,6 +1870,9 @@
                 
                 <h1 id="the-email-node">The email node</h1>
 <p>Send an email to one or more recipients</p>
+<blockquote>
+<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span><span style="color: #a6e22e">name</span><span style="color: #66d9ef">@</span><span style="color: #f8f8f2">email.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&lt;&lt;&lt;</span><span style="color: #a6e22e">another</span><span style="color: #66d9ef">@</span><span style="color: #f8f8f2">email.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>

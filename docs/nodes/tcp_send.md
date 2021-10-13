@@ -30,6 +30,8 @@ and containing an unsigned integer in big-endian byte order.
 
 The tcp listener is protected against flooding with the {active, once} inet option.
 
+> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
+
 Example
 -------
 

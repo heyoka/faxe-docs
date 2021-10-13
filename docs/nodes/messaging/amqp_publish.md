@@ -4,6 +4,8 @@ The amqp_publish node
 Publish data to an amqp-broker exchange like rabbitmq.
 Incoming data is converted to JSON before sending.
 
+> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
+
 Example
 -------
 ```dfs  

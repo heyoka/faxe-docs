@@ -1880,6 +1880,9 @@ Influx tags.</p>
 ie. use <a href="../flowdata/delete.html">delete</a> to
 delete some fields and/or tags before writing data with this node.</p>
 <p>Note: it is recommended to <a href="../flowdata/batch.html">batch</a> single data-points.</p>
+<blockquote>
+<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <p>Simple:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">influx_out</span><span style="color: #f8f8f2">()</span>

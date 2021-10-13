@@ -1874,6 +1874,9 @@
 <p>Write data to CrateDB.</p>
 <p>Sends data to a CRATE DB HTTP endpoint using Crate's HTTP Api.
 If any errors occur during the request, the node will attempt to retry sending.</p>
+<blockquote>
+<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_table</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;grip_log_fulltext3&#39;</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>

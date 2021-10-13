@@ -1874,6 +1874,9 @@
 <p>Sends incoming data to a specified HTTP endpoint via the POST method as a JSON message.
 If any errors occur during the request, the node will attempt to retry sending.</p>
 <p>Content-type header <code>application/json</code> will be used.</p>
+<blockquote>
+<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">http_post()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;remote.com&#39;</span><span style="color: #f8f8f2">)</span>

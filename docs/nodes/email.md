@@ -3,7 +3,7 @@ The email node
 
 Send an email to one or more recipients
 
-
+> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
 
 Example
 -------

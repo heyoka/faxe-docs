@@ -8,6 +8,8 @@ If the `save()` parameter is given, every message first gets stored to an on-dis
 this way we can make sure no message gets lost when disconnected from the broker.
 
 
+> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
+
 Example
 -------
 ```dfs  

@@ -1875,6 +1875,9 @@
 Incoming data is converted to JSON before sending.</p>
 <p>If the <code>save()</code> parameter is given, every message first gets stored to an on-disk queue before sending,
 this way we can make sure no message gets lost when disconnected from the broker.</p>
+<blockquote>
+<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;top/track/pressure&#39;</span>
 

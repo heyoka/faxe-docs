@@ -6,7 +6,7 @@ Write data to CrateDB.
 Sends data to a CRATE DB HTTP endpoint using Crate's HTTP Api.
 If any errors occur during the request, the node will attempt to retry sending.
 
-
+> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
 
 Example
 -------
