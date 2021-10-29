@@ -295,6 +295,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../dfs_examples/message_re-modeling.html" class="md-nav__link">
+        Message re modeling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../dfs_examples/python_double.html" class="md-nav__link">
         Python double
       </a>
@@ -1876,6 +1888,7 @@
 <li>'list' holds a list of values, value order is preserved within the list</li>
 <li>'set' holds a list of values, where values have no duplicates</li>
 </ul>
+<p>Here <code>value</code> can be any valid datatype that is supported in faxe, from a single scalar to a nested map and/or list.</p>
 <p>The values will be held in a non persistent ets term storage.</p>
 <h2 id="example-1">Example 1</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
@@ -1905,14 +1918,15 @@ Thus the <code>where</code> node will only output points with a unique topic val
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">default_json</span><span style="color: #f8f8f2">()</span>
 </code></pre></div>
 
-<p>In the above example the <code>mem</code> node has no <code>field</code> parameter, but it is prepopulated with a json-map. The mem node is used 
+<p>In the above example the <code>mem</code> node has no <code>field</code> parameter, but it is prepopulated with a json structure. The mem node is used 
 as a lookup table here. The default  value will stay in the storage as long as the node is running. With no field parameter
-given, a data_item coming in to the node will not overwrite the stored map structure.</p>
+given, a data_item coming in to the node will not overwrite the stored value.</p>
+<p>The internal representation of the given json object is a <code>map</code> in faxe.</p>
 <p>The stored map could then be use in a lambda expression:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;some_field_name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ls_mem</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;topic_lookup&#39;</span><span style="color: #f8f8f2">))).</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>So based on the value of the field "some_field_name", the field <code>topic</code> will get the value of the corresponding map-key stored in the node.</p>
+<p>So based on the value of the field "some_field_name", the field <code>topic</code> will get the value of the corresponding map-key stored in the mem node.</p>
 <hr />
 <blockquote>
 <p>For a list of lambda_library functions see <a href="../dfs_script_language/lambda_expressions.html">lambda_functions</a>.</p>

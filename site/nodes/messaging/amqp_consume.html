@@ -295,6 +295,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../dfs_examples/message_re-modeling.html" class="md-nav__link">
+        Message re modeling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../dfs_examples/python_double.html" class="md-nav__link">
         Python double
       </a>
@@ -1366,6 +1378,27 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#in-safe-mode" class="md-nav__link">
+    In safe mode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-deduplication" class="md-nav__link">
+    Message deduplication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefetch-count-ack_every-and-dedup_size" class="md-nav__link">
+    Prefetch count, ack_every and dedup_size
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1823,6 +1856,27 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#in-safe-mode" class="md-nav__link">
+    In safe mode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-deduplication" class="md-nav__link">
+    Message deduplication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefetch-count-ack_every-and-dedup_size" class="md-nav__link">
+    Prefetch count, ack_every and dedup_size
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1857,10 +1911,25 @@
                 
                 
                 <h1 id="the-amqp_consume-node">The amqp_consume node</h1>
-<p>Consume data from an amqp-broker like <code>RabbitMQ</code>.</p>
+<p>Consume data from an amqp-broker like <a href="https://www.rabbitmq.com">RabbitMQ</a>.</p>
+<h3 id="in-safe-mode">In safe mode</h3>
 <p>Once a data-item is received by the node, it will be immediately stored in an on-disk queue for data-safety.
 Only after this will the item be acknowledged to the amqp broker.</p>
-<p>At the moment this node can only setup and work with <code>topic</code> exchanges.</p>
+<h3 id="message-deduplication">Message deduplication</h3>
+<p>If the amqp <code>correlation-id</code> property is set (to a unique value per message), this node can perform efficient message deduplication.</p>
+<p>See <a href="amqp_publish.html">amqp_publish</a> for details on this.</p>
+<hr />
+<h2 id="prefetch-count-ack_every-and-dedup_size">Prefetch count, ack_every and dedup_size</h2>
+<p>For a description of these settings, see table below.</p>
+<p>As they relate to one another in some kind, here is a rule of thumb for how to set <code>ack_every</code> and <code>dedup_size</code>
+when <code>prefetch</code> is changed:</p>
+<ul>
+<li>set <code>ack_every</code> to one third of <code>prefetch</code></li>
+<li>set <code>dedup_size</code> to 3 times the <code>prefetch</code> value</li>
+</ul>
+<p>Example: prefetch = 100, ack_every = 35, dedup_size = 300</p>
+<hr />
+<p>At the moment this node can only set up and work with <code>topic</code> exchanges.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_consume()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;deves-amqp-cluster1.internal&#39;</span><span style="color: #f8f8f2">)</span> 
@@ -1907,13 +1976,13 @@ Only after this will the item be acknowledged to the amqp broker.</p>
 <td>'/'</td>
 </tr>
 <tr>
-<td>routing_key( <code>string</code> )</td>
+<td>routing_key( <code>string</code> ) <em>deprecated</em></td>
 <td>routing key to use for queue binding</td>
 <td>undefined</td>
 </tr>
 <tr>
 <td>bindings( <code>string_list</code> )</td>
-<td>queue-bindings</td>
+<td>list of <a href="https://www.cloudamqp.com/blog/part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html">queue bindings</a> keys</td>
 <td>[]</td>
 </tr>
 <tr>
@@ -1928,8 +1997,23 @@ Only after this will the item be acknowledged to the amqp broker.</p>
 </tr>
 <tr>
 <td>prefetch( <code>integer</code> )</td>
-<td>prefetch count to use</td>
+<td><a href="https://www.rabbitmq.com/consumer-prefetch.html">prefetch</a> count to use</td>
 <td>70</td>
+</tr>
+<tr>
+<td>ack_every( <code>integer</code> )</td>
+<td>number of messages to consume before acknowledging them to the broker</td>
+<td>20</td>
+</tr>
+<tr>
+<td>ack_after( <code>duration</code> )</td>
+<td>timeout after which all currently not acknowledged messages will be acknowledged, regardless of the <code>ack_every</code> setting</td>
+<td>5s</td>
+</tr>
+<tr>
+<td>dedup_size( <code>integer</code> )</td>
+<td>number of correlation-ids to hold in memory for message deduplication</td>
+<td>200</td>
 </tr>
 <tr>
 <td>dt_field( <code>string</code> )</td>
@@ -1958,7 +2042,7 @@ Only after this will the item be acknowledged to the amqp broker.</p>
 </tr>
 <tr>
 <td>ssl( is_set )</td>
-<td>whether to use ssl</td>
+<td>whether to use ssl, if true ssl options form faxe's config for amqp connections will be used</td>
 <td>false (not set)</td>
 </tr>
 <tr>

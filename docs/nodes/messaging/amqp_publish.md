@@ -1,10 +1,24 @@
 The amqp_publish node
 =====================
 
-Publish data to an amqp-broker exchange like rabbitmq.
+Publish data to an amqp-broker exchange. The most popular amqp-broker is [RabbitMQ](https://www.rabbitmq.com).
+
 Incoming data is converted to JSON before sending.
 
-> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
+-----------
+The amqp `correlation-id` property will be set to phash2(routing_key + payload) using erlang's phash2 function on every published message:
+    
+    The erlang documentation on phash2:
+
+    Portable hash function that gives the same hash for the same Erlang term regardless of machine architecture and ERTS version.
+
+(phash2 outputs an integer which gets casted to a string to be used as a correlation-id)
+
+The [amqp_consume](amqp_consume.md) node will use this values to perform deduplication on message receiving.
+
+-----------
+
+> Note: This node is a sink node and does not output any flow-data, therefore any node connected to it will not receive any data from this node.
 
 Example
 -------
@@ -35,8 +49,8 @@ persistent( `bool` ) | whether to send the amqp messages with delivery-mode 2 (p
 ssl( is_set ) | whether to use ssl | false (not set)
 
 ### Qos
-Qos | description
-----|------------
-0   | internal queuing of messages in memory, in case of network issues, no publisher confirm is used on the channel
-1   | use internal queue (disc), do not use acknowledgement for it, no publisher confirm is used on the channel
-2   | most safe mode, internal ondisc queue + acknowledgment according to acknowledgement from the amqp broker
+Qos | description | consequences
+----|------------ | -------------
+0   | In memory queuing of messages, in case of network issues. Does not use publisher confirm on the channel. | Highest throuput.
+1   | On disc queuing of messages, in case of network issues. Does not use publisher confirm on the channel. | Not yet published messages will survive a flow crash. At least once.
+2   | On disc queue + acknowledgment according to acknowledgement from the amqp broker (publisher confirm). | Most safe data delivery. Aims at exactly once semantics.

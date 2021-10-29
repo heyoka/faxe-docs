@@ -295,6 +295,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../dfs_examples/message_re-modeling.html" class="md-nav__link">
+        Message re modeling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../dfs_examples/python_double.html" class="md-nav__link">
         Python double
       </a>
@@ -2385,6 +2397,16 @@ to reference them:</p>
 <td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>
 </tr>
 <tr>
+<td><code>from_json_string(String)</code> -&gt; faxe map or list</td>
+<td>convert a valid json string into faxe's internal data-structure</td>
+<td>from_json_string('{"a":"b"}')</td>
+</tr>
+<tr>
+<td><code>to_json_string(String)</code> -&gt; string</td>
+<td>convert faxe's internal data-structure into a json string</td>
+<td>to_json_string("data.struct")</td>
+</tr>
+<tr>
 <td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>
 <td>check for list/set membership of a value, or when used with a map, check if Ele is a key in the map</td>
 <td></td>
@@ -2425,7 +2447,7 @@ to reference them:</p>
 <td></td>
 </tr>
 <tr>
-<td><code>ls_mem_set()</code> -&gt; any</td>
+<td><code>ls_mem_set(Key)</code> -&gt; any</td>
 <td>get the set value associated with Key from the flow-memory</td>
 <td></td>
 </tr>

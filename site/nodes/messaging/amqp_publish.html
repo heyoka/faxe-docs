@@ -295,6 +295,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../dfs_examples/message_re-modeling.html" class="md-nav__link">
+        Message re modeling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../dfs_examples/python_double.html" class="md-nav__link">
         Python double
       </a>
@@ -1869,10 +1881,20 @@
                 
                 
                 <h1 id="the-amqp_publish-node">The amqp_publish node</h1>
-<p>Publish data to an amqp-broker exchange like rabbitmq.
-Incoming data is converted to JSON before sending.</p>
+<p>Publish data to an amqp-broker exchange. The most popular amqp-broker is <a href="https://www.rabbitmq.com">RabbitMQ</a>.</p>
+<p>Incoming data is converted to JSON before sending.</p>
+<hr />
+<p>The amqp <code>correlation-id</code> property will be set to phash2(routing_key + payload) using erlang's phash2 function on every published message:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>The erlang documentation on phash2:
+
+Portable hash function that gives the same hash for the same Erlang term regardless of machine architecture and ERTS version.
+</code></pre></div>
+
+<p>(phash2 outputs an integer which gets casted to a string to be used as a correlation-id)</p>
+<p>The <a href="amqp_consume.html">amqp_consume</a> node will use this values to perform deduplication on message receiving.</p>
+<hr />
 <blockquote>
-<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
+<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to it will not receive any data from this node.</p>
 </blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_publish()</span>
@@ -1954,20 +1976,24 @@ Incoming data is converted to JSON before sending.</p>
 <tr>
 <th>Qos</th>
 <th>description</th>
+<th>consequences</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
-<td>internal queuing of messages in memory, in case of network issues, no publisher confirm is used on the channel</td>
+<td>In memory queuing of messages, in case of network issues. Does not use publisher confirm on the channel.</td>
+<td>Highest throuput.</td>
 </tr>
 <tr>
 <td>1</td>
-<td>use internal queue (disc), do not use acknowledgement for it, no publisher confirm is used on the channel</td>
+<td>On disc queuing of messages, in case of network issues. Does not use publisher confirm on the channel.</td>
+<td>Not yet published messages will survive a flow crash. At least once.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>most safe mode, internal ondisc queue + acknowledgment according to acknowledgement from the amqp broker</td>
+<td>On disc queue + acknowledgment according to acknowledgement from the amqp broker (publisher confirm).</td>
+<td>Most safe data delivery. Aims at exactly once semantics.</td>
 </tr>
 </tbody>
 </table>

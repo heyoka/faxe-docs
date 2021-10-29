@@ -166,6 +166,8 @@ Function | Description | Example
 `defined(Key)` -> bool | whether the given Key is defined in the current data-item|
 `undefined(Key)` -> bool | whether the given Key is NOT defined in the current data-item|
 `topic_part(TopicString, PartIndex, [Seperator])` -> string | extract a part from a topic string, Separator defaults to '/', the index of the first part is `1` not 0 | topic_part('this/is/mytopic', 2) -> 'is'
+`from_json_string(String)` -> faxe map or list | convert a valid json string into faxe's internal data-structure| from_json_string('{"a":"b"}') 
+`to_json_string(String)` -> string | convert faxe's internal data-structure into a json string| to_json_string("data.struct") 
 `member(Ele, ListOrMap)` -> bool | check for list/set membership of a value, or when used with a map, check if Ele is a key in the map|
 `not_member(Ele, List)` -> bool | |
 `map_get(Key, Map)` -> any| get a value from a map, 'undefined' is returned, if the key is not present in map |map_get("topic", ls_mem('stream_lookup'))
@@ -174,7 +176,7 @@ Function | Description | Example
 `mem` values are set with the [mem node](../nodes/mem.md) | |
 `ls_mem(Key)` -> any| get the single value associated with Key from the flow-memory |
 `ls_mem_list(Key)` -> any|get the list value associated with Key from the flow-memory |
-`ls_mem_set()` -> any|get the set value associated with Key from the flow-memory |
+`ls_mem_set(Key)` -> any|get the set value associated with Key from the flow-memory |
 
 
 ### Conditional functions

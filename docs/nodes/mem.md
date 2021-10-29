@@ -9,6 +9,8 @@ There are 3 types of memories:
 * 'list' holds a list of values, value order is preserved within the list
 * 'set' holds a list of values, where values have no duplicates
 
+Here `value` can be any valid datatype that is supported in faxe, from a single scalar to a nested map and/or list.
+
 The values will be held in a non persistent ets term storage.
 
 Example 1
@@ -53,15 +55,17 @@ def default_map =
 
 ```
 
-In the above example the `mem` node has no `field` parameter, but it is prepopulated with a json-map. The mem node is used 
+In the above example the `mem` node has no `field` parameter, but it is prepopulated with a json structure. The mem node is used 
 as a lookup table here. The default  value will stay in the storage as long as the node is running. With no field parameter
-given, a data_item coming in to the node will not overwrite the stored map structure.
+given, a data_item coming in to the node will not overwrite the stored value.
+
+The internal representation of the given json object is a `map` in faxe.
 
 The stored map could then be use in a lambda expression:
 ```dfs  
 |eval(lambda: map_get("some_field_name", ls_mem('topic_lookup'))).as('topic')
 ```
-So based on the value of the field "some_field_name", the field `topic` will get the value of the corresponding map-key stored in the node.
+So based on the value of the field "some_field_name", the field `topic` will get the value of the corresponding map-key stored in the mem node.
 
 
 
