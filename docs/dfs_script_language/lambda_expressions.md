@@ -70,13 +70,20 @@ Function                         | Description
 `day_of_week(ts)` -> integer      | the weekday with week [1, 7] 1 is monday
 `week(ts)` -> integer               | isoweek-number within year [1, 53]
 `month(ts)` -> integer            | month within the year [1, 12]
+`time_align(ts, duration)` -> integer  | align the given timestamp to duration
 
-Example:
+Examples:
 ```dfs    
 lambda: hour("ts") >= 8 AND hour("ts") < 19
 ```
 The above expression evaluates to true if the hour of the day for the data point falls between 08:00 and 19:00.
 
+--------------------------------------
+
+```dfs    
+lambda: time_align("ts", 3m)
+```
+Will align every timestamp (ts) to a multiple of the 3 minutes within an hour (ie: 00:00, 00:03, 00:06, ...)
 
 ### Math functions
 
@@ -167,9 +174,10 @@ Function | Description | Example
 `undefined(Key)` -> bool | whether the given Key is NOT defined in the current data-item|
 `topic_part(TopicString, PartIndex, [Seperator])` -> string | extract a part from a topic string, Separator defaults to '/', the index of the first part is `1` not 0 | topic_part('this/is/mytopic', 2) -> 'is'
 `from_json_string(String)` -> faxe map or list | convert a valid json string into faxe's internal data-structure| from_json_string('{"a":"b"}') 
-`to_json_string(String)` -> string | convert faxe's internal data-structure into a json string| to_json_string("data.struct") 
+`to_json_string(String)` -> string | convert faxe's internal data-structure into a json string| to_json_string("data.struct")
+`size(ListOrMap)` -> integer | get the number of entries in a list or map | size("data.lines")
 `member(Ele, ListOrMap)` -> bool | check for list/set membership of a value, or when used with a map, check if Ele is a key in the map|
-`not_member(Ele, List)` -> bool | |
+`not_member(Ele, ListOrMap)` -> bool | |
 `map_get(Key, Map)` -> any| get a value from a map, 'undefined' is returned, if the key is not present in map |map_get("topic", ls_mem('stream_lookup'))
 `random(N)` -> integer   | generate a random integer between 1 and N | 
 `random_real(N)` -> float | generate a random float between 0.0 and 1.0, that gets multiplied by N |

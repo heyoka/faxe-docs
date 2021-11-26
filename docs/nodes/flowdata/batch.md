@@ -16,7 +16,7 @@ Example
 .timeout(3s)
 ```
 
-The second example will output a batch with 5 points. 
+The second example will output a batch with a maximum of 5 points. 
 A data-batch message will be emitted, if either 5 points have been collected 
 or 3 seconds have past since the first data-point came in.
 

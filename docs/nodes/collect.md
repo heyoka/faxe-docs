@@ -8,6 +8,15 @@ Since 0.15.2
 The collect node will maintain a collection of data-points based on some criteria given as lambda-expressions.
 It will output a data_batch item regularily (when `emit_every` is given) or on every incoming item.
 
+On every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
+If this is not the case, the node will evaluate the `add` function. If the add function returns true, the item will be added to the collection.
+
+If there is already an item with the same key-value, the node would check if there is an `update` function and evaluate it and if no update happend, 
+it will try to evaluate the `remove` function.
+
+So if `update` happened, the node will skip evaluating the `remove` function.
+
+
 
 Example
 -------
@@ -70,8 +79,13 @@ Parameter     | Description | Default
 --------------|-------------|---------
 key_field(`string`) | The value of the key-field will be used as an index for the collection, can be any data-type. |
 add(`lambda`) | Criterion for adding an incoming point to the collection, must return a boolean value.|
-remove(`lambda`) | Criterion for removing an incoming point from the collection, must return a boolen value.|
-keep(`string_list`) | If given, these field will be kept from every data-point, if not given, the whole item will be kept. | undefined
-type (`string`)  | The type of the collection: 'list' or 'set' (no duplicates) | 'set'
-emit_every (`duration`)  | Interval at which to emit the current collection as a data_batch item. | undefined
+remove(`lambda`) | Criterion for removing a point from the collection, must return a boolen value.|
+update(`lambda`) | Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur.| undefined
+update_mode(`string`) | `replace` or `merge`. When updating, an existing point in the collection can be replaced by or merged with the new one.| 'replace'
+tag_added(`boolean`) | When set to true, emitted data_points that have been added since the last emit will have a field called `added` with the value of `tag_value`| false
+tag_value(`any`) | Value to be use for tag fields (`added`, `removed`)| 1
+include_removed(`boolean`) | When set to true, data_points that would normally be removed from the collection will get a field called `removed` with the value of `tag_value` and are included in the next data-batch emit| false
+keep(`string_list`) | If given, these field will be kept from every data-point, if not given, the whole item will be kept. | undefined 
+emit_every (`duration`)  | Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) that effects in a chang to the collection will trigger an output of the current collection| undefined
+max_age(`duration`) | Maximum age for any data-item in the collection, after which it gets removed. The reference time for item age is the time the item entered the collection | 3h
  

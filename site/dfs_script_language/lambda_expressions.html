@@ -797,6 +797,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../nodes/database/crate_query_cont.html" class="md-nav__link">
+        Crate query cont
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../nodes/database/http_post_crate.html" class="md-nav__link">
         Http post crate
       </a>
@@ -2065,13 +2077,22 @@ to reference them:</p>
 <td><code>month(ts)</code> -&gt; integer</td>
 <td>month within the year [1, 12]</td>
 </tr>
+<tr>
+<td><code>time_align(ts, duration)</code> -&gt; integer</td>
+<td>align the given timestamp to duration</td>
+</tr>
 </tbody>
 </table>
-<p>Example:</p>
+<p>Examples:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">8</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">19</span>
 </code></pre></div>
 
 <p>The above expression evaluates to true if the hour of the day for the data point falls between 08:00 and 19:00.</p>
+<hr />
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">time_align</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">3m</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Will align every timestamp (ts) to a multiple of the 3 minutes within an hour (ie: 00:00, 00:03, 00:06, ...)</p>
 <h3 id="math-functions">Math functions</h3>
 <table>
 <thead>
@@ -2407,12 +2428,17 @@ to reference them:</p>
 <td>to_json_string("data.struct")</td>
 </tr>
 <tr>
+<td><code>size(ListOrMap)</code> -&gt; integer</td>
+<td>get the number of entries in a list or map</td>
+<td>size("data.lines")</td>
+</tr>
+<tr>
 <td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>
 <td>check for list/set membership of a value, or when used with a map, check if Ele is a key in the map</td>
 <td></td>
 </tr>
 <tr>
-<td><code>not_member(Ele, List)</code> -&gt; bool</td>
+<td><code>not_member(Ele, ListOrMap)</code> -&gt; bool</td>
 <td></td>
 <td></td>
 </tr>

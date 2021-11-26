@@ -14,7 +14,7 @@
     
     
       
-        <title>Http post crate - Faxe</title>
+        <title>Crate query cont - Faxe</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-http_post_crate-node" class="md-skip">
+        <a href="#the-crate_query_cont-node" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Http post crate
+              Crate query cont
             
           </span>
         </div>
@@ -697,18 +697,6 @@
             
   
   
-  
-    <li class="md-nav__item">
-      <a href="crate_query_cont.html" class="md-nav__link">
-        Crate query cont
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
     
   
   
@@ -719,10 +707,79 @@
         
       
       
-      <a href="http_post_crate.html" class="md-nav__link md-nav__link--active">
-        Http post crate
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Crate query cont
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="crate_query_cont.html" class="md-nav__link md-nav__link--active">
+        Crate query cont
       </a>
       
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#query" class="md-nav__link">
+    Query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    Start
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historic-and-up-to-date-data" class="md-nav__link">
+    Historic and up-to-date data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http_post_crate.html" class="md-nav__link">
+        Http post crate
+      </a>
     </li>
   
 
@@ -1797,6 +1854,49 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#query" class="md-nav__link">
+    Query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    Start
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historic-and-up-to-date-data" class="md-nav__link">
+    Historic and up-to-date data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1808,8 +1908,140 @@
               
                 
                 
-                <h1 id="the-http_post_crate-node">The http_post_crate node</h1>
-<p><strong>renamed to <a href="crate_out.html"><code>crate_out</code></a></strong> .</p>
+                <h1 id="the-crate_query_cont-node">The crate_query_cont node</h1>
+<p>[<code>experimental</code>]</p>
+<p>since 0.19.0</p>
+<p>Query the <a href="https://crate.io">CRATE</a> database for <code>time series data</code>. </p>
+<p>This node is used for continous timeseries queries.</p>
+<h3 id="query">Query</h3>
+<p>A select statement will be executed periodically, on every iteration a <code>timefilter</code> gets ajusted according to the <code>period</code> parameter.
+For this to work, the query given must contain the <code>$__timefilter</code> placeholder in the query's where clause:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code> <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">query</span> <span style="color: #f92672">=</span> 
+ <span style="color: #e6db74">&#39;</span>
+<span style="color: #e6db74">    SELECT ts, id, temp1 FROM doc.table </span>
+<span style="color: #e6db74">    WHERE $__timefilter </span>
+<span style="color: #e6db74">    AND stream_id = &#39;</span><span style="color: #a6e22e">dd419f94834a</span><span style="color: #e6db74">&#39;</span>
+<span style="color: #e6db74">    ORDER BY ts ASC</span>
+<span style="color: #e6db74"> &#39;</span>
+</code></pre></div>
+
+<p>The timefilter placeholder gets replaced by this statement:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&gt;=</span> <span style="color: #960050; background-color: #1e0010">$</span><span style="color: #ae81ff">1</span> <span style="color: #66d9ef">AND</span> <span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&lt;</span> <span style="color: #960050; background-color: #1e0010">$</span><span style="color: #ae81ff">2</span>
+</code></pre></div>
+
+<h3 id="start">Start</h3>
+<p>The <code>start</code> parameter determines the query start time. It's value is a past point in time.</p>
+<p>There are two possible ways to provide this:</p>
+<ul>
+<li>provide an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> Datetimestamp, ie: '2021-11-16T17:15:00.000Z'</li>
+<li>provide a query that results in 1 row with exactly 1 column named 'ts' containing an ISO8601 Datetimestamp.</li>
+</ul>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">SELECT</span> <span style="color: #f8f8f2">DATE_FORMAT(ts)</span> <span style="color: #66d9ef">FROM</span> <span style="color: #66d9ef">table</span> <span style="color: #66d9ef">WHERE</span> <span style="color: #f8f8f2">worked_on</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span> <span style="color: #66d9ef">ORDER</span> <span style="color: #66d9ef">BY</span> <span style="color: #f8f8f2">ts</span> <span style="color: #66d9ef">LIMIT</span> <span style="color: #ae81ff">1</span>
+</code></pre></div>
+
+<h3 id="historic-and-up-to-date-data">Historic and up-to-date data</h3>
+<p>While reading data from the past, <code>min_interval</code> will be used to schedule the operation.
+Once the <code>timefilter</code> reaches persent wall-clock time the <code>offset</code> parameter will determine an amount of time to add to
+the scheduled time, this is to account for late incoming data to the database.</p>
+<h2 id="example">Example</h2>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">period</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">1m</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">sql</span> <span style="color: #f92672">=</span> 
+<span style="color: #e6db74">&#39;SELECT ts, id, temp1 FROM doc.table </span>
+<span style="color: #e6db74"> WHERE $__timefilter AND stream_id = &#39;</span><span style="color: #a6e22e">dd419f94834a</span><span style="color: #e6db74">&#39;</span>
+<span style="color: #e6db74"> ORDER BY ts ASC</span>
+<span style="color: #e6db74">&#39;</span>
+
+<span style="color: #f92672">|</span><span style="color: #a6e22e">crate_query_cont</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">sql</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">period</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">period</span><span style="color: #f8f8f2">)</span>  
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">start</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;2021-11-16T16:03:42.040000Z&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #a6e22e">crate_query_cq</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">sql</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>The above example will execute the query periodically, emitting data_batch items with data_points worth of 1 minute. </p>
+<p><code>start</code> will be aligned to <code>period</code>, so that the <code>timefilter</code> will look like this for the first query:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&gt;=</span> <span style="color: #e6db74">&#39;2021-11-16T16:03:0.000000Z&#39;</span> <span style="color: #66d9ef">AND</span> <span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&lt;</span> <span style="color: #e6db74">&#39;2021-11-16T16:04:0.000000Z&#39;</span>
+</code></pre></div>
+
+<h2 id="parameters">Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>host( <code>string</code> )</td>
+<td>CrateDB host</td>
+<td>from config</td>
+</tr>
+<tr>
+<td>port( <code>integer</code> )</td>
+<td>CrateDB port</td>
+<td>from config</td>
+</tr>
+<tr>
+<td>user( <code>string</code> )</td>
+<td>username</td>
+<td>from config</td>
+</tr>
+<tr>
+<td>pass( <code>string</code> )</td>
+<td>password</td>
+<td>from config</td>
+</tr>
+<tr>
+<td>database( <code>string</code> )</td>
+<td>Database name</td>
+<td>from config</td>
+</tr>
+<tr>
+<td>query( <code>string</code> )</td>
+<td>'SELECT' query with <code>$__timefilter</code> placeholder</td>
+<td></td>
+</tr>
+<tr>
+<td>start( <code>string</code> )</td>
+<td><code>timefilter</code> start point .ISO8601 datetime string or query that retrieves an ISO8601 datetime string from the database</td>
+<td></td>
+</tr>
+<tr>
+<td>stop( <code>string</code> )</td>
+<td><code>timefilter</code> stop point .ISO8601 datetime string or query that retrieves an ISO8601 datetime string from the database</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>filter_time_field( <code>string</code> )</td>
+<td>name of timestamp db column, used for <code>timefiler</code></td>
+<td>'ts'</td>
+</tr>
+<tr>
+<td>result_time_field( <code>string</code> )</td>
+<td>name of result column, used for retrieving timestamps</td>
+<td>defaults to filter_time_field</td>
+</tr>
+<tr>
+<td>period( <code>duration</code> )</td>
+<td>timefilter timespan, query bounds will be aligned to this value</td>
+<td>1h</td>
+</tr>
+<tr>
+<td>offset( <code>duration</code> )</td>
+<td>offset at which the database is queried when the timefilter reached 'now' time</td>
+<td>20s</td>
+</tr>
+<tr>
+<td>min_interval( <code>duration</code> )</td>
+<td>minimum query-interval when the timefilter is in the past</td>
+<td>5s</td>
+</tr>
+</tbody>
+</table>
                 
               
               
@@ -1828,7 +2060,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="crate_query_cont.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="crate_query.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1837,19 +2069,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Crate query cont
+                Crate query
               </div>
             </div>
           </a>
         
         
-          <a href="influx_out.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="http_post_crate.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Influx out
+                Http post crate
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

@@ -742,6 +742,18 @@
   
   
     <li class="md-nav__item">
+      <a href="database/crate_query_cont.html" class="md-nav__link">
+        Crate query cont
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="database/http_post_crate.html" class="md-nav__link">
         Http post crate
       </a>
@@ -1857,6 +1869,11 @@
 <p>Since 0.15.2</p>
 <p>The collect node will maintain a collection of data-points based on some criteria given as lambda-expressions.
 It will output a data_batch item regularily (when <code>emit_every</code> is given) or on every incoming item.</p>
+<p>On every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
+If this is not the case, the node will evaluate the <code>add</code> function. If the add function returns true, the item will be added to the collection.</p>
+<p>If there is already an item with the same key-value, the node would check if there is an <code>update</code> function and evaluate it and if no update happend, 
+it will try to evaluate the <code>remove</code> function.</p>
+<p>So if <code>update</code> happened, the node will skip evaluating the <code>remove</code> function.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">%% input data -&gt;</span>
 
@@ -1926,8 +1943,33 @@ It will output a data_batch item regularily (when <code>emit_every</code> is giv
 </tr>
 <tr>
 <td>remove(<code>lambda</code>)</td>
-<td>Criterion for removing an incoming point from the collection, must return a boolen value.</td>
+<td>Criterion for removing a point from the collection, must return a boolen value.</td>
 <td></td>
+</tr>
+<tr>
+<td>update(<code>lambda</code>)</td>
+<td>Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur.</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>update_mode(<code>string</code>)</td>
+<td><code>replace</code> or <code>merge</code>. When updating, an existing point in the collection can be replaced by or merged with the new one.</td>
+<td>'replace'</td>
+</tr>
+<tr>
+<td>tag_added(<code>boolean</code>)</td>
+<td>When set to true, emitted data_points that have been added since the last emit will have a field called <code>added</code> with the value of <code>tag_value</code></td>
+<td>false</td>
+</tr>
+<tr>
+<td>tag_value(<code>any</code>)</td>
+<td>Value to be use for tag fields (<code>added</code>, <code>removed</code>)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>include_removed(<code>boolean</code>)</td>
+<td>When set to true, data_points that would normally be removed from the collection will get a field called <code>removed</code> with the value of <code>tag_value</code> and are included in the next data-batch emit</td>
+<td>false</td>
 </tr>
 <tr>
 <td>keep(<code>string_list</code>)</td>
@@ -1935,14 +1977,14 @@ It will output a data_batch item regularily (when <code>emit_every</code> is giv
 <td>undefined</td>
 </tr>
 <tr>
-<td>type (<code>string</code>)</td>
-<td>The type of the collection: 'list' or 'set' (no duplicates)</td>
-<td>'set'</td>
+<td>emit_every (<code>duration</code>)</td>
+<td>Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) that effects in a chang to the collection will trigger an output of the current collection</td>
+<td>undefined</td>
 </tr>
 <tr>
-<td>emit_every (<code>duration</code>)</td>
-<td>Interval at which to emit the current collection as a data_batch item.</td>
-<td>undefined</td>
+<td>max_age(<code>duration</code>)</td>
+<td>Maximum age for any data-item in the collection, after which it gets removed. The reference time for item age is the time the item entered the collection</td>
+<td>3h</td>
 </tr>
 </tbody>
 </table>
