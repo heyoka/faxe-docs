@@ -90,7 +90,7 @@ key_field(`string`) | The value of the key-field will be used as an index for th
 add(`lambda`) | Criterion for adding an incoming point to the collection, must return a boolean value.|
 remove(`lambda`) | Criterion for removing a point from the collection, must return a boolen value.|
 update(`lambda`) | Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur.| undefined
-update_mode(`string`) | `replace` or `merge`. When updating, an existing point in the collection can be replaced by or merged with the new one.| 'replace'
+update_mode(`string`) | `replace`, `merge`, `merge_reverse`. When updating, an existing point in the collection can be replaced by or merged with the new one. With `merge_reverse` data_point positions for the merge operation get flipped, so that the existing point is merged onto the new data_point.| 'replace'
 tag_added(`boolean`) | When set to true, emitted data_points that have been added since the last emit will have a field called `added` with the value of `tag_value`| false
 tag_value(`any`) | Value to be use for tag fields (`added`, `removed`)| 1
 include_removed(`boolean`) | When set to true, data_points that would normally be removed from the collection will get a field called `removed` with the value of `tag_value` and are included in the next data-batch emit| false

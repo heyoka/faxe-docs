@@ -66,7 +66,7 @@ dt_format( `string` )|timestamp or datetime format that is expected (see table b
 include_topic ( `bool` ) |whether to include the routingkey in the resulting datapoints | true
 topic_as ( `string` ) | if `include_topic` is true, this will be the fieldname for the routingkey value | 'topic' 
 as ( `string` ) | base object for the output data-point | undefined
-ssl( is_set ) | whether to use ssl, if true ssl options form faxe's config for amqp connections will be used | false (not set)
+ssl( is_set ) | whether to use ssl, if true, ssl options from faxe's config for amqp connections will be used | false (not set)
 confirm ( `boolean` ) | whether to acknowledge consumed messages to the amqp broker, when set to `false`, throughput can be increased with the danger of data-loss| true
 safe ( `boolean` ) | whether to use faxe's internal queue. If `true`, messages consumed from the amqp broker will be stored in an internal ondisc queue before they get sent to downstream nodes, to avoid losing data.| false
 
