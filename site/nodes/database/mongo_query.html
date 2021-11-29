@@ -1885,7 +1885,7 @@ If you want to process more than a few thousand rows at a time, maybe faxe is no
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pass</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;root&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">database</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;test&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;inventory&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;item&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;canvas&quot;</span><span style="color: #f8f8f2">}</span> <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39; {&quot;item&quot;: &quot;canvas&quot;} &#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">5s</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
@@ -1903,7 +1903,7 @@ If you want to process more than a few thousand rows at a time, maybe faxe is no
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pass</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;root&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">database</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;test&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;inventory&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;size.h&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;$gt&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">16</span><span style="color: #f8f8f2">}}</span> <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39; {&quot;size.h&quot;: {&quot;$gt&quot;: 16}} &#39;</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
 
 <p>Every time a dataitem arrives at this node, from outside, it will query mongodb for documents that have a<br />

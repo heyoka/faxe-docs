@@ -25,13 +25,13 @@ def group_field = 'data.code'
  |json_emitter()
  .every(700ms)
  .json(
-     <<<{"code" : 224, "message": "this is a test", "mode": 1}>>>,
-     <<<{"code" : 334, "message": "this is another test", "mode": 1}>>>,
-     <<<{"code" : 114, "message": "this is another test", "mode": 2}>>>,
-     <<<{"code" : 443, "message": "this is another test", "mode": 1}>>>,
-     <<<{"code" : 224, "message": "this is another test", "mode": 2}>>>,
-     <<<{"code" : 111, "message": "this is another test", "mode": 1}>>>,
-     <<<{"code" : 551, "message": "this is another test", "mode": 2}>>>
+     '{"code" : 224, "message": "this is a test", "mode": 1}',
+     '{"code" : 334, "message": "this is another test", "mode": 1}',
+     '{"code" : 114, "message": "this is another test", "mode": 2}',
+     '{"code" : 443, "message": "this is another test", "mode": 1}',
+     '{"code" : 224, "message": "this is another test", "mode": 2}',
+     '{"code" : 111, "message": "this is another test", "mode": 1}',
+     '{"code" : 551, "message": "this is another test", "mode": 2}'
  )
  .as('data')
 

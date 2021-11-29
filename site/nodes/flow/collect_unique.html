@@ -1885,7 +1885,7 @@ fields are grouped by the value of the key-field.</p>
 <hr />
 <p>Note: The number of uniquely collected values will grow, but never shrink (at the moment).</p>
 <hr />
-<p>Also note: The produced data_point can become very large, if the value of the <code>key-field</code> is ever changing, so that
+<p>Also note: Produced data may become very large, if the value of the <code>key-field</code> is ever-changing, so that
 the node will cache a lot of data and therefore may use a lot of memory, be aware of that !</p>
 <h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect_unique</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.key_field&#39;</span><span style="color: #f8f8f2">)</span>

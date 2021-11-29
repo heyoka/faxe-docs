@@ -9,12 +9,12 @@ Example
 -------
 ```dfs  
 |email()
-.to(<<<name@email.com>>>,<<<another@email.com>>>)
+.to('name@email.com','another@email.com')
 .subject('Alert #ex3 EnergyData')
-.body(<<<
-    No data since {{"datetime"}} on topic 'home/garage/energy', 
+.body('
+    No data since {{"datetime"}} on topic ''home/garage/energy'', 
     last value was {{"val"}}. 
-    >>>)
+    ')
 ```
     
 Sends an email with the subject 'Alert #ex3 EnergyData' to 2 recipients.

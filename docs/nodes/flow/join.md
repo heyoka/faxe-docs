@@ -69,19 +69,19 @@ a merge operation is performed.
 def v1 =
 |json_emitter()
 .every(3s)
-.json(<<< {"condition": {"id": 0, "name": "OK", "sub_cond":
+.json(' {"condition": {"id": 0, "name": "OK", "sub_cond":
      [{"value": 33}]}, "condition_reason": "",
      "predicted_maintenance_time": 1584246411783,
-     "vac_on_without_contact": [1.2, 2.5, 4.33]} >>>)
+     "vac_on_without_contact": [1.2, 2.5, 4.33]} ')
 
 def v2 =
 |json_emitter()
 .every(3s)
-.json(<<< {"condition": {"id1": 0, "name1": "OK", "sub_cond":
+.json(' {"condition": {"id1": 0, "name1": "OK", "sub_cond":
      [{"number": 44}]}, "condition_reason": "",
      "predicted_maintenance_time": 1584246411783,
      "vac_on_without_contact": [2.2, 2.5, 4.33],
-     "vac_on_with_contact": [5.6, 45.98, 7.012]} >>>)
+     "vac_on_with_contact": [5.6, 45.98, 7.012]} ')
 
 v1
 |join(v2)

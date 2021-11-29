@@ -52,10 +52,10 @@ This example uses different faxe [nodes](../nodes/index.md) to remodel and exten
 
 ```dfs
 %% enum mappings
-def alarm_state_map = <<<{"NOAL":0,"ERR":1}>>>
-def opmode_map = <<<{"NOMO":0,"AUTO":1,"MANU":2}>>>
-def opstate_map = <<<{"ON":0,"OFF":1}>>>
-def order_state_map = <<<{"RDY":0,"NRDY":1,"OFF":2}>>>
+def alarm_state_map = '{"NOAL":0,"ERR":1}'
+def opmode_map = '{"NOMO":0,"AUTO":1,"MANU":2}'
+def opstate_map = '{"ON":0,"OFF":1}'
+def order_state_map = '{"RDY":0,"NRDY":1,"OFF":2}'
 
 def topic_out = 'ttgw/data/grip/rovolutionmarchtrenk/condition/robot_state'
 

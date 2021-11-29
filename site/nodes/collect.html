@@ -522,6 +522,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    Output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1838,6 +1845,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    Output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1867,49 +1881,57 @@
                 <h1 id="the-collect-node">The collect node</h1>
 <p><em><code>Experimental</code></em>.</p>
 <p>Since 0.15.2</p>
-<p>The collect node will maintain a collection of data-points based on some criteria given as lambda-expressions.
+<p>The collect node will maintain a <code>set</code> of data-points based on some criteria given as lambda-expressions.
 It will output a data_batch item regularily (when <code>emit_every</code> is given) or on every incoming item.</p>
-<p>On every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
-If this is not the case, the node will evaluate the <code>add</code> function. If the add function returns true, the item will be added to the collection.</p>
+<p>On every incoming data_point the node will first check, if there is already an item with the same key-field value in the collection.
+If  not the case, the node will evaluate the <code>add</code> function. If the add function returns true, the item will be added to the collection.</p>
 <p>If there is already an item with the same key-value, the node would check if there is an <code>update</code> function and evaluate it and if no update happend, 
 it will try to evaluate the <code>remove</code> function.</p>
 <p>So if <code>update</code> happened, the node will skip evaluating the <code>remove</code> function.</p>
+<h3 id="output">Output</h3>
+<p>When no <code>emit_every</code> is given, the node will output data with every incoming data-item, that has changed the internal set.
+<code>data_batch</code> items are processed as a whole first and then may trigger an emit operation.</p>
+<hr />
+<blockquote>
+<p>Note: Produced data may become very large, if the value of <code>key_field</code> is ever-changing, so that
+    the node will cache a lot of data and therefore may use a lot of memory, be aware of that !</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">%% input data -&gt;</span>
 
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 224, &quot;name&quot; : &quot;224&quot;}, &quot;message&quot;: &quot;this is a test&quot;, &quot;mode&quot;: 1}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 334, &quot;name&quot; : &quot;334&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 1}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 114, &quot;name&quot; : &quot;114&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 2}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 443, &quot;name&quot; : &quot;443&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 1}&gt;&gt;&gt;, </span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 111, &quot;name&quot; : &quot;111&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 1}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 443, &quot;name&quot; : &quot;443&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 0}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 224, &quot;name&quot; : &quot;224&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 0}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 111, &quot;name&quot; : &quot;111&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 0}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 334, &quot;name&quot; : &quot;334&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 0}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 551, &quot;name&quot; : &quot;551&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 2}&gt;&gt;&gt;,</span>
-<span style="color: #e6db74">&lt;&lt;&lt;{&quot;code&quot; : {&quot;id&quot;: 551, &quot;name&quot; : &quot;551&quot;}, &quot;message&quot;: &quot;this is another test&quot;, &quot;mode&quot;: 0}&gt;&gt;&gt;</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 224, &quot;name&quot; : &quot;224&quot;}, &quot;message&quot;: &quot; a test&quot;, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 334, &quot;name&quot; : &quot;334&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 114, &quot;name&quot; : &quot;114&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 2}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 443, &quot;name&quot; : &quot;443&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span> 
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 111, &quot;name&quot; : &quot;111&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 443, &quot;name&quot; : &quot;443&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 0}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 224, &quot;name&quot; : &quot;224&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 0}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 111, &quot;name&quot; : &quot;111&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 0}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 334, &quot;name&quot; : &quot;334&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 0}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 551, &quot;name&quot; : &quot;551&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 2}&#39;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #e6db74">&#39;{&quot;code&quot; : {&quot;id&quot;: 551, &quot;name&quot; : &quot;551&quot;}, &quot;message&quot;: &quot; another test&quot;, &quot;mode&quot;: 0}&#39;</span>
 <span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
 
-<span style="color: #75715e">%% collect 2 fields (&#39;data.code&#39; and &#39;data.message&#39;) with the key-field &#39;data.code&#39;.</span>
+<span style="color: #75715e">%% collect 2 fields (&#39;data.code&#39; and &#39;data.message&#39;) </span>
+<span style="color: #75715e">%% with the key-field &#39;data.code&#39;.</span>
 <span style="color: #75715e">%% this node will output a data_batch item with a list of data-points</span>
 <span style="color: #75715e">%% where the original timestamp and meta-data is preserved and</span>
 <span style="color: #75715e">%% containing the fields mentioned before every 10 secondes</span>
 
 <span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
-<span style="color: #75715e">%% the collect node will build an internal buffer with the value of the &#39;key_field&#39; as index</span>
+<span style="color: #75715e">%% the collect node will build an internal buffer </span>
+<span style="color: #75715e">%% with the value of the &#39;key_field&#39; as index</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #75715e">%% criterion for adding a data-point to the internal collection buffer</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.mode&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
 <span style="color: #75715e">%% criterion for removal of values</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.mode&quot;</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
 <span style="color: #75715e">%% we keep these fields in the resulting data_batch</span>
-<span style="color: #f8f8f2">.keep(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.message&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #75715e">%% collection of type set, so no duplicates</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;set&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.keep(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.message&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">emit_every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">10s</span><span style="color: #f8f8f2">)</span>
 
 <span style="color: #75715e">%% make sense of the data-collection in counting the &#39;data.code&#39; values</span>

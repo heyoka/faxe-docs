@@ -18,13 +18,13 @@ Example
     lambda: "data.condition.name" == 'Error'
 )
 .values(
-    <<<{"cond": "Everything OK!"}>>>,
-    <<<{"cond": "Oh, oh, a Warning!"}>>>,
-    <<<{"cond": "Damn, Error!"}>>>
+    '{"cond": "Everything OK!"}',
+    '{"cond": "Oh, oh, a Warning!"}',
+    '{"cond": "Damn, Error!"}'
 )
 .json()
 .as('data')
-.default(<<<{"cond": "Nothing matched!!!"}>>>)
+.default('{"cond": "Nothing matched!!!"}')
 
 ``` 
 

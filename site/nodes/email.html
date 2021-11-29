@@ -1871,12 +1871,12 @@
 </blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span><span style="color: #a6e22e">name</span><span style="color: #66d9ef">@</span><span style="color: #f8f8f2">email.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">&lt;&lt;&lt;</span><span style="color: #a6e22e">another</span><span style="color: #66d9ef">@</span><span style="color: #f8f8f2">email.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name@email.com&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;another@email.com&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">subject</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Alert #ex3 EnergyData&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span>
-    <span style="color: #a6e22e">No</span> <span style="color: #a6e22e">data</span> <span style="color: #a6e22e">since</span> <span style="color: #a6e22e">datetime</span> <span style="color: #a6e22e">on</span> <span style="color: #a6e22e">topic</span> <span style="color: #e6db74">&#39;home/garage/energy&#39;</span><span style="color: #f8f8f2">,</span> 
-    <span style="color: #a6e22e">last</span> <span style="color: #a6e22e">value</span> <span style="color: #a6e22e">was</span> <span style="color: #a6e22e">val</span><span style="color: #f8f8f2">.</span> 
-    <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;</span>
+<span style="color: #e6db74">    No data since datetime on topic &#39;&#39;home/garage/energy&#39;&#39;, </span>
+<span style="color: #e6db74">    last value was val. </span>
+<span style="color: #e6db74">    &#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 <p>Sends an email with the subject 'Alert #ex3 EnergyData' to 2 recipients.</p>

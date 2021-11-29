@@ -1977,7 +1977,7 @@ Variables are immutable and cannot be reassigned new values later on in the scri
 though they can be used in other declarations and can be passed into functions, property calls and text-templates.</p>
 <h2 id="variable-declarations">Variable declarations</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">string</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;this is a string !&#39;</span>
-    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">text</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&lt;&lt;&lt; this is a text with some weird chars :// %&amp; &gt;&gt;&gt;</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">text</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39; this is a text with some weird chars :// %&amp; &#39;</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">func</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;value&quot;</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">3</span>
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">meas</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4.44</span>
     <span style="color: #75715e">% A lambda expression as literal</span>
@@ -2008,18 +2008,13 @@ though they can be used in other declarations and can be passed into functions, 
 <tbody>
 <tr>
 <td>string</td>
-<td>String type. Single quotes are used for string, string can also be multiline</td>
-<td>'this_is_a_string'</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Same as 'string', internally faxe does not have a string type, all strings a binaries</td>
-<td>'this_is_a_binary'</td>
+<td>String type. Single quotes are used for string, string can also be multiline. To use single quotes in your string, simple use 2 single quotes (since 0.19.0)</td>
+<td>'this_is_a_string' / <em>since 0.19.0</em>: 'SELECT MEAN(obj[''current'']) FROM mytable'</td>
 </tr>
 <tr>
 <td>text</td>
-<td>Text type. Mostly used where strings are used</td>
-<td>&lt;&lt;&lt; SELECT MEAN(obj['current']) FROM mytable &gt;&gt;&gt;</td>
+<td><code>deprecated</code> since 0.19.0, use <code>string</code> instead. Text type. Mostly used where strings are used</td>
+<td>' SELECT MEAN(obj['current']) FROM mytable '</td>
 </tr>
 <tr>
 <td>integer</td>
@@ -2119,9 +2114,9 @@ The variable <code>this_portion</code> could be overwritten with a new value for
 
 <hr />
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #f92672">&lt;&lt;&lt;</span>
-        <span style="color: #a6e22e">No</span> <span style="color: #a6e22e">data</span> <span style="color: #a6e22e">since</span> <span style="color: #a6e22e">datetime</span> <span style="color: #a6e22e">on</span> <span style="color: #a6e22e">topic</span> <span style="color: #e6db74">&#39;ttgw/energy&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">last</span> <span style="color: #a6e22e">value</span> <span style="color: #a6e22e">was</span> <span style="color: #a6e22e">val</span><span style="color: #f8f8f2">.</span> 
-        <span style="color: #f92672">&gt;&gt;&gt;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;</span>
+<span style="color: #e6db74">        No data since datetime on topic &#39;&#39;ttgw/energy&#39;&#39;, last value was val. </span>
+<span style="color: #e6db74">        &#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 <blockquote>

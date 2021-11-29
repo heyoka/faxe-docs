@@ -12,9 +12,9 @@ def user = 'MY_ORACLE_USER'
 def password = 'MY_ORACLE_PASS'
 def service_name = 'MY.service'
 
-def query = <<<
+def query = '
     select * from room order by room_number
->>>
+'
 
 |oracle_query()
 .host(host)

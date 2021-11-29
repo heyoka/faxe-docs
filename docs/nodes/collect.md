@@ -5,17 +5,26 @@ _`Experimental`_.
 
 Since 0.15.2
 
-The collect node will maintain a collection of data-points based on some criteria given as lambda-expressions.
+The collect node will maintain a `set` of data-points based on some criteria given as lambda-expressions.
 It will output a data_batch item regularily (when `emit_every` is given) or on every incoming item.
 
-On every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
-If this is not the case, the node will evaluate the `add` function. If the add function returns true, the item will be added to the collection.
+On every incoming data_point the node will first check, if there is already an item with the same key-field value in the collection.
+If  not the case, the node will evaluate the `add` function. If the add function returns true, the item will be added to the collection.
 
 If there is already an item with the same key-value, the node would check if there is an `update` function and evaluate it and if no update happend, 
 it will try to evaluate the `remove` function.
 
 So if `update` happened, the node will skip evaluating the `remove` function.
 
+### Output
+
+When no `emit_every` is given, the node will output data with every incoming data-item, that has changed the internal set.
+`data_batch` items are processed as a whole first and then may trigger an emit operation.
+
+
+-------------------------------------------------------------
+>Note: Produced data may become very large, if the value of `key_field` is ever-changing, so that
+    the node will cache a lot of data and therefore may use a lot of memory, be aware of that !
 
 
 Example
@@ -28,36 +37,36 @@ Example
 |json_emitter()
 .every(500ms)
 .json(
-<<<{"code" : {"id": 224, "name" : "224"}, "message": "this is a test", "mode": 1}>>>,
-<<<{"code" : {"id": 334, "name" : "334"}, "message": "this is another test", "mode": 1}>>>,
-<<<{"code" : {"id": 114, "name" : "114"}, "message": "this is another test", "mode": 2}>>>,
-<<<{"code" : {"id": 443, "name" : "443"}, "message": "this is another test", "mode": 1}>>>, 
-<<<{"code" : {"id": 111, "name" : "111"}, "message": "this is another test", "mode": 1}>>>,
-<<<{"code" : {"id": 443, "name" : "443"}, "message": "this is another test", "mode": 0}>>>,
-<<<{"code" : {"id": 224, "name" : "224"}, "message": "this is another test", "mode": 0}>>>,
-<<<{"code" : {"id": 111, "name" : "111"}, "message": "this is another test", "mode": 0}>>>,
-<<<{"code" : {"id": 334, "name" : "334"}, "message": "this is another test", "mode": 0}>>>,
-<<<{"code" : {"id": 551, "name" : "551"}, "message": "this is another test", "mode": 2}>>>,
-<<<{"code" : {"id": 551, "name" : "551"}, "message": "this is another test", "mode": 0}>>>
+'{"code" : {"id": 224, "name" : "224"}, "message": " a test", "mode": 1}',
+'{"code" : {"id": 334, "name" : "334"}, "message": " another test", "mode": 1}',
+'{"code" : {"id": 114, "name" : "114"}, "message": " another test", "mode": 2}',
+'{"code" : {"id": 443, "name" : "443"}, "message": " another test", "mode": 1}', 
+'{"code" : {"id": 111, "name" : "111"}, "message": " another test", "mode": 1}',
+'{"code" : {"id": 443, "name" : "443"}, "message": " another test", "mode": 0}',
+'{"code" : {"id": 224, "name" : "224"}, "message": " another test", "mode": 0}',
+'{"code" : {"id": 111, "name" : "111"}, "message": " another test", "mode": 0}',
+'{"code" : {"id": 334, "name" : "334"}, "message": " another test", "mode": 0}',
+'{"code" : {"id": 551, "name" : "551"}, "message": " another test", "mode": 2}',
+'{"code" : {"id": 551, "name" : "551"}, "message": " another test", "mode": 0}'
 )
 .as('data')
 
-%% collect 2 fields ('data.code' and 'data.message') with the key-field 'data.code'.
+%% collect 2 fields ('data.code' and 'data.message') 
+%% with the key-field 'data.code'.
 %% this node will output a data_batch item with a list of data-points
 %% where the original timestamp and meta-data is preserved and
 %% containing the fields mentioned before every 10 secondes
 
 |collect()
-%% the collect node will build an internal buffer with the value of the 'key_field' as index
+%% the collect node will build an internal buffer 
+%% with the value of the 'key_field' as index
 .key_field('data.code')
 %% criterion for adding a data-point to the internal collection buffer
 .add(lambda: "data.mode" > 0)
 %% criterion for removal of values
 .remove(lambda: "data.mode" == 0)
 %% we keep these fields in the resulting data_batch
-.keep('data.code', 'data.message')
-%% collection of type set, so no duplicates
-.type('set')
+.keep('data.code', 'data.message') 
 .emit_every(10s)
 
 %% make sense of the data-collection in counting the 'data.code' values

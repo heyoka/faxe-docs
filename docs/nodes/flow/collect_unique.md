@@ -28,7 +28,7 @@ fields are grouped by the value of the key-field.
 Note: The number of uniquely collected values will grow, but never shrink (at the moment).
 
 ----------------------------- 
-Also note: The produced data_point can become very large, if the value of the `key-field` is ever changing, so that
+Also note: Produced data may become very large, if the value of the `key-field` is ever-changing, so that
 the node will cache a lot of data and therefore may use a lot of memory, be aware of that !
 
 

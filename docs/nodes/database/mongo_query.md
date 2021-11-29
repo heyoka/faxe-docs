@@ -25,7 +25,7 @@ def host = 'localhost'
 .pass('root')
 .database('test')
 .collection('inventory')
-.query(<<< {"item": "canvas"} >>>)
+.query(' {"item": "canvas"} ')
 .every(5s)
 .as('data')
 
@@ -46,7 +46,7 @@ def host = 'localhost'
 .pass('root')
 .database('test')
 .collection('inventory')
-.query(<<< {"size.h": {"$gt": 16}} >>>) 
+.query(' {"size.h": {"$gt": 16}} ') 
 
 ```
 Every time a dataitem arrives at this node, from outside, it will query mongodb for documents that have a  

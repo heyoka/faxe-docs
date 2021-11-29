@@ -46,7 +46,7 @@ Example 2
 
 ```dfs  
 def default_map = 
-    <<<{"key1":"topic/1/new", "key2":"topic/2/new", "key3":"topic/3/new"}>>>
+    '{"key1":"topic/1/new", "key2":"topic/2/new", "key3":"topic/3/new"}'
 
 |mem() 
 .key('topic_lookup')

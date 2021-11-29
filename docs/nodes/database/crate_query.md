@@ -12,13 +12,15 @@ Example
 ```dfs
  def host = '10.14.204.8'
  def port = 5433 
- def query = <<<
+ 
+ %% to escape single quotes (') we use double single quotes ('')
+ def query = '
   SELECT
- avg(data_obj['x']['cur']) AS x_cur, avg(data_obj['y']['cur']) AS y_cur,
- avg(data_obj['z']['cur']) AS z_cur, avg(data_obj['yaw']['cur']) AS yaw_cur,
- avg(data_obj['pitch']['cur']) AS pitch_cur
+ avg(data_obj[''x''][''cur'']) AS x_cur, avg(data_obj[''y''][''cur'']) AS y_cur,
+ avg(data_obj[''z''][''cur'']) AS z_cur, avg(data_obj[''yaw''][''cur'']) AS yaw_cur,
+ avg(data_obj[''pitch''][''cur'']) AS pitch_cur
   FROM robotplc_parted;
- >>>
+ '
 
  def s =
   |crate_query()

@@ -78,7 +78,7 @@ Variable declarations
 ---------------------
 ```dfs
     def string = 'this is a string !'
-    def text = <<< this is a text with some weird chars :// %& >>>
+    def text = ' this is a text with some weird chars :// %& '
     def func = lambda: "value" / 3
     def meas = 4.44
     % A lambda expression as literal
@@ -102,9 +102,8 @@ DFS recognizes six basic types, the type of the literal will be interpreted from
 
 Type name | Description | Examples
 ----------|-------------|---------
-string    | String type. Single quotes are used for string, string can also be multiline | 'this_is_a_string'
-binary    | Same as 'string', internally faxe does not have a string type, all strings a binaries | 'this_is_a_binary'
-text      | Text type. Mostly used where strings are used | <<< SELECT MEAN(obj['current']) FROM mytable >>>
+string    | String type. Single quotes are used for string, string can also be multiline. To use single quotes in your string, simple use 2 single quotes (since 0.19.0) | 'this_is_a_string' / _since 0.19.0_: 'SELECT MEAN(obj[''current'']) FROM mytable'
+text      | `deprecated` since 0.19.0, use `string` instead. Text type. Mostly used where strings are used | ' SELECT MEAN(obj['current']) FROM mytable '
 integer   | Integer type. Arbitrarily big ints are allowed | 123456789987654321, 55
 float     | Floating point number. May be arbitrarily big  | 12.343422023, 5.6
 double    | Same as float  | 12.343422023, 5.6
@@ -172,9 +171,9 @@ There is another version of text-templating which uses a value inside the curren
 ----------------------
 ```dfs
     |email()
-    .body(<<<
-        No data since {{"datetime"}} on topic 'ttgw/energy', last value was {{"val"}}. 
-        >>>)
+    .body('
+        No data since {{"datetime"}} on topic ''ttgw/energy'', last value was {{"val"}}. 
+        ')
 ```
 
 > Note: We use double quotes to reference a field in the current data_item.
