@@ -1863,17 +1863,30 @@
 <p>Here we see that we can actively manipulate the connections in a flow by binding a node to a declaration with the <code>def</code> keyword.
 Whole chains of nodes ie: sub-graphs can be bound to a variable.
 This is called a <code>chain-declaration</code>.</p>
-<p>With the above example we can connect another node to n1:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">n1</span> <span style="color: #f92672">=</span> <span style="color: #f92672">|</span><span style="color: #a6e22e">node1</span><span style="color: #f8f8f2">()</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">chain1</span> <span style="color: #f92672">=</span> 
+<span style="color: #f92672">|</span><span style="color: #a6e22e">node1</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">node1_1</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">node1_2</span>
 
-<span style="color: #a6e22e">n1</span>
+<span style="color: #a6e22e">chain1</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">node2</span><span style="color: #f8f8f2">()</span>
+</code></pre></div>
+
+<p>Now node2 is connected to node1_2</p>
+<p>With the above example we can connect another node to chain1:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">chain1</span> <span style="color: #f92672">=</span> 
+<span style="color: #f92672">|</span><span style="color: #a6e22e">node1</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">node1_1</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">node1_2</span>
+
+<span style="color: #a6e22e">chain1</span>
 <span style="color: #f92672">|</span><span style="color: #a6e22e">node2</span><span style="color: #f8f8f2">()</span>
 
-<span style="color: #a6e22e">n1</span>
+<span style="color: #a6e22e">chain1</span>
 <span style="color: #f92672">|</span><span style="color: #a6e22e">node3</span><span style="color: #f8f8f2">()</span>
 </code></pre></div>
 
-<p>Here both nodes node2 and node3 are connected to node1.</p>
+<p>Here both nodes node2 and node3 are connected to node1_2.</p>
 <h4 id="note">Note:</h4>
 <p>Every use of the <code>def</code> keyword interrupts the auto chaining of nodes, ie:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">node1</span><span style="color: #f8f8f2">()</span>

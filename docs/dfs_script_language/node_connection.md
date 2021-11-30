@@ -23,20 +23,40 @@ Here we see that we can actively manipulate the connections in a flow by binding
 Whole chains of nodes ie: sub-graphs can be bound to a variable.
 This is called a `chain-declaration`.
 
-With the above example we can connect another node to n1:
+```dfs
+
+def chain1 = 
+|node1()
+|node1_1()
+|node1_2
+
+chain1
+|node2()
+ 
+
+```
+
+Now node2 is connected to node1_2
+
+
+
+With the above example we can connect another node to chain1:
 
 ```dfs
 
-def n1 = |node1()
+def chain1 = 
+|node1()
+|node1_1()
+|node1_2
 
-n1
+chain1
 |node2()
 
-n1
+chain1
 |node3()
 
 ```
-Here both nodes node2 and node3 are connected to node1.
+Here both nodes node2 and node3 are connected to node1_2.
 
 #### Note:
 Every use of the `def` keyword interrupts the auto chaining of nodes, ie:

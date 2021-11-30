@@ -1880,11 +1880,11 @@
                 
                 <h1 id="script-expressions">Script expressions</h1>
 <p>Script expressions look the same as <a href="lambda_expressions.html">lambda expressions</a>, but start with <code>e:</code> instead of <code>lambda:</code>.</p>
-<p>There are two main differences between script expressions and lambda expressions:</p>
-<ul>
-<li>script expressions are evaluated during dfs compilation</li>
-<li>therefore script expressions can not use "references" to access fields in data-items</li>
-</ul>
+<p>There is a main difference between script expressions and lambda expressions:</p>
+<blockquote>
+<p>Script expressions are evaluated during dfs compilation.</p>
+<p>Therefore, script expressions can not use "references" to access fields in data-items.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;this/is/my/topic&#39;</span>
 <span style="color: #75715e">%% script expression, which uses the topic definition</span>

@@ -2,10 +2,11 @@
 
 Script expressions look the same as [lambda expressions](lambda_expressions.md), but start with `e:` instead of `lambda:`.
 
-There are two main differences between script expressions and lambda expressions:
+There is a main difference between script expressions and lambda expressions:
+> Script expressions are evaluated during dfs compilation.
 
-- script expressions are evaluated during dfs compilation
-- therefore script expressions can not use "references" to access fields in data-items
+> Therefore, script expressions can not use "references" to access fields in data-items.
+
 
 
 ## Example
