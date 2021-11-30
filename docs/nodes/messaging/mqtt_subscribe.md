@@ -20,10 +20,11 @@ Parameters
 
 Parameter     | Description | Default 
 --------------|-------------|---------
-host( `string` )| Ip address or hostname of the broker| from config file
-port( `integer` )| The broker's port | 1883 from config file
-user( `string` )| username| from config file
-pass( `string` )| password| from config file
+host( `string` )| Ip address or hostname of the broker| from config
+port( `integer` )| The broker's port | 1883 from config
+user( `string` )| username| from config
+pass( `string` )| password| from config
+client_id( `string` )| mqtt client id, defaults to a combination of flow-id and node-id| undefined
 topics( `string_list` )| mqtt topic(s) to use| undefined
 topic( `string` )| mqtt topic to use| undefined
 qos( `integer` )|Quality of service, one of 0, 1 or 2| 1 

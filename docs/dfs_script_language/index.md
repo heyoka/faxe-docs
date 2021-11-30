@@ -79,7 +79,10 @@ Variable declarations
 ```dfs
     def string = 'this is a string !'
     def text = ' this is a text with some weird chars :// %& '
+    %% escape single quotes in strings with a second single quote:
+    def string_with_single quotes = 'my string has ''single quotes'' in it'
     def func = lambda: "value" / 3
+    def expr = e: str_replace(string, ' ', '_')
     def meas = 4.44
     % A lambda expression as literal
     def func2 = lambda: int(meas / 13)
@@ -102,8 +105,8 @@ DFS recognizes six basic types, the type of the literal will be interpreted from
 
 Type name | Description | Examples
 ----------|-------------|---------
-string    | String type. Single quotes are used for string, string can also be multiline. To use single quotes in your string, simple use 2 single quotes (since 0.19.0) | 'this_is_a_string' / _since 0.19.0_: 'SELECT MEAN(obj[''current'']) FROM mytable'
-text      | `deprecated` since 0.19.0, use `string` instead. Text type. Mostly used where strings are used | ' SELECT MEAN(obj['current']) FROM mytable '
+string    | String type. Single quotes are used for string, string can also be multiline.<br />To use single quotes in your string, simple use 2 single quotes (since 0.19.0) | 'this_is_a_string' <br /> _since 0.19.0_: 'SELECT MEAN(obj[''current'']) FROM mytable'
+text      | `deprecated` since 0.19.0, use `string` instead. Text type. Mostly used where strings are used | <<< SELECT MEAN(obj['current']) FROM mytable >>>
 integer   | Integer type. Arbitrarily big ints are allowed | 123456789987654321, 55
 float     | Floating point number. May be arbitrarily big  | 12.343422023, 5.6
 double    | Same as float  | 12.343422023, 5.6
@@ -166,7 +169,7 @@ The variable `this_portion` could be overwritten with a new value for every inst
 
 There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:
 ```dfs
-    {{"value_name"}}
+    {{"field_name"}}
 ```
 ----------------------
 ```dfs
