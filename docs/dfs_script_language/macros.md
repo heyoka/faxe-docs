@@ -14,12 +14,11 @@ def factor = 2
 
 ```
 
-We use the macro:
+Once the above dfs script is registered with faxe, we can use it as a macro:
 
 ```dfs
 |value_emitter()
-.every(500ms)
-.type(point)
+.every(500ms) 
 
 ||multiply_above_threshold()
 .threshold(2.7)
@@ -33,8 +32,7 @@ The resulting script will look like this:
 
 ```dfs
 |value_emitter()
-.every(500ms)
-.type(point)
+.every(500ms) 
 
 def threshold = 2.7
 def factor = 2

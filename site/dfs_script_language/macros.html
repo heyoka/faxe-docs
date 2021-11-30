@@ -1796,10 +1796,9 @@
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;multiple&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>We use the macro:</p>
+<p>Once the above dfs script is registered with faxe, we can use it as a macro:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span> 
 
 <span style="color: #f92672">||</span><span style="color: #a6e22e">multiply_above_threshold</span><span style="color: #f8f8f2">()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">threshold</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2.7</span><span style="color: #f8f8f2">)</span>
@@ -1808,8 +1807,7 @@
 <p>A macro is referenced with a double pipe symbol <code>||</code>, followed by the name of the task which we want to use as macro.</p>
 <p>The resulting script will look like this:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span> 
 
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">threshold</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2.7</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">factor</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span>
