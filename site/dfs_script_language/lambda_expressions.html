@@ -1,0 +1,2577 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Lambda expressions - Faxe</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lambda-expressions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+  
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../index.html" title="Faxe" class="md-header-nav__button md-logo" aria-label="Faxe">
+      
+  <img src="../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Faxe
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Lambda expressions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Faxe" class="md-nav__button md-logo" aria-label="Faxe">
+      
+  <img src="../assets/images/favicon.png" alt="logo">
+
+    </a>
+    Faxe
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        General
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration.html" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flow_concurrency.html" class="md-nav__link">
+        Flow concurrency
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics.html" class="md-nav__link">
+        Metrics, Connection status, Debug events and Logs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../os_tuning.html" class="md-nav__link">
+        Os tuning
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
+        Dfs examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dfs examples" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Dfs examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfs_examples/consume_data_rewrite_republish.html" class="md-nav__link">
+        Consume data rewrite republish
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfs_examples/fun_with_http.html" class="md-nav__link">
+        Fun with http
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfs_examples/message_re-modeling.html" class="md-nav__link">
+        Message re modeling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfs_examples/python_double.html" class="md-nav__link">
+        Python double
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfs_examples/read_modbus_publish_mqtt.html" class="md-nav__link">
+        Read modbus publish mqtt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfs_examples/using_mem_node.html" class="md-nav__link">
+        Using mem node
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+      
+      <label class="md-nav__link" for="nav-7">
+        Dfs script language
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dfs script language" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+          <span class="md-nav__icon md-icon"></span>
+          Dfs script language
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Introducing the DFS Script Language
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lambda expressions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="lambda_expressions.html" class="md-nav__link md-nav__link--active">
+        Lambda expressions
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-paths" class="md-nav__link">
+    Field paths
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-functions" class="md-nav__link">
+    Built-in functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-conversion" class="md-nav__link">
+    Type conversion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-functions" class="md-nav__link">
+    Time functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#math-functions" class="md-nav__link">
+    Math functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-functions" class="md-nav__link">
+    String functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-functions" class="md-nav__link">
+    Conditional functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="macros.html" class="md-nav__link">
+        Macros
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="node_connection.html" class="md-nav__link">
+        Node connection
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="script_expressions.html" class="md-nav__link">
+        Script expressions
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        Nodes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Nodes" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          Nodes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/index.html" class="md-nav__link">
+        Faxe nodes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/aggregate.html" class="md-nav__link">
+        Aggregate
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/collect.html" class="md-nav__link">
+        Collect
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/email.html" class="md-nav__link">
+        Email
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/mem.html" class="md-nav__link">
+        Mem
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/python.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/stats.html" class="md-nav__link">
+        Stats
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/tcp_send.html" class="md-nav__link">
+        Tcp send
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-9" type="checkbox" id="nav-8-9" >
+      
+      <label class="md-nav__link" for="nav-8-9">
+        Data collection
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Data collection" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-9">
+          <span class="md-nav__icon md-icon"></span>
+          Data collection
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/data_collection/modbus.html" class="md-nav__link">
+        Modbus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/data_collection/s7read.html" class="md-nav__link">
+        S7read
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/data_collection/tcp_receive.html" class="md-nav__link">
+        Tcp receive
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/data_collection/tcp_receive_line.html" class="md-nav__link">
+        Tcp receive line
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/data_collection/udp_receive.html" class="md-nav__link">
+        Udp receive
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-10" type="checkbox" id="nav-8-10" >
+      
+      <label class="md-nav__link" for="nav-8-10">
+        Database
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Database" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-10">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/crate_out.html" class="md-nav__link">
+        Crate out
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/crate_query.html" class="md-nav__link">
+        Crate query
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/crate_query_cont.html" class="md-nav__link">
+        Crate query cont
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/http_post_crate.html" class="md-nav__link">
+        Http post crate
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/influx_out.html" class="md-nav__link">
+        Influx out
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/mongo_query.html" class="md-nav__link">
+        Mongo query
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/oracle_query.html" class="md-nav__link">
+        Oracle query
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-11" type="checkbox" id="nav-8-11" >
+      
+      <label class="md-nav__link" for="nav-8-11">
+        Debug
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Debug" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-11">
+          <span class="md-nav__icon md-icon"></span>
+          Debug
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/debug/conn_status.html" class="md-nav__link">
+        Conn status
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/debug/debug.html" class="md-nav__link">
+        Debug
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/debug/json_emitter.html" class="md-nav__link">
+        Json emitter
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/debug/log.html" class="md-nav__link">
+        Log
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/debug/metrics.html" class="md-nav__link">
+        Metrics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/debug/value_emitter.html" class="md-nav__link">
+        Value emitter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-12" type="checkbox" id="nav-8-12" >
+      
+      <label class="md-nav__link" for="nav-8-12">
+        Flow
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Flow" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-12">
+          <span class="md-nav__icon md-icon"></span>
+          Flow
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/collect_unique.html" class="md-nav__link">
+        Collect unique
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/combine.html" class="md-nav__link">
+        Combine
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/group_by.html" class="md-nav__link">
+        Group by
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/group_union.html" class="md-nav__link">
+        Group union
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/join.html" class="md-nav__link">
+        Join
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/union.html" class="md-nav__link">
+        Union
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-13" type="checkbox" id="nav-8-13" >
+      
+      <label class="md-nav__link" for="nav-8-13">
+        Flowdata
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Flowdata" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-13">
+          <span class="md-nav__icon md-icon"></span>
+          Flowdata
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flowdata/batch.html" class="md-nav__link">
+        Batch
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flowdata/default.html" class="md-nav__link">
+        Default
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flowdata/delete.html" class="md-nav__link">
+        Delete
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flowdata/keep.html" class="md-nav__link">
+        Keep
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flowdata/rename.html" class="md-nav__link">
+        Rename
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flowdata/set.html" class="md-nav__link">
+        Set
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-14" type="checkbox" id="nav-8-14" >
+      
+      <label class="md-nav__link" for="nav-8-14">
+        Http
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Http" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-14">
+          <span class="md-nav__icon md-icon"></span>
+          Http
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/http/http_get.html" class="md-nav__link">
+        Http get
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/http/http_listen.html" class="md-nav__link">
+        Http listen
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/http/http_post.html" class="md-nav__link">
+        Http post
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-15" type="checkbox" id="nav-8-15" >
+      
+      <label class="md-nav__link" for="nav-8-15">
+        Logic
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Logic" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-15">
+          <span class="md-nav__icon md-icon"></span>
+          Logic
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/case.html" class="md-nav__link">
+        Case
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/change_detect.html" class="md-nav__link">
+        Change detect
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/deadman.html" class="md-nav__link">
+        Deadman
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/eval.html" class="md-nav__link">
+        Eval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/sample.html" class="md-nav__link">
+        Sample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/shift.html" class="md-nav__link">
+        Shift
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/state_change.html" class="md-nav__link">
+        State change
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/state_count.html" class="md-nav__link">
+        State count
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/state_duration.html" class="md-nav__link">
+        State duration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/state_sequence.html" class="md-nav__link">
+        State sequence
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/time_diff.html" class="md-nav__link">
+        Time diff
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/time_elapsed.html" class="md-nav__link">
+        Time elapsed
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/triggered_timeout.html" class="md-nav__link">
+        Triggered timeout
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/value_diff.html" class="md-nav__link">
+        Value diff
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/where.html" class="md-nav__link">
+        Where
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-16" type="checkbox" id="nav-8-16" >
+      
+      <label class="md-nav__link" for="nav-8-16">
+        Messaging
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Messaging" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-16">
+          <span class="md-nav__icon md-icon"></span>
+          Messaging
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/messaging/amqp_consume.html" class="md-nav__link">
+        Amqp consume
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/messaging/amqp_publish.html" class="md-nav__link">
+        Amqp publish
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/messaging/mqtt_amqp_bridge.html" class="md-nav__link">
+        Mqtt amqp bridge
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/messaging/mqtt_publish.html" class="md-nav__link">
+        Mqtt publish
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/messaging/mqtt_subscribe.html" class="md-nav__link">
+        Mqtt subscribe
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-17" type="checkbox" id="nav-8-17" >
+      
+      <label class="md-nav__link" for="nav-8-17">
+        Statistics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Statistics" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-17">
+          <span class="md-nav__icon md-icon"></span>
+          Statistics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/avg.html" class="md-nav__link">
+        Avg
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/bottom.html" class="md-nav__link">
+        Bottom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/count.html" class="md-nav__link">
+        Count
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/count_change.html" class="md-nav__link">
+        Count change
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/count_distinct.html" class="md-nav__link">
+        Count distinct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/distinct.html" class="md-nav__link">
+        Distinct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/elapsed.html" class="md-nav__link">
+        Elapsed
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/first.html" class="md-nav__link">
+        First
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/geometric_mean.html" class="md-nav__link">
+        Geometric mean
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/kurtosis.html" class="md-nav__link">
+        Kurtosis
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/last.html" class="md-nav__link">
+        Last
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/max.html" class="md-nav__link">
+        Max
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/mean.html" class="md-nav__link">
+        Mean
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/median.html" class="md-nav__link">
+        Median
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/min.html" class="md-nav__link">
+        Min
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/percentile.html" class="md-nav__link">
+        Percentile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/stddev.html" class="md-nav__link">
+        Stddev
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/sum.html" class="md-nav__link">
+        Sum
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/top.html" class="md-nav__link">
+        Top
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/statistics/variance.html" class="md-nav__link">
+        Variance
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-18" type="checkbox" id="nav-8-18" >
+      
+      <label class="md-nav__link" for="nav-8-18">
+        Window
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Window" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-18">
+          <span class="md-nav__icon md-icon"></span>
+          Window
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/window/win_clock.html" class="md-nav__link">
+        Win clock
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/window/win_event.html" class="md-nav__link">
+        Win event
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/window/win_session.html" class="md-nav__link">
+        Win session
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/window/win_time.html" class="md-nav__link">
+        Win time
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-paths" class="md-nav__link">
+    Field paths
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-functions" class="md-nav__link">
+    Built-in functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-conversion" class="md-nav__link">
+    Type conversion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-functions" class="md-nav__link">
+    Time functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#math-functions" class="md-nav__link">
+    Math functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-functions" class="md-nav__link">
+    String functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-functions" class="md-nav__link">
+    Conditional functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="lambda-expressions">Lambda expressions</h1>
+<h2 id="overview">Overview</h2>
+<p>DFS uses lambda expressions to define transformations on data points as well as define Boolean conditions that act as filters. 
+Lambda expressions wrap mathematical operations, Boolean operations, internal function calls or a combination of all three.  </p>
+<p>All lambda expressions in DFS begin with the <code>lambda:</code> keyword.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">where(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;topic&quot;</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&#39;ttop/grap/prec&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>In the above example <code>"topic"</code> is used to access the value of a field called <code>topic</code> 
+from the current data_point and compared against the string <code>'ttop/grap/prec'</code>.</p>
+<blockquote>
+<p>Note here that literal string values are declared using single quotes, 
+while double quotes are used to access the values of tags and fields within the current data_item.</p>
+</blockquote>
+<h2 id="field-paths">Field paths</h2>
+<blockquote>
+<p>As field and tag values can be deeply nested maps and lists, it is possible to use a <code>JSON-path</code> like syntax
+to reference them:</p>
+</blockquote>
+<p>Valid examples:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>&quot;averages&quot;
+
+&quot;axis.z.cur&quot;
+
+&quot;value.sub[2].data&quot;
+
+&quot;averages.emitted[5]&quot;
+</code></pre></div>
+
+<hr />
+<h2 id="built-in-functions">Built-in functions</h2>
+<h3 id="type-conversion">Type conversion</h3>
+<p>With a few exceptions every type can be converted to every other type.</p>
+<p><strong>Bool</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>bool(a_value) -&gt; true|false
+</code></pre></div>
+
+<p><strong>Integer</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>int(value) -&gt; integer
+</code></pre></div>
+
+<p><strong>Float</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>float(value) -&gt; float
+</code></pre></div>
+
+<p><strong>String</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>string(val) -&gt; string
+</code></pre></div>
+
+<h3 id="time-functions">Time functions</h3>
+<p>Every data_point in faxe contains a field called <strong><code>ts</code></strong>, which holds a UTC timestamp in milliseconds.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>now()</code> -&gt; integer</td>
+<td>returns an utc timestamp in milliseconds</td>
+</tr>
+<tr>
+<td><code>to_iso8601(ts)</code> -&gt; string</td>
+<td>converts the timestamp to an ISO8601 datetime string</td>
+</tr>
+<tr>
+<td><code>to_rfc3339(ts)</code> -&gt; string</td>
+<td>converts the timestamp to an RFC3339 datetime string</td>
+</tr>
+<tr>
+<td><code>millisecond(ts)</code> -&gt; integer</td>
+<td>milliseconds within the second [0, 999]</td>
+</tr>
+<tr>
+<td><code>second(ts)</code> -&gt; integer</td>
+<td>second within the minute [0, 59]</td>
+</tr>
+<tr>
+<td><code>minute(ts)</code> -&gt; integer</td>
+<td>minute within the hour [0, 59]</td>
+</tr>
+<tr>
+<td><code>hour(ts)</code> -&gt; integer</td>
+<td>hour within the day [0, 23]</td>
+</tr>
+<tr>
+<td><code>day(ts)</code> -&gt; integer</td>
+<td>day within the month [1, 31]</td>
+</tr>
+<tr>
+<td><code>day_of_week(ts)</code> -&gt; integer</td>
+<td>the weekday with week [1, 7] 1 is monday</td>
+</tr>
+<tr>
+<td><code>week(ts)</code> -&gt; integer</td>
+<td>isoweek-number within year [1, 53]</td>
+</tr>
+<tr>
+<td><code>month(ts)</code> -&gt; integer</td>
+<td>month within the year [1, 12]</td>
+</tr>
+<tr>
+<td><code>time_align(ts, duration)</code> -&gt; integer</td>
+<td>align the given timestamp to duration</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">8</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">19</span>
+</code></pre></div>
+
+<p>The above expression evaluates to true if the hour of the day for the data point falls between 08:00 and 19:00.</p>
+<hr />
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">time_align</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">3m</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Will align every timestamp (ts) to a multiple of the 3 minutes within an hour (ie: 00:00, 00:03, 00:06, ...)</p>
+<h3 id="math-functions">Math functions</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>abs(x)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>acos(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>acosh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>asin(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>asinh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>atan(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>atan2(y, x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>atanh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ceil(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cos(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cosh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>exp(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>floor(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fmod(x, y)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>log(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>log10(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>log2(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>max(x, y)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>max(list)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>min(x, y)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>min(list)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pi() -&gt; float</code></td>
+<td>gives pi</td>
+</tr>
+<tr>
+<td><code>pow(x, y)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>round(x)</code> -&gt; integer</td>
+<td>round a number to an integer</td>
+</tr>
+<tr>
+<td><code>round_float(x, precision)</code> -&gt; float</td>
+<td>round a float (x) with the given precision</td>
+</tr>
+<tr>
+<td><code>sin(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sinh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sqrt(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tan(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tanh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="string-functions">String functions</h3>
+<p>String positions start with index 0.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>str_at(x, pos)</code> -&gt; string/undefined</td>
+<td>Returns the grapheme in the position of the given utf8 string. If position is greater than string length, then it returns undefined. Negative offsets count back from the end of the string.</td>
+</tr>
+<tr>
+<td><code>str_capitalize(x)</code> -&gt; string</td>
+<td>Converts the first character in the given string to uppercase and the remaining to lowercase</td>
+</tr>
+<tr>
+<td><code>str_contains(x, contents)</code> -&gt; bool</td>
+<td>Check if string contains any of the given contents</td>
+</tr>
+<tr>
+<td><code>str_downcase(x)</code> -&gt; string</td>
+<td>Convert all characters on the given string to lowercase</td>
+</tr>
+<tr>
+<td><code>str_ends_with(x, suffix)</code> -&gt; string</td>
+<td>Returns true if string ends with suffix, otherwise false.</td>
+</tr>
+<tr>
+<td><code>str_ends_with_any(x, suffixes)</code> -&gt; string</td>
+<td>Returns true if string ends with any of the suffixes given, otherwise false.</td>
+</tr>
+<tr>
+<td><code>str_eqi(x,y)</code> -&gt; bool</td>
+<td>Compares strings case insensitively</td>
+</tr>
+<tr>
+<td><code>str_first(x)</code> -&gt; string/undefined</td>
+<td>Returns the first grapheme from an utf8 string, undefined if the string is empty</td>
+</tr>
+<tr>
+<td><code>str_last(x)</code> -&gt; string/undefined</td>
+<td>Returns the last grapheme from an utf8 string, undefined if the string is empty</td>
+</tr>
+<tr>
+<td><code>str_length(x)</code> -&gt; int</td>
+<td>Returns the number of unicode graphemes in an utf8 string</td>
+</tr>
+<tr>
+<td><code>str_lstrip(x)</code> -&gt; string</td>
+<td>Returns a string where leading Unicode whitespace has been removed</td>
+</tr>
+<tr>
+<td><code>str_lstrip(x, char)</code> -&gt; string</td>
+<td>Returns a string where leading char have been removed</td>
+</tr>
+<tr>
+<td>str_normalize/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_pad_leading/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_pad_leading/3</td>
+<td></td>
+</tr>
+<tr>
+<td>str_pad_trailing/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_pad_trailing/3</td>
+<td></td>
+</tr>
+<tr>
+<td><code>str_replace(x, patt, repl)</code> -&gt; string</td>
+<td>Returns a new string based on subject by replacing the parts matching pattern by replacement.</td>
+</tr>
+<tr>
+<td>str_replace_leading/3</td>
+<td>Replaces all leading occurrences of match by replacement of match in string.</td>
+</tr>
+<tr>
+<td>str_replace_trailing/3</td>
+<td>Replaces all trailing occurrences of match by replacement of match in string.</td>
+</tr>
+<tr>
+<td><code>str_replace_prefix(x, match, repl)</code> -&gt; string</td>
+<td>Replaces prefix in string by replacement if it matches match. Returns the string untouched if there is no match. If match is an empty string (""), replacement is just prepended to string.</td>
+</tr>
+<tr>
+<td><code>str_replace_suffix(x, match, repl)</code> -&gt; string</td>
+<td>Replaces suffix in string by replacement if it matches match. Returns the string untouched if there is no match. If match is an empty string (""), replacement is just appended to string.</td>
+</tr>
+<tr>
+<td><code>str_reverse(x)</code> -&gt; string</td>
+<td>Reverses the given string.</td>
+</tr>
+<tr>
+<td><code>str_rstrip(x)</code> -&gt; string</td>
+<td>Returns a string where trailing Unicode whitespace has been removed</td>
+</tr>
+<tr>
+<td><code>str_rstrip(x, char)</code> -&gt; string</td>
+<td>Returns a string where trailing char have been removed</td>
+</tr>
+<tr>
+<td><code>str_slice(x, start, len)</code> -&gt; string</td>
+<td>Returns a substring starting at the offset given by the first, and a length given by the second param, if offset is negative, count back from end of string.</td>
+</tr>
+<tr>
+<td>str_split/1</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split/3</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_at/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_any/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_any/3</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_re/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_re/3</td>
+<td></td>
+</tr>
+<tr>
+<td><code>str_starts_with(x, pre)</code> -&gt; bool</td>
+<td>Returns true if string starts with Prefix</td>
+</tr>
+<tr>
+<td><code>str_starts_with_any(x, prefixes)</code> -&gt; bool</td>
+<td>Returns true if string starts with any of the prefixes given, otherwise false.</td>
+</tr>
+<tr>
+<td><code>str_strip(x)</code> -&gt; string</td>
+<td>Returns a string where leading/trailing Unicode whitespace has been removed</td>
+</tr>
+<tr>
+<td><code>str_strip(x, char)</code> -&gt; string</td>
+<td>Returns a string where leading/trailing char have been removed</td>
+</tr>
+<tr>
+<td><code>str_upcase(x)</code> -&gt; string</td>
+<td>Convert all characters on the given string to uppercase</td>
+</tr>
+</tbody>
+</table>
+<h3 id="misc">Misc</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is defined in the current data-item</td>
+<td></td>
+</tr>
+<tr>
+<td><code>undefined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is NOT defined in the current data-item</td>
+<td></td>
+</tr>
+<tr>
+<td><code>topic_part(TopicString, PartIndex, [Seperator])</code> -&gt; string</td>
+<td>extract a part from a topic string, Separator defaults to '/', the index of the first part is <code>1</code> not 0</td>
+<td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>
+</tr>
+<tr>
+<td><code>from_json_string(String)</code> -&gt; faxe map or list</td>
+<td>convert a valid json string into faxe's internal data-structure</td>
+<td>from_json_string('{"a":"b"}')</td>
+</tr>
+<tr>
+<td><code>to_json_string(String)</code> -&gt; string</td>
+<td>convert faxe's internal data-structure into a json string</td>
+<td>to_json_string("data.struct")</td>
+</tr>
+<tr>
+<td><code>size(ListOrMap)</code> -&gt; integer</td>
+<td>get the number of entries in a list or map</td>
+<td>size("data.lines")</td>
+</tr>
+<tr>
+<td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>
+<td>check for list/set membership of a value, or when used with a map, check if Ele is a key in the map</td>
+<td></td>
+</tr>
+<tr>
+<td><code>not_member(Ele, ListOrMap)</code> -&gt; bool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>map_get(Key, Map)</code> -&gt; any</td>
+<td>get a value from a map, 'undefined' is returned, if the key is not present in map</td>
+<td>map_get("topic", ls_mem('stream_lookup'))</td>
+</tr>
+<tr>
+<td><code>random(N)</code> -&gt; integer</td>
+<td>generate a random integer between 1 and N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>random_real(N)</code> -&gt; float</td>
+<td>generate a random float between 0.0 and 1.0, that gets multiplied by N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>mem</code> values are set with the <a href="../nodes/mem.html">mem node</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ls_mem(Key)</code> -&gt; any</td>
+<td>get the single value associated with Key from the flow-memory</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ls_mem_list(Key)</code> -&gt; any</td>
+<td>get the list value associated with Key from the flow-memory</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ls_mem_set(Key)</code> -&gt; any</td>
+<td>get the set value associated with Key from the flow-memory</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="conditional-functions">Conditional functions</h3>
+<p><strong>If</strong></p>
+<p>Returns the result of its operands depending on the value of the first argument. 
+The second and third arguments must return the same type.</p>
+<p>Example:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">threshold</span> <span style="color: #f92672">AND</span> <span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;true&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;false&#39;</span><span style="color: #f8f8f2">))</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>The value of the field <code>value</code> in the above example will be the string <code>true</code> or <code>false</code>, 
+depending on the condition passed as the first argument.</p>
+<p>The if function’s return type is the same type as its second and third arguments.</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>if(condition, true expression, false expression)
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Introducing the DFS Script Language
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="macros.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Macros
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,8 @@
+setup.py
+dfslexer/__init__.py
+dfslexer/dfslexer.py
+dfslexer.egg-info/PKG-INFO
+dfslexer.egg-info/SOURCES.txt
+dfslexer.egg-info/dependency_links.txt
+dfslexer.egg-info/entry_points.txt
+dfslexer.egg-info/top_level.txt
