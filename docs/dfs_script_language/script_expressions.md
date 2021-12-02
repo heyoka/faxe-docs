@@ -72,5 +72,5 @@ def batch_size = 50
 
 ```
 
-Script expression can be use for node parameters (except where a lambda expression is required of course), 
-as long as the resulting value has the right data-type.
+Script expression can be used for node parameters (except where a lambda expression is required of course), 
+as long as the resulting value is of the required data-type.
