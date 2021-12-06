@@ -24,3 +24,4 @@ Parameters
 Parameter     | Description | Default 
 --------------|-------------|---------  
 as( `string` ) | name of the field for parsed data|'timediff'  
+default( `any` ) | default value to use, when no previous time exists|0

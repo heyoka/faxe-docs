@@ -23,3 +23,4 @@ Parameters
 Parameter     | Description | Default 
 --------------|-------------|---------  
 as( `string` ) | name of the field for parsed data|'elapsed'  
+default( `any` ) | default value to use, when no previous time exists|0

@@ -1108,6 +1108,26 @@ paths:
           name: "task_id"
           type: string
           required: true
+  /task/delete_force/{task_id}:
+    delete:
+      summary: "Force delete a task"
+      description: "Delete a task by it's id, whether it is currently running or not."
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Task successfully deleted."
+        401:
+          description: Unauthorized
+        404:
+          description: "Task with id 'task_id' could not be found."
+        405:
+          description: "Method not allowed"
+      parameters:
+        - in: "path"
+          name: "task_id"
+          type: string
+          required: true
   /task/add_tags/{task_id}:
     post:
       summary: Add tags to a task
