@@ -1101,14 +1101,14 @@ paths:
           description: "Task with id 'task_id' could not be found."
         405:
           description: "Method not allowed"
-        406:
-          description: "Task is running and must be stopped before it can be deleted."
+        409:
+          description: Conflict. "Task is running and must be stopped before it can be deleted."
       parameters:
         - in: "path"
           name: "task_id"
           type: string
           required: true
-  /task/delete_force/{task_id}:
+  /task/delete/{task_id}/force:
     delete:
       summary: "Force delete a task"
       description: "Delete a task by it's id, whether it is currently running or not."
