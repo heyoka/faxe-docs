@@ -1089,7 +1089,7 @@ paths:
   /task/delete/{task_id}:
     delete:
       summary: "Delete a task"
-      description: "Delete a task by it's id."
+      description: "Delete a task by it's id, if it is not running."
       produces:
         - application/json
       responses:
