@@ -136,13 +136,13 @@ Internally all time and duration related values are converted to milliseconds.
 
 #### Examples
 ```dfs
-    def span = 10s
-    def frequency = 10m
-    def short = 50ms
+def span = 10s
+def frequency = 10m
+def short = 50ms
     
-    |win_time()
-    .period(1h)
-    .every(30m)
+|win_time()
+.period(1h)
+.every(30m)
 ```
 
 ## Text templates
@@ -152,15 +152,15 @@ Use double curly braces for string/text templates:
 {% raw %} 
 ```dfs
 
-    {{ variable_name }}
+{{ variable_name }}
     
 ```
 {% endraw %}
 #### Use
 {% raw %}
 ```dfs
-    def this_portion = 'it'
-    def text_template = 'Some string/text where {{this_portion}} will get replaced'
+def this_portion = 'it'
+def text_template = 'Some string/text where {{this_portion}} will get replaced'
 ```
 {% endraw %}
 
@@ -179,7 +179,7 @@ There is another version of text-templating which uses a value inside the curren
 {% raw %}
 ```dfs
 
-    {{"field_name"}}
+{{"field_name"}}
     
 ```
 {% endraw %}
@@ -188,10 +188,10 @@ There is another version of text-templating which uses a value inside the curren
 
 {% raw %}
 ```dfs
-    |email()
-    .body('
-        No data since {{"datetime"}} on topic ''ttgw/energy'', last value was {{"val"}}. 
-        ')
+|email()
+.body('
+    No data since {{"datetime"}} on topic ''ttgw/energy'', last value was {{"val"}}. 
+    ')
 ```
 {% endraw %}
 
