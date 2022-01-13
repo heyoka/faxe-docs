@@ -1942,7 +1942,7 @@ Also for strings the above mentioned read-optimization will not be used.</p>
 
 <p>Read 4 values (BOOL in this case) from a plc every 300 milliseconds and name them with a deep json path.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_number</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1140</span>
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB.DB&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB{{db_number}}.DB&#39;</span>
 <span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span>  
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10.1.1.5</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.tbo.&#39;</span><span style="color: #f8f8f2">)</span> 
