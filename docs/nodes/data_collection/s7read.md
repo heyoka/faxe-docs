@@ -52,6 +52,7 @@ Examples
 
 Read 4 values (BOOL in this case) from a plc every 300 milliseconds and name them with a deep json path.
 
+{% raw %}
 ```dfs  
 def db_number = 1140
 def db = 'DB{{db_number}}.DB'
@@ -70,6 +71,7 @@ def db = 'DB{{db_number}}.DB'
     )
 
 ```  
+{% endraw %}
 
 Use of `as_prefix` and `vars_prefix`. The node will not read data on its own, because it has no every parameter.
 instead reading is done on data input from another node.

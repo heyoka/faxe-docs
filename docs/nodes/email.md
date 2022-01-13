@@ -7,6 +7,8 @@ Send an email to one or more recipients
 
 Example
 -------
+
+{% raw %}
 ```dfs  
 |email()
 .to('name@email.com','another@email.com')
@@ -16,7 +18,9 @@ Example
     last value was {{"val"}}. 
     ')
 ```
-    
+
+{% endraw %}
+
 Sends an email with the subject 'Alert #ex3 EnergyData' to 2 recipients.
 
 The body will be rendered into an html template (see parameters).
@@ -28,17 +32,16 @@ If a field used in a text_template is not found in the current data_point, the s
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-to(`string_list`) | the recipient email addresses |
-subject(`string`) | |
-body(`text_template`) | |
-body_field(`string`) | field_path used to get the body string | 
-template (`string`)  | html email template to use | from config file  
-from_address (`string`)| | from config file 
-smtp_relay(`string`) | | from config file
-smtp_user (`string`)  | | from config file
-smtp_pass (`string`)  | | from config file
-
+| Parameter               | Description                            | Default          |
+|-------------------------|----------------------------------------|------------------|
+| to(`string_list`)       | the recipient email addresses          |                  |
+| subject(`string`)       |                                        |                  |
+| body(`text_template`)   |                                        |                  |
+| body_field(`string`)    | field_path used to get the body string |                  |
+| template (`string`)     | html email template to use             | from config file |
+| from_address (`string`) |                                        | from config file |
+| smtp_relay(`string`)    |                                        | from config file |
+| smtp_user (`string`)    |                                        | from config file |
+| smtp_pass (`string`)    |                                        | from config file |
 
 `body` or `body_field` must be provided.
