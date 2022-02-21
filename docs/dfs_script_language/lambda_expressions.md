@@ -57,20 +57,21 @@ With a few exceptions every type can be converted to every other type.
 Every data_point in faxe contains a field called **`ts`**, which holds a UTC timestamp in milliseconds.
 
 
-Function                         | Description
----------------------------------|--------------------------------------------
-`now()` -> integer | returns an utc timestamp in milliseconds
-`to_iso8601(ts)` -> string | converts the timestamp to an ISO8601 datetime string
-`to_rfc3339(ts)` -> string | converts the timestamp to an RFC3339 datetime string
-`millisecond(ts)` -> integer         | milliseconds within the second [0, 999]
-`second(ts)` -> integer            | second within the minute [0, 59]
-`minute(ts)` -> integer           | minute within the hour [0, 59]
-`hour(ts)` -> integer             | hour within the day [0, 23]
-`day(ts)` -> integer              | day within the month [1, 31]
-`day_of_week(ts)` -> integer      | the weekday with week [1, 7] 1 is monday
-`week(ts)` -> integer               | isoweek-number within year [1, 53]
-`month(ts)` -> integer            | month within the year [1, 12]
-`time_align(ts, duration)` -> integer  | align the given timestamp to duration
+| Function                                | Description                                                                                                        |
+|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| `now()` -> integer                      | returns an utc timestamp in milliseconds                                                                           |
+| `dt_parse(ts, formatstring)` -> integer | used to parse a datetime string to the internal format, see [datetime-parsing](../datetime-parsing.md) for details |
+| `to_iso8601(ts)` -> string              | converts the timestamp to an ISO8601 datetime string                                                               |
+| `to_rfc3339(ts)` -> string              | converts the timestamp to an RFC3339 datetime string                                                               |
+| `millisecond(ts)` -> integer            | milliseconds within the second [0, 999]                                                                            |
+| `second(ts)` -> integer                 | second within the minute [0, 59]                                                                                   |
+| `minute(ts)` -> integer                 | minute within the hour [0, 59]                                                                                     |
+| `hour(ts)` -> integer                   | hour within the day [0, 23]                                                                                        |
+| `day(ts)` -> integer                    | day within the month [1, 31]                                                                                       |
+| `day_of_week(ts)` -> integer            | the weekday with week [1, 7] 1 is monday                                                                           |
+| `week(ts)` -> integer                   | isoweek-number within year [1, 53]                                                                                 |
+| `month(ts)` -> integer                  | month within the year [1, 12]                                                                                      |
+| `time_align(ts, duration)` -> integer   | align the given timestamp to duration                                                                              |
 
 Examples:
 ```dfs    
