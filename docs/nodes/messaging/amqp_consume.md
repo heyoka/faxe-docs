@@ -64,7 +64,7 @@ Parameters
 | ack_after( `duration` )              | timeout after which all currently not acknowledged messages will be acknowledged, regardless of the `ack_every` setting                                                                            | 5s                 |
 | dedup_size( `integer` )              | number of correlation-ids to hold in memory for message deduplication                                                                                                                              | 200                |
 | dt_field( `string` )                 | name of the timestamp field that is expected                                                                                                                                                       | 'ts'               |
-| dt_format( `string` )                | timestamp or datetime format that is expected (see table below)                                                                                                                                    | 'millisecond'      |
+| dt_format( `string` )                | timestamp or datetime format that is expected (see [datetime-parsing](../datetime-parsing.md))                                                                                                     | 'millisecond'      |
 | include_topic ( `bool` )             | whether to include the routingkey in the resulting datapoints                                                                                                                                      | true               |
 | topic_as ( `string` )                | if `include_topic` is true, this will be the fieldname for the routingkey value                                                                                                                    | 'topic'            |
 | as ( `string` )                      | base object for the output data-point                                                                                                                                                              | undefined          |
@@ -73,16 +73,3 @@ Parameters
 | safe ( `boolean` )                   | whether to use faxe's internal queue. If `true`, messages consumed from the amqp broker will be stored in an internal ondisc queue before they get sent to downstream nodes, to avoid losing data. | false              |
 
 > Exactly one of these must be provided: `routing_key`, `bindings`.
-
-Available datetime formats
---------------------------
-
-| dt_format           | description                                    | example                    |
-|---------------------|------------------------------------------------|----------------------------|
-| 'millisecond'       | timestamp UTC in milliseconds                  | 1565343079000              |
-| 'second'            | timestamp UTC in seconds                       | 1565343079                 |
-| 'float_micro'       | timestamp UTC float with microsecond precision | 1565343079.173588          |
-| 'float_millisecond' | timestamp UTC float with millisecond precision | 1565343079.173             |
-| 'ISO8601'           | ISO8601 Datetime format string                 | '2011-10-05T14:48:00.000Z' |
-| 'RFC3339'           | RFC3339 Datetime format string                 | '2018-02-01 15:18:02.088Z' |
-

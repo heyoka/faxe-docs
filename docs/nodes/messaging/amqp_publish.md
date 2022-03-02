@@ -34,19 +34,20 @@ Example
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-host( `string` )| Ip address or hostname of the broker| from config
-port( `integer` )| The broker's port | 5672 / from config file
-user( `string` )| AMQP user | from config file
-pass( `string` )| AMQP password | from config file
-vhost( `string` )| vhost to connect to on the broker| '/'
-routing_key( `string` )| routing key for the published messages|
-routing_key_lambda( `lambda` )| lambda expression producing a routing key for the published messages|
-exchange( `string` )|name of the exchange to publish to|
-qos( `integer` ) | publish quality, see table below for details | 1
-persistent( `bool` ) | whether to send the amqp messages with delivery-mode 2 (persistent) | false (delivery_mode = 1)
-ssl( is_set ) | whether to use ssl | false (not set)
+| Parameter                      | Description                                                                             | Default                   |
+|--------------------------------|-----------------------------------------------------------------------------------------|---------------------------|
+| host( `string` )               | Ip address or hostname of the broker                                                    | from config               |
+| port( `integer` )              | The broker's port                                                                       | 5672 / from config file   |
+| user( `string` )               | AMQP user                                                                               | from config file          |
+| pass( `string` )               | AMQP password                                                                           | from config file          |
+| vhost( `string` )              | vhost to connect to on the broker                                                       | '/'                       |
+| routing_key( `string` )        | routing key for the published messages                                                  |                           |
+| routing_key_lambda( `lambda` ) | lambda expression producing a routing key for the published messages                    |                           |
+| routing_key_field( `string` )  | path to a field in the current data-item, who's value should be used as the routing-key |                           |
+| exchange( `string` )           | name of the exchange to publish to                                                      |                           |
+| qos( `integer` )               | publish quality, see table below for details                                            | 1                         |
+| persistent( `bool` )           | whether to send the amqp messages with delivery-mode 2 (persistent)                     | false (delivery_mode = 1) |
+| ssl( is_set )                  | whether to use ssl                                                                      | false (not set)           |
 
 ### Qos
 Qos | description | consequences
