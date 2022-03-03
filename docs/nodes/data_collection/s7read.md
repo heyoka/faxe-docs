@@ -112,28 +112,52 @@ def db = 'DB{{db_number}}.DB'
 In the last example `byte_offset` of 4 is used, so effectively the following addresses will be used:
 `X4.0, X4.1, X4.4, X4.5`
 
+------------------------------------
+
+`since v0.19.5` 
+
+When `as` is not given, every second entry in `vars` is used as a field-name instead.
+
+```dfs
+def db_number = 1140
+def db = 'DB{{db_number}}.DB'
+|s7read()
+.ip(10.1.1.5)
+.as_prefix('data.tbo.') 
+.vars_prefix(db)
+.byte_offset(4)
+.vars(
+    'X0.0', 'ix_OcM1',
+    'X0.1', 'ix_OcM2',
+    'X0.4', 'ix_Lift_PosTop',
+    'X0.5', 'ix_Lift_PosBo'
+    )
+ 
+```
+
+
+
+
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-ip( `string` )| ip address of plc |
-port( `integer` )| network port | 102 (standard s7 port)
-every( `duration` )|time between reads| undefined
-align( is_set )|align read intervals according to every|false (not set)
-slot( `integer` )| plc slot number|1
-rack( `integer` )| plc rack number|0
-vars( `string_list` )|list of s7 addresses ie: 'DB3.DBX2.5' (see table below)|
-as( `string_list` )|output names for the read values|
-vars_prefix( `string` )|vars  will be prefixed with this value| undefined
-as_prefix( `string` )|as values will be prefixed with this value| undefined
-byte_offset( `integer` )|offset for addressing, every address in vars gets this offset added| 0
-diff( is_set )|when given, only output values different to previous values|false (not set)
-use_pool ( `bool` ) | whether to use the built-in connection pool | from config value
+| Parameter                | Description                                                                                                                                       | Default                |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
+| ip( `string` )           | ip address of plc                                                                                                                                 |                        |
+| port( `integer` )        | network port                                                                                                                                      | 102 (standard s7 port) |
+| every( `duration` )      | time between reads                                                                                                                                | undefined              |
+| align( is_set )          | align read intervals according to every                                                                                                           | false (not set)        |
+| slot( `integer` )        | plc slot number                                                                                                                                   | 1                      |
+| rack( `integer` )        | plc rack number                                                                                                                                   | 0                      |
+| vars( `string_list` )    | list of s7 addresses ie: 'DB3.DBX2.5' (see table below)                                                                                           |                        |
+| as( `string_list` )      | output names for the read values<br> Since 0.19.5: if not given, every second entry in `vars` is used as a fieldname (prefixes can still be used) | undefined              |
+| vars_prefix( `string` )  | vars  will be prefixed with this value                                                                                                            | undefined              |
+| as_prefix( `string` )    | as values will be prefixed with this value                                                                                                        | undefined              |
+| byte_offset( `integer` ) | offset for addressing, every address in vars gets this offset added                                                                               | 0                      |
+| diff( is_set )           | when given, only output values different to previous values                                                                                       | false (not set)        |
+| use_pool ( `bool` )      | whether to use the built-in connection pool                                                                                                       | from config value      |
 
-
-
-Note that params `vars` and `as` must have the same length.
+Note that params `vars` and `as` must have the same length (if both are given).
 
 
 ## Data addressing

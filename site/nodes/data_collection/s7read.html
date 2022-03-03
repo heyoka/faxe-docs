@@ -2005,6 +2005,24 @@ instead reading is done on data input from another node.</p>
 
 <p>In the last example <code>byte_offset</code> of 4 is used, so effectively the following addresses will be used:
 <code>X4.0, X4.1, X4.4, X4.5</code></p>
+<hr />
+<p><code>since v0.19.5</code> </p>
+<p>When <code>as</code> is not given, every second entry in <code>vars</code> is used as a field-name instead.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_number</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1140</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB.DB&#39;</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10.1.1.5</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.tbo.&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">byte_offset</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&#39;X0.0&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;ix_OcM1&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;X0.1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;ix_OcM2&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;X0.4&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;ix_Lift_PosTop&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;X0.5&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;ix_Lift_PosBo&#39;</span>
+    <span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -2052,8 +2070,8 @@ instead reading is done on data input from another node.</p>
 </tr>
 <tr>
 <td>as( <code>string_list</code> )</td>
-<td>output names for the read values</td>
-<td></td>
+<td>output names for the read values<br> Since 0.19.5: if not given, every second entry in <code>vars</code> is used as a fieldname (prefixes can still be used)</td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>vars_prefix( <code>string</code> )</td>
@@ -2082,7 +2100,7 @@ instead reading is done on data input from another node.</p>
 </tr>
 </tbody>
 </table>
-<p>Note that params <code>vars</code> and <code>as</code> must have the same length.</p>
+<p>Note that params <code>vars</code> and <code>as</code> must have the same length (if both are given).</p>
 <h2 id="data-addressing">Data addressing</h2>
 <p><code>Note: Step7 style preferred and should be used !</code></p>
 <table>
