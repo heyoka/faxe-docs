@@ -221,6 +221,8 @@ century.
 | dt_format           | description                                    | example                    |
 |---------------------|------------------------------------------------|----------------------------|
 | 'millisecond'       | timestamp UTC in milliseconds                  | 1565343079000              |
+| 'microsecond'       | timestamp UTC in microseconds                  | 1565343079000123           |
+| 'nanosecond'        | timestamp UTC in nanoseconds                   | 1565343079000123456        |
 | 'second'            | timestamp UTC in seconds                       | 1565343079                 |
 | 'float_micro'       | timestamp UTC float with microsecond precision | 1565343079.173588          |
 | 'float_millisecond' | timestamp UTC float with millisecond precision | 1565343079.173             |
