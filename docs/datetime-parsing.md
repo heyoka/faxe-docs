@@ -224,6 +224,7 @@ century.
 | 'microsecond'       | timestamp UTC in microseconds                  | 1565343079000123           |
 | 'nanosecond'        | timestamp UTC in nanoseconds                   | 1565343079000123456        |
 | 'second'            | timestamp UTC in seconds                       | 1565343079                 |
+| 'float_nano'        | timestamp UTC float with nanosecond precision  | 1565343079.173588126       |
 | 'float_micro'       | timestamp UTC float with microsecond precision | 1565343079.173588          |
 | 'float_millisecond' | timestamp UTC float with millisecond precision | 1565343079.173             |
 | 'ISO8601'           | ISO8601 Datetime format string                 | '2011-10-05T14:48:00.000Z' |
