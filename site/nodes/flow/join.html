@@ -1990,14 +1990,12 @@ joining. (See merge example below).</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v1</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span> 
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">()</span>
 
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v2</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">value_emitter()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">5s</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">point</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">5s</span><span style="color: #f8f8f2">)</span> 
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">()</span>
 
 <span style="color: #a6e22e">v1</span>
@@ -2079,6 +2077,7 @@ a merge operation is performed. </p>
 <span style="color: #e6db74">     [{&quot;value&quot;: 33}]}, &quot;condition_reason&quot;: &quot;&quot;,</span>
 <span style="color: #e6db74">     &quot;predicted_maintenance_time&quot;: 1584246411783,</span>
 <span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [1.2, 2.5, 4.33]} &#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
 
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">v2</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
@@ -2088,6 +2087,8 @@ a merge operation is performed. </p>
 <span style="color: #e6db74">     &quot;predicted_maintenance_time&quot;: 1584246411783,</span>
 <span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [2.2, 2.5, 4.33],</span>
 <span style="color: #e6db74">     &quot;vac_on_with_contact&quot;: [5.6, 45.98, 7.012]} &#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
+
 
 <span style="color: #a6e22e">v1</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">join(</span><span style="color: #a6e22e">v2</span><span style="color: #f8f8f2">)</span>

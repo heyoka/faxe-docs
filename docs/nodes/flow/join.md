@@ -21,14 +21,12 @@ Example
 ```dfs  
 def v1 =
 |value_emitter()
-    .every(3s)
-    .type(point)
+    .every(3s) 
     .align()
 
 def v2 =
 |value_emitter()
-    .every(5s)
-    .type(point)
+    .every(5s) 
     .align()
 
 v1
@@ -84,6 +82,7 @@ def v1 =
      [{"value": 33}]}, "condition_reason": "",
      "predicted_maintenance_time": 1584246411783,
      "vac_on_without_contact": [1.2, 2.5, 4.33]} ')
+.as('data')
 
 def v2 =
 |json_emitter()
@@ -93,6 +92,8 @@ def v2 =
      "predicted_maintenance_time": 1584246411783,
      "vac_on_without_contact": [2.2, 2.5, 4.33],
      "vac_on_with_contact": [5.6, 45.98, 7.012]} ')
+.as('data')
+
 
 v1
 |join(v2)

@@ -107,7 +107,7 @@ v1
 ```
 
 The output from the above example will be:
-
+```json
     {"data":
         {"condition": {"id1":0,"id":0,"name1":"OK","name":"OK",
         "sub_cond":[{"number":44},{"value":33}]},
@@ -116,7 +116,7 @@ The output from the above example will be:
         "vac_on_without_contact":[1.2,2.2,2.5,2.5,4.33,4.33],
         "vac_on_with_contact":[5.6,45.98,7.012]
         }
-
+```
 
 Parameters
 ----------
