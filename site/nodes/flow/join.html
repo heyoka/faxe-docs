@@ -999,7 +999,14 @@
     Parameters
   </a>
   
-    <nav class="md-nav" aria-label="Parameters">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fill-value-join-behaviour" class="md-nav__link">
+    fill value - join behaviour
+  </a>
+  
+    <nav class="md-nav" aria-label="fill value - join behaviour">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1913,7 +1920,14 @@
     Parameters
   </a>
   
-    <nav class="md-nav" aria-label="Parameters">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fill-value-join-behaviour" class="md-nav__link">
+    fill value - join behaviour
+  </a>
+  
+    <nav class="md-nav" aria-label="fill value - join behaviour">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1963,8 +1977,8 @@
                 
                 <h1 id="the-join-node">The join node</h1>
 <p>Join data from two or more nodes, given a list of prefixes, for each row.</p>
-<p>If the <code>merge_field</code> parameter is given, the node will merge the field given from every in-node, instead of
-joining.</p>
+<p>If the <code>merge_field</code> parameter is given, the node will merge the fields given from every in-node, instead of
+joining. (See merge example below).</p>
 <p>When considering the <code>fill</code> option, the following rules apply:</p>
 <ul>
 <li>'none' - (default) skip rows where a point is missing, inner join.</li>
@@ -2039,16 +2053,22 @@ joining.</p>
 </tr>
 <tr>
 <td>tolerance( <code>duration</code> )</td>
-<td>db fieldnames (mapping for faxe fieldname to table field names)</td>
-<td></td>
+<td>timestamp tolerance. Determines the maximum difference a data-item's timestamp can have to the current timeslot, for the item to be included in the join operation.</td>
+<td>2s</td>
 </tr>
 <tr>
 <td>fill( 'none' 'null' <code>any</code> )</td>
-<td>fill missing values / join behaviour</td>
+<td>fill missing values  / join behaviour, see below</td>
 <td>'none'</td>
 </tr>
 </tbody>
 </table>
+<h2 id="fill-value-join-behaviour">fill value - join behaviour</h2>
+<ul>
+<li><code>'none'</code> - (default) skip rows, where a point is missing, inner join.</li>
+<li><code>'null'</code> - fill missing points with null, full outer join.</li>
+<li><code>Any value</code> - fill fields with given value, full outer join.</li>
+</ul>
 <h3 id="merge-example">Merge example</h3>
 <p>Let's look at an example where the streams coming out of two nodes are not joined with prefixes, but
 a merge operation is performed. </p>

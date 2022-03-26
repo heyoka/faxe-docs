@@ -40,7 +40,7 @@ With `emit_unchanged` set to false, output will only happen after processing a d
 
 
 -------------------------------------------------------------
->Note: Produced data may become very large, if the value of `key_field` is ever-changing, so that
+>Note: Produced data may become very large, if the value of `key_fields` is ever-changing, so that
     the node will cache a lot of data and therefore may use a lot of memory, be aware of that !
 
 

@@ -3,8 +3,8 @@ The join node
 
 Join data from two or more nodes, given a list of prefixes, for each row.
 
-If the `merge_field` parameter is given, the node will merge the field given from every in-node, instead of
-joining.
+If the `merge_field` parameter is given, the node will merge the fields given from every in-node, instead of
+joining. (See merge example below).
 
 When considering the `fill` option, the following rules apply:
 
@@ -52,13 +52,24 @@ _[node]_ nodes( `node_list` )| list of node (chains) to merge  | []
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-prefix( `string_list` )| list of prefixes (used in join mode) | ['', ''] (no prefixes)
-merge_field( `string` )|when given, the join node will do a field merge operation| undefined
-missing_timeout( `duration` )| values that do not arrive within this timeout will be treated as missing | 20s
-tolerance( `duration` )|db fieldnames (mapping for faxe fieldname to table field names)|
-fill( 'none' 'null' `any` )|fill missing values / join behaviour|'none'
+Parameter     | Description                                                                                                                                                         | Default 
+--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------- 
+prefix( `string_list` )| list of prefixes (used in join mode)                                                                                                                                | ['', ''] (no prefixes)
+merge_field( `string` )| when given, the join node will do a field merge operation                                                                                                           | undefined
+missing_timeout( `duration` )| values that do not arrive within this timeout will be treated as missing                                                                                            | 20s
+tolerance( `duration` )| timestamp tolerance. Determines the maximum difference a data-item's timestamp can have to the current timeslot, for the item to be included in the join operation. | 2s
+fill( 'none' 'null' `any` )| fill missing values  / join behaviour, see below                                                                                                                    |'none'
+
+
+fill value - join behaviour
+----
+
+* `'none'` - (default) skip rows, where a point is missing, inner join.
+* `'null'` - fill missing points with null, full outer join.
+* `Any value` - fill fields with given value, full outer join.
+
+
+
 
 
 ### Merge example
