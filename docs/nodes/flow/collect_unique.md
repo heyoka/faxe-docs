@@ -1,6 +1,8 @@
 The collect_unique node
 =====================
 
+_`Experimental`_.
+
 With this node we can collect a unique set of values from data_points based on a given field's value.
 
 For every different value of the `key-field`, the node will cache the last data_point with that value.

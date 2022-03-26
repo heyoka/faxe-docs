@@ -12,9 +12,11 @@ The internal collection is a key-value set with unqiue values for the keys, take
 [{Key, DataPoint}]
 
 With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
-If this is not the case, the node will evaluate the `add` function, if given. 
+If this is not the case, the node will evaluate the `add` function, if given.
+Data_points that do not have the key-field present, will be ignored.
 
 An item will be added to the collection if the key is new to the collection and if the `add`-function
+
 * returns true
 * is not given
 
@@ -56,6 +58,7 @@ Example1
 
 ```
 Collect by the field `data.code` keeping every data-item for 2 minutes.
+No `update` or `remove` will occur otherwise.
 
 Example2
 -------
