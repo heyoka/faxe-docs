@@ -6,19 +6,36 @@ _`Experimental`_.
 Since 0.15.2
 
 The collect node will maintain a `set` of data-points based on some criteria given as lambda-expressions.
-It will output a data_batch item regularily (when `emit_every` is given) or on every incoming item.
+It will `output a data_batch` item regularily (when `emit_every` is given) or based on every incoming item.
 
-On every incoming data_point the node will first check, if there is already an item with the same key-field value in the collection.
-If  not the case, the node will evaluate the `add` function. If the add function returns true, the item will be added to the collection.
+The internal collection is a key-value set with unqiue values for the keys, taken from the `key_fields`.
+[{Key, DataPoint}]
 
-If there is already an item with the same key-value, the node would check if there is an `update` function and evaluate it and if no update happend, 
+With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
+If this is not the case, the node will evaluate the `add` function, if given. 
+
+An item will be added to the collection if the key is new to the collection and if the `add`-function
+* returns true
+* is not given
+
+ 
+
+If there is already an item with the same value(s) for the key-field(s), 
+the node would check, if there is an `update` function and evaluate it and if no update happend, 
 it will try to evaluate the `remove` function.
 
-So if `update` happened, the node will skip evaluating the `remove` function.
+If an `update` happened, the node will skip evaluating the `remove` function.
+
+If no `remove` function is given, data-items will not be removed, but only evicted by the `max_age` option.
+
+
 
 ### Output
 
-When no `emit_every` is given, the node will output data with every incoming data-item, that has changed the internal set.
+When no `emit_every` is given, the node will output data with every incoming data-item.
+
+With `emit_unchanged` set to false, output will only happen after processing a data-item that has changed the internal set.
+
 `data_batch` items are processed as a whole first and then may trigger an emit operation.
 
 
@@ -26,6 +43,35 @@ When no `emit_every` is given, the node will output data with every incoming dat
 >Note: Produced data may become very large, if the value of `key_field` is ever-changing, so that
     the node will cache a lot of data and therefore may use a lot of memory, be aware of that !
 
+
+Example1
+-------
+
+```dfs   
+|collect()
+.key_field('data.code')
+.max_age(2m) 
+
+|debug()
+
+```
+Collect by the field `data.code` keeping every data-item for 2 minutes.
+
+Example2
+-------
+
+```dfs   
+|collect()
+.key_field('data.code')
+.update(lambda: "data.mode" == 1) 
+.delete(lambda: str_length("data.message") > 7)
+
+|debug()
+
+```
+Collect by the field `data.code`, update an item when the `data.mode` field is 1.
+
+Items get deleted, if they have a value for `data.message`, that is more than 7 chars long.
 
 Example
 -------
@@ -84,17 +130,18 @@ Example
 Parameters
 ----------
 
-Parameter     | Description | Default
---------------|-------------|---------
-key_field(`string`) | The value of the key-field will be used as an index for the collection, can be any data-type. |
-add(`lambda`) | Criterion for adding an incoming point to the collection, must return a boolean value.|
-remove(`lambda`) | Criterion for removing a point from the collection, must return a boolen value.|
-update(`lambda`) | Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur.| undefined
-update_mode(`string`) | `replace`, `merge`, `merge_reverse`. When updating, an existing point in the collection can be replaced by or merged with the new one. With `merge_reverse` data_point positions for the merge operation get flipped, so that the existing point is merged onto the new data_point.| 'replace'
-tag_added(`boolean`) | When set to true, emitted data_points that have been added since the last emit will have a field called `added` with the value of `tag_value`| false
-tag_value(`any`) | Value to be use for tag fields (`added`, `removed`)| 1
-include_removed(`boolean`) | When set to true, data_points that would normally be removed from the collection will get a field called `removed` with the value of `tag_value` and are included in the next data-batch emit| false
-keep(`string_list`) | If given, these field will be kept from every data-point, if not given, the whole item will be kept. | undefined 
-emit_every (`duration`)  | Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) that effects in a chang to the collection will trigger an output of the current collection| undefined
-max_age(`duration`) | Maximum age for any data-item in the collection, after which it gets removed. The reference time for item age is the time the item entered the collection | 3h
+Parameter     | Description                                                                                                                                                                                                                                                                         | Default
+--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------
+key_fields(`string`) | The value of the key-field will be used as an index for the collection.                                                                                                                                                                                                             |
+add(`lambda`) | Criterion for adding an incoming point to the collection, must return a boolean value.                                                                                                                                                                                              | undefined
+remove(`lambda`) | Criterion for removing a point from the collection, must return a boolen value.                                                                                                                                                                                                     | undefined
+update(`lambda`) | Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur.                                                                                                                                                            | undefined
+update_mode(`string`) | `replace`, `merge`, `merge_reverse`. When updating, an existing point in the collection can be replaced by or merged with the new one. With `merge_reverse` data_point positions for the merge operation get flipped, so that the existing point is merged onto the new data_point. | 'replace'
+tag_added(`boolean`) | When set to true, emitted data_points that have been added since the last emit will have a field called `added` with the value of `tag_value`                                                                                                                                       | false
+tag_value(`any`) | Value to be use for tag fields (`added`, `removed`)                                                                                                                                                                                                                                 | 1
+include_removed(`boolean`) | When set to true, data_points that would normally be removed from the collection will get a field called `removed` with the value of `tag_value` and are included in the next data-batch emit                                                                                       | false
+keep(`string_list`) | If given, these field will be kept from every data-point, if not given, the whole item will be kept.                                                                                                                                                                                | undefined 
+emit_unchanged (`boolean`)  | When set to false, processing of a data-item that does not result in a change to the collection, will not trigger an output of data.                                                                                                                                                | true
+emit_every (`duration`)  | Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) will trigger an output (based on the value of `emit_unchanged`).                                                                                              | undefined
+max_age(`duration`) | Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the time the item entered the collection.                                                                                                                                   | 3h
  

@@ -544,6 +544,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example1" class="md-nav__link">
+    Example1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example2" class="md-nav__link">
+    Example2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1867,6 +1881,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example1" class="md-nav__link">
+    Example1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example2" class="md-nav__link">
+    Example2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1897,20 +1925,48 @@
 <p><em><code>Experimental</code></em>.</p>
 <p>Since 0.15.2</p>
 <p>The collect node will maintain a <code>set</code> of data-points based on some criteria given as lambda-expressions.
-It will output a data_batch item regularily (when <code>emit_every</code> is given) or on every incoming item.</p>
-<p>On every incoming data_point the node will first check, if there is already an item with the same key-field value in the collection.
-If  not the case, the node will evaluate the <code>add</code> function. If the add function returns true, the item will be added to the collection.</p>
-<p>If there is already an item with the same key-value, the node would check if there is an <code>update</code> function and evaluate it and if no update happend, 
+It will <code>output a data_batch</code> item regularily (when <code>emit_every</code> is given) or based on every incoming item.</p>
+<p>The internal collection is a key-value set with unqiue values for the keys, taken from the <code>key_fields</code>.
+[{Key, DataPoint}]</p>
+<p>With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
+If this is not the case, the node will evaluate the <code>add</code> function, if given. </p>
+<p>An item will be added to the collection if the key is new to the collection and if the <code>add</code>-function
+* returns true
+* is not given</p>
+<p>If there is already an item with the same value(s) for the key-field(s), 
+the node would check, if there is an <code>update</code> function and evaluate it and if no update happend, 
 it will try to evaluate the <code>remove</code> function.</p>
-<p>So if <code>update</code> happened, the node will skip evaluating the <code>remove</code> function.</p>
+<p>If an <code>update</code> happened, the node will skip evaluating the <code>remove</code> function.</p>
+<p>If no <code>remove</code> function is given, data-items will not be removed, but only evicted by the <code>max_age</code> option.</p>
 <h3 id="output">Output</h3>
-<p>When no <code>emit_every</code> is given, the node will output data with every incoming data-item, that has changed the internal set.
-<code>data_batch</code> items are processed as a whole first and then may trigger an emit operation.</p>
+<p>When no <code>emit_every</code> is given, the node will output data with every incoming data-item.</p>
+<p>With <code>emit_unchanged</code> set to false, output will only happen after processing a data-item that has changed the internal set.</p>
+<p><code>data_batch</code> items are processed as a whole first and then may trigger an emit operation.</p>
 <hr />
 <blockquote>
 <p>Note: Produced data may become very large, if the value of <code>key_field</code> is ever-changing, so that
     the node will cache a lot of data and therefore may use a lot of memory, be aware of that !</p>
 </blockquote>
+<h2 id="example1">Example1</h2>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">max_age</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">2m</span><span style="color: #f8f8f2">)</span> 
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
+</code></pre></div>
+
+<p>Collect by the field <code>data.code</code> keeping every data-item for 2 minutes.</p>
+<h2 id="example2">Example2</h2>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.mode&quot;</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.delete(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_length</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.message&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
+</code></pre></div>
+
+<p>Collect by the field <code>data.code</code>, update an item when the <code>data.mode</code> field is 1.</p>
+<p>Items get deleted, if they have a value for <code>data.message</code>, that is more than 7 chars long.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">%% input data -&gt;</span>
 
@@ -1969,19 +2025,19 @@ it will try to evaluate the <code>remove</code> function.</p>
 </thead>
 <tbody>
 <tr>
-<td>key_field(<code>string</code>)</td>
-<td>The value of the key-field will be used as an index for the collection, can be any data-type.</td>
+<td>key_fields(<code>string</code>)</td>
+<td>The value of the key-field will be used as an index for the collection.</td>
 <td></td>
 </tr>
 <tr>
 <td>add(<code>lambda</code>)</td>
 <td>Criterion for adding an incoming point to the collection, must return a boolean value.</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>remove(<code>lambda</code>)</td>
 <td>Criterion for removing a point from the collection, must return a boolen value.</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>update(<code>lambda</code>)</td>
@@ -2014,13 +2070,18 @@ it will try to evaluate the <code>remove</code> function.</p>
 <td>undefined</td>
 </tr>
 <tr>
+<td>emit_unchanged (<code>boolean</code>)</td>
+<td>When set to false, processing of a data-item that does not result in a change to the collection, will not trigger an output of data.</td>
+<td>true</td>
+</tr>
+<tr>
 <td>emit_every (<code>duration</code>)</td>
-<td>Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) that effects in a chang to the collection will trigger an output of the current collection</td>
+<td>Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) will trigger an output (based on the value of <code>emit_unchanged</code>).</td>
 <td>undefined</td>
 </tr>
 <tr>
 <td>max_age(<code>duration</code>)</td>
-<td>Maximum age for any data-item in the collection, after which it gets removed. The reference time for item age is the time the item entered the collection</td>
+<td>Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the time the item entered the collection.</td>
 <td>3h</td>
 </tr>
 </tbody>
