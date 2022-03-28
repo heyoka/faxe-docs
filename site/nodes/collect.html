@@ -537,6 +537,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#adding-updating-and-removing-a-value" class="md-nav__link">
+    Adding, updating and removing a value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-expression" class="md-nav__link">
+    Update expression
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#output" class="md-nav__link">
     Output
   </a>
@@ -544,22 +558,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example1" class="md-nav__link">
-    Example1
+  <a href="#example-1" class="md-nav__link">
+    Example 1
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example2" class="md-nav__link">
-    Example2
+  <a href="#example-2" class="md-nav__link">
+    Example 2
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#example-3" class="md-nav__link">
+    Example 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4" class="md-nav__link">
+    Example 4
   </a>
   
 </li>
@@ -1874,6 +1895,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#adding-updating-and-removing-a-value" class="md-nav__link">
+    Adding, updating and removing a value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-expression" class="md-nav__link">
+    Update expression
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#output" class="md-nav__link">
     Output
   </a>
@@ -1881,22 +1916,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example1" class="md-nav__link">
-    Example1
+  <a href="#example-1" class="md-nav__link">
+    Example 1
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example2" class="md-nav__link">
-    Example2
+  <a href="#example-2" class="md-nav__link">
+    Example 2
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#example-3" class="md-nav__link">
+    Example 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4" class="md-nav__link">
+    Example 4
   </a>
   
 </li>
@@ -1928,6 +1970,7 @@
 It will <code>output a data_batch</code> item regularily (when <code>emit_every</code> is given) or based on every incoming item.</p>
 <p>The internal collection is a key-value set with unqiue values for the keys, taken from the <code>key_fields</code>.
 [{Key, DataPoint}]</p>
+<h3 id="adding-updating-and-removing-a-value">Adding, updating and removing a value</h3>
 <p>With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
 If this is not the case, the node will evaluate the <code>add</code> function, if given.
 Data_points that do not have the key-field present, will be ignored.</p>
@@ -1941,6 +1984,19 @@ the node would check, if there is an <code>update</code> function and evaluate i
 it will try to evaluate the <code>remove</code> function.</p>
 <p>If an <code>update</code> happened, the node will skip evaluating the <code>remove</code> function.</p>
 <p>If no <code>remove</code> function is given, data-items will not be removed, but only evicted by the <code>max_age</code> option.</p>
+<h3 id="update-expression">Update expression</h3>
+<p>In the <code>update</code> lambda-expression, the datapoint, that is already in the collection, can be used for comparing, for example.
+That is to say: When the update function is evaluated, it gets injected the data-point for the same key-field value, that is
+found in the collection. There is a root-object used for the fields in this datapoint: <code>__state</code>.</p>
+<p>What this means is, that you can do something like this in the <code>update</code> expression (see also Example 3 below)</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.id&#39;</span><span style="color: #f8f8f2">)</span> 
+
+<span style="color: #75715e">%% comparing the current value of &#39;val&#39; to the value from the data-point currently in the collection</span>
+<span style="color: #75715e">%% here we use the value from the internal buffer that is found in the &#39;__state&#39; object.</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.val&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #e6db74">&quot;__state.data.val&quot;</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
 <h3 id="output">Output</h3>
 <p>When no <code>emit_every</code> is given, the node will output data with every incoming data-item.</p>
 <p>With <code>emit_unchanged</code> set to false, output will only happen after processing a data-item that has changed the internal set.</p>
@@ -1950,28 +2006,63 @@ it will try to evaluate the <code>remove</code> function.</p>
 <p>Note: Produced data may become very large, if the value of <code>key_fields</code> is ever-changing, so that
     the node will cache a lot of data and therefore may use a lot of memory, be aware of that !</p>
 </blockquote>
-<h2 id="example1">Example1</h2>
+<h2 id="example-1">Example 1</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">max_age</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">2m</span><span style="color: #f8f8f2">)</span> 
-
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 </code></pre></div>
 
 <p>Collect by the field <code>data.code</code> keeping every data-item for 2 minutes.
 No <code>update</code> or <code>remove</code> will occur otherwise.</p>
-<h2 id="example2">Example2</h2>
+<h2 id="example-2">Example 2</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.mode&quot;</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.delete(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_length</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.message&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">)</span>
-
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 </code></pre></div>
 
 <p>Collect by the field <code>data.code</code>, update an item when the <code>data.mode</code> field is 1.</p>
 <p>Items get deleted, if they have a value for <code>data.message</code>, that is more than 7 chars long.</p>
-<h2 id="example">Example</h2>
+<h2 id="example-3">Example 3</h2>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">%% input data -&gt;</span>
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
+ <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">500ms</span><span style="color: #f8f8f2">)</span>
+ <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 224, &quot;name&quot; : &quot;twotwofour&quot;, &quot;val&quot;: 12, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 112, &quot;name&quot; : &quot;oneonetow&quot;, &quot;val&quot;: 11, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 358, &quot;name&quot; : &quot;threefiveeigth&quot;, &quot;val&quot;: 7, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 102, &quot;name&quot; : &quot;onezerotwo&quot;, &quot;val&quot;: 12, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 224, &quot;name&quot; : &quot;twotwofour&quot;, &quot;val&quot;: 13, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 112, &quot;name&quot; : &quot;oneonetow&quot;, &quot;val&quot;: 9, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 358, &quot;name&quot; : &quot;threefiveeigth&quot;, &quot;val&quot;: 4, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;id&quot;: 102, &quot;name&quot; : &quot;onezerotow&quot;, &quot;val&quot;: 2, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 224, &quot;name&quot; : &quot;twotwofour&quot;, &quot;val&quot;: 3, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 112, &quot;name&quot; : &quot;oneonetow&quot;, &quot;val&quot;: 15, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 358, &quot;name&quot; : &quot;threefiveeigth&quot;, &quot;val&quot;: 22, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 102, &quot;name&quot; : &quot;onezerotwo&quot;, &quot;val&quot;: 9, &quot;mode&quot;: 1}&#39;</span><span style="color: #f8f8f2">,</span>
+
+
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 224, &quot;name&quot; : &quot;twotwofour&quot;, &quot;val&quot;: 0, &quot;mode&quot;: 0}&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 112, &quot;name&quot; : &quot;oneonetow&quot;, &quot;val&quot;: 0, &quot;mode&quot;: 0}&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 358, &quot;name&quot; : &quot;threefiveeigth&quot;, &quot;val&quot;: 0, &quot;mode&quot;: 0}&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&#39;{&quot;id&quot;: 102, &quot;name&quot; : &quot;onezerotow&quot;, &quot;val&quot;: 0, &quot;mode&quot;: 0}&#39;</span>
+    <span style="color: #f8f8f2">)</span>
+
+ <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
+ <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;rand&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.id&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.keep(</span><span style="color: #e6db74">&#39;data.id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;data.val&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.val&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #e6db74">&quot;__state.data.val&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.mode&quot;</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Collect the max value of <code>data.val</code> for every different <code>data.id</code> value.
+Note the use of the <code>'__state'</code> prefix for previous value, that can be used in the <code>update</code> expression.</p>
+<h2 id="example-4">Example 4</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">%% input data -&gt;</span>
 
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
@@ -2045,7 +2136,7 @@ No <code>update</code> or <code>remove</code> will occur otherwise.</p>
 </tr>
 <tr>
 <td>update(<code>lambda</code>)</td>
-<td>Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur.</td>
+<td>Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur. Reference the current value with <code>__state</code></td>
 <td>undefined</td>
 </tr>
 <tr>

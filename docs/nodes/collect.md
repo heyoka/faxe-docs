@@ -11,6 +11,8 @@ It will `output a data_batch` item regularily (when `emit_every` is given) or ba
 The internal collection is a key-value set with unqiue values for the keys, taken from the `key_fields`.
 [{Key, DataPoint}]
 
+### Adding, updating and removing a value
+
 With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
 If this is not the case, the node will evaluate the `add` function, if given.
 Data_points that do not have the key-field present, will be ignored.
@@ -20,7 +22,6 @@ An item will be added to the collection if the key is new to the collection and 
 * returns true
 * is not given
 
- 
 
 If there is already an item with the same value(s) for the key-field(s), 
 the node would check, if there is an `update` function and evaluate it and if no update happend, 
@@ -30,7 +31,23 @@ If an `update` happened, the node will skip evaluating the `remove` function.
 
 If no `remove` function is given, data-items will not be removed, but only evicted by the `max_age` option.
 
+### Update expression
 
+In the `update` lambda-expression, the datapoint, that is already in the collection, can be used for comparing, for example.
+That is to say: When the update function is evaluated, it gets injected the data-point for the same key-field value, that is
+found in the collection. There is a root-object used for the fields in this datapoint: `__state`.
+
+What this means is, that you can do something like this in the `update` expression (see also Example 3 below)
+
+```dfs
+|collect()
+.key_fields('data.id') 
+
+%% comparing the current value of 'val' to the value from the data-point currently in the collection
+%% here we use the value from the internal buffer that is found in the '__state' object.
+.update(lambda: "data.val" > "__state.data.val") 
+
+```
 
 ### Output
 
@@ -46,21 +63,20 @@ With `emit_unchanged` set to false, output will only happen after processing a d
     the node will cache a lot of data and therefore may use a lot of memory, be aware of that !
 
 
-Example1
+Example 1
 -------
 
 ```dfs   
 |collect()
 .key_field('data.code')
 .max_age(2m) 
-
-|debug()
+ 
 
 ```
 Collect by the field `data.code` keeping every data-item for 2 minutes.
 No `update` or `remove` will occur otherwise.
 
-Example2
+Example 2
 -------
 
 ```dfs   
@@ -68,15 +84,59 @@ Example2
 .key_field('data.code')
 .update(lambda: "data.mode" == 1) 
 .delete(lambda: str_length("data.message") > 7)
-
-|debug()
+ 
 
 ```
 Collect by the field `data.code`, update an item when the `data.mode` field is 1.
 
 Items get deleted, if they have a value for `data.message`, that is more than 7 chars long.
 
-Example
+Example 3
+--------
+
+```dfs   
+%% input data ->
+
+|json_emitter()
+ .every(500ms)
+ .json(
+    '{"id": 224, "name" : "twotwofour", "val": 12, "mode": 1}',
+    '{"id": 112, "name" : "oneonetow", "val": 11, "mode": 1}',
+    '{"id": 358, "name" : "threefiveeigth", "val": 7, "mode": 1}',
+    '{"id": 102, "name" : "onezerotwo", "val": 12, "mode": 1}',
+    '{"id": 224, "name" : "twotwofour", "val": 13, "mode": 1}',
+    '{"id": 112, "name" : "oneonetow", "val": 9, "mode": 1}',
+    '{"id": 358, "name" : "threefiveeigth", "val": 4, "mode": 1}',
+    '{"id": 102, "name" : "onezerotow", "val": 2, "mode": 1}',
+
+        '{"id": 224, "name" : "twotwofour", "val": 3, "mode": 1}',
+        '{"id": 112, "name" : "oneonetow", "val": 15, "mode": 1}',
+        '{"id": 358, "name" : "threefiveeigth", "val": 22, "mode": 1}',
+        '{"id": 102, "name" : "onezerotwo", "val": 9, "mode": 1}',
+
+
+        '{"id": 224, "name" : "twotwofour", "val": 0, "mode": 0}',
+        '{"id": 112, "name" : "oneonetow", "val": 0, "mode": 0}',
+        '{"id": 358, "name" : "threefiveeigth", "val": 0, "mode": 0}',
+        '{"id": 102, "name" : "onezerotow", "val": 0, "mode": 0}'
+    )
+
+ .as('data')
+ .select('rand')
+
+|collect()
+.key_fields('data.id')
+.keep('data.id', 'data.val')
+.update(lambda: "data.val" > "__state.data.val")
+.remove(lambda: "data.mode" == 0)
+
+```
+
+Collect the max value of `data.val` for every different `data.id` value.
+Note the use of the `'__state'` prefix for previous value, that can be used in the `update` expression.
+
+
+Example 4
 -------
 
 ```dfs  
@@ -138,7 +198,7 @@ Parameter     | Description                                                     
 key_fields(`string`) | The value of the key-field will be used as an index for the collection.                                                                                                                                                                                                             |
 add(`lambda`) | Criterion for adding an incoming point to the collection, must return a boolean value.                                                                                                                                                                                              | undefined
 remove(`lambda`) | Criterion for removing a point from the collection, must return a boolen value.                                                                                                                                                                                                     | undefined
-update(`lambda`) | Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur.                                                                                                                                                            | undefined
+update(`lambda`) | Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur. Reference the current value with `__state`                                                                                                                   | undefined
 update_mode(`string`) | `replace`, `merge`, `merge_reverse`. When updating, an existing point in the collection can be replaced by or merged with the new one. With `merge_reverse` data_point positions for the merge operation get flipped, so that the existing point is merged onto the new data_point. | 'replace'
 tag_added(`boolean`) | When set to true, emitted data_points that have been added since the last emit will have a field called `added` with the value of `tag_value`                                                                                                                                       | false
 tag_value(`any`) | Value to be use for tag fields (`added`, `removed`)                                                                                                                                                                                                                                 | 1
