@@ -59,7 +59,7 @@ For example the eval node requires the lambdas parameter to be of type `lambda_l
 
 ```dfs
 
-|eval(lambda: str_concat("strval", '_postfix')
+|eval(lambda: str_concat("strval", postfix))
 
 |eval(lambda: str_starts_with("strval", 'pre'), lambda: 3 * ("val1" + "val2"))
 

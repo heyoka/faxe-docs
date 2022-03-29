@@ -43,6 +43,17 @@ SELECT DATE_FORMAT(ts) FROM table WHERE worked_on = false ORDER BY ts LIMIT 1
 
 ```
 
+or with a fallback start-time
+
+```sql
+SELECT COALESCE(
+    (SELECT DATE_FORMAT(ts) FROM table WHERE worked_on = false ORDER BY ts LIMIT 1),
+    '2021-11-16T16:20:00.000000Z'
+    )
+AS ts
+
+```
+
 ### Historic and up-to-date data
 
 While reading data from the past, `min_interval` will be used to schedule the operation.
@@ -66,9 +77,7 @@ def sql =
 .query(sql)
 .period(period)  
 .start('2021-11-16T16:03:42.040000Z')
-
-|crate_query_cq()
-.query(sql)
+ 
 ```
  
 The above example will execute the query periodically, emitting data_batch items with data_points worth of 1 minute. 

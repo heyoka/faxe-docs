@@ -1,7 +1,7 @@
 ## fun with http
 
-Using faxe's http nodes
-
+Using faxe's http nodes.
+Http GET and POST from and to itself.
 
 
 ```dfs  
