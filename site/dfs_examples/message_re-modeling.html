@@ -367,6 +367,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1875,6 +1882,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1934,16 +1948,17 @@
 <span style="color: #f8f8f2">}</span>
 </code></pre></div>
 
+<h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">%% enum mappings</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">alarm_state_map</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;{&quot;NOAL&quot;:0,&quot;ERR&quot;:1}&#39;</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">opmode_map</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;{&quot;NOMO&quot;:0,&quot;AUTO&quot;:1,&quot;MANU&quot;:2}&#39;</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">opstate_map</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;{&quot;ON&quot;:0,&quot;OFF&quot;:1}&#39;</span>
 <span style="color: #66d9ef">def</span> <span style="color: #f92672">or</span><span style="color: #a6e22e">der_state_map</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;{&quot;RDY&quot;:0,&quot;NRDY&quot;:1,&quot;OFF&quot;:2}&#39;</span>
 
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_out</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;ttgw/data/grip/rovolutionmarchtrenk/condition/robot_state&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_out</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;msm/r1/grp/condition/robot_state&#39;</span>
 
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">republish_timeout</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">15s</span>
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_in</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;tgw/data/marchtrenk/rovolutionmarchtrenk/pcr/grip/wms/RMST/v1&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">topic_in</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;msm/r1/grp/wms/RMST/v1&#39;</span>
 
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">out</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_subscribe()</span>
@@ -1968,10 +1983,10 @@
 <span style="color: #f8f8f2">)</span>
 
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span>
-    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.alarm_state.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ls_mem</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;alarm_state&#39;</span><span style="color: #f8f8f2">)),</span>
-    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.operating_mode.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ls_mem</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opmode&#39;</span><span style="color: #f8f8f2">)),</span>
-    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.operating_state.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ls_mem</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opstate&#39;</span><span style="color: #f8f8f2">)),</span>
-    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.order_state.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ls_mem</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;order_state&#39;</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.alarm_state.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">alarm_state_map</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.operating_mode.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">opmode_map</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.operating_state.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">opstate_map</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.order_state.name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">or</span><span style="color: #a6e22e">der_state_map</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span>
     <span style="color: #e6db74">&#39;data.alarm_state.id&#39;</span><span style="color: #f8f8f2">,</span>
@@ -1995,25 +2010,7 @@
 
 <span style="color: #a6e22e">out</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">mqtt_publish()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">topic_out</span><span style="color: #f8f8f2">)</span>
-<span style="color: #75715e">%%%%%%%%%%%%%%%%%%%%% enum lookup tables %%%%%%%%%%</span>
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">barrier</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span>
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;alarm_state&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.default(</span><span style="color: #a6e22e">alarm_state_map</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">default_json</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opmode&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.default(</span><span style="color: #a6e22e">opmode_map</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">default_json</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opstate&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.default(</span><span style="color: #a6e22e">opstate_map</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">default_json</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">mem()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;order_state&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.default(</span><span style="color: #f92672">or</span><span style="color: #a6e22e">der_state_map</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">default_json</span><span style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topic</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">topic_out</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
                 
               

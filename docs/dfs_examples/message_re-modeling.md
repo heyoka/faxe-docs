@@ -46,9 +46,10 @@ This example uses different faxe [nodes](../nodes/index.md) to remodel and exten
     "Id": 3179
   }
 }
+
 ```
 
-
+##Example
 
 ```dfs
 %% enum mappings
@@ -57,10 +58,10 @@ def opmode_map = '{"NOMO":0,"AUTO":1,"MANU":2}'
 def opstate_map = '{"ON":0,"OFF":1}'
 def order_state_map = '{"RDY":0,"NRDY":1,"OFF":2}'
 
-def topic_out = 'ttgw/data/grip/rovolutionmarchtrenk/condition/robot_state'
+def topic_out = 'msm/r1/grp/condition/robot_state'
 
 def republish_timeout = 15s
-def topic_in = 'tgw/data/marchtrenk/rovolutionmarchtrenk/pcr/grip/wms/RMST/v1'
+def topic_in = 'msm/r1/grp/wms/RMST/v1'
 
 def out =
 |mqtt_subscribe()
@@ -85,10 +86,10 @@ def out =
 )
 
 |eval(
-    lambda: map_get("data.alarm_state.name", ls_mem('alarm_state')),
-    lambda: map_get("data.operating_mode.name", ls_mem('opmode')),
-    lambda: map_get("data.operating_state.name", ls_mem('opstate')),
-    lambda: map_get("data.order_state.name", ls_mem('order_state'))
+    lambda: map_get("data.alarm_state.name", alarm_state_map),
+    lambda: map_get("data.operating_mode.name", opmode_map),
+    lambda: map_get("data.operating_state.name", opstate_map),
+    lambda: map_get("data.order_state.name", order_state_map)
 )
 .as(
     'data.alarm_state.id',
@@ -112,23 +113,5 @@ def out =
  
 out
 |mqtt_publish()
-.topic(topic_out)
-%%%%%%%%%%%%%%%%%%%%% enum lookup tables %%%%%%%%%%
-def barrier = true
-|mem()
-.key('alarm_state')
-.default(alarm_state_map)
-.default_json()
-|mem()
-.key('opmode')
-.default(opmode_map)
-.default_json()
-|mem()
-.key('opstate')
-.default(opstate_map)
-.default_json()
-|mem()
-.key('order_state')
-.default(order_state_map)
-.default_json()
+.topic(topic_out) 
 ```

@@ -2338,6 +2338,10 @@ to reference them:</p>
 <td>Convert all characters on the given string to lowercase</td>
 </tr>
 <tr>
+<td><code>str_enclose(Wrapper, StringOrList)</code> -&gt; string or list</td>
+<td>Prepend and append Wrapper to a string or each entry of a list of strings</td>
+</tr>
+<tr>
 <td><code>str_ends_with(x, suffix)</code> -&gt; string</td>
 <td>Returns true if string ends with suffix, otherwise false.</td>
 </tr>
@@ -2368,10 +2372,6 @@ to reference them:</p>
 <tr>
 <td><code>str_lstrip(x, char)</code> -&gt; string</td>
 <td>Returns a string where leading char have been removed</td>
-</tr>
-<tr>
-<td>str_normalize/2</td>
-<td></td>
 </tr>
 <tr>
 <td>str_pad_leading/2</td>
@@ -2503,6 +2503,31 @@ to reference them:</p>
 <td><code>size(ListOrMap)</code> -&gt; integer</td>
 <td>get the number of entries in a list or map</td>
 <td>size("data.lines")</td>
+</tr>
+<tr>
+<td><code>head(List)</code> -&gt; any</td>
+<td>returns the head, or the first element, of list List</td>
+<td>head("data.lines")</td>
+</tr>
+<tr>
+<td><code>nth(Integer, List)</code> -&gt; any</td>
+<td>returns the nth element from list List</td>
+<td>nth(N, "data.lines")</td>
+</tr>
+<tr>
+<td><code>list_join(List)</code> -&gt; any</td>
+<td>equivalent to list_join(',', List)</td>
+<td>list_join("data.lines")</td>
+</tr>
+<tr>
+<td><code>list_join(Separator, List)</code> -&gt; any</td>
+<td>join a list of strings with a separator string</td>
+<td>list_join('-', "data.lines")</td>
+</tr>
+<tr>
+<td><code>list_of_strings(List)</code> -&gt; any</td>
+<td>convert every entry of a list to a string and return the list of strings</td>
+<td>list_of_strings("data.lines")</td>
 </tr>
 <tr>
 <td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>
