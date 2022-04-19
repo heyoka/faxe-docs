@@ -499,6 +499,26 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#lists-and-maps-jsn" class="md-nav__link">
+    Lists and Maps (jsn)
+  </a>
+  
+    <nav class="md-nav" aria-label="Lists and Maps (jsn)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    select
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     Misc
   </a>
@@ -1973,6 +1993,26 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#lists-and-maps-jsn" class="md-nav__link">
+    Lists and Maps (jsn)
+  </a>
+  
+    <nav class="md-nav" aria-label="Lists and Maps (jsn)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    select
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     Misc
   </a>
@@ -2051,6 +2091,19 @@ to reference them:</p>
 
 <p><strong>String</strong></p>
 <div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>string(val) -&gt; string
+</code></pre></div>
+
+<p>If val is a list:</p>
+<p><strong>String</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>string(list) -&gt; string
+</code></pre></div>
+
+<p><em>Converting a list into a string with <code>string</code> is equivalent to</em></p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #a6e22e">list_join</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;,&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">list_of_strings</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">List</span><span style="color: #f8f8f2">))</span>
+</code></pre></div>
+
+<p>Converts every entry of List to a string first and then joins the resulting list with a comma.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">]</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;3&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #e6db74">&#39;1,2,3&#39;</span>
 </code></pre></div>
 
 <h3 id="time-functions">Time functions</h3>
@@ -2426,7 +2479,7 @@ to reference them:</p>
 </tr>
 </tbody>
 </table>
-<h3 id="misc">Misc</h3>
+<h3 id="lists-and-maps-jsn">Lists and Maps (jsn)</h3>
 <table>
 <thead>
 <tr>
@@ -2436,21 +2489,6 @@ to reference them:</p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>defined(Key)</code> -&gt; bool</td>
-<td>whether the given Key is defined in the current data-item</td>
-<td></td>
-</tr>
-<tr>
-<td><code>undefined(Key)</code> -&gt; bool</td>
-<td>whether the given Key is NOT defined in the current data-item</td>
-<td></td>
-</tr>
-<tr>
-<td><code>topic_part(TopicString, PartIndex, [Seperator])</code> -&gt; string</td>
-<td>extract a part from a topic string, Separator defaults to '/', the index of the first part is <code>1</code> not 0</td>
-<td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>
-</tr>
 <tr>
 <td><code>from_json_string(String)</code> -&gt; faxe map or list</td>
 <td>convert a valid json string into faxe's internal data-structure</td>
@@ -2480,6 +2518,58 @@ to reference them:</p>
 <td><code>map_get(Key, Map)</code> -&gt; any</td>
 <td>get a value from a map, 'undefined' is returned, if the key is not present in map</td>
 <td>map_get("topic", ls_mem('stream_lookup'))</td>
+</tr>
+<tr>
+<td><code>select(Key, Jsn)</code> -&gt; list</td>
+<td>Select every value with the path <code>Key</code> from a json-array</td>
+<td></td>
+</tr>
+<tr>
+<td><code>select(Key, Where, Jsn)</code> -&gt; list</td>
+<td>Select every value with the path <code>Key</code> and conditions <code>Where</code> from a json-array. Elements that do not meet the given conditions are filtered out.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>select_first(Key, Jsn)</code> -&gt; any</td>
+<td>Select the first value with the path <code>Key</code> from a json-array.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>select_first(Key, Where, Jsn)</code> -&gt; any</td>
+<td>Select the first value with the path <code>Key</code> and conditions <code>Where</code> from a json-array.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="select">select</h4>
+<p>The Where parameter in select and select_first is a list of tuples.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;key&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;data.id&quot;</span><span style="color: #f8f8f2">}],</span> <span style="color: #a6e22e">jsn_array</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<h3 id="misc">Misc</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is defined in the current data-item</td>
+<td></td>
+</tr>
+<tr>
+<td><code>undefined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is NOT defined in the current data-item</td>
+<td></td>
+</tr>
+<tr>
+<td><code>topic_part(TopicString, PartIndex, [Seperator])</code> -&gt; string</td>
+<td>extract a part from a topic string, Separator defaults to '/', the index of the first part is <code>1</code> not 0</td>
+<td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>
 </tr>
 <tr>
 <td><code>random(N)</code> -&gt; integer</td>

@@ -19,10 +19,9 @@ Example
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-_[node]_ level (`string`) | log level (see below) | 'notice'
-
+| Parameter                 | Description           | Default  |
+|---------------------------|-----------------------|:--------:|
+| _[node]_ level (`string`) | log level (see below) | 'notice' |
 
 The level parameter must have one of the following values:
 
