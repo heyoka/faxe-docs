@@ -5,6 +5,9 @@ element.style {
 .md-typeset table:not([class]) td:not([align]), .md-typeset table:not([class]) th:not([align]) {
     text-align: left;
 }
+.md-grid {
+max-width: 72rem;
+}
 .md-typeset table:not([class]) th {
     min-width: 5rem;
     padding: .6rem .8rem;
