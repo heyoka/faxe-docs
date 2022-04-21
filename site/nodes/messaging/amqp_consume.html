@@ -1940,6 +1940,7 @@
                 
                 <h1 id="the-amqp_consume-node">The amqp_consume node</h1>
 <p>Consume data from an amqp-broker like <a href="https://www.rabbitmq.com">RabbitMQ</a>.</p>
+<p>This node accepts regular amqp routing keys as well as MQTT style topic strings for <code>bindings</code>/<code>routing_key</code>.</p>
 <h3 id="in-safe-mode">In safe mode</h3>
 <p>Once a data-item is received by the node, it will be immediately stored in an on-disk queue for data-safety.
 Only after this will the item be acknowledged to the amqp broker.</p>
@@ -2016,7 +2017,7 @@ when <code>prefetch</code> is changed:</p>
 <tr>
 <td>queue( <code>string</code> )</td>
 <td>name of the queue to bind to the exchange</td>
-<td></td>
+<td>FlowName + '_' + NodeName</td>
 </tr>
 <tr>
 <td>queue_prefix( <code>string</code> )</td>
@@ -2026,7 +2027,7 @@ when <code>prefetch</code> is changed:</p>
 <tr>
 <td>exchange( <code>string</code> )</td>
 <td>name of the exchange to bind to the source exchange</td>
-<td></td>
+<td>FlowName + '_' + NodeName</td>
 </tr>
 <tr>
 <td>exchange_prefix( <code>string</code> )</td>
@@ -2040,8 +2041,8 @@ when <code>prefetch</code> is changed:</p>
 </tr>
 <tr>
 <td>consumer_tag( <code>string</code> )</td>
-<td>Identifier for the queue consumer, defaults to a combination of flow-id and node-id</td>
-<td>undefined</td>
+<td>Identifier for the queue consumer</td>
+<td>'c_' + FlowName + '_' + NodeName</td>
 </tr>
 <tr>
 <td>ack_every( <code>integer</code> )</td>

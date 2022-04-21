@@ -212,17 +212,19 @@ lambda: select('key', [{'id', "data.id"}], jsn_array)
 
 ### Misc
 
-| Function                                                    | Description                                                                                             | Example                                   |
-|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| `defined(Key)` -> bool                                      | whether the given Key is defined in the current data-item                                               |                                           |
-| `undefined(Key)` -> bool                                    | whether the given Key is NOT defined in the current data-item                                           |                                           |
-| `topic_part(TopicString, PartIndex, [Seperator])` -> string | extract a part from a topic string, Separator defaults to '/', the index of the first part is `1` not 0 | topic_part('this/is/mytopic', 2) -> 'is'  |
-| `random(N)` -> integer                                      | generate a random integer between 1 and N                                                               |                                           |
-| `random_real(N)` -> float                                   | generate a random float between 0.0 and 1.0, that gets multiplied by N                                  |                                           |
-| `mem` values are set with the [mem node](../nodes/mem.md)   |                                                                                                         |                                           |
-| `ls_mem(Key)` -> any                                        | get the single value associated with Key from the flow-memory                                           |                                           |
-| `ls_mem_list(Key)` -> any                                   | get the list value associated with Key from the flow-memory                                             |                                           |
-| `ls_mem_set(Key)` -> any                                    | get the set value associated with Key from the flow-memory                                              |                                           |
+| Function                                                    | Description                                                                                             | Example                                  |
+|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|------------------------------------------|
+| `defined(Key)` -> bool                                      | whether the given Key is defined in the current data-item                                               |                                          |
+| `undefined(Key)` -> bool                                    | whether the given Key is NOT defined in the current data-item                                           |                                          |
+| `topic_part(TopicString, PartIndex, [Seperator])` -> string | extract a part from a topic string, Separator defaults to '/', the index of the first part is `1` not 0 | topic_part('this/is/mytopic', 2) -> 'is' |
+| `random(N)` -> integer                                      | generate a random integer between 1 and N                                                               |                                          |
+| `random_real(N)` -> float                                   | generate a random float between 0.0 and 1.0, that gets multiplied by N                                  |                                          |
+| `crc32(String)` -> string                                   | Computes the crc32 (IEEE 802.3 style) checksum for the given string.                                    |                                          |
+| `phash(Any)` -> integer                                     | Portable hash function, that outputs an integer in the range 0..2^27-1                                  |                                          |
+| `mem` values are set with the [mem node](../nodes/mem.md)   |                                                                                                         |                                          |
+| `ls_mem(Key)` -> any                                        | get the single value associated with Key from the flow-memory                                           |                                          |
+| `ls_mem_list(Key)` -> any                                   | get the list value associated with Key from the flow-memory                                             |                                          |
+| `ls_mem_set(Key)` -> any                                    | get the set value associated with Key from the flow-memory                                              |                                          |
 
 ### Conditional functions
 

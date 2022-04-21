@@ -1925,6 +1925,7 @@
                 <h1 id="the-amqp_publish-node">The amqp_publish node</h1>
 <p>Publish data to an amqp-broker exchange. The most popular amqp-broker is <a href="https://www.rabbitmq.com">RabbitMQ</a>.</p>
 <p>Incoming data is converted to JSON before sending.</p>
+<p>This node accepts regular amqp routing keys as well as MQTT style topic strings for each of the <code>routing_key(...)</code> params.</p>
 <hr />
 <p>The amqp <code>correlation-id</code> property will be set to phash2(routing_key + payload) using erlang's phash2 function on every published message:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>The erlang documentation on phash2:
@@ -1983,17 +1984,17 @@ Portable hash function that gives the same hash for the same Erlang term regardl
 <tr>
 <td>routing_key( <code>string</code> )</td>
 <td>routing key for the published messages</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>routing_key_lambda( <code>lambda</code> )</td>
 <td>lambda expression producing a routing key for the published messages</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>routing_key_field( <code>string</code> )</td>
 <td>path to a field in the current data-item, who's value should be used as the routing-key</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>exchange( <code>string</code> )</td>
@@ -2017,6 +2018,7 @@ Portable hash function that gives the same hash for the same Erlang term regardl
 </tr>
 </tbody>
 </table>
+<p>One of <code>routing_key</code>, <code>routing_key_lambda</code>, <code>routing_key_field</code> is required.</p>
 <h3 id="qos">Qos</h3>
 <table>
 <thead>

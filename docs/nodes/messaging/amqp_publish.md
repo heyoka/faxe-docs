@@ -5,6 +5,8 @@ Publish data to an amqp-broker exchange. The most popular amqp-broker is [Rabbit
 
 Incoming data is converted to JSON before sending.
 
+This node accepts regular amqp routing keys as well as MQTT style topic strings for each of the `routing_key(...)` params.
+
 -----------
 The amqp `correlation-id` property will be set to phash2(routing_key + payload) using erlang's phash2 function on every published message:
     
@@ -41,13 +43,15 @@ Parameters
 | user( `string` )               | AMQP user                                                                               | from config file          |
 | pass( `string` )               | AMQP password                                                                           | from config file          |
 | vhost( `string` )              | vhost to connect to on the broker                                                       | '/'                       |
-| routing_key( `string` )        | routing key for the published messages                                                  |                           |
-| routing_key_lambda( `lambda` ) | lambda expression producing a routing key for the published messages                    |                           |
-| routing_key_field( `string` )  | path to a field in the current data-item, who's value should be used as the routing-key |                           |
+| routing_key( `string` )        | routing key for the published messages                                                  | undefined                 |
+| routing_key_lambda( `lambda` ) | lambda expression producing a routing key for the published messages                    | undefined                 |
+| routing_key_field( `string` )  | path to a field in the current data-item, who's value should be used as the routing-key | undefined                 |
 | exchange( `string` )           | name of the exchange to publish to                                                      |                           |
 | qos( `integer` )               | publish quality, see table below for details                                            | 1                         |
 | persistent( `bool` )           | whether to send the amqp messages with delivery-mode 2 (persistent)                     | false (delivery_mode = 1) |
 | ssl( is_set )                  | whether to use ssl                                                                      | false (not set)           |
+
+One of `routing_key`, `routing_key_lambda`, `routing_key_field` is required.
 
 ### Qos
 Qos | description | consequences
