@@ -11,7 +11,7 @@ This node is used for continous timeseries queries.
 
 ### Query 
 
-A select statement will be executed periodically, on every iteration a `timefilter` gets ajusted according to the `period` parameter.
+A select statement will be executed periodically, on every iteration a `timefilter` gets adjusted according to the `period` parameter.
 For this to work, the query given must contain the `$__timefilter` placeholder in the query's where clause:
 
 ```dfs 
@@ -57,8 +57,9 @@ AS ts
 ### Historic and up-to-date data
 
 While reading data from the past, `min_interval` will be used to schedule the operation.
-Once the `timefilter` reaches persent wall-clock time the `offset` parameter will determine an amount of time to add to
-the scheduled time, this is to account for late incoming data to the database.
+
+Once the `timefilter` reaches present wall-clock time, the `offset` parameter will determine an amount of time to add to
+the scheduled time, that is now `period`. This is to account for late incoming data to the database.
 
 
 
@@ -84,7 +85,7 @@ The above example will execute the query periodically, emitting data_batch items
 
 `start` will be aligned to `period`, so that the `timefilter` will look like this for the first query:
 ```sql
-ts >= '2021-11-16T16:03:0.000000Z' AND ts < '2021-11-16T16:04:0.000000Z'
+ts >= '2021-11-16T16:03:00.000Z' AND ts < '2021-11-16T16:04:00.000Z'
 
 ```
 
@@ -93,18 +94,18 @@ ts >= '2021-11-16T16:03:0.000000Z' AND ts < '2021-11-16T16:04:0.000000Z'
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-host( `string` )| CrateDB host | from config
-port( `integer` )| CrateDB port | from config
-user( `string` )| username| from config
-pass( `string` )|password| from config
-database( `string` )|Database name| from config
-query( `string` )|'SELECT' query with `$__timefilter` placeholder |
-start( `string` ) | `timefilter` start point .ISO8601 datetime string or query that retrieves an ISO8601 datetime string from the database |
-stop( `string` ) | `timefilter` stop point .ISO8601 datetime string or query that retrieves an ISO8601 datetime string from the database | undefined
-filter_time_field( `string` )|name of timestamp db column, used for `timefiler` |'ts' 
-result_time_field( `string` )|name of result column, used for retrieving timestamps |defaults to filter_time_field
-period( `duration` )|timefilter timespan, query bounds will be aligned to this value | 1h
-offset( `duration` )|offset at which the database is queried when the timefilter reached 'now' time | 20s
-min_interval( `duration` ) | minimum query-interval when the timefilter is in the past | 5s 
+| Parameter                     | Description                                                                                                            | Default                       |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| host( `string` )              | CrateDB host                                                                                                           | from config                   |
+| port( `integer` )             | CrateDB port                                                                                                           | from config                   |
+| user( `string` )              | username                                                                                                               | from config                   |
+| pass( `string` )              | password                                                                                                               | from config                   |
+| database( `string` )          | Database name                                                                                                          | from config                   |
+| query( `string` )             | 'SELECT' query with `$__timefilter` placeholder                                                                        |                               |
+| start( `string` )             | `timefilter` start point .ISO8601 datetime string or query that retrieves an ISO8601 datetime string from the database |                               |
+| stop( `string` )              | `timefilter` stop point .ISO8601 datetime string or query that retrieves an ISO8601 datetime string from the database  | undefined                     |
+| filter_time_field( `string` ) | name of timestamp db column, used for `timefiler`                                                                      | 'ts'                          |
+| result_time_field( `string` ) | name of result column, used for retrieving timestamps                                                                  | defaults to filter_time_field |
+| period( `duration` )          | timefilter timespan, query boundaries will be aligned to this value                                                    | 1h                            |
+| offset( `duration` )          | offset at which the database is queried when the timefilter reached 'now' time                                         | 20s                           |
+| min_interval( `duration` )    | minimum query-interval when the timefilter is in the past                                                              | 5s                            |

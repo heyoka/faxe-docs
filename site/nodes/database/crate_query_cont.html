@@ -1944,7 +1944,7 @@
 <p>Query the <a href="https://crate.io">CRATE</a> database for <code>time series data</code>. </p>
 <p>This node is used for continous timeseries queries.</p>
 <h3 id="query">Query</h3>
-<p>A select statement will be executed periodically, on every iteration a <code>timefilter</code> gets ajusted according to the <code>period</code> parameter.
+<p>A select statement will be executed periodically, on every iteration a <code>timefilter</code> gets adjusted according to the <code>period</code> parameter.
 For this to work, the query given must contain the <code>$__timefilter</code> placeholder in the query's where clause:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code> <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">query</span> <span style="color: #f92672">=</span> 
  <span style="color: #e6db74">&#39;</span>
@@ -1978,9 +1978,9 @@ For this to work, the query given must contain the <code>$__timefilter</code> pl
 </code></pre></div>
 
 <h3 id="historic-and-up-to-date-data">Historic and up-to-date data</h3>
-<p>While reading data from the past, <code>min_interval</code> will be used to schedule the operation.
-Once the <code>timefilter</code> reaches persent wall-clock time the <code>offset</code> parameter will determine an amount of time to add to
-the scheduled time, this is to account for late incoming data to the database.</p>
+<p>While reading data from the past, <code>min_interval</code> will be used to schedule the operation.</p>
+<p>Once the <code>timefilter</code> reaches present wall-clock time, the <code>offset</code> parameter will determine an amount of time to add to
+the scheduled time, that is now <code>period</code>. This is to account for late incoming data to the database.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">period</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">1m</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">sql</span> <span style="color: #f92672">=</span> 
@@ -1997,7 +1997,7 @@ the scheduled time, this is to account for late incoming data to the database.</
 
 <p>The above example will execute the query periodically, emitting data_batch items with data_points worth of 1 minute. </p>
 <p><code>start</code> will be aligned to <code>period</code>, so that the <code>timefilter</code> will look like this for the first query:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&gt;=</span> <span style="color: #e6db74">&#39;2021-11-16T16:03:0.000000Z&#39;</span> <span style="color: #66d9ef">AND</span> <span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&lt;</span> <span style="color: #e6db74">&#39;2021-11-16T16:04:0.000000Z&#39;</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&gt;=</span> <span style="color: #e6db74">&#39;2021-11-16T16:03:00.000Z&#39;</span> <span style="color: #66d9ef">AND</span> <span style="color: #f8f8f2">ts</span> <span style="color: #f92672">&lt;</span> <span style="color: #e6db74">&#39;2021-11-16T16:04:00.000Z&#39;</span>
 </code></pre></div>
 
 <h2 id="parameters">Parameters</h2>
@@ -2062,7 +2062,7 @@ the scheduled time, this is to account for late incoming data to the database.</
 </tr>
 <tr>
 <td>period( <code>duration</code> )</td>
-<td>timefilter timespan, query bounds will be aligned to this value</td>
+<td>timefilter timespan, query boundaries will be aligned to this value</td>
 <td>1h</td>
 </tr>
 <tr>
