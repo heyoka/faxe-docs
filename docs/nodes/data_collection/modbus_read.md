@@ -1,4 +1,4 @@
-The modbus node
+The modbus_read node
 =====================
 
 Read data from a modbus slave device via **modbus tcp**, supported read functions are :
@@ -20,7 +20,7 @@ Examples
 -------
 ```dfs  
 
-|modbus()
+|modbus_read()
 .ip('127.0.0.1') 
 .device(255)
 .every(1s)
@@ -35,7 +35,7 @@ Examples
 
 ```dfs  
 
-|modbus()
+|modbus_read()
 .ip('127.0.0.1')  
 .every(2m)
 .function('hregs', 'hregs', 'hregs')
