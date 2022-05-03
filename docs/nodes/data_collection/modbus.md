@@ -1,6 +1,13 @@
 The modbus node
 =====================
 
+
+
+_Deprecated since version 0.19.7, use the [modbus_read](modbus_read.md) instead._
+
+-------------------------------------------------------
+
+
 Read data via **modbus tcp**, supported read functions are :
 ['coils', 'hregs', 'iregs', 'inputs', 'memory']
 
