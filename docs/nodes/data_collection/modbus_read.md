@@ -63,6 +63,7 @@ Parameters
 | output( `string_list` )         | list of output formats one of `['int16', 'int32', 'float32', 'double', 'coils', 'ascii', 'binary']`                                            | undefined               |
 | signed( `atom_list` true/false) | list of values indicating if values are signed                                                                                                 | undefined               |
 | round( `integer` )              | Round all `float32` and `double` values with the given precision. If a value has less than the given decimal places, it will be left untouched | undefined (no rounding) |
+| timeout( `duration` )           | Read timeout for one request                                                                                                                   | 5s                      |
 
 Note that, if given, all read parameters(`function, from, count, as, output, signed`) must have the same length, this means if you have two
 values you want to read :
