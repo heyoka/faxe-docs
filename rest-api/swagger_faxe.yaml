@@ -23,6 +23,8 @@ paths:
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/UsersResponse'
           examples:
             application/json:
               [
@@ -91,6 +93,8 @@ paths:
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/LogLevelResponse'
           examples:
             application/json:
               {
@@ -113,13 +117,7 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                description: success message
+            $ref: '#/definitions/SuccessResponse'
         400:
           description: "Parameter error"
           schema:
@@ -162,6 +160,8 @@ paths:
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/ConfigResponse'
           examples:
             application/json:
               {
@@ -211,6 +211,8 @@ paths:
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/VmStatsResponse'
           examples:
             application/json:
               {
@@ -248,6 +250,8 @@ paths:
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/FaxeStatsResponse'
           examples:
             application/json:
               {
@@ -384,13 +388,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "started 1 flow"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "started 4 flows"
+              }
         401:
           description: Unauthorized
         405:
@@ -405,13 +409,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "stopped 3 flows"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "stopped 4 flows"
+              }
         401:
           description: Unauthorized
         405:
@@ -426,13 +430,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "started 0 flows"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "started 4 flows"
+              }
         401:
           description: Unauthorized
         405:
@@ -453,13 +457,14 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "started 4 flows"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "started 4 flows"
+              }
+              
         401:
           description: Unauthorized
         405:
@@ -480,13 +485,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "stopped 1 flow"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "stopped 1 flow"
+              }
         401:
           description: Unauthorized
         405:
@@ -507,13 +512,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "stopped 1 flow"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "stopped 1 flow"
+              }
         401:
           description: Unauthorized
         405:
@@ -534,13 +539,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "updated 13 flows"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "updated 13 flows"
+              }
         401:
           description: Unauthorized
         405:
@@ -555,13 +560,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "updated 2 flows"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "updated 11 flows"
+              }
         401:
           description: Unauthorized
         405:
@@ -582,13 +587,13 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
-              message:
-                type: string
-                example: "updated 7 flows"
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "updated 7 flows"
+              }
         401:
           description: Unauthorized
         405:
@@ -644,13 +649,14 @@ paths:
         200:
           description: "Successfully registered or updated a task"
           schema:
-            properties:
-              id:
-                type: integer
-                description: The task ID
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessNameIdResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "name": "testflow",
+                "id" : 17
+              }
         400:
           description: "Error creating or updating the task"
           schema:
@@ -713,10 +719,12 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true
+              }
         401:
           description: Unauthorized
         404:
@@ -739,10 +747,12 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true
+              }
         401:
           description: Unauthorized
         404:
@@ -764,10 +774,12 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true
+              }
         401:
           description: Unauthorized
         404:
@@ -790,10 +802,12 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true
+              }
         401:
           description: Unauthorized
         404:
@@ -816,10 +830,12 @@ paths:
         200:
           description: "OK"
           schema:
-            properties:
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true
+              }
         401:
           description: Unauthorized
         404:
@@ -917,11 +933,13 @@ paths:
         200:
           description: "Successfully validated dfs script"
           schema:
-            properties:
-              success:
-                type: boolean
-              message:
-                type: string
+            $ref: '#/definitions/SuccessResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "message": "script for flow is valid"
+              }
         400:
           description: "Bad Request"
           schema:
@@ -955,16 +973,14 @@ paths:
         200:
           description: "Successfully parsed registered task"
           schema:
-            properties:
-              id:
-                type: integer
-                description: The newly created task ID
-              name:
-                type: string
-                description: The task name
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessNameIdResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "name": "testflow",
+                "id" : 17
+              }
         400:
           description: "Error creating or parsing the task"
           schema:
@@ -1007,16 +1023,14 @@ paths:
         200:
           description: "Successfully updated task."
           schema:
-            properties:
-              id:
-                type: integer
-                description: The task ID
-              name:
-                type: string
-                description: The task name
-              success:
-                type: boolean
-                default: true
+            $ref: '#/definitions/SuccessNameIdResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "name": "testflow",
+                "id" : 17
+              }
         400:
           description: "Error updating the task."
           schema:
@@ -1063,6 +1077,15 @@ paths:
       responses:
         200: 
           description: "Task successfully registered."
+          schema:
+            $ref: '#/definitions/SuccessNameIdResponse'
+          examples:
+            application/json:
+              {
+                "success": true,
+                "name": "testflow",
+                "id" : 17
+              }
         401:
           description: Unauthorized
         404:
@@ -1192,6 +1215,10 @@ paths:
       responses:
         200:
           description: OK
+          schema: 
+            type: string
+            description: json of the graph
+          
           examples:
             application/json:
               {
@@ -1402,6 +1429,9 @@ paths:
       responses:
         200:
           description: "Uploaded file(s)"
+          schema: 
+            type: string
+            description: json
           examples:
             application/json:
               {"files" :
@@ -1777,3 +1807,204 @@ definitions:
     properties:
       logs:
         $ref: '#/definitions/LogEntries'
+  SuccessResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+        description: true if successful, false if not
+      message:
+        type: string
+        description: additional message field
+      error:
+        type: string
+        description: if not successfull there can be an error message
+  SuccessNameIdResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+        description: true if successful, false if not
+      id:
+        type: string
+        description: id of the flow
+      name:
+        type: string
+        description: name of the flow
+  UsersResponse:
+    type: array
+    items:
+      $ref: '#/definitions/UserResponse'
+  UserResponse:
+    type: object
+    properties: 
+      role: 
+        type: string
+        description: admin
+      pass: 
+        type: string
+        description: pass
+      name: 
+        type: string
+        description: user
+  LogLevelResponse:
+    type: object
+    properties: 
+      emit: 
+        type: string
+        description: warning
+      console: 
+        type: string
+        description: console
+  
+  MetricsObject:    
+    type: object
+    properties: 
+      port: 
+        type: integer
+        description: '1883'
+      host:
+        type: string
+        description: '127.0.0.1'
+      enable:
+        type: boolean
+        description: 'false'
+      base_topic:
+        type: string
+        description: 'ttgw/sys/faxe/10_10_2_15/metrics'
+      debug_time_ms:
+        type: integer
+        description: '1000'
+  DebugObject:    
+    type: object
+    properties: 
+      port: 
+        type: integer
+        description: '1883'
+      host: 
+        type: string
+        description: '127.0.0.1'
+      enable: 
+        type: boolean
+        description: 'false'
+      base_topic: 
+        type: string
+        description: 'ttgw/sys/faxe/10_10_2_15/debug'
+  ConnStatusObject:    
+    type: object
+    properties: 
+      port: 
+        type: integer
+        description: '1883'
+      host: 
+        type: string
+        description: '127.0.0.1'
+      enable: 
+        type: boolean
+        description: 'true'
+      base_topic: 
+        type: string
+        description: 'ttgw/sys/faxe/10_10_2_15/conn_status'
+  ConfigResponse:
+    type: object
+    properties:
+      metrics:
+        type: object
+        $ref: '#/definitions/MetricsObject'
+      debug:
+        type: object
+        $ref: '#/definitions/DebugObject'
+      conn_status:
+        type: object
+        $ref: '#/definitions/ConnStatusObject'
+  VmStatsResponse:
+    type: object
+    properties:
+      vmstats-vm_uptime:
+            type: string
+            description: '3743605'
+      vmstats-run_queue:
+            type: string
+            description: '1'
+      vmstats-reductions:
+            type: string
+            description: '39523'
+      vmstats-proc_limit:
+            type: string
+            description: '262144'
+      vmstats-proc_count:
+            type: string
+            description: '182'
+      vmstats-port_limit:
+            type: string
+            description: '65536'
+      vmstats-port_count:
+            type: string
+            description: '9'
+      vmstats-modules:
+            type: string
+            description: '1338'
+      vmstats-messages_in_queues:
+            type: string
+            description: '0'
+      vmstats-memory.total:
+            type: string
+            description: '86'
+      vmstats-memory.procs_used:
+            type: string
+            description: '31'
+      vmstats-memory.ets:
+            type: string
+            description: '2'
+      vmstats-memory.binary:
+            type: string
+            description: '0'
+      vmstats-memory.atom_used:
+            type: string
+            description: '1'
+      vmstats-io.bytes_out:
+            type: string
+            description: '0'
+      vmstats-io.bytes_in:
+            type: string
+            description: '0'
+      vmstats-gc.words_reclaimed:
+            type: string
+            description: '261675'
+      vmstats-gc.count:
+            type: string
+            description: '4'
+      vmstats-error_logger_queue_len:
+            type: string
+            description: '0'
+      vmstats-atom_count:
+            type: string
+            description: '44524'
+  FaxeStatsResponse:
+    type: object
+    properties:
+        running_temp_tasks: 
+            type: string
+            description: '0'
+        running_tasks: 
+            type: string
+            description: '0'
+        registered_templates: 
+            type: string
+            description: '4'
+        registered_tasks: 
+            type: string
+            description: '18'
+        permanent_tasks: 
+            type: string
+            description: '0'
+        faxe_version: 
+            type: string
+            description: '0.8.1'
+        data_throughput_sec: 
+            type: string
+            description: '11'
+        data_paths_known: 
+            type: string
+            description: '0'
+        
