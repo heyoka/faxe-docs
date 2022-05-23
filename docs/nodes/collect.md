@@ -83,13 +83,13 @@ Example 2
 |collect()
 .key_field('data.code')
 .update(lambda: "data.mode" == 1) 
-.delete(lambda: str_length("data.message") > 7)
+.remove(lambda: str_length("data.message") > 7)
  
 
 ```
 Collect by the field `data.code`, update an item when the `data.mode` field is 1.
 
-Items get deleted, if they have a value for `data.message`, that is more than 7 chars long.
+Items get removed, if they have a value for `data.message`, that is more than 7 chars long.
 
 Example 3
 --------
