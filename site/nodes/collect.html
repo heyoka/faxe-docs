@@ -2045,11 +2045,11 @@ No <code>update</code> or <code>remove</code> will occur otherwise.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.code&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.mode&quot;</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> 
-<span style="color: #f8f8f2">.delete(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_length</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.message&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_length</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.message&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 <p>Collect by the field <code>data.code</code>, update an item when the <code>data.mode</code> field is 1.</p>
-<p>Items get deleted, if they have a value for <code>data.message</code>, that is more than 7 chars long.</p>
+<p>Items get removed, if they have a value for <code>data.message</code>, that is more than 7 chars long.</p>
 <h2 id="example-3">Example 3</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #75715e">%% input data -&gt;</span>
 
