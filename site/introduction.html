@@ -265,9 +265,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data" class="md-nav__link">
     Data
   </a>
+  
+    <nav class="md-nav" aria-label="Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-point" class="md-nav__link">
+    data-point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-this-data-look-like" class="md-nav__link">
+    How does this data look like ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-batch" class="md-nav__link">
+    data-batch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1899,9 +1933,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data" class="md-nav__link">
     Data
   </a>
+  
+    <nav class="md-nav" aria-label="Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-point" class="md-nav__link">
+    data-point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-this-data-look-like" class="md-nav__link">
+    How does this data look like ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-batch" class="md-nav__link">
+    data-batch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1947,10 +2015,135 @@
                 
                 
                 <h1 id="intro">Intro</h1>
-<p>DFS is quite simple and limited in some ways as a 'language', of course because it is not a language but a DSL.
-And this is intended.</p>
-<p>To get started, we look at some concepts to deal with, when writing dfs scripts.</p>
+<p>Faxe at it's core implements the architectural ideas of <a href="https://en.wikipedia.org/wiki/Dataflow">dataflow computing</a> from the 1970s and 80s.</p>
+<blockquote>
+<p>The central idea was to replace the classic von Neumann architecture with something more powerful.
+In a von Neumann architecture, the processor follows explicit control flow, executing instructions one after another.
+In a dataflow processor, by contrast, an instruction is ready to execute as soon as all its inputs (typically referred to as “tokens”)
+are available, rather than when the control flow gets to it.
+This design promised efficient parallel execution in hardware when many “tokens” were ready to execute.
+-- <cite><a href="https://www.sigops.org/2020/the-remarkable-utility-of-dataflow-computing/">The remarkable utility of dataflow computing</a></cite></p>
+</blockquote>
+<p>Nowadays with the need to process large amounts of (flowing) data and with the rise of machine learning frameworks, dataflow
+computing has gained in popularity again. </p>
+<blockquote>
+<p>For example, machine learning frameworks like TensorFlow represent model training and inference as dataflow graphs, 
+and the state transitions of actors 
+(e.g., simulators used in reinforcement learning training) can be represented as dataflow edges, too.
+<br><br>
+Other research has extended the original dataflow graph abstraction for streaming computations. 
+Instead of evaluating the dataflow graph once, with all inputs set at the beginning and all outputs produced at the end of evaluation, 
+a streaming dataflow system continuously executes the dataflow in response to new inputs. 
+This requires incremental processing and a stateful dataflow. 
+In this setting, new inputs from a stream of input data combine with existing computation state inside the dataflow graph 
+(e.g., an accumulator for a streaming sum).
+-- <cite><a href="https://www.sigops.org/2020/the-remarkable-utility-of-dataflow-computing/">The remarkable utility of dataflow computing</a></cite></p>
+</blockquote>
+<p>This is exactly where FAXE picks up the dataflow computing idea.</p>
+<hr />
+<p>To get started, we look at some of these concepts in Faxe.</p>
+<h2 id="nodes">Nodes</h2>
+<p>The components that make up the computing graph are called <code>nodes</code> in faxe.
+There are many <code>built-in nodes</code> for various different tasks, such as</p>
+<ul>
+<li>getting data from PLCs or Modbus devices</li>
+<li>reading and writing data from different databases</li>
+<li>publishing and consuming data from mqtt or other message brokers like <a href="https://www.rabbitmq.com/">RabbitMQ</a></li>
+<li>windowing</li>
+<li>statistics</li>
+<li>manipulating fields in data, that flows through the computing graph</li>
+<li>....</li>
+</ul>
+<p>Besides these nodes, FAXE users can also write <code>custom nodes implemented with python</code>, that can be used like the built-in ones
+in dataflows.</p>
+<blockquote>
+<p>FAXE is implemented in <a href="https://www.erlang.org/">Erlang/OTP</a> which makes it possible, that each of the nodes in a flow is running in its own seperate process.
+These processes share nothing in between them and only communicate with each other through <code>message passing</code>. This makes up for massive parallelism (concurrency)
+within a flow and also between all the flows running in a FAXE instance, matching exactly the architecture of the dataflow programming paradigm.
+<br>
+A FAXE instance can easily have thousands of processes runnning in parallel, which results in great throughput for a lot of data-streams.</p>
+</blockquote>
 <h2 id="data">Data</h2>
+<h3 id="data-point">data-point</h3>
+<p>The smallest piece of data-item in FAXE is called a <code>data-point</code>. 
+Since FAXE is mainly used for time series processes, these data-points always carry a unix timestamp in a field called <code>ts</code> with them.
+So a data-point holds data for a specific point in time and a series of such data-points then form this unbounded stream of data we call
+time series data.</p>
+<h3 id="how-does-this-data-look-like">How does this data look like ?</h3>
+<p>We can think of the before mentioned <code>data-point as a JSON object</code> (though internally it is not exactly JSON).</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span> <span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1629812164152</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;value&quot;</span> <span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">2.33</span><span style="color: #f8f8f2">}</span>
+</code></pre></div>
+
+<p>The timestamp is always there and the field holding it is always called <code>ts</code>.</p>
+<p>Next to the timestamp a data-point can have any number of other <code>fields</code>, a field can be of the basic data-type like <code>int, string, float</code>,
+or it can be an object itself, possibly deeply nested. Basically everything that is allowed in the JSON format.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1629812164152</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;values&quot;</span><span style="color: #f8f8f2">:{</span>
+    <span style="color: #f92672">&quot;value1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;value2&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;a string&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;value3&quot;</span><span style="color: #f8f8f2">:{</span>
+      <span style="color: #f92672">&quot;value3_1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">4.232341</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</code></pre></div>
+
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1629812164152</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;values&quot;</span><span style="color: #f8f8f2">:[</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">&quot;value1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">12</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">&quot;value2&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;a string&quot;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">}</span>
+</code></pre></div>
+
+<p>In order to deal with these data structures, we can use a basic form of <a href="https://jsonpath.com/">JSON-Path</a>.</p>
+<p>For example to reference the field <strong>value2</strong> in the second example, we would use the following <code>path</code>:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>values.value2
+</code></pre></div>
+
+<p>The path for the field <strong>value3_1</strong> in the second example:</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>values.value3.value_3_1
+</code></pre></div>
+
+<p>In the third example we have a json-array, we can reference the field <strong>value2</strong> like so:</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>values[2].value2
+</code></pre></div>
+
+<h3 id="data-batch">data-batch</h3>
+<p>There is a second type of data-item called <code>data-batch</code>, which is simply a <code>list of data-points</code>.
+The list of data-points that make up a data-batch is ordered by the points' timestamps.</p>
+<p>In JSON notation a data-batch will look like this:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">[</span>
+  <span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1629812164152</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;values&quot;</span><span style="color: #f8f8f2">:{</span>
+      <span style="color: #f92672">&quot;value1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #f92672">&quot;value2&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;res-433&quot;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1629812164154</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;values&quot;</span><span style="color: #f8f8f2">:{</span>
+      <span style="color: #f92672">&quot;value1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">13</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #f92672">&quot;value2&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;res-124&quot;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1629812164156</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;values&quot;</span><span style="color: #f8f8f2">:{</span>
+      <span style="color: #f92672">&quot;value1&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">11</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #f92672">&quot;value2&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;res-712&quot;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">]</span>
+</code></pre></div>
+
 <h2 id="strings-and-references">Strings and References</h2>
 <p>Unlike what is possible in some programming languages, 
 where you can use two different string notations: <code>'a string'</code> or <code>"also a string"</code>,

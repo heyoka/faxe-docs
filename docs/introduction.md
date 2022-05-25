@@ -1,14 +1,170 @@
 # Intro
 
-DFS is quite simple and limited in some ways as a 'language', of course because it is not a language but a DSL.
-And this is intended.
+Faxe at it's core implements the architectural ideas of [dataflow computing](https://en.wikipedia.org/wiki/Dataflow) from the 1970s and 80s.
 
-To get started, we look at some concepts to deal with, when writing dfs scripts.
+> The central idea was to replace the classic von Neumann architecture with something more powerful.
+In a von Neumann architecture, the processor follows explicit control flow, executing instructions one after another.
+In a dataflow processor, by contrast, an instruction is ready to execute as soon as all its inputs (typically referred to as “tokens”)
+are available, rather than when the control flow gets to it.
+This design promised efficient parallel execution in hardware when many “tokens” were ready to execute.
+> -- <cite>[The remarkable utility of dataflow computing][1]</cite>
+
+[1]: https://www.sigops.org/2020/the-remarkable-utility-of-dataflow-computing/
+
+Nowadays with the need to process large amounts of (flowing) data and with the rise of machine learning frameworks, dataflow
+computing has gained in popularity again. 
+
+> For example, machine learning frameworks like TensorFlow represent model training and inference as dataflow graphs, 
+and the state transitions of actors 
+(e.g., simulators used in reinforcement learning training) can be represented as dataflow edges, too.
+<br><br>
+Other research has extended the original dataflow graph abstraction for streaming computations. 
+Instead of evaluating the dataflow graph once, with all inputs set at the beginning and all outputs produced at the end of evaluation, 
+a streaming dataflow system continuously executes the dataflow in response to new inputs. 
+This requires incremental processing and a stateful dataflow. 
+In this setting, new inputs from a stream of input data combine with existing computation state inside the dataflow graph 
+(e.g., an accumulator for a streaming sum).
+> -- <cite>[The remarkable utility of dataflow computing][1]</cite>
+
+[1]: https://www.sigops.org/2020/the-remarkable-utility-of-dataflow-computing/
 
 
+This is exactly where FAXE picks up the dataflow computing idea.
 
+
+----------------------------------------------------------
+
+
+To get started, we look at some of these concepts in Faxe.
+
+## Nodes
+
+The components that make up the computing graph are called `nodes` in faxe.
+There are many `built-in nodes` for various different tasks, such as
+
+* getting data from PLCs or Modbus devices
+* reading and writing data from different databases
+* publishing and consuming data from mqtt or other message brokers like [RabbitMQ](https://www.rabbitmq.com/)
+* windowing
+* statistics
+* manipulating fields in data, that flows through the computing graph
+* ....
+
+Besides these nodes, FAXE users can also write `custom nodes implemented with python`, that can be used like the built-in ones
+in dataflows.
+
+
+>FAXE is implemented in [Erlang/OTP](https://www.erlang.org/) which makes it possible, that each of the nodes in a flow is running in its own seperate process.
+These processes share nothing in between them and only communicate with each other through `message passing`. This makes up for massive parallelism (concurrency)
+within a flow and also between all the flows running in a FAXE instance, matching exactly the architecture of the dataflow programming paradigm.
+<br>
+A FAXE instance can easily have thousands of processes runnning in parallel, which results in great throughput for a lot of data-streams.
 
 ## Data
+
+### data-point
+
+The smallest piece of data-item in FAXE is called a `data-point`. 
+Since FAXE is mainly used for time series processes, these data-points always carry a unix timestamp in a field called `ts` with them.
+So a data-point holds data for a specific point in time and a series of such data-points then form this unbounded stream of data we call
+time series data.
+
+### How does this data look like ?
+
+We can think of the before mentioned `data-point as a JSON object` (though internally it is not exactly JSON).
+
+```json
+
+{"ts" : 1629812164152, "value" : 2.33}
+
+```
+
+The timestamp is always there and the field holding it is always called `ts`.
+
+Next to the timestamp a data-point can have any number of other `fields`, a field can be of the basic data-type like `int, string, float`,
+or it can be an object itself, possibly deeply nested. Basically everything that is allowed in the JSON format.
+
+```json
+
+{
+  "ts":1629812164152,
+  "values":{
+    "value1":12,
+    "value2":"a string",
+    "value3":{
+      "value3_1":4.232341
+    }
+  }
+}
+
+```
+
+```json
+
+{
+  "ts":1629812164152,
+  "values":[
+    {
+      "value1":12
+    },
+    {
+      "value2":"a string"
+    }
+  ]
+}
+
+```
+
+In order to deal with these data structures, we can use a basic form of [JSON-Path](https://jsonpath.com/).
+
+For example to reference the field **value2** in the second example, we would use the following `path`:
+
+    values.value2
+
+The path for the field **value3_1** in the second example:
+
+    values.value3.value_3_1
+
+In the third example we have a json-array, we can reference the field **value2** like so:
+
+    values[2].value2
+
+
+### data-batch
+
+There is a second type of data-item called `data-batch`, which is simply a `list of data-points`.
+The list of data-points that make up a data-batch is ordered by the points' timestamps.
+
+In JSON notation a data-batch will look like this:
+
+```json
+
+[
+  {
+    "ts":1629812164152,
+    "values":{
+      "value1":12,
+      "value2":"res-433"
+    }
+  },
+  {
+    "ts":1629812164154,
+    "values":{
+      "value1":13,
+      "value2":"res-124"
+    }
+  },
+  {
+    "ts":1629812164156,
+    "values":{
+      "value1":11,
+      "value2":"res-712"
+    }
+  }
+]
+
+```
+
 
 ## Strings and References
 
