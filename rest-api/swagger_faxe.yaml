@@ -202,6 +202,177 @@ paths:
           description: Unauthorized
         405:
           description: Method not allowed
+  /lang/nodes:
+    get:
+      summary: get node language features
+      description: Returns an json list, containing information about each built-in node, usable for code editors.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              [
+                {
+                  "name": "mem",
+                  "description": "Flow wide value storage. mem values are available to any other node (in lambda expressions) within a flow.",
+                  "documentationUrl": "https://heyoka.github.io/faxe-docs/site/nodes/mem.html",
+                  "parameters": [
+                    {
+                      "name": "field",
+                      "dataType": "string",
+                      "description": "field-path"
+                    },
+                    {
+                      "name": "key",
+                      "dataType": "string",
+                      "description": "name of the value storage"
+                    },
+                    {
+                      "name": "type",
+                      "dataType": "string",
+                      "description": "Type of mem storage, one of 'single', 'list' or 'set'",
+                      "defaultValue": "single"
+                    },
+                    {
+                      "name": "default",
+                      "dataType": "string | number",
+                      "description": "Prefill the storage with this value"
+                    },
+                    {
+                      "name": "default_json",
+                      "dataType": "is_set",
+                      "description": "When set, the default value will be interpreted as a json string",
+                      "defaultValue": false
+                    }
+                  ]
+                },
+                {
+                  "name": "tcp_send",
+                  "description": "This node connects to a tcp endpoint and sends data with a defined packet size.",
+                  "documentationUrl": "https://heyoka.github.io/faxe-docs/site/nodes/tcp_send.html",
+                  "parameters": [
+                    {
+                      "name": "ip",
+                      "dataType": "string",
+                      "description": "ip or hostname for the tcp peer"
+                    },
+                    {
+                      "name": "port",
+                      "dataType": "integer",
+                      "description": "port number"
+                    },
+                    {
+                      "name": "packet",
+                      "dataType": "integer",
+                      "description": "packet length",
+                      "defaultValue": 2
+                    },
+                    {
+                      "name": "every",
+                      "dataType": "string",
+                      "description": "send interval"
+                    },
+                    {
+                      "name": "msg_text",
+                      "dataType": "string",
+                      "description": "predefined string to send to the peer endpoint"
+                    },
+                    {
+                      "name": "msg_json",
+                      "dataType": "string",
+                      "description": "predefined json-string to send to the peer endpoint"
+                    },
+                    {
+                      "name": "response_as",
+                      "dataType": "string",
+                      "description": "name of the field for parsed data"
+                    },
+                    {
+                      "name": "response_json",
+                      "dataType": "is_set",
+                      "description": "interprets a response as a json-string",
+                      "defaultValue": false
+                    },
+                    {
+                      "name": "response_timeout",
+                      "dataType": "duration ",
+                      "description": "timeout for a \"response\" after a message has been sent",
+                      "defaultValue": "5s"
+                    }
+                  ]
+                }
+              ]
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
+  /lang/functions:
+    get:
+      summary: get lambda function features
+      description: Returns an json list, containing information about all built-in lambda functions. Probably for use in online editors.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              [
+                {
+                  "name": "bool",
+                  "arguments": "a_value",
+                  "return": "true|false",
+                  "description": ""
+                },
+                {
+                  "name": "int",
+                  "arguments": "value",
+                  "return": "integer",
+                  "description": ""
+                },
+                {
+                  "name": "float",
+                  "arguments": "value",
+                  "return": "float",
+                  "description": ""
+                },
+                {
+                  "name": "string",
+                  "arguments": "val",
+                  "return": "string",
+                  "description": ""
+                },
+                {
+                  "name": "now",
+                  "arguments": "",
+                  "return": "integer",
+                  "description": "returns an utc timestamp in milliseconds"
+                },
+                {
+                  "name": "dt_parse",
+                  "arguments": "ts, formatstring",
+                  "return": "integer",
+                  "description": "used to parse a datetime string to the internal format, see datetime-parsing for details"
+                },
+                {
+                  "name": "to_iso8601",
+                  "arguments": "ts",
+                  "return": "string",
+                  "description": "converts the timestamp to an ISO8601 datetime string"
+                },
+                {
+                  "name": "to_rfc3339",
+                  "arguments": "ts",
+                  "return": "string",
+                  "description": "converts the timestamp to an RFC3339 datetime string"
+                }
+              ]
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
   /stats/vm:
     get:
       summary: Erlang VM stats

@@ -60,14 +60,16 @@ Without the `as` parameter, the resulting data-point would be:
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-host( `string` )| hostname or ip address of endpoint |
-port( `integer` )|port number|80
-tls( `is_set` ) | whether to use tls ie. https | false (not set)
-path( `string` )| URI path of the http endpoint | '/'  
-every( `duration` )|interval at which requests are made | undefined
-align( `is_set` )|align read intervals according to every|false (not set)
-payload_type ( `string` )| how to interpert the response body, `'json'` or `'plain'` | 'json'
-retries( `integer` )|number of retries, if request failed|2
-as( `string` )|Root-path for the resulting data-point. If not given and `payload-type` is `plain`, defaults to 'data'.|undefined|'data'
+| Parameter                 | Description                                                                                             | Default         |
+|---------------------------|---------------------------------------------------------------------------------------------------------|-----------------|
+| host( `string` )          | hostname or ip address of endpoint                                                                      |                 |
+| port( `integer` )         | port number                                                                                             | 80              |
+| tls( `is_set` )           | whether to use tls ie. https                                                                            | false (not set) |
+| user( `string` )          | username for Basic Authentication                                                                       | undefined       |
+| pass( `string` )          | password for Basic Authentication                                                                       | undefined       |
+| path( `string` )          | URI path of the http endpoint                                                                           | '/'             |
+| every( `duration` )       | interval at which requests are made                                                                     | undefined       |
+| align( `is_set` )         | align read intervals according to every                                                                 | false (not set) |
+| payload_type ( `string` ) | how to interpert the response body, `'json'` or `'plain'`                                               | 'json'          |
+| retries( `integer` )      | number of retries, if request failed                                                                    | 2               |
+| as( `string` )            | Root-path for the resulting data-point. If not given and `payload-type` is `plain`, defaults to 'data'. | undefined       |'data'

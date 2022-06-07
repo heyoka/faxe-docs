@@ -884,8 +884,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1882,8 +1882,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1910,8 +1910,10 @@
                 
                 <h1 id="the-json_emitter-node">The json_emitter node</h1>
 <p>This node is for debugging and testing/mocking purposes.</p>
-<p>It periodically and randomly emits one of the json strings given with the <code>json</code> parameter.</p>
-<h2 id="example">Example</h2>
+<p>It periodically emits one of the json strings given with the <code>json</code> parameter. This can be done randomly or in sequence.</p>
+<p><em>experimental since 0.19.9</em>:
+    With the <code>modify</code> and <code>modify_with</code> parameters, certain fields in the json string(s) can be modified with every interval.</p>
+<h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 0, &quot;name&quot;: &quot;OK&quot;}, &quot;condition_reason&quot;: &quot;&quot;, </span>
@@ -1924,11 +1926,31 @@
 <span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1582246411783,</span>
 <span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [0.5, 2.5, 0.44], &quot;vac_on_with_contact&quot;: [2.06, 4.98, 2.901]} &#39;</span>
      <span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;rand&#39;</span><span style="color: #f8f8f2">)</span>
 
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 </code></pre></div>
 
 <p>Emit one of the three given json strings(selected randomly) every 3 seconds.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 0, &quot;name&quot;: &quot;OK&quot;}, &quot;condition_reason&quot;: &quot;&quot;, </span>
+<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1584246411783,</span>
+<span style="color: #e6db74">    &quot;vac_on_without_contact&quot;: [1.2, 2.5, 4.33], &quot;vac_on_with_contact&quot;: [5.6, 45.98, 7.012]} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 1, &quot;name&quot;: &quot;Warning&quot;}, &quot;condition_reason&quot;: &quot;bad succer&quot;, </span>
+<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1583246411783,</span>
+<span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [0.2, 2.5, 8.01], &quot;vac_on_with_contact&quot;: [6.001, 4.798, 7.012]} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 2, &quot;name&quot;: &quot;Error&quot;}, &quot;condition_reason&quot;: &quot;something went really wrong!&quot;, </span>
+<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1582246411783,</span>
+<span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [0.5, 2.5, 0.44], &quot;vac_on_with_contact&quot;: [2.06, 4.98, 2.901]} &#39;</span>
+     <span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;seq&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
+</code></pre></div>
+
+<p>Select one of the json strings in sequence every 3 seconds starting with the first one. After the last json string has been
+selectect and outputted, start over with the first one again.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1959,8 +1981,26 @@
 <td>align the time to the every param</td>
 <td>false (not set)</td>
 </tr>
+<tr>
+<td>select( <code>string</code> )</td>
+<td>entry select mode, possible values: <code>rand</code> or <code>seq</code></td>
+<td>'rand'</td>
+</tr>
+<tr>
+<td>modify( <code>string_list</code> )</td>
+<td>list of fields, that should be modified</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>modify_with( <code>lambda_list</code> )</td>
+<td>list of lambda expressions, that perform the modification on the fields given with <code>modify</code></td>
+<td>undefined</td>
+</tr>
 </tbody>
 </table>
+<blockquote>
+<p>Note : <code>modify</code> and <code>modify_with</code> must have the same number of parameters, if given.</p>
+</blockquote>
                 
               
               

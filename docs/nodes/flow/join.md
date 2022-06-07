@@ -42,15 +42,14 @@ _[node]_ nodes( `node_list` )| list of node (chains) to merge  | []
 Parameters
 ----------
 
-Parameter     | Description                                                                                                                                                         | Default 
---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------- 
-prefix( `string_list` )| list of prefixes (used in join mode)                                                                                                                                | ['', ''] (no prefixes)
-merge_field( `string` )| when given, the join node will do a field merge operation                                                                                                           | undefined
-missing_timeout( `duration` )| values that do not arrive within this timeout will be treated as missing                                                                                            | 20s
-tolerance( `duration` )| timestamp tolerance. Determines the maximum difference a data-item's timestamp can have to the current timeslot, for the item to be included in the join operation. | 2s
-~fill( 'none' 'null' `any` )| deprecated, use `full` instead, the nodes default behaviour stayed the same                                                                                         |'none'
-full( `boolean` )| whether to output full joins (no value missing) only, this would drop joins that are not complete                                                                   |true
-
+| Parameter                     | Description                                                                                                                                                         | Default                |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
+| prefix( `string_list` )       | list of prefixes (used in join mode)                                                                                                                                | ['', ''] (no prefixes) |
+| merge_field( `string` )       | when given, the join node will do a field merge operation                                                                                                           | undefined              |
+| missing_timeout( `duration` ) | values that do not arrive within this timeout will be treated as missing                                                                                            | 20s                    |
+| tolerance( `duration` )       | timestamp tolerance. Determines the maximum difference a data-item's timestamp can have to the current timeslot, for the item to be included in the join operation. | 2s                     |
+| ~fill( 'none' 'null' `any` )  | deprecated, use `full` instead, the nodes default behaviour stayed the same                                                                                         | 'none'                 |
+| full( `boolean` )             | whether to output full joins (no value missing) only, this would drop joins that are not complete                                                                   | true                   |
 
 fill value - join behaviour (deprecated)
 ----
