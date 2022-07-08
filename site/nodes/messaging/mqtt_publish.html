@@ -1972,12 +1972,17 @@ The topic string may be a different one with every data_point that gets publishe
 <tr>
 <td>topic( <code>string</code> )</td>
 <td>mqtt topic to use</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>topic_lambda( <code>lambda</code> )</td>
 <td>mqtt topic to use evaluated via a lambda expression</td>
-<td></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>topic_field( <code>string</code> )</td>
+<td>[since 0.19.9] path to a field in the current data-item, who's value should be used as the topic</td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>qos( <code>integer</code> )</td>
@@ -2001,7 +2006,7 @@ The topic string may be a different one with every data_point that gets publishe
 </tr>
 </tbody>
 </table>
-<p><code>topic</code> or <code>topic_lambda</code> must be provided.</p>
+<p><code>topic</code> or <code>topic_lambda</code> or <code>topic_field</code> must be provided.</p>
                 
               
               
