@@ -412,10 +412,69 @@ paths:
           description: Unauthorized
         405:
           description: Method not allowed
+  /stats/nodes:
+    get:
+      summary: FAXE node stats
+      description: Returns top flow node processes sorted by reduction count.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+#          schema:
+#            $ref: '#/definitions/FaxeStatsResponse'
+          examples:
+            application/json:
+              [
+                {
+                  "node": "debug_test1-eval2",
+                  "reductions": 23280,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "node": "debug_test-eval2",
+                  "reductions": 21390,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "node": "debug_test1-json_emitter1",
+                  "reductions": 2445,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "node": "debug_test-json_emitter1",
+                  "reductions": 2320,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                }
+              ]
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
   /stats/faxe:
     get:
       summary: FAXE stats
-      description: Returns statistics the faxe application.
+      description: Returns statistics about the FAXE application.
       produces:
         - application/json
       responses:
@@ -435,6 +494,156 @@ paths:
                 "data_throughput_sec": 11,
                 "data_paths_known": 0
               }
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
+  /stats/reds:
+    get:
+      summary: Erlang VM process stats (reductions)
+      description: Returns top erlang processes sorted by reduction count.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+#          schema:
+#            $ref: '#/definitions/FaxeStatsResponse'
+          examples:
+            application/json:
+              [
+                {
+                  "registered_name": "code_server",
+                  "reductions": 445966,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "erlang",
+                    "apply",
+                    2
+                  ]
+                },
+                {
+                  "reductions": 431797,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "registered_name": "faxe_stats",
+                  "reductions": 208607,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "reductions": 131331,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "reductions": 127561,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "registered_name": "erl_prim_loader",
+                  "reductions": 107626,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "erlang",
+                    "apply",
+                    2
+                  ]
+                },
+                {
+                  "registered_name": "application_controller",
+                  "reductions": 72385,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "erlang",
+                    "apply",
+                    2
+                  ]
+                }
+              ]
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
+  /stats/msgq:
+    get:
+      summary: Erlang VM process stats (msg-queue length)
+      description: Returns top erlang processes sorted by message-queue-length.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/FaxeStatsResponse'
+          examples:
+            application/json:
+              [
+                {
+                  "reductions": 17776,
+                  "message_queue_len": 122,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "reductions": 1387,
+                  "message_queue_len": 12,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "reductions": 767,
+                  "message_queue_len": 3,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "reductions": 1172,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                },
+                {
+                  "reductions": 19544,
+                  "message_queue_len": 0,
+                  "initial_call": [
+                    "proc_lib",
+                    "init_p",
+                    5
+                  ]
+                }
+              ]
         401:
           description: Unauthorized
         405:

@@ -2604,6 +2604,11 @@ to reference them:</p>
 <td></td>
 </tr>
 <tr>
+<td><code>empty(Key)</code> -&gt; bool</td>
+<td>whether the given Key points to an empty or not defined value, empty means an empty string or an empty list or tuple</td>
+<td>empty("data.topic") -&gt; false</td>
+</tr>
+<tr>
 <td><code>topic_part(TopicString, PartIndex, [Seperator])</code> -&gt; string</td>
 <td>extract a part from a topic string, Separator defaults to '/', the index of the first part is <code>1</code> not 0</td>
 <td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>

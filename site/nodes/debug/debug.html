@@ -1911,12 +1911,19 @@
                 <h1 id="the-debug-node">The debug node</h1>
 <p>The debug node logs all incoming data with erlang's <code>lager</code> framework and emits it, without touching it.
 Where the logs will be written, depends on the <code>lager</code> config.</p>
+<p>The debug message will include the current data-item converted to a string.</p>
 <p>See <a href="./faxe_rest_api.html">rest api</a> for how to read the produced logs.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 
 
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">debug(</span><span style="color: #e6db74">&#39;error&#39;</span><span style="color: #f8f8f2">)</span>
+
+
+<span style="color: #75715e">%% [since 0.19.13]</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug(</span><span style="color: #e6db74">&#39;warning&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.where(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.topic&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">OR</span> <span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.stream_id&quot;</span><span style="color: #f8f8f2">))</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Topic or StreamId is empty!&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
 <h2 id="parameters">Parameters</h2>
@@ -1933,6 +1940,16 @@ Where the logs will be written, depends on the <code>lager</code> config.</p>
 <td><em>[node]</em> level (<code>string</code>)</td>
 <td>log level (see below)</td>
 <td align="center">'notice'</td>
+</tr>
+<tr>
+<td>message (<code>string</code>) [since 0.19.13]</td>
+<td>custom message that is written to the log</td>
+<td align="center">''</td>
+</tr>
+<tr>
+<td>where (<code>lambda</code>) [since 0.19.13]</td>
+<td>lambda expression, if evaluates as true, then logging will be performed</td>
+<td align="center">undefined</td>
 </tr>
 </tbody>
 </table>
