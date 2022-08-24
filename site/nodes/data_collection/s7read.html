@@ -672,9 +672,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#optimzation-when-reading-data" class="md-nav__link">
+    Optimzation when reading data
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimzation when reading data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#strings" class="md-nav__link">
     Strings
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1896,9 +1909,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#optimzation-when-reading-data" class="md-nav__link">
+    Optimzation when reading data
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimzation when reading data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#strings" class="md-nav__link">
     Strings
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1941,14 +1967,20 @@
 Reading can be done periodically and/or triggered via incoming data-items.
 If the <code>every</code> parameter is not given, reading will be done only with trigger data-items.</p>
 <ul>
-<li>
-<p>Data <code>addressing</code> can be done in a <code>Step7</code> schema or with a slightly different schema used in node-red
+<li>Data <code>addressing</code> can be done in a <code>Step7</code> schema or with a slightly different schema used in node-red
 (although the step7 variant is preferred). 
-See table below for more information about addressing.</p>
-</li>
+See table below for more information about addressing.</li>
+</ul>
+<h2 id="optimzation-when-reading-data">Optimzation when reading data</h2>
+<ul>
+<li>The node will optimize reading by treating contiguous values as one reading var.
+Thus more data can be read in one go.</li>
 <li>
-<p>The node will optimize reading by treating contiguous values as one reading var.
-Thus more data can be read in one go.</p>
+<p>since 0.20.0: when standalone mode is set to false, then optimization and reading will be done outside of the node. 
+ All variables from all s7read nodes, that target the same PLC are optimized as a whole, this makes it possible to take advantage of the maximum PDU size.
+ This will possibly lead to more than one request for a specific time slot, if there are many vars to read.
+ In standalone(false) mode, it does not make a difference, if we use many s7read nodes, where every node just reads a view vars, or if we have
+ only one s7read node, that reads a lot of vars (or anything in between)</p>
 </li>
 <li>
 <p>Connections to a PLC are handled by a connection pool, if <code>use_pool</code> is set to true, which can grow and shrink as needed.
@@ -2124,6 +2156,11 @@ instead reading is done on data input from another node.</p>
 <td>use_pool ( <code>bool</code> )</td>
 <td>whether to use the built-in connection pool</td>
 <td>from config value</td>
+</tr>
+<tr>
+<td>standalone ( <code>bool</code> )</td>
+<td>whether to use the collected read optimization or do standalone reading for this node</td>
+<td>true</td>
 </tr>
 </tbody>
 </table>

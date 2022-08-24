@@ -81,6 +81,7 @@ Every data_point in faxe contains a field called **`ts`**, which holds a UTC tim
 | `dt_parse(ts, formatstring)` -> integer | used to parse a datetime string to the internal format, see [datetime-parsing](../datetime-parsing.md) for details |
 | `to_iso8601(ts)` -> string              | converts the timestamp to an ISO8601 datetime string                                                               |
 | `to_rfc3339(ts)` -> string              | converts the timestamp to an RFC3339 datetime string                                                               |
+| `from_duration(ts)` -> integer          | converts a [duration](index.md#duration-literals) to it's millisecond equivalent                                   |
 | `millisecond(ts)` -> integer            | milliseconds within the second [0, 999]                                                                            |
 | `second(ts)` -> integer                 | second within the minute [0, 59]                                                                                   |
 | `minute(ts)` -> integer                 | minute within the hour [0, 59]                                                                                     |

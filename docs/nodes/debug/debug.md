@@ -36,12 +36,12 @@ Parameters
 
 The level parameter must have one of the following values:
 
-log_level | |
-----------|-|
-debug
-info
-notice
-warning
-error
-critical
-alert
+|log_level | |
+|----------|:-:|
+|debug | |
+|info | |
+|notice | |
+|warning | |
+|error | |
+|critical | |
+|alert | |

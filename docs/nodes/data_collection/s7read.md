@@ -9,8 +9,17 @@ If the `every` parameter is not given, reading will be done only with trigger da
 (although the step7 variant is preferred). 
 See table below for more information about addressing.
 
+
+## Optimzation when reading data
+
 * The node will optimize reading by treating contiguous values as one reading var.
 Thus more data can be read in one go.
+* since 0.20.0: when standalone mode is set to false, then optimization and reading will be done outside of the node. 
+ All variables from all s7read nodes, that target the same PLC are optimized as a whole, this makes it possible to take advantage of the maximum PDU size.
+ This will possibly lead to more than one request for a specific time slot, if there are many vars to read.
+ In standalone(false) mode, it does not make a difference, if we use many s7read nodes, where every node just reads a view vars, or if we have
+ only one s7read node, that reads a lot of vars (or anything in between)
+
 
 * Connections to a PLC are handled by a connection pool, if `use_pool` is set to true, which can grow and shrink as needed.
 (This is especially useful, when connecting to a PLC, that has limited connection resources)
@@ -156,6 +165,7 @@ Parameters
 | byte_offset( `integer` ) | offset for addressing, every address in vars gets this offset added                                                                               | 0                      |
 | diff( is_set )           | when given, only output values different to previous values                                                                                       | false (not set)        |
 | use_pool ( `bool` )      | whether to use the built-in connection pool                                                                                                       | from config value      |
+| standalone ( `bool` )    | whether to use the collected read optimization or do standalone reading for this node                                                             | true                   |
 
 Note that params `vars` and `as` must have the same length (if both are given).
 
@@ -164,38 +174,38 @@ Note that params `vars` and `as` must have the same length (if both are given).
 
 `Note: Step7 style preferred and should be used !`
 
-Address	| Step7 equivalent |	JS Data type |	Description
---------|------------------|-----------------|-------------
-DB5,X0.1|	DB5.DBX0.1|	Boolean	|Bit 1 of byte 0 of DB 5
-DB23,B1 or DB23,BYTE1|	DB23.DBB1|	Number|	Byte 1 (0-255) of DB 23
-DB100,C2 or DB100,CHAR2|	DB100.DBB2| String|	Byte 2 of DB 100 as a Char
-DB42,I3 or DB42,INT3|	DB42.DBW3|	Number|	Signed 16-bit number at byte 3 of DB 42
-DB57,WORD4|	DB57.DBW4|	Number	|Unsigned 16-bit number at byte 4 of DB 57
-DB13,DI5 or DB13,DINT5|	DB13.DBD5|	Number|	Signed 32-bit number at byte 5 of DB 13
-DB19,DW6 or DB19,DWORD6|	DB19.DBD6|	Number|	Unsigned 32-bit number at byte 6 of DB 19
-DB21,DR7 or DB21,REAL7|	DB19.DBD6	|Number	|Floating point 32-bit number at byte 7 of DB 21
-DB2,S7.10*	|`DB2.DBS7.10` (faxe only)	|String	|String of length 10 starting at byte 7 of DB 2
-I1.0 or E1.0|	I1.0 or E1.0|	Boolean|	Bit 0 of byte 1 of input area
-Q2.1 or A2.1|	Q2.1 or A2.1|	Boolean|	Bit 1 of byte 2 of output area
-M3.2|	QM3.2|	Boolean|	Bit 2 of byte 3 of memory area
-IB4 or EB4|	IB4 or EB4|	Number|	Byte 4 (0 -255) of input area
-QB5 or AB5|	QB5 or AB5|	Number|	Byte 5 (0 -255) of output area
-MB6	|MB6	|Number	|Byte 6 (0 -255) of memory area
-IC7 or EC7|	IB7 or EB7	|String|	Byte 7 of input area as a Char
-QC8 or AC8|	QB8 or AB8	|String	|Byte 8 of output area as a Char
-MC9	|MB9	|String	|Byte 9 of memory area as a Char
-II10 or EI10	|IW10 or EW10	|Number	|Signed 16-bit number at byte 10 of input area
-QI12 or AI12	|QW12 or AW12	|Number	|Signed 16-bit number at byte 12 of output area
-MI14	|MW14	|Number	|Signed 16-bit number at byte 14 of memory area
-IW16 or EW16	|IW16 or EW16	|Number	|Unsigned 16-bit number at byte 16 of input area
-QW18 or AW18	|QW18 or AW18	|Number	|Unsigned 16-bit number at byte 18 of output area
-MW20	|MW20	|Number	|Unsigned 16-bit number at byte 20 of memory area
-IDI22 or EDI22	|ID22 or ED22	|Number	|Signed 32-bit number at byte 22 of input area
-QDI24 or ADI24	|QD24 or AD24	|Number	|Signed 32-bit number at byte 24 of output area
-MDI26	|MD26	|Number	|Signed 32-bit number at byte 26 of memory area
-ID28 or ED28	|ID28 or ED28	|Number	|Unsigned 32-bit number at byte 28 of input area
-QD30 or AD30	|QD30 or AD30	|Number	|Unsigned 32-bit number at byte 30 of output area
-MD32	|MD32	|Number	|Unsigned 32-bit number at byte 32 of memory area
-IR34 or ER34	|IR34 or ER34	|Number	|Floating point 32-bit number at byte 34 of input area
-QR36 or AR36	|QR36 or AR36	|Number	|Floating point 32-bit number at byte 36 of output area
-MR38	|MR38	|Number	|Floating point 32-bit number at byte 38 of memory area
+| Address	                | Step7 equivalent           | 	JS Data type | 	Description                                           |
+|-------------------------|----------------------------|---------------|--------------------------------------------------------|
+| DB5,X0.1                | 	DB5.DBX0.1                | 	Boolean	     | Bit 1 of byte 0 of DB 5                                |
+| DB23,B1 or DB23,BYTE1   | 	DB23.DBB1                 | 	Number       | 	Byte 1 (0-255) of DB 23                               |
+| DB100,C2 or DB100,CHAR2 | 	DB100.DBB2                | String        | 	Byte 2 of DB 100 as a Char                            |
+| DB42,I3 or DB42,INT3    | 	DB42.DBW3                 | 	Number       | 	Signed 16-bit number at byte 3 of DB 42               |
+| DB57,WORD4              | 	DB57.DBW4                 | 	Number	      | Unsigned 16-bit number at byte 4 of DB 57              |
+| DB13,DI5 or DB13,DINT5  | 	DB13.DBD5                 | 	Number       | 	Signed 32-bit number at byte 5 of DB 13               |
+| DB19,DW6 or DB19,DWORD6 | 	DB19.DBD6                 | 	Number       | 	Unsigned 32-bit number at byte 6 of DB 19             |
+| DB21,DR7 or DB21,REAL7  | 	DB19.DBD6	                | Number	       | Floating point 32-bit number at byte 7 of DB 21        |
+| DB2,S7.10*	             | `DB2.DBS7.10` (faxe only)	 | String	       | String of length 10 starting at byte 7 of DB 2         |
+| I1.0 or E1.0            | 	I1.0 or E1.0              | 	Boolean      | 	Bit 0 of byte 1 of input area                         |
+| Q2.1 or A2.1            | 	Q2.1 or A2.1              | 	Boolean      | 	Bit 1 of byte 2 of output area                        |
+| M3.2                    | 	QM3.2                     | 	Boolean      | 	Bit 2 of byte 3 of memory area                        |
+| IB4 or EB4              | 	IB4 or EB4                | 	Number       | 	Byte 4 (0 -255) of input area                         |
+| QB5 or AB5              | 	QB5 or AB5                | 	Number       | 	Byte 5 (0 -255) of output area                        |
+| MB6	                    | MB6	                       | Number	       | Byte 6 (0 -255) of memory area                         |
+| IC7 or EC7              | 	IB7 or EB7	               | String        | 	Byte 7 of input area as a Char                        |
+| QC8 or AC8              | 	QB8 or AB8	               | String	       | Byte 8 of output area as a Char                        |
+| MC9	                    | MB9	                       | String	       | Byte 9 of memory area as a Char                        |
+| II10 or EI10	           | IW10 or EW10	              | Number	       | Signed 16-bit number at byte 10 of input area          |
+| QI12 or AI12	           | QW12 or AW12	              | Number	       | Signed 16-bit number at byte 12 of output area         |
+| MI14	                   | MW14	                      | Number	       | Signed 16-bit number at byte 14 of memory area         |
+| IW16 or EW16	           | IW16 or EW16	              | Number	       | Unsigned 16-bit number at byte 16 of input area        |
+| QW18 or AW18	           | QW18 or AW18	              | Number	       | Unsigned 16-bit number at byte 18 of output area       |
+| MW20	                   | MW20	                      | Number	       | Unsigned 16-bit number at byte 20 of memory area       |
+| IDI22 or EDI22	         | ID22 or ED22	              | Number	       | Signed 32-bit number at byte 22 of input area          |
+| QDI24 or ADI24	         | QD24 or AD24	              | Number	       | Signed 32-bit number at byte 24 of output area         |
+| MDI26	                  | MD26	                      | Number	       | Signed 32-bit number at byte 26 of memory area         |
+| ID28 or ED28	           | ID28 or ED28	              | Number	       | Unsigned 32-bit number at byte 28 of input area        |
+| QD30 or AD30	           | QD30 or AD30	              | Number	       | Unsigned 32-bit number at byte 30 of output area       |
+| MD32	                   | MD32	                      | Number	       | Unsigned 32-bit number at byte 32 of memory area       |
+| IR34 or ER34	           | IR34 or ER34	              | Number	       | Floating point 32-bit number at byte 34 of input area  |
+| QR36 or AR36	           | QR36 or AR36	              | Number	       | Floating point 32-bit number at byte 36 of output area |
+| MR38	                   | MR38	                      | Number	       | Floating point 32-bit number at byte 38 of memory area |

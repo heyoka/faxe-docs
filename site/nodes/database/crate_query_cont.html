@@ -2063,6 +2063,11 @@ the scheduled time, that is now <code>period</code>. This is to account for late
 <td>undefined</td>
 </tr>
 <tr>
+<td>stop_flow( <code>boolean</code> )</td>
+<td>Whether to stop the whole flow, this node runs in, when stop time is reached. If this is false, then the node will just stop querying the database.</td>
+<td>true</td>
+</tr>
+<tr>
 <td>filter_time_field( <code>string</code> )</td>
 <td>name of timestamp db column, used for <code>timefiler</code></td>
 <td>'ts'</td>
