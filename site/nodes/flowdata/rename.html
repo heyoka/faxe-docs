@@ -1108,8 +1108,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1882,8 +1882,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1910,12 +1910,20 @@
                 
                 <h1 id="the-rename-node">The rename node</h1>
 <p>Rename existing fields and/or tags.</p>
-<h2 id="example">Example</h2>
+<h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">rename()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;temperature&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;cipot&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;mean_temp&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
+<p>A list of strings for the new field names is given.</p>
+<p><em><code>Since 0.19.4</code></em> : We can now also use <a href="../../dfs_script_language/lambda_expressions.html">lambda expressions</a> for the <code>as_fields</code> parameter.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">rename()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;temperature&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;cipot&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_concat</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.prefix&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;_temp&#39;</span><span style="color: #f8f8f2">))</span>
+</code></pre></div>
+
+<p>Here we use a mixed list, string and a lambda expression, for the as_fields parameter.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1932,8 +1940,8 @@
 <td>[]</td>
 </tr>
 <tr>
-<td>as_fields( <code>string_list</code> )</td>
-<td>list of new fieldnames for renaming</td>
+<td>as_fields( <code>list</code> )</td>
+<td>list of strings or lambda expressions (can be mixed) for the new fieldnames</td>
 <td>[]</td>
 </tr>
 <tr>

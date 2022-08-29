@@ -2571,6 +2571,11 @@ to reference them:</p>
 <td></td>
 </tr>
 <tr>
+<td><code>select_any(Key, Where, Jsn)</code> -&gt; list</td>
+<td>Select every value with the path <code>Key</code> and conditions <code>Where</code> from a json-array. The list of <code>Where</code> conditions are <code>OR</code>ed in this case.</td>
+<td></td>
+</tr>
+<tr>
 <td><code>select_first(Key, Jsn)</code> -&gt; any</td>
 <td>Select the first value with the path <code>Key</code> from a json-array.</td>
 <td></td>
@@ -2578,6 +2583,11 @@ to reference them:</p>
 <tr>
 <td><code>select_first(Key, Where, Jsn)</code> -&gt; any</td>
 <td>Select the first value with the path <code>Key</code> and conditions <code>Where</code> from a json-array.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>select_any_first(Key, Where, Jsn)</code> -&gt; any</td>
+<td>Select the first value with the path <code>Key</code> that is found with any of the <code>Where</code> conditions from a json-array.</td>
 <td></td>
 </tr>
 </tbody>

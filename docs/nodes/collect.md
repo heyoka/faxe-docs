@@ -6,7 +6,8 @@ _`Experimental`_.
 Since 0.15.2
 
 The collect node will maintain a `set` of data-points based on some criteria given as lambda-expressions.
-It will `output a data_batch` item regularily (when `emit_every` is given) or based on every incoming item.
+It will normally `output a data_batch` item regularily (when `emit_every` is given) or based on every incoming item.
+
 
 The internal collection is a key-value set with unqiue values for the keys, taken from the `key_fields`.
 [{Key, DataPoint}]
@@ -15,7 +16,7 @@ The internal collection is a key-value set with unqiue values for the keys, take
 
 With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
 If this is not the case, the node will evaluate the `add` function, if given.
-Data_points that do not have the key-field present, will be ignored.
+Data_points that do not have (any of) the key-field(s) present, will be ignored.
 
 An item will be added to the collection if the key is new to the collection and if the `add`-function
 
@@ -31,10 +32,10 @@ If an `update` happened, the node will skip evaluating the `remove` function.
 
 If no `remove` function is given, data-items will not be removed, but only evicted by the `max_age` option.
 
-### Update expression
+### Update and remove expression
 
-In the `update` lambda-expression, the datapoint, that is already in the collection, can be used for comparing, for example.
-That is to say: When the update function is evaluated, it gets injected the data-point for the same key-field value, that is
+In the `update` or `remove` lambda-expressions, the datapoint, that is already in the collection, can be used, for comparing for example.
+That is to say: When the update or remove function is evaluated, it gets injected the data-point for the same key-field value, that is
 found in the collection. There is a root-object used for the fields in this datapoint: `__state`.
 
 What this means is, that you can do something like this in the `update` expression (see also Example 3 below)
@@ -57,6 +58,7 @@ With `emit_unchanged` set to false, output will only happen after processing a d
 
 `data_batch` items are processed as a whole first and then may trigger an emit operation.
 
+_`Since 0.19.4`_ : The output batch can be conflated into a single data_point item, when the `merge` option is set to true.
 
 -------------------------------------------------------------
 >Note: Produced data may become very large, if the value of `key_fields` is ever-changing, so that
@@ -208,4 +210,5 @@ Parameters
 | emit_unchanged (`boolean`) | When set to false, processing of a data-item that does not result in a change to the collection, will not trigger an output of data.                                                                                                                                                | true      |
 | emit_every (`duration`)    | Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) will trigger an output (based on the value of `emit_unchanged`).                                                                                              | undefined |
 | max_age(`duration`)        | Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the time the item entered the collection.                                                                                                                                   | 3h        |
+| merge(`boolean`)           | Whether to condense the output data_batch into a single data_point item by merging them.                                                                                                                                                                                            | false     |
  

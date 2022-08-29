@@ -202,8 +202,10 @@ String positions start with index 0.
 | `map_get(Key, Map)` -> any                     | get a value from a map, 'undefined' is returned, if the key is not present in map                                                                 | map_get("topic", ls_mem('stream_lookup')) |
 | `select(Key, Jsn)` -> list                     | Select every value with the path `Key` from a json-array                                                                                          |                                           |
 | `select(Key, Where, Jsn)` -> list              | Select every value with the path `Key` and conditions `Where` from a json-array. Elements that do not meet the given conditions are filtered out. |                                           |                                         
+| `select_any(Key, Where, Jsn)` -> list          | Select every value with the path `Key` and conditions `Where` from a json-array. The list of `Where` conditions are `OR`ed in this case.          |                                           |                                         
 | `select_first(Key, Jsn)` -> any                | Select the first value with the path `Key` from a json-array.                                                                                     |                                           |                                         
 | `select_first(Key, Where, Jsn)` -> any         | Select the first value with the path `Key` and conditions `Where` from a json-array.                                                              |                                           |                                         
+| `select_any_first(Key, Where, Jsn)` -> any     | Select the first value with the path `Key` that is found with any of the `Where` conditions from a json-array.                                    |                                           |                                         
 
 ####select
 The Where parameter in select and select_first is a list of tuples.

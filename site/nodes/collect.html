@@ -559,8 +559,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-expression" class="md-nav__link">
-    Update expression
+  <a href="#update-and-remove-expression" class="md-nav__link">
+    Update and remove expression
   </a>
   
 </li>
@@ -1929,8 +1929,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-expression" class="md-nav__link">
-    Update expression
+  <a href="#update-and-remove-expression" class="md-nav__link">
+    Update and remove expression
   </a>
   
 </li>
@@ -1994,13 +1994,13 @@
 <p><em><code>Experimental</code></em>.</p>
 <p>Since 0.15.2</p>
 <p>The collect node will maintain a <code>set</code> of data-points based on some criteria given as lambda-expressions.
-It will <code>output a data_batch</code> item regularily (when <code>emit_every</code> is given) or based on every incoming item.</p>
+It will normally <code>output a data_batch</code> item regularily (when <code>emit_every</code> is given) or based on every incoming item.</p>
 <p>The internal collection is a key-value set with unqiue values for the keys, taken from the <code>key_fields</code>.
 [{Key, DataPoint}]</p>
 <h3 id="adding-updating-and-removing-a-value">Adding, updating and removing a value</h3>
 <p>With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
 If this is not the case, the node will evaluate the <code>add</code> function, if given.
-Data_points that do not have the key-field present, will be ignored.</p>
+Data_points that do not have (any of) the key-field(s) present, will be ignored.</p>
 <p>An item will be added to the collection if the key is new to the collection and if the <code>add</code>-function</p>
 <ul>
 <li>returns true</li>
@@ -2011,9 +2011,9 @@ the node would check, if there is an <code>update</code> function and evaluate i
 it will try to evaluate the <code>remove</code> function.</p>
 <p>If an <code>update</code> happened, the node will skip evaluating the <code>remove</code> function.</p>
 <p>If no <code>remove</code> function is given, data-items will not be removed, but only evicted by the <code>max_age</code> option.</p>
-<h3 id="update-expression">Update expression</h3>
-<p>In the <code>update</code> lambda-expression, the datapoint, that is already in the collection, can be used for comparing, for example.
-That is to say: When the update function is evaluated, it gets injected the data-point for the same key-field value, that is
+<h3 id="update-and-remove-expression">Update and remove expression</h3>
+<p>In the <code>update</code> or <code>remove</code> lambda-expressions, the datapoint, that is already in the collection, can be used, for comparing for example.
+That is to say: When the update or remove function is evaluated, it gets injected the data-point for the same key-field value, that is
 found in the collection. There is a root-object used for the fields in this datapoint: <code>__state</code>.</p>
 <p>What this means is, that you can do something like this in the <code>update</code> expression (see also Example 3 below)</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">collect</span><span style="color: #f8f8f2">()</span>
@@ -2028,6 +2028,7 @@ found in the collection. There is a root-object used for the fields in this data
 <p>When no <code>emit_every</code> is given, the node will output data with every incoming data-item.</p>
 <p>With <code>emit_unchanged</code> set to false, output will only happen after processing a data-item that has changed the internal set.</p>
 <p><code>data_batch</code> items are processed as a whole first and then may trigger an emit operation.</p>
+<p><em><code>Since 0.19.4</code></em> : The output batch can be conflated into a single data_point item, when the <code>merge</code> option is set to true.</p>
 <hr />
 <blockquote>
 <p>Note: Produced data may become very large, if the value of <code>key_fields</code> is ever-changing, so that
@@ -2210,6 +2211,11 @@ Note the use of the <code>'__state'</code> prefix for previous value, that can b
 <td>max_age(<code>duration</code>)</td>
 <td>Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the time the item entered the collection.</td>
 <td>3h</td>
+</tr>
+<tr>
+<td>merge(<code>boolean</code>)</td>
+<td>Whether to condense the output data_batch into a single data_point item by merging them.</td>
+<td>false</td>
 </tr>
 </tbody>
 </table>
