@@ -25,9 +25,11 @@ Sends all incoming data to http://remote.com:8088/receive/json in JSON format.
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-host( `string` )| hostname or ip address of endpoint |
-port( `integer` )|port number|
-tls( `is_set` ) | whether to use tls ie. https | false (not set)
-path( `string` )| URI path of the http endpoint | ''  
+| Parameter         | Description                        | Default         |
+|-------------------|------------------------------------|-----------------|
+| host( `string` )  | hostname or ip address of endpoint |                 |
+| port( `integer` ) | port number                        |                 |
+| tls( `is_set` )   | whether to use tls ie. https       | false (not set) |
+| user( `string` )  | username for Basic Authentication  | undefined       |
+| pass( `string` )  | password for Basic Authentication  | undefined       |
+| path( `string` )  | URI path of the http endpoint      | ''              |
