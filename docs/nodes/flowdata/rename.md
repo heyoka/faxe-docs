@@ -3,6 +3,8 @@ The rename node
 
 Rename existing fields and/or tags.
 
+If a field or tag given does not exist, it will be ignored.
+
 Examples
 -------
 ```dfs  
