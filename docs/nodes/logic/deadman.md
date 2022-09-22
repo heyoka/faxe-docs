@@ -34,7 +34,7 @@ def interval = 15s
 .repeat_interval(interval)
  
 ```
-Outputs every item as a passthrough and, if no item is seen with 15 seconds, 
+Outputs every item as a passthrough and, if no item is seen within 15 seconds, 
 outputs the last item with a new timestamp, that is derived from the last iteration and increased by interval (15s). 
 
 

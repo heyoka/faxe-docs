@@ -696,8 +696,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#data-parser" class="md-nav__link">
+    Data - Parser
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packet-size" class="md-nav__link">
+    Packet size
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1894,8 +1908,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#data-parser" class="md-nav__link">
+    Data - Parser
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packet-size" class="md-nav__link">
+    Packet size
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1921,10 +1949,19 @@
                 
                 
                 <h1 id="the-tcp_receive-node">The tcp_receive node</h1>
-<p>This node connects to a tcp endpoint and awaits data with a defined packet size.</p>
-<p>It awaits data in a special format, which is defined by the <code>parser</code> parameter, if given.
-The parser will then try to convert the data to faxe's internal format and emit the result.</p>
+<p>This node is used to receive data from a tcp socket.
+There are two modes it can operate in:</p>
+<ul>
+<li><code>Connect</code>: If <code>ip</code> is set to a valid hostname or ip address, the node will connect to that peer and then just waits for incoming data.</li>
+<li><code>Listen</code>: Without <code>ip</code>, the node will just open a tcp listen port and waits for a connection from outside to receive data.</li>
+</ul>
+<h3 id="data-parser">Data - Parser</h3>
+<p>When we define a parser module, incoming data can be parsed to faxe's internal data-format with it. </p>
 <p>If no <code>parser</code> is defined, incoming data will be set as is to the field given with the <code>as</code> paramenter.</p>
+<p>If both <code>parser</code> and <code>as</code> are not given, the node assumes, that incoming data has JSON format and will try to decode it into
+faxe's internal format.</p>
+<h3 id="packet-size">Packet size</h3>
+<p>Data is expected with a defined packet size.</p>
 <p><code>packet</code> can be: 1 | 2 | 4 and defaults to 2.
 Packets consist of a header specifying the number of bytes in the packet,
 followed by that number of bytes. The header length can be one, two, or four bytes,
@@ -1932,9 +1969,20 @@ and containing an unsigned integer in big-endian byte order.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>`Length_Header:16/integer, Data:{Length_Header}/binary`
 </code></pre></div>
 
+<p><em><code>Experimental</code></em> since <code>0.19.19</code>: packet now can also have the value 'line', if this is given, data from the socket will be
+treated as separated by newline characters (\n, \r\n).</p>
+<hr />
 <p>If the <code>changed</code> option is given, the node will only emit on changed values (crc32 checksum comparison).</p>
 <p>The tcp listener is protected against flooding with the {active, once} inet option.</p>
-<h2 id="example">Example</h2>
+<h2 id="examples">Examples</h2>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">tcp_recv</span><span style="color: #f8f8f2">()</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">9745</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">packet</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+<p>Sets up a tcp listen socket on port 9745 and awaits an incoming connection. It uses a 4-byte length header to determine 
+packet boundaries and will try to json-decode incoming data.</p>
+<hr />
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">parser</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;parser_robot_plc_v1&#39;</span>
 
 <span style="color: #f92672">|</span><span style="color: #a6e22e">tcp_recv</span><span style="color: #f8f8f2">()</span>
@@ -1944,6 +1992,7 @@ and containing an unsigned integer in big-endian byte order.</p>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
+<hr />
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">tcp_recv</span><span style="color: #f8f8f2">()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;212.14.149.8&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">9715</span><span style="color: #f8f8f2">)</span> 
@@ -1964,7 +2013,7 @@ and containing an unsigned integer in big-endian byte order.</p>
 <tr>
 <td>ip( <code>string</code> )</td>
 <td>ip or hostname for the tcp peer</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>port( <code>integer</code> )</td>
@@ -1979,12 +2028,12 @@ and containing an unsigned integer in big-endian byte order.</p>
 <tr>
 <td>parser( <code>string</code> )</td>
 <td>name of parser to use for data conversion, see table below</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>as( <code>string</code> )</td>
 <td>name of the field for parsed data</td>
-<td></td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>changed( is_set )</td>
