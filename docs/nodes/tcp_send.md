@@ -4,9 +4,9 @@ The tcp_send node
 This node connects to a tcp endpoint and sends data with a defined packet size.
 
 Data to be sent can be:
-* a predefined string
-* a predefined json string
-* data that comes in to this node from downstream nodes
++ a predefined string
++ a predefined json string
++ data that comes in to this node from downstream nodes
  
 Sending can be done either periodically (if `every` is given) or triggered by an incoming data-item. 
 
@@ -20,13 +20,19 @@ unique id, there is no means of ensuring that any incoming message is the "respo
 A tcp endpoint can send a message to another endpoint whenever is wants to do so.
 If you rely on a strict request-response paradigm, consider using http, as this is made for such operations.
 
+### Packet Data
+
 `packet` can be: 1 | 2 | 4 and defaults to 2.
 Packets consist of a header specifying the number of bytes in the packet,
 followed by that number of bytes. The header length can be one, two, or four bytes,
 and containing an unsigned integer in big-endian byte order.
 
     `Length_Header:16/integer, Data:{Length_Header}/binary`
-     
+
+_`Experimental`_ since `0.19.19`: packet now can also have the value 'line', if this is given, data from the socket will be
+treated as separated by newline characters (\n, \r\n).
+
+------------------
 
 The tcp listener is protected against flooding with the {active, once} inet option.
 

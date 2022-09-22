@@ -624,6 +624,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#packet-data" class="md-nav__link">
+    Packet Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1904,6 +1911,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#packet-data" class="md-nav__link">
+    Packet Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -1933,9 +1947,9 @@
                 <h1 id="the-tcp_send-node">The tcp_send node</h1>
 <p>This node connects to a tcp endpoint and sends data with a defined packet size.</p>
 <p>Data to be sent can be:
-* a predefined string
-* a predefined json string
-* data that comes in to this node from downstream nodes</p>
++ a predefined string
++ a predefined json string
++ data that comes in to this node from downstream nodes</p>
 <p>Sending can be done either periodically (if <code>every</code> is given) or triggered by an incoming data-item. </p>
 <p>The node can also handle "responses" from the peer endpoint (timeout can be given).
 After the node has sent a tcp message, it starts the timeout to wait for the response. 
@@ -1945,6 +1959,7 @@ related to the message it just sent out. In other words: unless every message (a
 unique id, there is no means of ensuring that any incoming message is the "response" to a previous send operation done by this node.
 A tcp endpoint can send a message to another endpoint whenever is wants to do so.
 If you rely on a strict request-response paradigm, consider using http, as this is made for such operations.</p>
+<h3 id="packet-data">Packet Data</h3>
 <p><code>packet</code> can be: 1 | 2 | 4 and defaults to 2.
 Packets consist of a header specifying the number of bytes in the packet,
 followed by that number of bytes. The header length can be one, two, or four bytes,
@@ -1952,6 +1967,9 @@ and containing an unsigned integer in big-endian byte order.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>`Length_Header:16/integer, Data:{Length_Header}/binary`
 </code></pre></div>
 
+<p><em><code>Experimental</code></em> since <code>0.19.19</code>: packet now can also have the value 'line', if this is given, data from the socket will be
+treated as separated by newline characters (\n, \r\n).</p>
+<hr />
 <p>The tcp listener is protected against flooding with the {active, once} inet option.</p>
 <blockquote>
 <p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
