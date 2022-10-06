@@ -1117,6 +1117,11 @@ paths:
           description: "Id of the task, that should be started"
           required: true
           type: string
+        - in: query
+          name: "quiet"
+          description: "If set to true, will not complain about already started task."
+          required: false
+          type: boolean
   /task/start/{task_id}/true:
     get:
       summary: Start a task permanently.
@@ -1145,6 +1150,11 @@ paths:
           description: "Id of the task, that should be started permanently"
           required: true
           type: string
+        - in: query
+          name: "quiet"
+          description: "If set to true, will not complain about already started task."
+          required: false
+          type: boolean
   /task/stop/{task_id}:
     get:
       summary: Stop a task.
