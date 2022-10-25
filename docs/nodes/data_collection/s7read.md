@@ -2,6 +2,9 @@ The s7read node
 =====================
 
 Read data from a siemens s7 plc via the snap7 library using the `iso on tcp protocol`.
+The node is tested to read data from S7 **300** and S7 **1500** CPUs, but should be able to read data from any S7 PLC that supports the
+S7 comm protocol.
+
 Reading can be done periodically and/or triggered via incoming data-items.
 If the `every` parameter is not given, reading will be done only with trigger data-items.
 
@@ -14,10 +17,10 @@ See table below for more information about addressing.
 
 * The node will optimize reading by treating contiguous values as one reading var.
 Thus more data can be read in one go.
-* since 0.20.0: when standalone mode is set to false, then optimization and reading will be done outside of the node. 
+* since 0.20.0: when `optimized` is set to true (default), then optimization and reading will be done outside of the node. 
  All variables from all s7read nodes, that target the same PLC are optimized as a whole, this makes it possible to take advantage of the maximum PDU size.
  This will possibly lead to more than one request for a specific time slot, if there are many vars to read.
- In standalone(false) mode, it does not make a difference, if we use many s7read nodes, where every node just reads a view vars, or if we have
+ In optimized mode, it does not make a difference, if we use many s7read nodes, where every node just reads a view vars, or if we have
  only one s7read node, that reads a lot of vars (or anything in between)
 
 
@@ -34,16 +37,14 @@ For strings faxe uses a special syntax not found in step7 addressing:
 `Note`: Characters with an ascii value below 32 will be stripped from the char-sequence.
 Also for strings the above mentioned read-optimization will not be used.
 
-----
-
-
-`Note: data transfer size is limited to 128 bytes.`
+---- 
 
 Examples
 -------
 ```dfs  
+
 |s7read() 
-.ip(10.1.1.5)
+.ip('10.1.1.5')
 .rack(0)
 .slot(2)
 .every(300ms) 
@@ -63,10 +64,11 @@ Read 4 values (BOOL in this case) from a plc every 300 milliseconds and name the
 
 {% raw %}
 ```dfs  
+
 def db_number = 1140
 def db = 'DB{{db_number}}.DB'
 |s7read()  
-.ip(10.1.1.5)
+.ip('10.1.1.5')
 .as_prefix('data.tbo.') 
 .vars_prefix(db)
 .vars(
@@ -87,7 +89,7 @@ instead reading is done on data input from another node.
 
 ```dfs
 |s7read()
-.ip(10.1.1.5)
+.ip('10.1.1.5')
 .rack(0)
 .slot(2)
 .every(300ms) 
@@ -98,12 +100,13 @@ instead reading is done on data input from another node.
 ```
 Read a sequence of 30 bytes as a string.
 
-
+{% raw %}
 ```dfs
+
 def db_number = 1140
 def db = 'DB{{db_number}}.DB'
 |s7read()
-.ip(10.1.1.5)
+.ip('10.1.1.5')
 .as_prefix('data.tbo.') 
 .vars_prefix(db)
 .byte_offset(4)
@@ -117,6 +120,7 @@ def db = 'DB{{db_number}}.DB'
     'ix_Lift_PosTop', 'ix_Lift_PosBo'
     )
 ```
+{% endraw %}
 
 In the last example `byte_offset` of 4 is used, so effectively the following addresses will be used:
 `X4.0, X4.1, X4.4, X4.5`
@@ -127,11 +131,13 @@ In the last example `byte_offset` of 4 is used, so effectively the following add
 
 When `as` is not given, every second entry in `vars` is used as a field-name instead.
 
+{% raw %}
 ```dfs
+
 def db_number = 1140
 def db = 'DB{{db_number}}.DB'
 |s7read()
-.ip(10.1.1.5)
+.ip('10.1.1.5')
 .as_prefix('data.tbo.') 
 .vars_prefix(db)
 .byte_offset(4)
@@ -143,7 +149,7 @@ def db = 'DB{{db_number}}.DB'
     )
  
 ```
-
+{% endraw %}
 
 
 
@@ -165,7 +171,7 @@ Parameters
 | byte_offset( `integer` ) | offset for addressing, every address in vars gets this offset added                                                                               | 0                      |
 | diff( is_set )           | when given, only output values different to previous values                                                                                       | false (not set)        |
 | use_pool ( `bool` )      | whether to use the built-in connection pool                                                                                                       | from config value      |
-| standalone ( `bool` )    | whether to use the collected read optimization or do standalone reading for this node                                                             | true                   |
+| optimized ( `bool` )     | whether to use the collected read optimization or do standalone reading for this node                                                             | from config value      |
 
 Note that params `vars` and `as` must have the same length (if both are given).
 

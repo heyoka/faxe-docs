@@ -1988,7 +1988,9 @@
                 
                 <h1 id="the-s7read-node">The s7read node</h1>
 <p>Read data from a siemens s7 plc via the snap7 library using the <code>iso on tcp protocol</code>.
-Reading can be done periodically and/or triggered via incoming data-items.
+The node is tested to read data from S7 <strong>300</strong> and S7 <strong>1500</strong> CPUs, but should be able to read data from any S7 PLC that supports the
+S7 comm protocol.</p>
+<p>Reading can be done periodically and/or triggered via incoming data-items.
 If the <code>every</code> parameter is not given, reading will be done only with trigger data-items.</p>
 <ul>
 <li>Data <code>addressing</code> can be done in a <code>Step7</code> schema or with a slightly different schema used in node-red
@@ -2000,10 +2002,10 @@ See table below for more information about addressing.</li>
 <li>The node will optimize reading by treating contiguous values as one reading var.
 Thus more data can be read in one go.</li>
 <li>
-<p>since 0.20.0: when standalone mode is set to false, then optimization and reading will be done outside of the node. 
+<p>since 0.20.0: when <code>optimized</code> is set to true (default), then optimization and reading will be done outside of the node. 
  All variables from all s7read nodes, that target the same PLC are optimized as a whole, this makes it possible to take advantage of the maximum PDU size.
  This will possibly lead to more than one request for a specific time slot, if there are many vars to read.
- In standalone(false) mode, it does not make a difference, if we use many s7read nodes, where every node just reads a view vars, or if we have
+ In optimized mode, it does not make a difference, if we use many s7read nodes, where every node just reads a view vars, or if we have
  only one s7read node, that reads a lot of vars (or anything in between)</p>
 </li>
 <li>
@@ -2020,10 +2022,9 @@ For strings faxe uses a special syntax not found in step7 addressing:
 <p><code>Note</code>: Characters with an ascii value below 32 will be stripped from the char-sequence.
 Also for strings the above mentioned read-optimization will not be used.</p>
 <hr />
-<p><code>Note: data transfer size is limited to 128 bytes.</code></p>
 <h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span> 
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10.1.1.5</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;10.1.1.5&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">rack</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slot</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">300ms</span><span style="color: #f8f8f2">)</span> 
@@ -2042,7 +2043,7 @@ Also for strings the above mentioned read-optimization will not be used.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_number</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1140</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB{{db_number}}.DB&#39;</span>
 <span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span>  
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10.1.1.5</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;10.1.1.5&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.tbo.&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars</span><span style="color: #f8f8f2">(</span>
@@ -2059,7 +2060,7 @@ Also for strings the above mentioned read-optimization will not be used.</p>
 <p>Use of <code>as_prefix</code> and <code>vars_prefix</code>. The node will not read data on its own, because it has no every parameter.
 instead reading is done on data input from another node.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10.1.1.5</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;10.1.1.5&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">rack</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slot</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">300ms</span><span style="color: #f8f8f2">)</span> 
@@ -2069,9 +2070,9 @@ instead reading is done on data input from another node.</p>
 
 <p>Read a sequence of 30 bytes as a string.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_number</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1140</span>
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB.DB&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB{{db_number}}.DB&#39;</span>
 <span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10.1.1.5</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;10.1.1.5&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.tbo.&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">byte_offset</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
@@ -2092,9 +2093,9 @@ instead reading is done on data input from another node.</p>
 <p><code>since v0.19.5</code> </p>
 <p>When <code>as</code> is not given, every second entry in <code>vars</code> is used as a field-name instead.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_number</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1140</span>
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB.DB&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;DB{{db_number}}.DB&#39;</span>
 <span style="color: #f92672">|</span><span style="color: #a6e22e">s7read</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10.1.1.5</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ip</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;10.1.1.5&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data.tbo.&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">vars_prefix</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">byte_offset</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
@@ -2182,9 +2183,9 @@ instead reading is done on data input from another node.</p>
 <td>from config value</td>
 </tr>
 <tr>
-<td>standalone ( <code>bool</code> )</td>
+<td>optimized ( <code>bool</code> )</td>
 <td>whether to use the collected read optimization or do standalone reading for this node</td>
-<td>true</td>
+<td>from config value</td>
 </tr>
 </tbody>
 </table>
