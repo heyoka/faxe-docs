@@ -1096,8 +1096,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1906,8 +1906,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1939,7 +1939,7 @@ Does not overwrite or update any fields or tags.</p>
 This nodes checks for existence of fields before writing them. 
 Consider using the <a href="set.html">set node</a>, if you just want some fields set.
 It is more performant especially with high frequency data streams.</p>
-<h2 id="example">Example</h2>
+<h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">default()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field_values</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;some_id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;05.043&#39;</span><span style="color: #f8f8f2">)</span>
@@ -1947,6 +1947,12 @@ It is more performant especially with high frequency data streams.</p>
 
 <p>The above example will set the field <code>id</code> to the value 'some_id' , if a field with the name <code>id</code> does not already exist.
 Accordingly <code>vs</code> will be set to 1, <code>df</code> will be set to '05.043'.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">default()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">field_values</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">25.44</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Since v0.19.41: If exactly 1 value is given for <code>field_values</code>, it is used for every field name given.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1964,7 +1970,7 @@ Accordingly <code>vs</code> will be set to 1, <code>df</code> will be set to '05
 </tr>
 <tr>
 <td>field_values( <code>list</code> )</td>
-<td>list of values for the given fields (must have the same length as fieldnames)</td>
+<td>list of values for the given fields (exactly one entry or same length as fieldnames)</td>
 <td>[]</td>
 </tr>
 <tr>
@@ -1974,7 +1980,7 @@ Accordingly <code>vs</code> will be set to 1, <code>df</code> will be set to '05
 </tr>
 <tr>
 <td>tag_values( <code>list</code> )</td>
-<td>list of values for the given tags (must have the same length as tagnames)</td>
+<td>list of values for the given tags (exactly one or same length as tagnames)</td>
 <td>[]</td>
 </tr>
 </tbody>

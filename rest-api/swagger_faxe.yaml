@@ -672,6 +672,11 @@ paths:
         name: dir
         type: string
         description: direction for ordering, 'asc' or (default) 'desc'
+      - in: query
+        name: full
+        type: string
+        default: false
+        description: 'whether to return every task with the additional fields: "dfs", "group", "group_leader"'
   /tasks/running:
     get:
       summary: List of running tasks.
@@ -696,6 +701,11 @@ paths:
         name: dir
         type: string
         description: direction for ordering, 'asc' or (default) 'desc'
+      - in: query
+        name: full
+        type: string
+        default: false
+        description: 'whether to return every task with the additional fields: "dfs", "group", "group_leader"'
   /tasks/by_template/{template_id}:
     get:
       summary: Tasks by Template
@@ -727,6 +737,11 @@ paths:
         type: string
         default: desc
         description: direction for ordering, 'asc' or (default) 'desc'
+      - in: query
+        name: full
+        type: string
+        default: false
+        description: 'whether to return every task with the additional fields: "dfs", "group", "group_leader"'
   /tasks/by_tags/{tags}:
     get:
       summary: Tasks by tags
@@ -758,6 +773,11 @@ paths:
         type: string
         default: desc
         description: direction for ordering, 'asc' or (default) 'desc'
+      - in: query
+        name: full
+        type: string
+        default: false
+        description: 'whether to return every task with the additional fields: "dfs", "group", "group_leader"'
   /tasks/start_permanent:
     get:
       summary: Start all permanent tasks
