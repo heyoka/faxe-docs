@@ -2581,8 +2581,13 @@ to reference them:</p>
 </tr>
 <tr>
 <td><code>map_get(Key, Map)</code> -&gt; any</td>
-<td>get a value from a map, 'undefined' is returned, if the key is not present in map</td>
-<td>map_get("topic", ls_mem('stream_lookup'))</td>
+<td>get a value from a map, equvivalent to <code>map_get(Key, Map, 'undefined')</code></td>
+<td>map_get("topic", '{"data/temp/val1": "temp"}')</td>
+</tr>
+<tr>
+<td><code>map_get(Key, Map, Default)</code> -&gt; any</td>
+<td>get a value from a map, <code>Default</code> is returned, if the key is not present in map</td>
+<td>map_get("topic", '{"data/temp/val1": "temp"}', 'no_match')</td>
 </tr>
 <tr>
 <td><code>select(Key, Jsn)</code> -&gt; list</td>

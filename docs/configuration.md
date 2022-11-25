@@ -67,6 +67,62 @@ erlang.async_threads = 64
 ##   - an integer
 erlang.max_ports = 262144
 
+## --------------------------------------------------------------------------
+## Erlangs timewarp and time-correction behaviour
+## More info: https://www.erlang.org/doc/apps/erts/time_correction.html#Multi_Time_Warp_Mode
+## ------------------------------------------------------------------------------
+## What time wrap mode to use for the erlang runtime system
+## 
+## Default: multi_time_warp
+## 
+## ENV-Key: FAXE_ERLANG_TIME_WARP_MODE
+## 
+## Acceptable values:
+##   - one of: no_time_warp, single_time_warp, multi_time_warp
+## erlang.time.warp_mode = multi_time_warp
+
+## Whether to use time correction
+## 
+## Default: false
+## 
+## ENV-Key: FAXE_ERLANG_TIME_CORRECTION
+## 
+## Acceptable values:
+##   - one of: true, false
+## erlang.time.correction = false
+
+## --------------------------------------------------------------------------
+## Erlangs scheduler busy wait threshold
+## More info: https://www.erlang.org/doc/man/erl.html
+## ------------------------------------------------------------------------------
+## scheduler busy wait threshold
+## 
+## Default: medium
+## 
+## ENV-Key: FAXE_ERLANG_BUSY_WAIT_CPU_SCHEDULER
+## 
+## Acceptable values:
+##   - one of: none, very_short, short, medium, long, very_long
+## erlang.busy_wait.cpu_scheduler = medium
+
+## 
+## Default: short
+## 
+## ENV-Key: FAXE_ERLANG_BUSY_WAIT_DIRTY_CPU_SCHEDULER
+## 
+## Acceptable values:
+##   - one of: none, very_short, short, medium, long, very_long
+## erlang.busy_wait.dirty_cpu_scheduler = short
+
+## 
+## Default: short
+## 
+## ENV-Key: FAXE_ERLANG_BUSY_WAIT_DIRTY_IO_SCHEDULER
+## 
+## Acceptable values:
+##   - one of: none, very_short, short, medium, long, very_long
+## erlang.busy_wait.dirty_io_scheduler = short
+
 ## --------------------------------------------------------------
 ## LOGGING
 ## --------------------------------------------------------------
@@ -111,6 +167,17 @@ log.logstash_backend_enable = off
 ##   - one of: udp, tcp
 ## log.logstash_backend_protocol = udp
 
+## enable/disable tls
+## enable the use of tls for the logstash handler, if tcp is used
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_LOG_LOGSTASH_BACKEND_SSL_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+## log.logstash_backend.ssl_enable = off
+
 ## logstash host name or address
 ## 
 ## Default: 127.0.0.1
@@ -153,6 +220,19 @@ log.logstash_backend_enable = off
 ## Acceptable values:
 ##   - on or off
 ## flow_auto_start = off
+
+## --------------------------------------------------------------
+## AUTO RELOAD faxe flows (tasks)
+## --------------------------------------------------------------
+## whether to reload all tasks automatically on node startup
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_FLOW_AUTO_RELOAD
+## 
+## Acceptable values:
+##   - on or off
+## flow_auto_reload = off
 
 ## --------------------------------------------------------------
 ## DFS
@@ -199,6 +279,27 @@ allow_anonymous = true
 ##   - text
 ## default_password = pass
 
+## 
+## Default: false
+## 
+## ENV-Key: FAXE_RESET_USER_ON_STARTUP
+## 
+## Acceptable values:
+##   - true or false
+## reset_user_on_startup = false
+
+## ----------------------------------------------------------------
+## API AUTH with JWT
+## ----------------------------------------------------------------
+## 
+## Default: /path/to/cacertfile.pem
+## 
+## ENV-Key: FAXE_HTTP_API_JWT_PUBLIC_KEY_FILE
+## 
+## Acceptable values:
+##   - the path to a file
+## http_api.jwt.public_key_file = /path/to/cacertfile.pem
+
 ## ----------------------------------------------------------------
 ## REST API
 ## ----------------------------------------------------------------
@@ -211,6 +312,15 @@ allow_anonymous = true
 ## Acceptable values:
 ##   - an integer
 http_api_port = 8081
+
+## 
+## Default: 3000000
+## 
+## ENV-Key: FAXE_HTTP_API_MAX_UPLOAD_SIZE
+## 
+## Acceptable values:
+##   - an integer
+http_api.max_upload_size = 3000000
 
 ## http-api tls
 ## enable the use of tls for the http-api
@@ -340,16 +450,16 @@ queue_ttf = 20000ms
 ## capacity defines the size of in-memory queue.
 ## The queue would not fetch anything from disk into memory buffer if capacity is 0.
 ## 
-## Default: 10
+## Default: 30
 ## 
 ## ENV-Key: FAXE_QUEUE_CAPACITY
 ## 
 ## Acceptable values:
 ##   - an integer
-queue_capacity = 10
+queue_capacity = 30
 
 ## dequeue interval.
-## Interval at which the queue is asked for an element.
+## Start interval at which the queue is asked for an element.
 ## 
 ## Default: 15ms
 ## 
@@ -358,6 +468,39 @@ queue_capacity = 10
 ## Acceptable values:
 ##   - a time duration with units, e.g. '10s' for 10 seconds
 dequeue_interval = 15ms
+
+## dequeue min interval.
+## Min interval at which the queue is asked for an element.
+## 
+## Default: 3ms
+## 
+## ENV-Key: FAXE_DEQUEUE_MIN_INTERVAL
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+dequeue.min_interval = 3ms
+
+## dequeue max interval.
+## Max interval at which the queue is asked for an element.
+## 
+## Default: 200ms
+## 
+## ENV-Key: FAXE_DEQUEUE_MAX_INTERVAL
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+dequeue.max_interval = 200ms
+
+## interval change step size.
+## Step size for dequeue interval changes
+## 
+## Default: 3
+## 
+## ENV-Key: FAXE_DEQUEUE_STEP_SIZE
+## 
+## Acceptable values:
+##   - an integer
+dequeue.step_size = 3
 
 ## -------------------------------------------------------------------------
 ## S7 DEFAULTS
@@ -396,10 +539,38 @@ s7pool.max_size = 16
 ##   - on or off
 s7pool.enable = off
 
+## whether to use the optimized s7 reader
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_S7READER_OPTIMIZED
+## 
+## Acceptable values:
+##   - on or off
+s7reader.optimized = off
+
 ## -------------------------------------------------------------------------------
 ## MQTT defaults
 ## -------------------------------------------------------------------------------
-## mqtt host
+## 
+## Default: on
+## 
+## ENV-Key: FAXE_MQTT_POOL_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+mqtt_pool.enable = on
+
+## max size (maximum number of connections) for the mqtt connection pool
+## 
+## Default: 30
+## 
+## ENV-Key: FAXE_MQTT_POOL_MAX_SIZE
+## 
+## Acceptable values:
+##   - an integer
+mqtt_pool.max_size = 30
+
 ## 
 ## Default: 10.14.204.20
 ## 
@@ -450,6 +621,16 @@ mqtt.port = 1883
 ##   - on or off
 ## mqtt.ssl.enable = off
 
+## mqtt ssl peer verification
+## 
+## Default: verify_none
+## 
+## ENV-Key: FAXE_MQTT_SSL_VERIFY
+## 
+## Acceptable values:
+##   - one of: verify_none, verify_peer
+## mqtt.ssl.verify = verify_none
+
 ## mqtt ssl certificate
 ## 
 ## Default: 
@@ -479,6 +660,46 @@ mqtt.port = 1883
 ## Acceptable values:
 ##   - the path to a file
 ## mqtt.ssl.keyfile = /path/to/cert.key
+
+## 
+## Default: 2
+## 
+## ENV-Key: FAXE_MQTT_PUB_POOL_MIN_SIZE
+## 
+## Acceptable values:
+##   - an integer
+mqtt_pub_pool.min_size = 2
+
+## mqtt publisher connection pool max size
+## 
+## Default: 30
+## 
+## ENV-Key: FAXE_MQTT_PUB_POOL_MAX_SIZE
+## 
+## Acceptable values:
+##   - an integer
+mqtt_pub_pool.max_size = 30
+
+## mqtt publisher connection pool max worker rate (message throughput per second)
+## this is used for the elastic pool grow/shrink mechanism
+## 
+## Default: 70
+## 
+## ENV-Key: FAXE_MQTT_PUB_POOL_WORKER_MAX_RATE
+## 
+## Acceptable values:
+##   - an integer
+mqtt_pub_pool.worker_max_rate = 70
+
+## whether to use the s7 pool (default for all s7read nodes)
+## 
+## Default: on
+## 
+## ENV-Key: FAXE_MQTT_PUB_POOL_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+mqtt_pub_pool.enable = on
 
 ## -------------------------------------------------------------------------------
 ## AMQP defaults
@@ -597,6 +818,24 @@ amqp.port = 5672
 ## Acceptable values:
 ##   - text
 rabbitmq.root_exchange = x_lm_fanout
+
+## 
+## Default: q_
+## 
+## ENV-Key: FAXE_RABBITMQ_QUEUE_PREFIX
+## 
+## Acceptable values:
+##   - text
+rabbitmq.queue_prefix = q_
+
+## 
+## Default: x_
+## 
+## ENV-Key: FAXE_RABBITMQ_EXCHANGE_PREFIX
+## 
+## Acceptable values:
+##   - text
+rabbitmq.exchange_prefix = x_
 
 ## -------------------------------------------------------------------------------
 ## CrateDB defaults (postgreSQL connect)
@@ -842,6 +1081,28 @@ email.tls = off
 ##   - text
 email.template = /home/user/template.html
 
+## --------------------------------------------------------------------------
+## AZURE BLOB
+## -------------------------------------------------------------------------------
+## account-url
+## 
+## Default: https://someblob.blob.core.windows.net
+## 
+## ENV-Key: FAXE_AZURE_BLOB_ACCOUNT_URL
+## 
+## Acceptable values:
+##   - text
+azure_blob.account_url = https://someblob.blob.core.windows.net
+
+## 
+## Default: azblob-secret
+## 
+## ENV-Key: FAXE_AZURE_BLOB_ACCOUNT_SECRET
+## 
+## Acceptable values:
+##   - text
+azure_blob.account_secret = azblob-secret
+
 ## 
 ## --------------------------------------------------------------------
 ## DEBUG, LOGS, METRICS, CONNECTION STATUS, FLOW_CHANGED
@@ -881,8 +1142,6 @@ metrics.handler.mqtt.enable = off
 ## metrics.handler.mqtt.host = example.com
 
 ## metrics handler mqtt port
-## 
-## Default: 1883
 ## 
 ## ENV-Key: FAXE_METRICS_HANDLER_MQTT_PORT
 ## 
@@ -935,8 +1194,6 @@ conn_status.handler.mqtt.enable = on
 
 ## connection status handler mqtt port
 ## 
-## Default: 1883
-## 
 ## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_PORT
 ## 
 ## Acceptable values:
@@ -977,8 +1234,6 @@ debug.handler.mqtt.enable = off
 
 ## debug_trace handler mqtt port
 ## 
-## Default: 1883
-## 
 ## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_PORT
 ## 
 ## Acceptable values:
@@ -997,13 +1252,13 @@ debug.handler.mqtt.enable = off
 
 ## time debug and node-metric messages will be published to the configured endpoints
 ## 
-## Default: 30s
+## Default: 3m
 ## 
 ## ENV-Key: FAXE_DEBUG_TIME
 ## 
 ## Acceptable values:
 ##   - a time duration with units, e.g. '10s' for 10 seconds
-debug.time = 30s
+debug.time = 3m
 
 ## ----------------------- FLOW_CHANGED --------------------------
 ## flow_changed handler MQTT
@@ -1028,8 +1283,6 @@ flow_changed.handler.mqtt.enable = off
 ## flow_changed.handler.mqtt.host = example.com
 
 ## flow_changed handler mqtt port
-## 
-## Default: 1883
 ## 
 ## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_PORT
 ## 

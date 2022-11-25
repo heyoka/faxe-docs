@@ -1934,6 +1934,62 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - an integer</span>
 <span style="color: #a6e22e">erlang.max_ports</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">262144</span>
 
+<span style="color: #75715e">## --------------------------------------------------------------------------</span>
+<span style="color: #75715e">## Erlangs timewarp and time-correction behaviour</span>
+<span style="color: #75715e">## More info: https://www.erlang.org/doc/apps/erts/time_correction.html#Multi_Time_Warp_Mode</span>
+<span style="color: #75715e">## ------------------------------------------------------------------------------</span>
+<span style="color: #75715e">## What time wrap mode to use for the erlang runtime system</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: multi_time_warp</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_ERLANG_TIME_WARP_MODE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: no_time_warp, single_time_warp, multi_time_warp</span>
+<span style="color: #75715e">## erlang.time.warp_mode = multi_time_warp</span>
+
+<span style="color: #75715e">## Whether to use time correction</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: false</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_ERLANG_TIME_CORRECTION</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: true, false</span>
+<span style="color: #75715e">## erlang.time.correction = false</span>
+
+<span style="color: #75715e">## --------------------------------------------------------------------------</span>
+<span style="color: #75715e">## Erlangs scheduler busy wait threshold</span>
+<span style="color: #75715e">## More info: https://www.erlang.org/doc/man/erl.html</span>
+<span style="color: #75715e">## ------------------------------------------------------------------------------</span>
+<span style="color: #75715e">## scheduler busy wait threshold</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: medium</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_ERLANG_BUSY_WAIT_CPU_SCHEDULER</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: none, very_short, short, medium, long, very_long</span>
+<span style="color: #75715e">## erlang.busy_wait.cpu_scheduler = medium</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: short</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_ERLANG_BUSY_WAIT_DIRTY_CPU_SCHEDULER</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: none, very_short, short, medium, long, very_long</span>
+<span style="color: #75715e">## erlang.busy_wait.dirty_cpu_scheduler = short</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: short</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_ERLANG_BUSY_WAIT_DIRTY_IO_SCHEDULER</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: none, very_short, short, medium, long, very_long</span>
+<span style="color: #75715e">## erlang.busy_wait.dirty_io_scheduler = short</span>
+
 <span style="color: #75715e">## --------------------------------------------------------------</span>
 <span style="color: #75715e">## LOGGING</span>
 <span style="color: #75715e">## --------------------------------------------------------------</span>
@@ -1978,6 +2034,17 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - one of: udp, tcp</span>
 <span style="color: #75715e">## log.logstash_backend_protocol = udp</span>
 
+<span style="color: #75715e">## enable/disable tls</span>
+<span style="color: #75715e">## enable the use of tls for the logstash handler, if tcp is used</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_LOG_LOGSTASH_BACKEND_SSL_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #75715e">## log.logstash_backend.ssl_enable = off</span>
+
 <span style="color: #75715e">## logstash host name or address</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: 127.0.0.1</span>
@@ -2020,6 +2087,19 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - on or off</span>
 <span style="color: #75715e">## flow_auto_start = off</span>
+
+<span style="color: #75715e">## --------------------------------------------------------------</span>
+<span style="color: #75715e">## AUTO RELOAD faxe flows (tasks)</span>
+<span style="color: #75715e">## --------------------------------------------------------------</span>
+<span style="color: #75715e">## whether to reload all tasks automatically on node startup</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_AUTO_RELOAD</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #75715e">## flow_auto_reload = off</span>
 
 <span style="color: #75715e">## --------------------------------------------------------------</span>
 <span style="color: #75715e">## DFS</span>
@@ -2066,6 +2146,27 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #75715e">## default_password = pass</span>
 
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: false</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RESET_USER_ON_STARTUP</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - true or false</span>
+<span style="color: #75715e">## reset_user_on_startup = false</span>
+
+<span style="color: #75715e">## ----------------------------------------------------------------</span>
+<span style="color: #75715e">## API AUTH with JWT</span>
+<span style="color: #75715e">## ----------------------------------------------------------------</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: /path/to/cacertfile.pem</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_HTTP_API_JWT_PUBLIC_KEY_FILE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - the path to a file</span>
+<span style="color: #75715e">## http_api.jwt.public_key_file = /path/to/cacertfile.pem</span>
+
 <span style="color: #75715e">## ----------------------------------------------------------------</span>
 <span style="color: #75715e">## REST API</span>
 <span style="color: #75715e">## ----------------------------------------------------------------</span>
@@ -2078,6 +2179,15 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - an integer</span>
 <span style="color: #a6e22e">http_api_port</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">8081</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 3000000</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_HTTP_API_MAX_UPLOAD_SIZE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">http_api.max_upload_size</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">3000000</span>
 
 <span style="color: #75715e">## http-api tls</span>
 <span style="color: #75715e">## enable the use of tls for the http-api</span>
@@ -2207,16 +2317,16 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## capacity defines the size of in-memory queue.</span>
 <span style="color: #75715e">## The queue would not fetch anything from disk into memory buffer if capacity is 0.</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 10</span>
+<span style="color: #75715e">## Default: 30</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_QUEUE_CAPACITY</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - an integer</span>
-<span style="color: #a6e22e">queue_capacity</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">10</span>
+<span style="color: #a6e22e">queue_capacity</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">30</span>
 
 <span style="color: #75715e">## dequeue interval.</span>
-<span style="color: #75715e">## Interval at which the queue is asked for an element.</span>
+<span style="color: #75715e">## Start interval at which the queue is asked for an element.</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: 15ms</span>
 <span style="color: #75715e">## </span>
@@ -2225,6 +2335,39 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
 <span style="color: #a6e22e">dequeue_interval</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">15ms</span>
+
+<span style="color: #75715e">## dequeue min interval.</span>
+<span style="color: #75715e">## Min interval at which the queue is asked for an element.</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 3ms</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_DEQUEUE_MIN_INTERVAL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">dequeue.min_interval</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">3ms</span>
+
+<span style="color: #75715e">## dequeue max interval.</span>
+<span style="color: #75715e">## Max interval at which the queue is asked for an element.</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 200ms</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_DEQUEUE_MAX_INTERVAL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">dequeue.max_interval</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">200ms</span>
+
+<span style="color: #75715e">## interval change step size.</span>
+<span style="color: #75715e">## Step size for dequeue interval changes</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 3</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_DEQUEUE_STEP_SIZE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">dequeue.step_size</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">3</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------</span>
 <span style="color: #75715e">## S7 DEFAULTS</span>
@@ -2263,10 +2406,38 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - on or off</span>
 <span style="color: #a6e22e">s7pool.enable</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">off</span>
 
+<span style="color: #75715e">## whether to use the optimized s7 reader</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_S7READER_OPTIMIZED</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">s7reader.optimized</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">off</span>
+
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## MQTT defaults</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
-<span style="color: #75715e">## mqtt host</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_MQTT_POOL_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">mqtt_pool.enable</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">on</span>
+
+<span style="color: #75715e">## max size (maximum number of connections) for the mqtt connection pool</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 30</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_MQTT_POOL_MAX_SIZE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">mqtt_pool.max_size</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">30</span>
+
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: 10.14.204.20</span>
 <span style="color: #75715e">## </span>
@@ -2317,6 +2488,16 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - on or off</span>
 <span style="color: #75715e">## mqtt.ssl.enable = off</span>
 
+<span style="color: #75715e">## mqtt ssl peer verification</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: verify_none</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_MQTT_SSL_VERIFY</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - one of: verify_none, verify_peer</span>
+<span style="color: #75715e">## mqtt.ssl.verify = verify_none</span>
+
 <span style="color: #75715e">## mqtt ssl certificate</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: </span>
@@ -2346,6 +2527,46 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - the path to a file</span>
 <span style="color: #75715e">## mqtt.ssl.keyfile = /path/to/cert.key</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 2</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_MQTT_PUB_POOL_MIN_SIZE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">mqtt_pub_pool.min_size</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">2</span>
+
+<span style="color: #75715e">## mqtt publisher connection pool max size</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 30</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_MQTT_PUB_POOL_MAX_SIZE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">mqtt_pub_pool.max_size</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">30</span>
+
+<span style="color: #75715e">## mqtt publisher connection pool max worker rate (message throughput per second)</span>
+<span style="color: #75715e">## this is used for the elastic pool grow/shrink mechanism</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 70</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_MQTT_PUB_POOL_WORKER_MAX_RATE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">mqtt_pub_pool.worker_max_rate</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">70</span>
+
+<span style="color: #75715e">## whether to use the s7 pool (default for all s7read nodes)</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_MQTT_PUB_POOL_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">mqtt_pub_pool.enable</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">on</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## AMQP defaults</span>
@@ -2464,6 +2685,24 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #a6e22e">rabbitmq.root_exchange</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">x_lm_fanout</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: q_</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_QUEUE_PREFIX</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">rabbitmq.queue_prefix</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">q_</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: x_</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_EXCHANGE_PREFIX</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">rabbitmq.exchange_prefix</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">x_</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## CrateDB defaults (postgreSQL connect)</span>
@@ -2709,6 +2948,28 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #a6e22e">email.template</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">/home/user/template.html</span>
 
+<span style="color: #75715e">## --------------------------------------------------------------------------</span>
+<span style="color: #75715e">## AZURE BLOB</span>
+<span style="color: #75715e">## -------------------------------------------------------------------------------</span>
+<span style="color: #75715e">## account-url</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: https://someblob.blob.core.windows.net</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_AZURE_BLOB_ACCOUNT_URL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">azure_blob.account_url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">https://someblob.blob.core.windows.net</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: azblob-secret</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_AZURE_BLOB_ACCOUNT_SECRET</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">azure_blob.account_secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">azblob-secret</span>
+
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## --------------------------------------------------------------------</span>
 <span style="color: #75715e">## DEBUG, LOGS, METRICS, CONNECTION STATUS, FLOW_CHANGED</span>
@@ -2748,8 +3009,6 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## metrics.handler.mqtt.host = example.com</span>
 
 <span style="color: #75715e">## metrics handler mqtt port</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 1883</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_METRICS_HANDLER_MQTT_PORT</span>
 <span style="color: #75715e">## </span>
@@ -2802,8 +3061,6 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## connection status handler mqtt port</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 1883</span>
-<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_PORT</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2844,8 +3101,6 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## debug_trace handler mqtt port</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 1883</span>
-<span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_PORT</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
@@ -2864,13 +3119,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## time debug and node-metric messages will be published to the configured endpoints</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 30s</span>
+<span style="color: #75715e">## Default: 3m</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_TIME</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
-<span style="color: #a6e22e">debug.time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">30s</span>
+<span style="color: #a6e22e">debug.time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">3m</span>
 
 <span style="color: #75715e">## ----------------------- FLOW_CHANGED --------------------------</span>
 <span style="color: #75715e">## flow_changed handler MQTT</span>
@@ -2895,8 +3150,6 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## flow_changed.handler.mqtt.host = example.com</span>
 
 <span style="color: #75715e">## flow_changed handler mqtt port</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 1883</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_PORT</span>
 <span style="color: #75715e">## </span>
