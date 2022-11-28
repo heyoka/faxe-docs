@@ -9,12 +9,16 @@ element.style {
 max-width: 72rem;
 }
 .md-typeset table:not([class]) th {
-    min-width: 5rem;
+    min-width: 8rem;
     padding: .6rem .8rem;
-    background-color: rgba(0,0,0,.54);
-    color: #fff;
+    background-color: #272722;
+    color: #eee;
     vertical-align: top;
 }
+
+.md-typeset table:not([class]) td {
+    background-color: #303030;
+    }
 
 .md-typeset table:not([class]) {
     background-color: inherit;
