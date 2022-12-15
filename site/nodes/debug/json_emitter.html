@@ -936,6 +936,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    select
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1934,6 +1941,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    select
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2022,7 +2036,7 @@ selectect and outputted, start over with the first one again.</p>
 </tr>
 <tr>
 <td>select( <code>string</code> )</td>
-<td>entry select mode, possible values: <code>rand</code> or <code>seq</code></td>
+<td>entry select mode, possible values: <code>rand</code> or <code>seq</code>, <code>batch</code></td>
 <td>'rand'</td>
 </tr>
 <tr>
@@ -2040,6 +2054,33 @@ selectect and outputted, start over with the first one again.</p>
 <blockquote>
 <p>Note : <code>modify</code> and <code>modify_with</code> must have the same number of parameters, if given.</p>
 </blockquote>
+<h2 id="select">select</h2>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>Description</th>
+<th>Resulting data-item</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rand</code></td>
+<td>randomly selects one of the json structures</td>
+<td>data-point</td>
+</tr>
+<tr>
+<td><code>seq</code></td>
+<td>selects the json entries in sequence starting from top</td>
+<td>data-point</td>
+</tr>
+<tr>
+<td><code>batch</code></td>
+<td>selects all of the entries resulting in a batch of data-points</td>
+<td>data-batch</td>
+</tr>
+</tbody>
+</table>
                 
               
               

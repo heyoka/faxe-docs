@@ -493,6 +493,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#type-checks" class="md-nav__link">
+    Type checks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#time-functions" class="md-nav__link">
     Time functions
   </a>
@@ -2023,6 +2030,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#type-checks" class="md-nav__link">
+    Type checks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#time-functions" class="md-nav__link">
     Time functions
   </a>
@@ -2157,6 +2171,53 @@ to reference them:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">]</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;3&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #e6db74">&#39;1,2,3&#39;</span>
 </code></pre></div>
 
+<h3 id="type-checks">Type checks</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_string(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_integer(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_int(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_float(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_number(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_list(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_duration(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_boolean(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_bool(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="time-functions">Time functions</h3>
 <p>Every data_point in faxe contains a field called <strong><code>ts</code></strong>, which holds a UTC timestamp in milliseconds.</p>
 <table>
@@ -2343,6 +2404,10 @@ to reference them:</p>
 <tr>
 <td><code>round_float(x, precision)</code> -&gt; float</td>
 <td>round a float (x) with the given precision</td>
+</tr>
+<tr>
+<td><code>trunc(x)</code> -&gt; integer</td>
+<td>Returns an integer by truncating a number</td>
 </tr>
 <tr>
 <td><code>sin(x)</code> -&gt; float</td>

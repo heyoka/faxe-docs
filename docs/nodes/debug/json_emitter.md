@@ -63,8 +63,19 @@ Parameters
 | jitter( `duration` )         | add time jitter to the values produced                                                      | 0ms             |
 | json( `string_list` )        | list of json strings                                                                        |                 |
 | align( is_set )              | align the time to the every param                                                           | false (not set) |
-| select( `string` )           | entry select mode, possible values: `rand` or `seq`                                         | 'rand'          |
+| select( `string` )           | entry select mode, possible values: `rand` or `seq`, `batch`                                | 'rand'          |
 | modify( `string_list` )      | list of fields, that should be modified                                                     | undefined       |
 | modify_with( `lambda_list` ) | list of lambda expressions, that perform the modification on the fields given with `modify` | undefined       |
 
 > Note : `modify` and `modify_with` must have the same number of parameters, if given.
+
+select
+------
+
+
+| value   | Description                                                    | Resulting data-item |
+|---------|----------------------------------------------------------------|---------------------|
+| `rand`  | randomly selects one of the json structures                    | data-point          |
+| `seq`   | selects the json entries in sequence starting from top         | data-point          |
+| `batch` | selects all of the entries resulting in a batch of data-points | data-batch          |
+ 

@@ -70,6 +70,21 @@ Converts every entry of List to a string first and then joins the resulting list
 ```
 
 
+### Type checks 
+
+| Function                    |     |                                                                                           
+|-----------------------------|-----|
+| `is_string(Data)` -> bool   |     |
+| `is_integer(Data)` -> bool  |     |
+| `is_int(Data)` -> bool      |     |
+| `is_float(Data)` -> bool    |     |
+| `is_number(Data)` -> bool   |     |
+| `is_list(Data)` -> bool     |     |
+| `is_duration(Data)` -> bool |     |
+| `is_boolean(Data)` -> bool  |     |
+| `is_bool(Data)` -> bool     |     |
+
+
 ### Time functions
 
 Every data_point in faxe contains a field called **`ts`**, which holds a UTC timestamp in milliseconds.
@@ -134,6 +149,7 @@ Will align every timestamp (ts) to a multiple of the 3 minutes within an hour (i
 | `pow(x, y)` -> float                 |                                            |
 | `round(x)` -> integer                | round a number to an integer               |
 | `round_float(x, precision)` -> float | round a float (x) with the given precision |
+| `trunc(x)` -> integer                | Returns an integer by truncating a number  |
 | `sin(x)` -> float                    |                                            |
 | `sinh(x)` -> float                   |                                            |
 | `sqrt(x)` -> float                   |                                            |
