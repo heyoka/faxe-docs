@@ -43,6 +43,8 @@ With a few exceptions every type can be converted to every other type.
 **Integer**
 
     int(value) -> integer
+
+If value is a float, then int(value) is equivalent to  `trunc(value)`
     
 **Float**
 
@@ -251,10 +253,16 @@ lambda: select('key', [{'id', "data.id"}], jsn_array)
 
 **If**
 
-Returns the result of its operands depending on the value of the first argument. 
-The second and third arguments must return the same type.
+In DFS `if` is not a language construct, but a function with 3 parameters.
+The if function’s return type is the same type as its second and third arguments.
+ 
+```dfs
+if(condition, true expression, false expression)
+```
 
-Example:
+Returns the result of its operands depending on the value of the first argument.  
+
+Examples:
 ```dfs  
 |eval(lambda: if("field.val1" > threshold AND "field.val1" != 0, 'true', 'false'))
 .as('value')
@@ -262,9 +270,14 @@ Example:
 The value of the field `value` in the above example will be the string `true` or `false`, 
 depending on the condition passed as the first argument.
 
-The if function’s return type is the same type as its second and third arguments.
+```dfs  
+|eval(lambda: if(is_float("data.duration_ms"), trunc("data.duration_ms" * 1000), "data.duration_ms"))
+.as('value')
+```
+Both expressions (2nd and 3rd parameter) may also be arbitrarily complex.
+In this example, if the condition returns true, `data.duration_ms` will be mulitplied be 1000 and then truncated to an integer.
+If the condition returns false, just the value of `data.duration_ms` will be returned.
 
-    if(condition, true expression, false expression)
     
     
     
