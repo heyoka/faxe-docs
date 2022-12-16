@@ -2343,7 +2343,7 @@ The return type for this callback is a <code>list of 2-or-3 tuples</code>.</p>
 <blockquote>
 <p><code>options</code> is the only static callback and the only one, that has to return a value. </p>
 </blockquote>
-<p>The first two elements of the tuples must be strings, the third, if given depends on the <code>data_type</code>.
+<p>The first two elements of the tuples must be strings, the third, if given, depends on the <code>data_type</code>.
 Every option, that has no <code>default value</code> (3rd element in the tuple) is mandatory in DFS scripts.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;name_of_the_option&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;data_type&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{optional_default_value})</span>
 </code></pre></div>
@@ -2448,7 +2448,7 @@ A subset of the option types used for <a href="nodes/index.html">built-in nodes<
 <h4 id="init">init</h4>
 <p>The <code>init</code> callback is called on class instatiation, it gets injected a dictionary with the <a href="#callbacks">option values</a> given in the DFS script.</p>
 <blockquote>
-<p>Do not overwrite python's <code>__init</code> method. The callback will not work in this case.</p>
+<p>Do not overwrite the <code>__init__</code> method. The callback will not work in this case.</p>
 </blockquote>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">from</span> <span style="color: #f8f8f2">faxe</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Faxe</span>
 

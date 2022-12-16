@@ -48,7 +48,7 @@ The return type for this callback is a `list of 2-or-3 tuples`.
 
 > `options` is the only static callback and the only one, that has to return a value. 
 
-The first two elements of the tuples must be strings, the third, if given depends on the `data_type`.
+The first two elements of the tuples must be strings, the third, if given, depends on the `data_type`.
 Every option, that has no `default value` (3rd element in the tuple) is mandatory in DFS scripts.
 ```python
     ("name_of_the_option", "data_type", {optional_default_value})
@@ -112,7 +112,7 @@ A subset of the option types used for [built-in nodes](nodes/index.md) can be us
 
 The `init` callback is called on class instatiation, it gets injected a dictionary with the [option values](#callbacks) given in the DFS script.
 
-> Do not overwrite python's `__init` method. The callback will not work in this case.
+> Do not overwrite the `__init__` method. The callback will not work in this case.
 
 ```python
 from faxe import Faxe
