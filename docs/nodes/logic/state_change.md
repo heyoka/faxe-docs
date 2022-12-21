@@ -14,7 +14,7 @@ If the `.enter()` option is set, a new data-point will be emitted on state-enter
 The new data-point will have a field, named with the `.enter_as()` option, set to `1`.
 This fieldname defaults to `state_entered`.
 
-> new since 0.19.51: `state_id`, uuid v4 is created on every entry  
+> new since 0.19.51: `state_id`, uuid v4 is created on every state entry  
 
 
 ### The leave data-point
