@@ -1984,6 +1984,9 @@ It can produce new data-points every time the state is <code>entered</code> and/
 <p>If the <code>.enter()</code> option is set, a new data-point will be emitted on state-enter.
 The new data-point will have a field, named with the <code>.enter_as()</code> option, set to <code>1</code>.
 This fieldname defaults to <code>state_entered</code>.</p>
+<blockquote>
+<p>new since 0.19.51: <code>state_id</code>, uuid v4 is created on every entry  </p>
+</blockquote>
 <h3 id="the-leave-data-point">The leave data-point</h3>
 <p>If the <code>.leave()</code> option is set, a new data-point will be emitted on state-leave.
 Fields for this data-point:</p>
@@ -2015,6 +2018,10 @@ Fields for this data-point:</p>
 <td><code>state_count</code></td>
 <td>number of points, the number of consecutive data-points for which the state-expression returned true</td>
 </tr>
+<tr>
+<td><code>state_id</code></td>
+<td>new since <code>0.19.51</code>, uuid v4 is created on every state-enter action</td>
+</tr>
 </tbody>
 </table>
 <p>When the lambda expression generates an error during evaluation, the current point is discarded
@@ -2032,7 +2039,7 @@ and does not affect any calculations.</p>
 <p>Example output in json:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span>
     <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1232154654655</span><span style="color: #f8f8f2">,</span> 
-    <span style="color: #f92672">&quot;err&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;err_code&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1492</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;state_left&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #f92672">&quot;err&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;err_code&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1492</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;state_left&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;state_id&quot;</span> <span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;07aae050-9d30-4570-989d-74f5f21d52bf&quot;</span><span style="color: #f8f8f2">,</span>
     <span style="color: #f92672">&quot;state_start_ts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1232154644655</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;state_end_ts&quot;</span> <span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1232154654655</span><span style="color: #f8f8f2">,</span>
     <span style="color: #f92672">&quot;state_duration&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">10000</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;state_count&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">22</span>
 <span style="color: #f8f8f2">}</span>
@@ -2055,7 +2062,7 @@ and does not affect any calculations.</p>
 
 <p>Example output in json for the enter data-point:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1232154654655</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1232154654655</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;state_id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;07aae050-9d30-4570-989d-74f5f21d52bf&quot;</span><span style="color: #f8f8f2">,</span> 
     <span style="color: #f92672">&quot;err&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;err_code&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1492</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;my_state_entered&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1</span>
 <span style="color: #f8f8f2">}</span>
 </code></pre></div>
@@ -2094,6 +2101,11 @@ and does not affect any calculations.</p>
 <td>leave_as( <code>string</code> )</td>
 <td>name for the "leave" field, it will be set to true</td>
 <td>'state_left'</td>
+</tr>
+<tr>
+<td>state_id_as( <code>string</code> )</td>
+<td>since 0.19.51: name for the "state_id" field,</td>
+<td>'state_id'</td>
 </tr>
 <tr>
 <td>enter_keep( <code>string_list</code> )</td>
