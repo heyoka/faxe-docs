@@ -55,14 +55,14 @@ Use delete and batch before writing to InfluxDB:
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-host( `string` )| hostname or ip address of endpoint | from config file
-port( `integer` )|port number| from config file
-user( `string` )| username| from config file
-pass( `string` )|password| from config file
-tls( `is_set` ) | whether to use tls ie. https | false (not set)
-database( `string` )| database name |  
-measurement( `string` )| measurement name |
-retpol( `string` ) | `retention policy` to write to | default
+| Parameter               | Description                        | Default          |
+|-------------------------|------------------------------------|------------------|
+| host( `string` )        | hostname or ip address of endpoint | from config file |
+| port( `integer` )       | port number                        | from config file |
+| user( `string` )        | username                           | from config file |
+| pass( `string` )        | password                           | from config file |
+| tls( `is_set` )         | whether to use tls ie. https       | false (not set)  |
+| database( `string` )    | database name                      |                  |
+| measurement( `string` ) | measurement name                   |                  |
+| retpol( `string` )      | `retention policy` to write to     | default          |
  

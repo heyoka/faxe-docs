@@ -37,18 +37,18 @@ The above example will execute the query every 15 seconds. It gets data which is
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-host( `string` )| CrateDB host | from config file
-port( `integer` )| CrateDB port | from config file
-user( `string` )| username| from config file
-pass( `string` )|password| from config file
-database( `string` )|Database name| from config file
-query( `string` `text` )|'SELECT-FROM' query clause
-time_field( `string` )|name of the timefield to use |'ts'
-every( `duration` )|time between query execution|5s
-period( `duration` )|time span of data to query|1h
-align( is_set )|whether to align `period` to full `every` durations| false (not set)
-group_by_time( `duration` )|group the aggregations into time buckets|2m
-group_by( `string_list` )|additional group by|[]
-limit( `string` )|LIMIT statement| '30'
+| Parameter                   | Description                                         | Default          |
+|-----------------------------|-----------------------------------------------------|------------------|
+| host( `string` )            | CrateDB host                                        | from config file |
+| port( `integer` )           | CrateDB port                                        | from config file |
+| user( `string` )            | username                                            | from config file |
+| pass( `string` )            | password                                            | from config file |
+| database( `string` )        | Database name                                       | from config file |
+| query( `string` `text` )    | 'SELECT-FROM' query clause                          |                  |
+| time_field( `string` )      | name of the timefield to use                        | 'ts'             |
+| every( `duration` )         | time between query execution                        | 5s               |
+| period( `duration` )        | time span of data to query                          | 1h               |
+| align( is_set )             | whether to align `period` to full `every` durations | false (not set)  |
+| group_by_time( `duration` ) | group the aggregations into time buckets            | 2m               |
+| group_by( `string_list` )   | additional group by                                 | []               |
+| limit( `string` )           | LIMIT statement                                     | '30'             |

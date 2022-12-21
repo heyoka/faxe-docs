@@ -22,7 +22,7 @@ _`Since 0.19.4`_ : We can now also use [lambda expressions](../../dfs_script_lan
 .fields('topic', 'temperature') 
 .as_fields('cipot', lambda: str_concat("data.prefix", '_temp'))
 ```
-Here we use a mixed list, string and a lambda expression, for the as_fields parameter.
+Here we use a mixed list, strings and a lambda expression, for the as_fields parameter.
 
 Parameters
 ----------

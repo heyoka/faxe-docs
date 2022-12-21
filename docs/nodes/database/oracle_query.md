@@ -32,17 +32,17 @@ def query = '
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-host ( `string` ) | host name or ip address |
-port ( `integer` )|  | 1521
-user ( `string`) | username | 
-pass ( `string` )|the users password|
-service_name ( `string` )| |
-query ( `string` ) | a valid sql select statement |
-result_type ( `string` ) | eighter 'batch' or 'point' | 'batch'
-time_field ( `string` ) | name of the time field |
-every ( `duration` ) | read interval | 5s
-align ( is_set ) | whether to align every | false (not set) 
+| Parameter                 | Description                  | Default         |
+|---------------------------|------------------------------|-----------------|
+| host ( `string` )         | host name or ip address      |                 |
+| port ( `integer` )        |                              | 1521            |
+| user ( `string`)          | username                     |                 |
+| pass ( `string` )         | the users password           |                 |
+| service_name ( `string` ) |                              |                 |
+| query ( `string` )        | a valid sql select statement |                 |
+| result_type ( `string` )  | eighter 'batch' or 'point'   | 'batch'         |
+| time_field ( `string` )   | name of the time field       |                 |
+| every ( `duration` )      | read interval                | 5s              |
+| align ( is_set )          | whether to align every       | false (not set) |
  
  

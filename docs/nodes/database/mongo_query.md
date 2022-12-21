@@ -57,15 +57,15 @@ The node will query mongodb every 7 seconds, triggered by data coming in from th
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-host ( `string` ) | host name or ip address |
-port ( `integer` )|  | 27017
-user ( `string`) | username | 
-pass ( `string` )|the users password|
-database ( `string` )| mongo database name |
-collection ( `string` )| mongo collection name in database `database`|
-query ( `string` ) | a valid `mongo selector` as a json string | {} 
-every ( `duration` ) | read interval | 5s
-align ( is_set ) | whether to align the `every` parameter | false (not set) 
-as | set the root path for outputs | undefined
+| Parameter               | Description                                  | Default         |
+|-------------------------|----------------------------------------------|-----------------|
+| host ( `string` )       | host name or ip address                      |                 |
+| port ( `integer` )      |                                              | 27017           |
+| user ( `string`)        | username                                     |                 |
+| pass ( `string` )       | the users password                           |                 |
+| database ( `string` )   | mongo database name                          |                 |
+| collection ( `string` ) | mongo collection name in database `database` |                 |
+| query ( `string` )      | a valid `mongo selector` as a json string    | {}              |
+| every ( `duration` )    | read interval                                | 5s              |
+| align ( is_set )        | whether to align the `every` parameter       | false (not set) |
+| as                      | set the root path for outputs                | undefined       |
