@@ -2632,8 +2632,13 @@ to reference them:</p>
 </tr>
 <tr>
 <td><code>nth(Integer, List)</code> -&gt; any</td>
-<td>returns the nth element from list List</td>
+<td>returns the nth element from list List, list indices start with 1</td>
 <td>nth(N, "data.lines")</td>
+</tr>
+<tr>
+<td><code>list_unique(List)</code> -&gt; any</td>
+<td>returns a new list with only unique values from List</td>
+<td>list_unique("data.lines")</td>
 </tr>
 <tr>
 <td><code>list_join(List)</code> -&gt; any</td>
