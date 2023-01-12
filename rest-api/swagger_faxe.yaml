@@ -1334,7 +1334,8 @@ paths:
   /dfs/validate:
     post:
       summary: "Validate a DFS script."
-      description: "Provide a dfs script to validate it's syntax and contents"
+      description: "Provide a dfs script to validate it's syntax and contents. 
+        Since vsn 0.20.0 the response contains a list of custom nodes written in python, that are used in the provided dfs."
       produces:
         - application/json
       consumes:
@@ -1348,7 +1349,8 @@ paths:
             application/json:
               {
                 "success": true,
-                "message": "script for flow is valid"
+                "message": "script for flow is valid",
+                "python_nodes": ["custom_node_a", "custom_node_b"]
               }
         400:
           description: "Bad Request"
@@ -1854,6 +1856,35 @@ paths:
                   "message" :  "what went wrong"
                   }
                 ]
+              }
+        401:
+          description: Unauthorized
+        405:
+          description: "Method not allowed"
+
+  /python:
+    get:
+      summary: "Info about faxe's python integration"
+      description: "Get info about python runtime and a list of known python modules."
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Python info"
+          schema:
+            type: string
+            description: json
+          examples:
+            application/json:
+              {
+                "vsn": "Python 3.9.1",
+                "path": "/data/python",
+                "modules": [
+                  "script1.py",
+                  "script2.py",
+                  "script3.py"
+                ],
+                "executable": "/usr/local/bin/python"
               }
         401:
           description: Unauthorized
