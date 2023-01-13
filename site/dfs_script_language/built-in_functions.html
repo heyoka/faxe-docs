@@ -528,6 +528,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#special-if-function" class="md-nav__link">
+    Special if function
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2048,6 +2055,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#special-if-function" class="md-nav__link">
+    Special if function
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2733,6 +2747,28 @@ The second example selects the first name with 'color' <code>orange</code> and t
 </tbody>
 </table>
 <h3 id="conditional-functions">Conditional functions</h3>
+<h2 id="special-if-function">Special if function</h2>
+<p><strong>If</strong></p>
+<p>In DFS <code>if</code> is not a language construct, but a function with 3 parameters.
+The if function’s return type is the same type as its second and third arguments.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">condition</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">false</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Returns the result of its operands depending on the value of the first argument.</p>
+<p>Examples:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">threshold</span> <span style="color: #f92672">AND</span> <span style="color: #e6db74">&quot;field.val1&quot;</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;true&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;false&#39;</span><span style="color: #f8f8f2">))</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>The value of the field <code>value</code> in the above example will be the string <code>true</code> or <code>false</code>,
+depending on the condition passed as the first argument.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">is_float</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.duration_ms&quot;</span><span style="color: #f8f8f2">),</span> <span style="color: #a6e22e">trunc</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;data.duration_ms&quot;</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">),</span> <span style="color: #e6db74">&quot;data.duration_ms&quot;</span><span style="color: #f8f8f2">))</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Both expressions (2nd and 3rd parameter) may also be arbitrarily complex.
+In this example, if the condition returns true, <code>data.duration_ms</code> will be mulitplied be 1000 and then truncated to an integer.
+If the condition returns false, just the value of <code>data.duration_ms</code> will be returned.</p>
                 
               
               
