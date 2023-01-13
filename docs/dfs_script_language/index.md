@@ -147,7 +147,7 @@ def short = 50ms
 
 ## Text templates
 
-Use double curly braces for string/text templates:
+Embedding literal values in a string, using double curly braces:
 
 {% raw %} 
 ```dfs
@@ -173,6 +173,28 @@ they can be used in node-parameter and option-parameter calls.
 
 When used in template scripts string/text templates can be very powerful.
 The variable `this_portion` could be overwritten with a new value for every instantiation of a template script.
+
+#### More examples
+{% raw %}
+```dfs
+def an_integer = 33
+def a_float = 345.78
+def a_string = 'Embedding an integer: {{an_integer}} and a floating point number: {{a_float}}.'
+% results in: 'Embedding an integer: 33 and a floating point number: 345.78.'
+
+%% list:
+def fruits =
+'[
+  {"color":  "orange", "name": "orange", "peel": true}, 
+  {"color":  "orange", "name": "mandarin", "peel": true}, 
+  {"color":  "orange", "name": "peach", "peel": false},
+  {"color":  "orange", "name": "navel-orange", "peel": true},
+  {"color":  "yellow", "name": "lemon", "peel": true}
+]'
+def selected_fruits = e: select('name', [{'peel', true}], fruits)
+def citric_fruits = 'citrus fruits are: {{selected_fruits}}.'
+% results in: 'citrus fruits are: orange,mandarin,navel-orange,lemon.'
+```
 
 There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:
 

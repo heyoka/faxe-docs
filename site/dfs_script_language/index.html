@@ -442,6 +442,18 @@
   
   
     <li class="md-nav__item">
+      <a href="built-in_functions.html" class="md-nav__link">
+        Built in functions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="lambda_expressions.html" class="md-nav__link">
         Lambda expressions
       </a>
@@ -2178,7 +2190,7 @@ It is essentially an integer terminated by one or a pair of reserved characters,
 </code></pre></div>
 
 <h2 id="text-templates">Text templates</h2>
-<p>Use double curly braces for string/text templates:</p>
+<p>Embedding literal values in a string, using double curly braces:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{{</span> <span style="color: #a6e22e">variable_name</span> <span style="color: #f8f8f2">}}</span>
 </code></pre></div>
 
@@ -2193,7 +2205,28 @@ It is essentially an integer terminated by one or a pair of reserved characters,
 they can be used in node-parameter and option-parameter calls.</p>
 <p>When used in template scripts string/text templates can be very powerful.
 The variable <code>this_portion</code> could be overwritten with a new value for every instantiation of a template script.</p>
+<h4 id="more-examples">More examples</h4>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">an_integer</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">33</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">a_float</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">345.78</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">a_string</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;Embedding an integer: {{an_integer}} and a floating point number: {{a_float}}.&#39;</span>
+<span style="color: #75715e">% results in: &#39;Embedding an integer: 33 and a floating point number: 345.78.&#39;</span>
+
+<span style="color: #75715e">%% list:</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fruits</span> <span style="color: #f92672">=</span>
+<span style="color: #e6db74">&#39;[</span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;orange&quot;, &quot;peel&quot;: true}, </span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;mandarin&quot;, &quot;peel&quot;: true}, </span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;peach&quot;, &quot;peel&quot;: false},</span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;navel-orange&quot;, &quot;peel&quot;: true},</span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;yellow&quot;, &quot;name&quot;: &quot;lemon&quot;, &quot;peel&quot;: true}</span>
+<span style="color: #e6db74">]&#39;</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">selected_fruits</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">e</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&#39;peel&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">}],</span> <span style="color: #a6e22e">fruits</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">citric_fruits</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;citrus fruits are: {{selected_fruits}}.&#39;</span>
+<span style="color: #75715e">% results in: &#39;citrus fruits are: orange,mandarin,navel-orange,lemon.&#39;</span>
+</code></pre></div>
+
 <p>There is another version of text-templating which uses a value inside the current data_point, that can be used with some nodes in faxe:</p>
+<p>{% raw %}</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{{</span><span style="color: #e6db74">&quot;field_name&quot;</span><span style="color: #f8f8f2">}}</span>
 </code></pre></div>
 
@@ -2242,13 +2275,13 @@ The variable <code>this_portion</code> could be overwritten with a new value for
           </a>
         
         
-          <a href="lambda_expressions.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="built-in_functions.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Lambda expressions
+                Built in functions
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

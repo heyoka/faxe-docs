@@ -14,7 +14,7 @@
     
     
       
-        <title>DFS Script Language tips and best pratices - Faxe</title>
+        <title>Built in functions - Faxe</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dfs-script-language-tips-and-best-pratices" class="md-skip">
+        <a href="#type-conversion" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              DFS Script Language tips and best pratices
+              Built in functions
             
           </span>
         </div>
@@ -431,11 +431,107 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="built-in_functions.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Built in functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="built-in_functions.html" class="md-nav__link md-nav__link--active">
         Built in functions
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#type-conversion" class="md-nav__link">
+    Type conversion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-checks" class="md-nav__link">
+    Type checks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-functions" class="md-nav__link">
+    Time functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#math-functions" class="md-nav__link">
+    Math functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-functions" class="md-nav__link">
+    String functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lists-and-maps-jsn" class="md-nav__link">
+    Lists and Maps (jsn)
+  </a>
+  
+    <nav class="md-nav" aria-label="Lists and Maps (jsn)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-select_first-select_any" class="md-nav__link">
+    select, select_first, select_any
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-functions" class="md-nav__link">
+    Conditional functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -491,63 +587,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          DFS Script Language tips and best pratices
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="tips_and_best_pratices.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="tips_and_best_pratices.html" class="md-nav__link">
         DFS Script Language tips and best pratices
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
-    Variables
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lambda-expressions" class="md-nav__link">
-    Lambda expressions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1928,8 +1972,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1938,22 +1980,70 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
-    Variables
+  <a href="#type-conversion" class="md-nav__link">
+    Type conversion
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#lambda-expressions" class="md-nav__link">
-    Lambda expressions
+  <a href="#type-checks" class="md-nav__link">
+    Type checks
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    
+  <a href="#time-functions" class="md-nav__link">
+    Time functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#math-functions" class="md-nav__link">
+    Math functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-functions" class="md-nav__link">
+    String functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lists-and-maps-jsn" class="md-nav__link">
+    Lists and Maps (jsn)
+  </a>
+  
+    <nav class="md-nav" aria-label="Lists and Maps (jsn)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-select_first-select_any" class="md-nav__link">
+    select, select_first, select_any
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-functions" class="md-nav__link">
+    Conditional functions
   </a>
   
 </li>
@@ -1971,18 +2061,678 @@
               
                 
                 
-                <h1 id="dfs-script-language-tips-and-best-pratices">DFS Script Language tips and best pratices</h1>
-<h3 id="variables">Variables</h3>
-<p>Ok, they are unmutable really, so we call them declarations.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">stream_id</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;ee29e1f8552e4a2561329fec59688e60&#39;</span>
+                  <h1>Built in functions</h1>
+                
+                <p>A complete list of currently supported functions.</p>
+<blockquote>
+<p>These function can be used in lambda and script expressions</p>
+</blockquote>
+<h3 id="type-conversion">Type conversion</h3>
+<p>With a few exceptions every type can be converted to every other type.</p>
+<p><strong>Bool</strong></p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>bool(a_value) -&gt; true|false
 </code></pre></div>
 
-<p>When using declarations in DFS script you should stick to one type of naming schema. Be it CamelCase naming or
-all lowercase with underscores like in the example above.</p>
-<h3 id="lambda-expressions">Lambda expressions</h3>
-<p>As a rule we say: Avoid lambda expressions, if you can achieve your goal without them. Of course you cannot do everything without
-lambda expression, as many nodes require them to work.</p>
-<h3 id="_1"></h3>
+<p><strong>Integer</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>int(value) -&gt; integer
+</code></pre></div>
+
+<p>If value is a float, then int(value) is equivalent to  <code>trunc(value)</code></p>
+<p><strong>Float</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>float(value) -&gt; float
+</code></pre></div>
+
+<p><strong>String</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>string(val) -&gt; string
+</code></pre></div>
+
+<p>If val is a list:</p>
+<p><strong>String</strong></p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>string(list) -&gt; string
+</code></pre></div>
+
+<p><em>Converting a list into a string with <code>string</code> is equivalent to</em></p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #a6e22e">list_join</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;,&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">list_of_strings</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">List</span><span style="color: #f8f8f2">))</span>
+</code></pre></div>
+
+<p>Converts every entry of List to a string first and then joins the resulting list with a comma.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">]</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;3&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #e6db74">&#39;1,2,3&#39;</span>
+</code></pre></div>
+
+<h3 id="type-checks">Type checks</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_string(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_integer(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_int(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_float(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_number(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_list(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_duration(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_boolean(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_bool(Data)</code> -&gt; bool</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="time-functions">Time functions</h3>
+<p>Every data_point in faxe contains a field called <strong><code>ts</code></strong>, which holds a UTC timestamp in milliseconds.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>now()</code> -&gt; integer</td>
+<td>returns an utc timestamp in milliseconds</td>
+</tr>
+<tr>
+<td><code>dt_parse(ts, formatstring)</code> -&gt; integer</td>
+<td>used to parse a datetime string to the internal format, see <a href="../datetime-parsing.html">datetime-parsing</a> for details</td>
+</tr>
+<tr>
+<td><code>to_iso8601(ts)</code> -&gt; string</td>
+<td>converts the timestamp to an ISO8601 datetime string</td>
+</tr>
+<tr>
+<td><code>to_rfc3339(ts)</code> -&gt; string</td>
+<td>converts the timestamp to an RFC3339 datetime string</td>
+</tr>
+<tr>
+<td><code>from_duration(ts)</code> -&gt; integer</td>
+<td>converts a <a href="index.html#duration-literals">duration</a> to it's millisecond equivalent</td>
+</tr>
+<tr>
+<td><code>millisecond(ts)</code> -&gt; integer</td>
+<td>milliseconds within the second [0, 999]</td>
+</tr>
+<tr>
+<td><code>second(ts)</code> -&gt; integer</td>
+<td>second within the minute [0, 59]</td>
+</tr>
+<tr>
+<td><code>minute(ts)</code> -&gt; integer</td>
+<td>minute within the hour [0, 59]</td>
+</tr>
+<tr>
+<td><code>hour(ts)</code> -&gt; integer</td>
+<td>hour within the day [0, 23]</td>
+</tr>
+<tr>
+<td><code>day(ts)</code> -&gt; integer</td>
+<td>day within the month [1, 31]</td>
+</tr>
+<tr>
+<td><code>day_of_week(ts)</code> -&gt; integer</td>
+<td>the weekday with week [1, 7] 1 is monday</td>
+</tr>
+<tr>
+<td><code>week(ts)</code> -&gt; integer</td>
+<td>isoweek-number within year [1, 53]</td>
+</tr>
+<tr>
+<td><code>month(ts)</code> -&gt; integer</td>
+<td>month within the year [1, 12]</td>
+</tr>
+<tr>
+<td><code>time_align(ts, duration)</code> -&gt; integer</td>
+<td>align the given timestamp to duration</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">8</span> <span style="color: #f92672">AND</span> <span style="color: #a6e22e">hour</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">19</span>
+</code></pre></div>
+
+<p>The above expression evaluates to true if the hour of the day for the data point falls between 08:00 and 19:00.</p>
+<hr />
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">time_align</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ts&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">3m</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Will align every timestamp (ts) to a multiple of the 3 minutes within an hour (ie: 00:00, 00:03, 00:06, ...)</p>
+<h3 id="math-functions">Math functions</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>abs(x)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>acos(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>acosh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>asin(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>asinh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>atan(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>atan2(y, x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>atanh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ceil(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cos(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cosh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>exp(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>floor(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fmod(x, y)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>log(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>log10(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>log2(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>max(x, y)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>max(list)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>min(x, y)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>min(list)</code> -&gt; number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pi() -&gt; float</code></td>
+<td>gives pi</td>
+</tr>
+<tr>
+<td><code>pow(x, y)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>round(x)</code> -&gt; integer</td>
+<td>round a number to an integer</td>
+</tr>
+<tr>
+<td><code>round_float(x, precision)</code> -&gt; float</td>
+<td>round a float (x) with the given precision</td>
+</tr>
+<tr>
+<td><code>trunc(x)</code> -&gt; integer</td>
+<td>Returns an integer by truncating a number</td>
+</tr>
+<tr>
+<td><code>sin(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sinh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sqrt(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tan(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tanh(x)</code> -&gt; float</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="string-functions">String functions</h3>
+<p>String positions start with index 0.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>str_at(x, pos)</code> -&gt; string/undefined</td>
+<td>Returns the grapheme in the position of the given utf8 string. If position is greater than string length, then it returns undefined. Negative offsets count back from the end of the string.</td>
+</tr>
+<tr>
+<td><code>str_capitalize(x)</code> -&gt; string</td>
+<td>Converts the first character in the given string to uppercase and the remaining to lowercase</td>
+</tr>
+<tr>
+<td><code>str_contains(x, contents)</code> -&gt; bool</td>
+<td>Check if string contains any of the given contents</td>
+</tr>
+<tr>
+<td><code>str_downcase(x)</code> -&gt; string</td>
+<td>Convert all characters on the given string to lowercase</td>
+</tr>
+<tr>
+<td><code>str_enclose(Wrapper, StringOrList)</code> -&gt; string or list</td>
+<td>Prepend and append Wrapper to a string or each entry of a list of strings</td>
+</tr>
+<tr>
+<td><code>str_ends_with(x, suffix)</code> -&gt; string</td>
+<td>Returns true if string ends with suffix, otherwise false.</td>
+</tr>
+<tr>
+<td><code>str_ends_with_any(x, suffixes)</code> -&gt; string</td>
+<td>Returns true if string ends with any of the suffixes given, otherwise false.</td>
+</tr>
+<tr>
+<td><code>str_eqi(x,y)</code> -&gt; bool</td>
+<td>Compares strings case insensitively</td>
+</tr>
+<tr>
+<td><code>str_first(x)</code> -&gt; string/undefined</td>
+<td>Returns the first grapheme from an utf8 string, undefined if the string is empty</td>
+</tr>
+<tr>
+<td><code>str_last(x)</code> -&gt; string/undefined</td>
+<td>Returns the last grapheme from an utf8 string, undefined if the string is empty</td>
+</tr>
+<tr>
+<td><code>str_length(x)</code> -&gt; int</td>
+<td>Returns the number of unicode graphemes in an utf8 string</td>
+</tr>
+<tr>
+<td><code>str_lstrip(x)</code> -&gt; string</td>
+<td>Returns a string where leading Unicode whitespace has been removed</td>
+</tr>
+<tr>
+<td><code>str_lstrip(x, char)</code> -&gt; string</td>
+<td>Returns a string where leading char have been removed</td>
+</tr>
+<tr>
+<td>str_pad_leading/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_pad_leading/3</td>
+<td></td>
+</tr>
+<tr>
+<td>str_pad_trailing/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_pad_trailing/3</td>
+<td></td>
+</tr>
+<tr>
+<td><code>str_replace(x, patt, repl)</code> -&gt; string</td>
+<td>Returns a new string based on subject by replacing the parts matching pattern by replacement.</td>
+</tr>
+<tr>
+<td>str_replace_leading/3</td>
+<td>Replaces all leading occurrences of match by replacement of match in string.</td>
+</tr>
+<tr>
+<td>str_replace_trailing/3</td>
+<td>Replaces all trailing occurrences of match by replacement of match in string.</td>
+</tr>
+<tr>
+<td><code>str_replace_prefix(x, match, repl)</code> -&gt; string</td>
+<td>Replaces prefix in string by replacement if it matches match. Returns the string untouched if there is no match. If match is an empty string (""), replacement is just prepended to string.</td>
+</tr>
+<tr>
+<td><code>str_replace_suffix(x, match, repl)</code> -&gt; string</td>
+<td>Replaces suffix in string by replacement if it matches match. Returns the string untouched if there is no match. If match is an empty string (""), replacement is just appended to string.</td>
+</tr>
+<tr>
+<td><code>str_reverse(x)</code> -&gt; string</td>
+<td>Reverses the given string.</td>
+</tr>
+<tr>
+<td><code>str_rstrip(x)</code> -&gt; string</td>
+<td>Returns a string where trailing Unicode whitespace has been removed</td>
+</tr>
+<tr>
+<td><code>str_rstrip(x, char)</code> -&gt; string</td>
+<td>Returns a string where trailing char have been removed</td>
+</tr>
+<tr>
+<td><code>str_slice(x, start, len)</code> -&gt; string</td>
+<td>Returns a substring starting at the offset given by the first, and a length given by the second param, if offset is negative, count back from end of string.</td>
+</tr>
+<tr>
+<td>str_split/1</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split/3</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_at/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_any/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_any/3</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_re/2</td>
+<td></td>
+</tr>
+<tr>
+<td>str_split_by_re/3</td>
+<td></td>
+</tr>
+<tr>
+<td><code>str_starts_with(x, pre)</code> -&gt; bool</td>
+<td>Returns true if string starts with Prefix</td>
+</tr>
+<tr>
+<td><code>str_starts_with_any(x, prefixes)</code> -&gt; bool</td>
+<td>Returns true if string starts with any of the prefixes given, otherwise false.</td>
+</tr>
+<tr>
+<td><code>str_strip(x)</code> -&gt; string</td>
+<td>Returns a string where leading/trailing Unicode whitespace has been removed</td>
+</tr>
+<tr>
+<td><code>str_strip(x, char)</code> -&gt; string</td>
+<td>Returns a string where leading/trailing char have been removed</td>
+</tr>
+<tr>
+<td><code>str_upcase(x)</code> -&gt; string</td>
+<td>Convert all characters on the given string to uppercase</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lists-and-maps-jsn">Lists and Maps (jsn)</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>from_json_string(String)</code> -&gt; faxe map or list</td>
+<td>convert a valid json string into faxe's internal data-structure</td>
+<td>from_json_string('{"a":"b"}')</td>
+</tr>
+<tr>
+<td><code>to_json_string(String)</code> -&gt; string</td>
+<td>convert faxe's internal data-structure into a json string</td>
+<td>to_json_string("data.struct")</td>
+</tr>
+<tr>
+<td><code>size(ListOrMap)</code> -&gt; integer</td>
+<td>get the number of entries in a list or map</td>
+<td>size("data.lines")</td>
+</tr>
+<tr>
+<td><code>head(List)</code> -&gt; any</td>
+<td>returns the head, or the first element, of list List</td>
+<td>head("data.lines")</td>
+</tr>
+<tr>
+<td><code>nth(Integer, List)</code> -&gt; any</td>
+<td>returns the nth element from list List, list indices start with 1</td>
+<td>nth(N, "data.lines")</td>
+</tr>
+<tr>
+<td><code>list_unique(List)</code> -&gt; any</td>
+<td>returns a new list with only unique values from List</td>
+<td>list_unique("data.lines")</td>
+</tr>
+<tr>
+<td><code>list_join(List)</code> -&gt; any</td>
+<td>equivalent to list_join(',', List)</td>
+<td>list_join("data.lines")</td>
+</tr>
+<tr>
+<td><code>list_join(Separator, List)</code> -&gt; any</td>
+<td>join a list of strings with a separator string</td>
+<td>list_join('-', "data.lines")</td>
+</tr>
+<tr>
+<td><code>list_of_strings(List)</code> -&gt; any</td>
+<td>convert every entry of a list to a string and return the list of strings</td>
+<td>list_of_strings("data.lines")</td>
+</tr>
+<tr>
+<td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>
+<td>check for list/set membership of a value, or when used with a map, check if Ele is a key in the map</td>
+<td></td>
+</tr>
+<tr>
+<td><code>not_member(Ele, ListOrMap)</code> -&gt; bool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>map_get(Key, Map)</code> -&gt; any</td>
+<td>get a value from a map, equivalent to <code>map_get(Key, Map, 'undefined')</code></td>
+<td>map_get("topic", '{"data/temp/val1": "temp"}')</td>
+</tr>
+<tr>
+<td><code>map_get(Key, Map, Default)</code> -&gt; any</td>
+<td>get a value from a map, <code>Default</code> is returned, if the key is not present in map</td>
+<td>map_get("topic", '{"data/temp/val1": "temp"}', 'no_match')</td>
+</tr>
+<tr>
+<td><code>select(Key, Jsn)</code> -&gt; list</td>
+<td>Select every value with the path <code>Key</code> from a json-array</td>
+<td>See description below.</td>
+</tr>
+<tr>
+<td><code>select(Key, Where, Jsn)</code> -&gt; list</td>
+<td>Select every value with the path <code>Key</code> and conditions <code>Where</code> from a json-array. Elements that do not meet the given conditions are filtered out.</td>
+<td>See description below.</td>
+</tr>
+<tr>
+<td><code>select_all(Key, Where, Jsn)</code> -&gt; list</td>
+<td>Select every value with the path <code>Key</code> and conditions <code>Where</code> from a json-array. The list of <code>Where</code> conditions are <code>OR</code>ed in this case, so there is a select operation for every entry in <code>Where</code></td>
+<td>See description below.</td>
+</tr>
+<tr>
+<td><code>select_first(Key, Jsn)</code> -&gt; any</td>
+<td>Select the first value with the path <code>Key</code> from a json-array.</td>
+<td>See description below.</td>
+</tr>
+<tr>
+<td><code>select_first(Key, Where, Jsn)</code> -&gt; any</td>
+<td>Select the first value with the path <code>Key</code> and conditions <code>Where</code> from a json-array.</td>
+<td>See description below.</td>
+</tr>
+<tr>
+<td><code>select_any(Key, Where, Jsn)</code> -&gt; any</td>
+<td>Select the first value with the path <code>Key</code> that is found with any of the <code>Where</code> conditions from a json-array.</td>
+<td>See description below.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="select-select_first-select_any">select, select_first, select_any</h4>
+<p>With these functions we can select values from a json-array like datastructure, meaning an array of - possibly nested - json objects.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fruits</span> <span style="color: #f92672">=</span>
+<span style="color: #e6db74">&#39;[</span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;orange&quot;, &quot;peel&quot;:  true}, </span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;mandarin&quot;, &quot;peel&quot;:  true}, </span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;peach&quot;, &quot;peel&quot;:  false},</span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;orange&quot;, &quot;name&quot;: &quot;navel-orange&quot;, &quot;peel&quot;:  true},</span>
+<span style="color: #e6db74">  {&quot;color&quot;:  &quot;yellow&quot;, &quot;name&quot;: &quot;lemon&quot;, &quot;peel&quot;:  true}</span>
+<span style="color: #e6db74">]&#39;</span>
+</code></pre></div>
+
+<p>The Where parameter in select functions is a list of tuples.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">e</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&#39;peel&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">}],</span> <span style="color: #a6e22e">fruits</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">e</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">select_first</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&#39;color&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;orange&#39;</span><span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&#39;peel&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">}],</span> <span style="color: #a6e22e">fruits</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>The first example above would select the names of all fruits, that have a 'peel' value of true: 
+<code>['orange', 'mandarin', 'navel-orange', 'lemon']</code>.
+The second example selects the first name with 'color' <code>orange</code> and the 'peel' value <code>false</code>: <code>'peach'</code>.</p>
+<p>Besides an exact match in the Where parameters, we can also use a regular expression:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">e</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[{</span><span style="color: #e6db74">&#39;regex&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;orange$&#39;</span><span style="color: #f8f8f2">}],</span> <span style="color: #a6e22e">fruits</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Results in <code>['orange', 'navel-orange']</code>.</p>
+<h3 id="misc">Misc</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is defined in the current data-item</td>
+<td></td>
+</tr>
+<tr>
+<td><code>undefined(Key)</code> -&gt; bool</td>
+<td>whether the given Key is NOT defined in the current data-item</td>
+<td></td>
+</tr>
+<tr>
+<td><code>empty(Key)</code> -&gt; bool</td>
+<td>whether the given Key points to an empty or not defined value, empty means an empty string or an empty list or tuple</td>
+<td>empty("data.topic") -&gt; false</td>
+</tr>
+<tr>
+<td><code>topic_part(TopicString, PartIndex, [Seperator])</code> -&gt; string</td>
+<td>extract a part from a topic string, Separator defaults to '/', the index of the first part is <code>1</code> not 0</td>
+<td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>
+</tr>
+<tr>
+<td><code>random(N)</code> -&gt; integer</td>
+<td>generate a random integer between 1 and N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>random_real(N)</code> -&gt; float</td>
+<td>generate a random float between 0.0 and 1.0, that gets multiplied by N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crc32(String)</code> -&gt; string</td>
+<td>Computes the crc32 (IEEE 802.3 style) checksum for the given string.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>phash(Any)</code> -&gt; integer</td>
+<td>Portable hash function, that outputs an integer in the range 0..2^27-1</td>
+<td></td>
+</tr>
+<tr>
+<td><code>mem</code> values are set with the <a href="../nodes/mem.html">mem node</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ls_mem(Key)</code> -&gt; any</td>
+<td>get the single value associated with Key from the flow-memory</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ls_mem_list(Key)</code> -&gt; any</td>
+<td>get the list value associated with Key from the flow-memory</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ls_mem_set(Key)</code> -&gt; any</td>
+<td>get the set value associated with Key from the flow-memory</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="conditional-functions">Conditional functions</h3>
                 
               
               
@@ -2001,7 +2751,7 @@ lambda expression, as many nodes require them to work.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="script_expressions.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -2010,19 +2760,19 @@ lambda expression, as many nodes require them to work.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Script expressions
+                Introducing the DFS Script Language
               </div>
             </div>
           </a>
         
         
-          <a href="../nodes/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="lambda_expressions.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Faxe nodes
+                Lambda expressions
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
