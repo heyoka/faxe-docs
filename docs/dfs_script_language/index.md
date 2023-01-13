@@ -13,69 +13,63 @@ The Dfs language is designed to chain together the invocation of data processing
 At the heart of its's engine, faxe will run an acyclic graph of computing nodes. 
 Every node runs in its own erlang process.
 
-DFS Definitions
-=== 
+## DFS Definitions 
 
-Keywords
---------
+### Keywords 
 
-Word   |    Usage
--------|---------
-true | boolean true
-false | boolean false
-TRUE | boolean true
-FALSE | boolean false
-lambda: | used to denote [lambda expression](./lambda_expressions.md)
-e: | used to denote [script expressions](./script_expressions.md)
-def | starts a variable declaration
+| Word    | Usage                                                        |
+|---------|--------------------------------------------------------------|
+| true    | boolean true                                                 |
+| false   | boolean false                                                |
+| TRUE    | boolean true                                                 |
+| FALSE   | boolean false                                                |
+| lambda: | used to denote [lambda expression](./lambda_expressions.md)  |
+| e:      | used to denote [script expressions](./script_expressions.md) |
+| def     | starts a variable declaration                                |
 
+### Operators 
 
-
-Operators
----------
-
-Operator    | Usage
-------------|------
-+| addition operator
--|substraction operator
-/|division operator
-*|multiplication operator
-AND | and
-OR | or
-< | less than
-> | greater than
-=< | less than or equal
-<= | less than or equal
-=> |  greater or equal
- >= | greater or equal
- == | equal
-!= | Not equal
-/= | Not equal
-! | Logical Not
-rem| remainder
-div|integer division
+| Operator | Usage                   |
+|----------|-------------------------|
+| +        | addition operator       |
+| -        | substraction operator   |
+| /        | division operator       |
+| *        | multiplication operator |
+| AND      | and                     |
+| OR       | or                      |
+| <        | less than               |
+| >        | greater than            |
+| =<       | less than or equal      |
+| <=       | less than or equal      |
+| =>       | greater or equal        |
+| >=       | greater or equal        |
+| ==       | equal                   |
+| !=       | Not equal               |
+| /=       | Not equal               |
+| !        | Logical Not             |
+| rem      | remainder               |
+| div      | integer division        |
 
 These operators are mainly used in Lambda expressions.
 
-Chaining operators
-------------------
+### Chaining operators 
 
-Operator | Usage | Example
----------|-------|--------
- `|`     | Used to declare a new node instance and chains it to the node above it (if any)| `|some_node() |debug()` 
- `||`     | Used to reference a macro script| `||some_macro().some_param(3)` 
-.        | Declares a property (or parameter) call, setting or changing an internal param in the node to which it belongs| `|log() .file('log1.txt')`
-@        | Declares a user defined node written in python. Same as  \|, but for user defined nodes | `|some_node() ... @mynode()`
+| Operator | Usage                                                                                                          | Example                                                                        
+|---------|----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| `| `                                                                                                              | Used to declare a new node instance and chains it to the node above it (if any) | `|some_node() |debug()` |
+| `|| `                                                                                                              | Used to reference a macro script| `||some_macro().some_param(3)` |
+| `.`       | Declares a property (or parameter) call, setting or changing an internal param in the node to which it belongs | `                                                                              |log() .file('log1.txt')` |
+| `@`       | Declares a [user defined node written in python](../custom_nodes.md). Same as `                                | `, but for user defined nodes | `|some_node() ... @mynode()` |
  
 
-Variables and literals
-======================
+## Variables and literals 
+
 Variables are declared using the keyword `def` at the start of a declaration. 
 Variables are immutable and cannot be reassigned new values later on in the script, 
 though they can be used in other declarations and can be passed into functions, property calls and text-templates.
   
-Variable declarations
----------------------
+### Variable declarations
+
 ```dfs
     def string = 'this is a string !'
     def text = ' this is a text with some weird chars :// %& '
@@ -98,20 +92,21 @@ Variable declarations
     in1
         |debug()
 ```
-Datatypes
----------
 
-DFS recognizes six basic types, the type of the literal will be interpreted from its declaration.
+### Datatypes
 
-Type name | Description | Examples
-----------|-------------|---------
-string    | String type. Single quotes are used for string, string can also be multiline.<br />To use single quotes in your string, simple use 2 single quotes (since 0.19.0) | 'this_is_a_string' <br /> _since 0.19.0_: 'SELECT MEAN(obj[''current'']) FROM mytable'
-text      | `deprecated` since 0.19.0, use `string` instead. Text type. Mostly used where strings are used | <<< SELECT MEAN(obj['current']) FROM mytable >>>
-integer   | Integer type. Arbitrarily big ints are allowed | 123456789987654321, 55
-float     | Floating point number. May be arbitrarily big  | 12.343422023, 5.6
-double    | Same as float  | 12.343422023, 5.6
-duration  | A duration literal. See section below.         | 34s, 500ms, 2d
-lambda    | A lambda expression. See extra section in this documentation| lambda: str_downcase('BIG')
+
+DFS recognizes a view basic data types, the type of the literal will be interpreted from its declaration.
+
+| Type name | Description                                                                                                                                                              | Examples                                                                               |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| string    | String/text type. Single quotes are used for strings, strings can also be multiline.<br />To use single quotes in your string, simple use 2 single quotes (since 0.19.0) | 'this_is_a_string' <br /> _since 0.19.0_: 'SELECT MEAN(obj[''current'']) FROM mytable' |
+| integer   | Integer type. Arbitrarily big ints are allowed                                                                                                                           | 123456789987654321, 55                                                                 |
+| float     | Floating point number. May be arbitrarily big                                                                                                                            | 12.343422023, 5.6                                                                      |
+| double    | Same as float                                                                                                                                                            | 12.343422023, 5.6                                                                      |
+| duration  | A duration literal. See section below.                                                                                                                                   | 34s, 500ms, 2d                                                                         |
+| lambda    | A lambda expression. See [extra section](lambda_expressions.md) in this documentation.                                                                                   | lambda: str_downcase('BIG')                                                            |
+| list      | A list of above simple types.                                                                                                                                            | ['a', 'b'] [1, 456,  4536]                                                             |
 
 ### Duration literals 
 
@@ -122,15 +117,14 @@ It is essentially an integer terminated by one or a pair of reserved characters,
 
 The following table presents the time units used in declaring duration types.
 
-Unit | Meaning
------|--------
-ms|millisecond
-s|second
-m|minute
-h|hour
-d|day
-w|week
-
+| Unit | Meaning     |
+|------|-------------|
+| ms   | millisecond |
+| s    | second      |
+| m    | minute      |
+| h    | hour        |
+| d    | day         |
+| w    | week        |
 
 Internally all time and duration related values are converted to milliseconds.
 

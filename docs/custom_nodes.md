@@ -359,4 +359,268 @@ See [data-point](#data-point) for a description.
 
 ## Helper classes
 
-TBD
+There are helper classes to make it easier to work with data coming from the faxe engine. All functions are static so you do not 
+instanciate them and nothing is stored inside an object, making it possible to mix the usage of the helpers with inline code.
+
+To use the helper classes, just import `faxe.Point` and/or `faxe.Batch`.
+
+```python
+from faxe import Faxe, Point, Batch
+
+
+class Mynode(Faxe):
+    ... 
+    
+```
+
+
+### Helper class for working with data-point objects.
+
+```python
+class Point:
+    """
+    Completely static helper class for data-point structures (dicts)
+
+    point = dict()
+    point['ts'] = int millisecond timestamp
+    point['fields'] = dict()
+    point['tags'] = dict()
+    point['dtag'] = int
+
+    """
+
+    @staticmethod
+    def new(ts=None):
+        p = dict()
+        p['fields'] = dict()
+        p['tags'] = dict()
+        p['dtag'] = None
+        p['ts'] = ts
+        return p
+
+    @staticmethod
+    def fields(point_data, newfields=None):
+        """
+        get or set all the fields (dict)
+        :param point_data: dict()
+        :param newfields: dict()
+        :return: dict()
+        """
+        if newfields is not None:
+            point_data['fields'] = newfields
+            return point_data
+
+        return dict(point_data['fields'])
+
+    @staticmethod
+    def value(point_data, path, value=None):
+        """
+        get or set a specific field
+        :param point_data: dict()
+        :param path: string
+        :param value: any
+        :return: None, if field is not found /
+        """
+        if value is not None:
+            Jsn.set(point_data, path, value)
+            return point_data
+
+        return Jsn.get(point_data, path)
+
+    @staticmethod
+    def values(point_data, paths, value=None):
+        """
+        get or set a specific field
+        :param point_data: dict
+        :param paths: list
+        :param value: any
+        :return: point_data|list
+        """
+        if value is not None:
+            for path in paths:
+                Jsn.set(point_data, path, value)
+            return point_data
+
+        out = list()
+        for path in paths:
+            out.append(Jsn.get(point_data, path))
+        return out
+
+    @staticmethod
+    def default(point_data, path, value):
+        """
+
+        :param point_data:
+        :param path:
+        :param value:
+        :return:
+        """
+        if Point.value(point_data, path) is None:
+            Point.value(point_data, path, value)
+
+        return point_data
+
+    @staticmethod
+    def tags(point_data, newtags=None):
+        if newtags is not None:
+            point_data['tags'] = newtags
+            return point_data
+
+        return point_data['tags']
+
+    @staticmethod
+    def ts(point_data, newts=None):
+        """
+        get or set the timestamp of this point
+        :param point_data: dict
+        :param newts: integer
+        :return: integer|dict
+        """
+        if newts is not None:
+            point_data['ts'] = int(newts)
+            return point_data
+
+        return point_data['ts']
+
+    @staticmethod
+    def dtag(point_data, newdtag=None):
+        if newdtag is not None:
+            point_data['dtag'] = newdtag
+            return point_data
+
+        return point_data['dtag']
+
+
+
+```
+
+### Helper class for working with data-batch objects.
+
+```python
+class Batch:
+    """
+    Completely static helper class for data-batch structures (dicts)
+
+    batch = dict()
+    batch['points'] = list() of point dicts sorted by their timestamps
+    batch['start_ts'] = int millisecond unix timestamp denoting the start of this batch
+
+    batch['dtag'] = int
+    """
+
+    @staticmethod
+    def new(start_ts=None):
+        b = dict()
+        b['points'] = list()
+        b['dtag'] = None
+        b['start_ts'] = start_ts
+        return b
+
+    @staticmethod
+    def empty(batch_data):
+        """
+        a Batch is empty, if it has no points
+        :param batch_data:
+        :return: True | False
+        """
+        return ('points' not in batch_data) or (batch_data['points'] == [])
+
+    @staticmethod
+    def points(batch_data, points=None):
+        """
+
+        :param points: None | list()
+        :param batch_data: dict
+        :return: list
+        """
+        if points is not None:
+            batch_data['points'] = points
+            Batch.sort_points(batch_data)
+            return batch_data
+
+        return list(batch_data['points'])
+
+    @staticmethod
+    def value(batch_data, path, value=None):
+        """
+        get or set path from/to every point in a batch
+        :param batch_data:
+        :param path:
+        :param value:
+        :return: list
+        """
+        out = list()
+        points = batch_data['points']
+        for p in points:
+            out.append(Point.value(p, path, value))
+        if value is not None:
+            return batch_data
+
+        return out
+
+    @staticmethod
+    def values(batch_data, paths, value=None):
+        """
+        get or set path from/to every point in a batch
+        :param batch_data:
+        :param paths:
+        :param value:
+        :return: list
+        """
+        if not isinstance(paths, list):
+            raise TypeError('Batch.values() - paths must be a list of strings')
+        if value is not None:
+            points = batch_data['points']
+            for p in points:
+                for path in paths:
+                    Point.value(p, path, value)
+            # batch_data['points'] = points
+            return batch_data
+        else:
+            out = list()
+            points = batch_data['points']
+            for p in points:
+                odict = dict()
+                for path in paths:
+                    odict[path] = Point.value(p, path, value)
+                out.append(odict)
+            return out
+
+    @staticmethod
+    def default(batch_data, path, value):
+        """
+
+        :param batch_data:
+        :param path:
+        :param value:
+        :return:
+        """
+        points = batch_data['points']
+        for p in points:
+            Point.default(p, path, value)
+        return batch_data
+
+    @staticmethod
+    def dtag(batch_data):
+        return batch_data['dtag']
+
+    @staticmethod
+    def start_ts(batch_data, newts=None):
+        if newts is not None:
+            batch_data['start_ts'] = newts
+            return batch_data
+
+        return batch_data['start_ts']
+
+    @staticmethod
+    def add(batch_data, point):
+        if ('points' not in batch_data) or (type(batch_data['points']) != list):
+            batch_data['points'] = list()
+            batch_data['points'].append(point)
+        else:
+            batch_data['points'].append(point)
+            Batch.sort_points(batch_data)
+
+        return batch_data
+
+```

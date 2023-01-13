@@ -70,18 +70,18 @@ So based on the value of the field "some_field_name", the field `topic` will get
 
 
 _____________________________________________________________________________________________________
-> For a list of lambda_library functions see [lambda_functions](../dfs_script_language/lambda_expressions.md).
+> For a list of lambda_library functions see [lambda_functions](../dfs_script_language/built-in_functions.md).
 
 
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-field( `string` )| field-path  | undefined
-key( `string` )| name of the value storage | 
-type( `string` )| Type of mem storage, one of 'single', 'list' or 'set' | 'single' 
-default( `string` \| `number` )| Prefill the storage with this value | undefined
-default_json( is_set) | When set, the `default` value will be interpreted as a json string | false (not set)
- 
+| Parameter          | Description                                                        | Default                             |
+|--------------------|--------------------------------------------------------------------|-------------------------------------|
+| field( `string` )  | field-path                                                         | undefined                           |
+| key( `string` )    | name of the value storage                                          |                                     |
+| type( `string` )   | Type of mem storage, one of 'single', 'list' or 'set'              | 'single'                            |
+| default( `string` \| `number` )                                                         | Prefill the storage with this value | undefined       |
+| default_json( is_set) | When set, the `default` value will be interpreted as a json string | false (not set)                     |
+
 > At least one of the parameters `field` and/or `default` has to be defined, otherwise this node will not be able to do anything useful.

@@ -11,7 +11,7 @@ There is currently no timezone handling in Faxe.
 Faxe uses its own library to parse datetime strings (from the outside) into it's internal timestamp format.
 This is done in different nodes such as the [mqtt_subscribe](nodes/messaging/mqtt_subscribe.md) and the 
 [amqp_consume](nodes/messaging/amqp_consume.md) node. Furthermore, datetime parsing can
-be done in lambda-expression with the [dt_parse](dfs_script_language/lambda_expressions.md) function.
+be done in lambda-expression with the [dt_parse](dfs_script_language/built-in_functions.md#time-functions) function.
 
 When parsing datetime strings with subsecond values smaller than milliseconds (microseconds and nanoseconds), if present, 
 will be rounded to millisecond values.
@@ -19,11 +19,11 @@ will be rounded to millisecond values.
 
 ### Parsing examples
 
-| datetime | matching format string |
-|----------|------------------------|
- |'Mon, 15 Jun 2009 20:45:30 GMT'|'a, d b Y H:M:S Z'|
- |'19.08.01  17:33:44,867000 ' | 'd.m.y  H:M:S,u ' |
- |'8/28/2033 8:03:45.576000 PM'|'n/d/Y l:M:S.u p'|
+| datetime                        | matching format string |
+|---------------------------------|------------------------|
+ | 'Mon, 15 Jun 2009 20:45:30 GMT' | 'a, d b Y H:M:S Z'     |
+ | '19.08.01  17:33:44,867000 '    | 'd.m.y  H:M:S,u '      |
+ | '8/28/2033 8:03:45.576000 PM'   | 'n/d/Y l:M:S.u p'      |
 
 
 ### Conversion Specification

@@ -428,6 +428,26 @@
     Helper classes
   </a>
   
+    <nav class="md-nav" aria-label="Helper classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helper-class-for-working-with-data-point-objects" class="md-nav__link">
+    Helper class for working with data-point objects.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helper-class-for-working-with-data-batch-objects" class="md-nav__link">
+    Helper class for working with data-batch objects.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2304,6 +2324,26 @@
     Helper classes
   </a>
   
+    <nav class="md-nav" aria-label="Helper classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helper-class-for-working-with-data-point-objects" class="md-nav__link">
+    Helper class for working with data-point objects.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helper-class-for-working-with-data-batch-objects" class="md-nav__link">
+    Helper class for working with data-batch objects.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2721,7 +2761,258 @@ Using this method makes sure, your log data will be injected into FAXE's logging
 <h4 id="dtag_1">dtag</h4>
 <p>See <a href="#data-point">data-point</a> for a description.</p>
 <h2 id="helper-classes">Helper classes</h2>
-<p>TBD</p>
+<p>There are helper classes to make it easier to work with data coming from the faxe engine. All functions are static so you do not 
+instanciate them and nothing is stored inside an object, making it possible to mix the usage of the helpers with inline code.</p>
+<p>To use the helper classes, just import <code>faxe.Point</code> and/or <code>faxe.Batch</code>.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">from</span> <span style="color: #f8f8f2">faxe</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Faxe,</span> <span style="color: #f8f8f2">Point,</span> <span style="color: #f8f8f2">Batch</span>
+
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Mynode</span><span style="color: #f8f8f2">(Faxe):</span>
+    <span style="color: #f92672">...</span> 
+</code></pre></div>
+
+<h3 id="helper-class-for-working-with-data-point-objects">Helper class for working with data-point objects.</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Point</span><span style="color: #f8f8f2">:</span>
+    <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">    Completely static helper class for data-point structures (dicts)</span>
+
+<span style="color: #e6db74">    point = dict()</span>
+<span style="color: #e6db74">    point[&#39;ts&#39;] = int millisecond timestamp</span>
+<span style="color: #e6db74">    point[&#39;fields&#39;] = dict()</span>
+<span style="color: #e6db74">    point[&#39;tags&#39;] = dict()</span>
+<span style="color: #e6db74">    point[&#39;dtag&#39;] = int</span>
+
+<span style="color: #e6db74">    &quot;&quot;&quot;</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">new</span><span style="color: #f8f8f2">(ts</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #f8f8f2">p</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dict()</span>
+        <span style="color: #f8f8f2">p[</span><span style="color: #e6db74">&#39;fields&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dict()</span>
+        <span style="color: #f8f8f2">p[</span><span style="color: #e6db74">&#39;tags&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dict()</span>
+        <span style="color: #f8f8f2">p[</span><span style="color: #e6db74">&#39;dtag&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">None</span>
+        <span style="color: #f8f8f2">p[</span><span style="color: #e6db74">&#39;ts&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ts</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">p</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(point_data,</span> <span style="color: #f8f8f2">newfields</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        get or set all the fields (dict)</span>
+<span style="color: #e6db74">        :param point_data: dict()</span>
+<span style="color: #e6db74">        :param newfields: dict()</span>
+<span style="color: #e6db74">        :return: dict()</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">newfields</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">point_data[</span><span style="color: #e6db74">&#39;fields&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">newfields</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">dict(point_data[</span><span style="color: #e6db74">&#39;fields&#39;</span><span style="color: #f8f8f2">])</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">value</span><span style="color: #f8f8f2">(point_data,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        get or set a specific field</span>
+<span style="color: #e6db74">        :param point_data: dict()</span>
+<span style="color: #e6db74">        :param path: string</span>
+<span style="color: #e6db74">        :param value: any</span>
+<span style="color: #e6db74">        :return: None, if field is not found /</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">Jsn</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">set(point_data,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value)</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Jsn</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">get(point_data,</span> <span style="color: #f8f8f2">path)</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">values</span><span style="color: #f8f8f2">(point_data,</span> <span style="color: #f8f8f2">paths,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        get or set a specific field</span>
+<span style="color: #e6db74">        :param point_data: dict</span>
+<span style="color: #e6db74">        :param paths: list</span>
+<span style="color: #e6db74">        :param value: any</span>
+<span style="color: #e6db74">        :return: point_data|list</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">path</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">paths:</span>
+                <span style="color: #f8f8f2">Jsn</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">set(point_data,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value)</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data</span>
+
+        <span style="color: #f8f8f2">out</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">list()</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">path</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">paths:</span>
+            <span style="color: #f8f8f2">out</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(Jsn</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">get(point_data,</span> <span style="color: #f8f8f2">path))</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">out</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">default</span><span style="color: #f8f8f2">(point_data,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+
+<span style="color: #e6db74">        :param point_data:</span>
+<span style="color: #e6db74">        :param path:</span>
+<span style="color: #e6db74">        :param value:</span>
+<span style="color: #e6db74">        :return:</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">Point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">value(point_data,</span> <span style="color: #f8f8f2">path)</span> <span style="color: #f92672">is</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">Point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">value(point_data,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value)</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">tags</span><span style="color: #f8f8f2">(point_data,</span> <span style="color: #f8f8f2">newtags</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">newtags</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">point_data[</span><span style="color: #e6db74">&#39;tags&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">newtags</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data[</span><span style="color: #e6db74">&#39;tags&#39;</span><span style="color: #f8f8f2">]</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">ts</span><span style="color: #f8f8f2">(point_data,</span> <span style="color: #f8f8f2">newts</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        get or set the timestamp of this point</span>
+<span style="color: #e6db74">        :param point_data: dict</span>
+<span style="color: #e6db74">        :param newts: integer</span>
+<span style="color: #e6db74">        :return: integer|dict</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">newts</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">point_data[</span><span style="color: #e6db74">&#39;ts&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">int(newts)</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data[</span><span style="color: #e6db74">&#39;ts&#39;</span><span style="color: #f8f8f2">]</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">dtag</span><span style="color: #f8f8f2">(point_data,</span> <span style="color: #f8f8f2">newdtag</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">newdtag</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">point_data[</span><span style="color: #e6db74">&#39;dtag&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">newdtag</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">point_data[</span><span style="color: #e6db74">&#39;dtag&#39;</span><span style="color: #f8f8f2">]</span>
+</code></pre></div>
+
+<h3 id="helper-class-for-working-with-data-batch-objects">Helper class for working with data-batch objects.</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Batch</span><span style="color: #f8f8f2">:</span>
+    <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">    Completely static helper class for data-batch structures (dicts)</span>
+
+<span style="color: #e6db74">    batch = dict()</span>
+<span style="color: #e6db74">    batch[&#39;points&#39;] = list() of point dicts sorted by their timestamps</span>
+<span style="color: #e6db74">    batch[&#39;start_ts&#39;] = int millisecond unix timestamp denoting the start of this batch</span>
+
+<span style="color: #e6db74">    batch[&#39;dtag&#39;] = int</span>
+<span style="color: #e6db74">    &quot;&quot;&quot;</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">new</span><span style="color: #f8f8f2">(start_ts</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #f8f8f2">b</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dict()</span>
+        <span style="color: #f8f8f2">b[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">list()</span>
+        <span style="color: #f8f8f2">b[</span><span style="color: #e6db74">&#39;dtag&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">None</span>
+        <span style="color: #f8f8f2">b[</span><span style="color: #e6db74">&#39;start_ts&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">start_ts</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">b</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">(batch_data):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        a Batch is empty, if it has no points</span>
+<span style="color: #e6db74">        :param batch_data:</span>
+<span style="color: #e6db74">        :return: True | False</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;points&#39;</span> <span style="color: #f92672">not</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">batch_data)</span> <span style="color: #f92672">or</span> <span style="color: #f8f8f2">(batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">[])</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">points</span><span style="color: #f8f8f2">(batch_data,</span> <span style="color: #f8f8f2">points</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+
+<span style="color: #e6db74">        :param points: None | list()</span>
+<span style="color: #e6db74">        :param batch_data: dict</span>
+<span style="color: #e6db74">        :return: list</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">points</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">points</span>
+            <span style="color: #f8f8f2">Batch</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">sort_points(batch_data)</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">list(batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">])</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">value</span><span style="color: #f8f8f2">(batch_data,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        get or set path from/to every point in a batch</span>
+<span style="color: #e6db74">        :param batch_data:</span>
+<span style="color: #e6db74">        :param path:</span>
+<span style="color: #e6db74">        :param value:</span>
+<span style="color: #e6db74">        :return: list</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #f8f8f2">out</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">list()</span>
+        <span style="color: #f8f8f2">points</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">p</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">points:</span>
+            <span style="color: #f8f8f2">out</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(Point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">value(p,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value))</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">out</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">values</span><span style="color: #f8f8f2">(batch_data,</span> <span style="color: #f8f8f2">paths,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+<span style="color: #e6db74">        get or set path from/to every point in a batch</span>
+<span style="color: #e6db74">        :param batch_data:</span>
+<span style="color: #e6db74">        :param paths:</span>
+<span style="color: #e6db74">        :param value:</span>
+<span style="color: #e6db74">        :return: list</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f92672">not</span> <span style="color: #f8f8f2">isinstance(paths,</span> <span style="color: #f8f8f2">list):</span>
+            <span style="color: #66d9ef">raise</span> <span style="color: #a6e22e">TypeError</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Batch.values() - paths must be a list of strings&#39;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">points</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">p</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">points:</span>
+                <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">path</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">paths:</span>
+                    <span style="color: #f8f8f2">Point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">value(p,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value)</span>
+            <span style="color: #75715e"># batch_data[&#39;points&#39;] = points</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">out</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">list()</span>
+            <span style="color: #f8f8f2">points</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">p</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">points:</span>
+                <span style="color: #f8f8f2">odict</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dict()</span>
+                <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">path</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">paths:</span>
+                    <span style="color: #f8f8f2">odict[path]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">value(p,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value)</span>
+                <span style="color: #f8f8f2">out</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(odict)</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">out</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">default</span><span style="color: #f8f8f2">(batch_data,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value):</span>
+        <span style="color: #e6db74">&quot;&quot;&quot;</span>
+
+<span style="color: #e6db74">        :param batch_data:</span>
+<span style="color: #e6db74">        :param path:</span>
+<span style="color: #e6db74">        :param value:</span>
+<span style="color: #e6db74">        :return:</span>
+<span style="color: #e6db74">        &quot;&quot;&quot;</span>
+        <span style="color: #f8f8f2">points</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">p</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">points:</span>
+            <span style="color: #f8f8f2">Point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">default(p,</span> <span style="color: #f8f8f2">path,</span> <span style="color: #f8f8f2">value)</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">dtag</span><span style="color: #f8f8f2">(batch_data):</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;dtag&#39;</span><span style="color: #f8f8f2">]</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">start_ts</span><span style="color: #f8f8f2">(batch_data,</span> <span style="color: #f8f8f2">newts</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">):</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">newts</span> <span style="color: #f92672">is</span> <span style="color: #f92672">not</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;start_ts&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">newts</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;start_ts&#39;</span><span style="color: #f8f8f2">]</span>
+
+    <span style="color: #a6e22e">@staticmethod</span>
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(batch_data,</span> <span style="color: #f8f8f2">point):</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;points&#39;</span> <span style="color: #f92672">not</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">batch_data)</span> <span style="color: #f92672">or</span> <span style="color: #f8f8f2">(type(batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">])</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">list):</span>
+            <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">list()</span>
+            <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(point)</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">batch_data[</span><span style="color: #e6db74">&#39;points&#39;</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(point)</span>
+            <span style="color: #f8f8f2">Batch</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">sort_points(batch_data)</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">batch_data</span>
+</code></pre></div>
                 
               
               

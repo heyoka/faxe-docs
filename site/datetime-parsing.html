@@ -2004,7 +2004,7 @@ There is currently no timezone handling in Faxe.</p>
 <p>Faxe uses its own library to parse datetime strings (from the outside) into it's internal timestamp format.
 This is done in different nodes such as the <a href="nodes/messaging/mqtt_subscribe.html">mqtt_subscribe</a> and the 
 <a href="nodes/messaging/amqp_consume.html">amqp_consume</a> node. Furthermore, datetime parsing can
-be done in lambda-expression with the <a href="dfs_script_language/lambda_expressions.html">dt_parse</a> function.</p>
+be done in lambda-expression with the <a href="dfs_script_language/built-in_functions.html#time-functions">dt_parse</a> function.</p>
 <p>When parsing datetime strings with subsecond values smaller than milliseconds (microseconds and nanoseconds), if present, 
 will be rounded to millisecond values.</p>
 <h3 id="parsing-examples">Parsing examples</h3>

@@ -1,6 +1,11 @@
 The python node
 ==============
 
+> deprecated since vsn 1.0.0, see [custom_nodes](../custom_nodes.md).
+
+
+--------------------------------------------------------------------------
+
 Rules for python callback classes:
 
 * Callback class must be in a module with the lowercase name of the class ie:
