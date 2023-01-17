@@ -2706,12 +2706,27 @@ The second example selects the first name with 'color' <code>orange</code> and t
 </tr>
 <tr>
 <td><code>random(N)</code> -&gt; integer</td>
-<td>generate a random integer between 1 and N</td>
+<td>generate a random integer uniformly distributed between 1 and N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>random(N, M)</code> -&gt; integer</td>
+<td>generate a random integer uniformly distributed between N and M</td>
 <td></td>
 </tr>
 <tr>
 <td><code>random_real(N)</code> -&gt; float</td>
 <td>generate a random float between 0.0 and 1.0, that gets multiplied by N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>random_normal()</code> -&gt; float</td>
+<td>generate a standard normal deviate float (that is, the mean is 0 and the standard deviation is 1)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>random_latin_string(Length)</code> -&gt; string</td>
+<td>Returns a random string of size Length, consisting of latins <code>[a-zA-Z]</code> and digits <code>[0-9]</code>.</td>
 <td></td>
 </tr>
 <tr>
@@ -2722,6 +2737,11 @@ The second example selects the first name with 'color' <code>orange</code> and t
 <tr>
 <td><code>phash(Any)</code> -&gt; integer</td>
 <td>Portable hash function, that outputs an integer in the range 0..2^27-1</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uuidv4()</code> -&gt; string</td>
+<td>Get a strong v4 UUID string (using crypto/openssl)</td>
 <td></td>
 </tr>
 <tr>
