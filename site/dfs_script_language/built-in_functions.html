@@ -2539,6 +2539,10 @@
 <td><code>str_upcase(x)</code> -&gt; string</td>
 <td>Convert all characters on the given string to uppercase</td>
 </tr>
+<tr>
+<td><code>str_repeat_replace(string, pattern, replaceList)</code> -&gt; list</td>
+<td>Given a string, a pattern and a list of strings, produces a new list of strings by <code>duplicating</code> string <code>length(replaceList)</code> times, while replacing every occurance of <code>pattern</code> with the corresponding entry from <code>replaceList</code>. <br> If <code>pattern</code> is not found in <code>string</code>, it will be left untouched and simply duplicated.</td>
+</tr>
 </tbody>
 </table>
 <h3 id="lists-and-maps-jsn">Lists and Maps (jsn)</h3>
