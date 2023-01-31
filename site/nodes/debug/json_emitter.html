@@ -939,6 +939,26 @@
     Examples
   </a>
   
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-modifiers" class="md-nav__link">
+    Using modifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-output" class="md-nav__link">
+    Batch output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1944,6 +1964,26 @@
     Examples
   </a>
   
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-modifiers" class="md-nav__link">
+    Using modifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-output" class="md-nav__link">
+    Batch output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1974,48 +2014,83 @@
                 
                 
                 <h1 id="the-json_emitter-node">The json_emitter node</h1>
-<p>This node is for debugging and testing/mocking purposes.</p>
-<p>It periodically emits one of the json strings given with the <code>json</code> parameter. This can be done randomly or in sequence.</p>
+<p>This node is used to produce data, that can be processed in a flow.</p>
+<p>It can be used for debugging and testing/mocking purposes as well as produce default values for different kind of applications.</p>
+<p>Starting with a given <code>list of JSON strings</code> (json structures in string format), this data can be emitted and/or modified on every 
+emit in different ways:</p>
+<ul>
+<li>determine, how data for output gets <code>selected</code> from the list of json inputs, see also <a href="json_emitter.html#select">select</a></li>
+<li>modify the selected data with <code>modifier</code> lambda functions</li>
+<li>output periodically with <code>every</code>, possibly adding a timing <code>jitter</code>, or have exactly 1 output with the <code>one-shot</code> parameter</li>
+</ul>
 <p><em>experimental since 0.19.9</em>:
     With the <code>modify</code> and <code>modify_with</code> parameters, certain fields in the json string(s) can be modified with every interval.</p>
 <h2 id="examples">Examples</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 0, &quot;name&quot;: &quot;OK&quot;}, &quot;condition_reason&quot;: &quot;&quot;, </span>
-<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1584246411783,</span>
-<span style="color: #e6db74">    &quot;vac_on_without_contact&quot;: [1.2, 2.5, 4.33], &quot;vac_on_with_contact&quot;: [5.6, 45.98, 7.012]} &#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 1, &quot;name&quot;: &quot;Warning&quot;}, &quot;condition_reason&quot;: &quot;bad succer&quot;, </span>
-<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1583246411783,</span>
-<span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [0.2, 2.5, 8.01], &quot;vac_on_with_contact&quot;: [6.001, 4.798, 7.012]} &#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 2, &quot;name&quot;: &quot;Error&quot;}, &quot;condition_reason&quot;: &quot;something went really wrong!&quot;, </span>
-<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1582246411783,</span>
-<span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [0.5, 2.5, 0.44], &quot;vac_on_with_contact&quot;: [2.06, 4.98, 2.901]} &#39;</span>
-     <span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;rand&#39;</span><span style="color: #f8f8f2">)</span>
-
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 0, &quot;name&quot;: &quot;OK&quot;}, &quot;condition_reason&quot;: &quot;&quot;} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 1, &quot;name&quot;: &quot;Warning&quot;}, &quot;condition_reason&quot;: &quot;bad succer&quot;} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 2, &quot;name&quot;: &quot;Error&quot;}, &quot;condition_reason&quot;: &quot;something went really wrong!&quot;} &#39;</span>
+  <span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>Emit one of the three given json strings(selected randomly) every 3 seconds.</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter()</span>
+<p>Emit one of the three given json strings(selected randomly) every 5 seconds (default).</p>
+<hr />
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 0, &quot;name&quot;: &quot;OK&quot;}, &quot;condition_reason&quot;: &quot;&quot;} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 1, &quot;name&quot;: &quot;Warning&quot;}, &quot;condition_reason&quot;: &quot;bad succer&quot;} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 2, &quot;name&quot;: &quot;Error&quot;}, &quot;condition_reason&quot;: &quot;something went really wrong!&quot;} &#39;</span> 
+  <span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3s</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 0, &quot;name&quot;: &quot;OK&quot;}, &quot;condition_reason&quot;: &quot;&quot;, </span>
-<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1584246411783,</span>
-<span style="color: #e6db74">    &quot;vac_on_without_contact&quot;: [1.2, 2.5, 4.33], &quot;vac_on_with_contact&quot;: [5.6, 45.98, 7.012]} &#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 1, &quot;name&quot;: &quot;Warning&quot;}, &quot;condition_reason&quot;: &quot;bad succer&quot;, </span>
-<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1583246411783,</span>
-<span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [0.2, 2.5, 8.01], &quot;vac_on_with_contact&quot;: [6.001, 4.798, 7.012]} &#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #e6db74">&#39; {&quot;condition&quot;: {&quot;id&quot;: 2, &quot;name&quot;: &quot;Error&quot;}, &quot;condition_reason&quot;: &quot;something went really wrong!&quot;, </span>
-<span style="color: #e6db74">        &quot;predicted_maintenance_time&quot;: 1582246411783,</span>
-<span style="color: #e6db74">     &quot;vac_on_without_contact&quot;: [0.5, 2.5, 0.44], &quot;vac_on_with_contact&quot;: [2.06, 4.98, 2.901]} &#39;</span>
-     <span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;seq&#39;</span><span style="color: #f8f8f2">)</span>
-
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">debug()</span>
 </code></pre></div>
 
-<p>Select one of the json strings in sequence every 3 seconds starting with the first one. After the last json string has been
-selectect and outputted, start over with the first one again.</p>
+<p>Select one of the json strings in sequence every 3 seconds, starting with the first one. After the last json string has been
+selectect and outputted, start over with the first one again. Produces data-point items.</p>
+<hr />
+<h3 id="using-modifiers">Using modifiers</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span>
+  <span style="color: #e6db74">&#39; {&quot;Current_Ph_A&quot;: 10.33, &quot;Current_Ph_B&quot;: 10.53, &quot;Current_Ph_C&quot;: 10.76} &#39;</span> 
+  <span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">200ms</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modify</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #e6db74">&#39;data.Current_Ph_A&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;data.Current_Ph_B&#39;</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #e6db74">&#39;data.Current_Ph_C&#39;</span>
+     <span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modify_with</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">random_normal</span><span style="color: #f8f8f2">(),</span> 
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;data.Current_Ph_A&quot;</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">0.45</span><span style="color: #f8f8f2">,</span> 
+    <span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">nth</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">12.552</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">44.2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">13.86</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">16.22</span><span style="color: #f8f8f2">])</span>
+    <span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+<p>Output the json data every 200ms, modifying it on every emit with the given lambda functions.
+Note the 'as' parameter here: It gives the output data a new root-object ('data') and the modifiers must target the 'rooted' fields.</p>
+<p>Sample output:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">:</span>  <span style="color: #ae81ff">1675147412200</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">:</span>  
+  <span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;Current_Ph_A&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">1.6554763679823647</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;Current_Ph_B&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">2.105476367982365</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">&quot;Current_Ph_C&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">44.2</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="batch-output">Batch output</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">start_time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;2021-11-16T16:21:00.000Z&#39;</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span>
+  <span style="color: #e6db74">&#39; {&quot;Current_Ph_A&quot;: 10.33, &quot;Current_Ph_B&quot;: 10.53, &quot;Current_Ph_C&quot;: 10.76} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;Current_Ph_A&quot;: 11.13, &quot;Current_Ph_B&quot;: 10.74, &quot;Current_Ph_C&quot;: 11.17} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;Current_Ph_A&quot;: 13.78, &quot;Current_Ph_B&quot;: 11.02, &quot;Current_Ph_C&quot;: 11.12} &#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&#39; {&quot;Current_Ph_A&quot;: 12.46, &quot;Current_Ph_B&quot;: 10.98, &quot;Current_Ph_C&quot;: 11.71} &#39;</span>
+  <span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;batch&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">one_shot</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">start_ts</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">start_time</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Output a data-batch item (using all the  json items at once) exactly one time (one-shot), using <code>start_time</code> as timestamp.
+After the first output, the node will go to sleep for the rest of its life.</p>
+<hr />
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -2027,29 +2102,34 @@ selectect and outputted, start over with the first one again.</p>
 </thead>
 <tbody>
 <tr>
+<td><em>[node]</em> json( <code>string_list</code> )</td>
+<td>list of json strings</td>
+<td></td>
+</tr>
+<tr>
 <td>every( <code>duration</code> )</td>
 <td>emit interval</td>
 <td>5s</td>
 </tr>
 <tr>
 <td>jitter( <code>duration</code> )</td>
-<td>add time jitter to the values produced</td>
+<td>max random value for time jitter added to every, adds time jitter to the values produced</td>
 <td>0ms</td>
 </tr>
 <tr>
-<td>json( <code>string_list</code> )</td>
-<td>list of json strings</td>
-<td></td>
-</tr>
-<tr>
-<td>align( is_set )</td>
-<td>align the time to the every param</td>
-<td>false (not set)</td>
+<td>align( <code>bool</code> )</td>
+<td>align the time to the every param, does not have an effect, if <code>start_ts</code> is given.</td>
+<td>false</td>
 </tr>
 <tr>
 <td>select( <code>string</code> )</td>
 <td>entry select mode, possible values: <code>rand</code> or <code>seq</code>, <code>batch</code></td>
 <td>'rand'</td>
+</tr>
+<tr>
+<td>start_ts( <code>string</code> or <code>int</code> )</td>
+<td>Timestamp to start from, instead of wall clock time (default). ISO8601 datetime string or millisecond timestamp allowed here.</td>
+<td>'2021-11-16T16:21:12.505Z'</td>
 </tr>
 <tr>
 <td>modify( <code>string_list</code> )</td>
@@ -2060,6 +2140,16 @@ selectect and outputted, start over with the first one again.</p>
 <td>modify_with( <code>lambda_list</code> )</td>
 <td>list of lambda expressions, that perform the modification on the fields given with <code>modify</code></td>
 <td>undefined</td>
+</tr>
+<tr>
+<td>as( <code>string</code> )</td>
+<td>root object used for output items</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>one_shot( <code>bool</code> )</td>
+<td>when set to true, the node gives exactly 1 output, before it goes to sleep</td>
+<td>false</td>
 </tr>
 </tbody>
 </table>

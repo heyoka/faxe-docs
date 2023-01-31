@@ -13,6 +13,6 @@ Example
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-_[node]_ file( `string` )| valid writeable filepath |
+| Parameter                 | Description              | Default |
+|---------------------------|--------------------------|---------|
+| _[node]_ file( `string` ) | valid writeable filepath |         |

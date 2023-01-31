@@ -34,9 +34,9 @@ Since v0.19.41: If exactly 1 value is given for `field_values`, it is used for e
 Parameters
 ----------
 
-Parameter     | Description                                                                          | Default 
---------------|--------------------------------------------------------------------------------------|--------- 
-fields( `string_list` )| list of fieldnames                                                                   | []
-field_values( `list` )| list of values for the given fields (exactly one entry or same length as fieldnames) |[]
-tags( `string_list` )| list of tagnames                                                                     | []
-tag_values( `list` )| list of values for the given tags (exactly one or same length as tagnames)           |[]
+| Parameter               | Description                                                                          | Default |
+|-------------------------|--------------------------------------------------------------------------------------|---------|
+| fields( `string_list` ) | list of fieldnames                                                                   | []      |
+| field_values( `list` )  | list of values for the given fields (exactly one entry or same length as fieldnames) | []      |
+| tags( `string_list` )   | list of tagnames                                                                     | []      |
+| tag_values( `list` )    | list of values for the given tags (exactly one or same length as tagnames)           | []      |
