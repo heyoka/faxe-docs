@@ -85,7 +85,7 @@ Sample output:
 
 ------------------------------------------------------
 
-### Batch output
+### Batch output and one_shot
 
 ```dfs  
 def start_time = '2021-11-16T16:21:00.000Z'
@@ -110,18 +110,18 @@ After the first output, the node will go to sleep for the rest of its life.
 Parameters
 ----------
 
-| Parameter                      | Description                                                                                                                   | Default                    |
-|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| _[node]_ json( `string_list` ) | list of json strings                                                                                                          |                            |
-| every( `duration` )            | emit interval                                                                                                                 | 5s                         |
-| jitter( `duration` )           | max random value for time jitter added to every, adds time jitter to the values produced                                      | 0ms                        |
-| align( `bool` )                | align the time to the every param, does not have an effect, if `start_ts` is given.                                           | false                      |
-| select( `string` )             | entry select mode, possible values: `rand` or `seq`, `batch`                                                                  | 'rand'                     |
-| start_ts( `string` or `int` )  | Timestamp to start from, instead of wall clock time (default). ISO8601 datetime string or millisecond timestamp allowed here. | '2021-11-16T16:21:12.505Z' |
-| modify( `string_list` )        | list of fields, that should be modified                                                                                       | undefined                  |
-| modify_with( `lambda_list` )   | list of lambda expressions, that perform the modification on the fields given with `modify`                                   | undefined                  |
-| as( `string` )                 | root object used for output items                                                                                             | undefined                  |
-| one_shot( `bool` )             | when set to true, the node gives exactly 1 output, before it goes to sleep                                                    | false                      |
+| Parameter                    | Description                                                                                                                   | Default                    |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| _[node]_ json(`string_list`) | list of json strings                                                                                                          |                            |
+| every(`duration`)            | emit interval                                                                                                                 | 5s                         |
+| jitter(`duration`)           | max random value for time jitter added to every, adds time jitter to the values produced                                      | 0ms                        |
+| align(`bool`)                | align the time to the every param, does not have an effect, if `start_ts` is given.                                           | false                      |
+| select(`string`)             | entry select mode, possible values: `rand` or `seq`, `batch`                                                                  | 'rand'                     |
+| start_ts(`string` or `int`)  | Timestamp to start from, instead of wall clock time (default). ISO8601 datetime string or millisecond timestamp allowed here. | '2021-11-16T16:21:12.505Z' |
+| modify(`string_list`)        | list of fields, that should be modified                                                                                       | undefined                  |
+| modify_with(`lambda_list`)   | list of lambda expressions, that perform the modification on the fields given with `modify`                                   | undefined                  |
+| as(`string`)                 | root object used for output items                                                                                             | undefined                  |
+| one_shot(`bool`)             | when set to true, the node gives exactly 1 output, before it goes to sleep                                                    | false                      |
 
 > Note : `modify` and `modify_with` must have the same number of parameters, if given.
 

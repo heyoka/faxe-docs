@@ -950,8 +950,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#batch-output" class="md-nav__link">
-    Batch output
+  <a href="#batch-output-and-one_shot" class="md-nav__link">
+    Batch output and one_shot
   </a>
   
 </li>
@@ -1975,8 +1975,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#batch-output" class="md-nav__link">
-    Batch output
+  <a href="#batch-output-and-one_shot" class="md-nav__link">
+    Batch output and one_shot
   </a>
   
 </li>
@@ -2075,7 +2075,7 @@ Note the 'as' parameter here: It gives the output data a new root-object ('data'
 </code></pre></div>
 
 <hr />
-<h3 id="batch-output">Batch output</h3>
+<h3 id="batch-output-and-one_shot">Batch output and one_shot</h3>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">start_time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;2021-11-16T16:21:00.000Z&#39;</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span>
   <span style="color: #e6db74">&#39; {&quot;Current_Ph_A&quot;: 10.33, &quot;Current_Ph_B&quot;: 10.53, &quot;Current_Ph_C&quot;: 10.76} &#39;</span><span style="color: #f8f8f2">,</span>
@@ -2102,52 +2102,52 @@ After the first output, the node will go to sleep for the rest of its life.</p>
 </thead>
 <tbody>
 <tr>
-<td><em>[node]</em> json( <code>string_list</code> )</td>
+<td><em>[node]</em> json(<code>string_list</code>)</td>
 <td>list of json strings</td>
 <td></td>
 </tr>
 <tr>
-<td>every( <code>duration</code> )</td>
+<td>every(<code>duration</code>)</td>
 <td>emit interval</td>
 <td>5s</td>
 </tr>
 <tr>
-<td>jitter( <code>duration</code> )</td>
+<td>jitter(<code>duration</code>)</td>
 <td>max random value for time jitter added to every, adds time jitter to the values produced</td>
 <td>0ms</td>
 </tr>
 <tr>
-<td>align( <code>bool</code> )</td>
+<td>align(<code>bool</code>)</td>
 <td>align the time to the every param, does not have an effect, if <code>start_ts</code> is given.</td>
 <td>false</td>
 </tr>
 <tr>
-<td>select( <code>string</code> )</td>
+<td>select(<code>string</code>)</td>
 <td>entry select mode, possible values: <code>rand</code> or <code>seq</code>, <code>batch</code></td>
 <td>'rand'</td>
 </tr>
 <tr>
-<td>start_ts( <code>string</code> or <code>int</code> )</td>
+<td>start_ts(<code>string</code> or <code>int</code>)</td>
 <td>Timestamp to start from, instead of wall clock time (default). ISO8601 datetime string or millisecond timestamp allowed here.</td>
 <td>'2021-11-16T16:21:12.505Z'</td>
 </tr>
 <tr>
-<td>modify( <code>string_list</code> )</td>
+<td>modify(<code>string_list</code>)</td>
 <td>list of fields, that should be modified</td>
 <td>undefined</td>
 </tr>
 <tr>
-<td>modify_with( <code>lambda_list</code> )</td>
+<td>modify_with(<code>lambda_list</code>)</td>
 <td>list of lambda expressions, that perform the modification on the fields given with <code>modify</code></td>
 <td>undefined</td>
 </tr>
 <tr>
-<td>as( <code>string</code> )</td>
+<td>as(<code>string</code>)</td>
 <td>root object used for output items</td>
 <td>undefined</td>
 </tr>
 <tr>
-<td>one_shot( <code>bool</code> )</td>
+<td>one_shot(<code>bool</code>)</td>
 <td>when set to true, the node gives exactly 1 output, before it goes to sleep</td>
 <td>false</td>
 </tr>
