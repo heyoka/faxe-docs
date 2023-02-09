@@ -180,38 +180,40 @@ Note that params `vars` and `as` must have the same length (if both are given).
 
 `Note: Step7 style preferred and should be used !`
 
-| Address	                | Step7 equivalent           | 	JS Data type | 	Description                                           |
-|-------------------------|----------------------------|---------------|--------------------------------------------------------|
-| DB5,X0.1                | 	DB5.DBX0.1                | 	Boolean	     | Bit 1 of byte 0 of DB 5                                |
-| DB23,B1 or DB23,BYTE1   | 	DB23.DBB1                 | 	Number       | 	Byte 1 (0-255) of DB 23                               |
-| DB100,C2 or DB100,CHAR2 | 	DB100.DBB2                | String        | 	Byte 2 of DB 100 as a Char                            |
-| DB42,I3 or DB42,INT3    | 	DB42.DBW3                 | 	Number       | 	Signed 16-bit number at byte 3 of DB 42               |
-| DB57,WORD4              | 	DB57.DBW4                 | 	Number	      | Unsigned 16-bit number at byte 4 of DB 57              |
-| DB13,DI5 or DB13,DINT5  | 	DB13.DBD5                 | 	Number       | 	Signed 32-bit number at byte 5 of DB 13               |
-| DB19,DW6 or DB19,DWORD6 | 	DB19.DBD6                 | 	Number       | 	Unsigned 32-bit number at byte 6 of DB 19             |
-| DB21,DR7 or DB21,REAL7  | 	DB19.DBD6	                | Number	       | Floating point 32-bit number at byte 7 of DB 21        |
-| DB2,S7.10*	             | `DB2.DBS7.10` (faxe only)	 | String	       | String of length 10 starting at byte 7 of DB 2         |
-| I1.0 or E1.0            | 	I1.0 or E1.0              | 	Boolean      | 	Bit 0 of byte 1 of input area                         |
-| Q2.1 or A2.1            | 	Q2.1 or A2.1              | 	Boolean      | 	Bit 1 of byte 2 of output area                        |
-| M3.2                    | 	QM3.2                     | 	Boolean      | 	Bit 2 of byte 3 of memory area                        |
-| IB4 or EB4              | 	IB4 or EB4                | 	Number       | 	Byte 4 (0 -255) of input area                         |
-| QB5 or AB5              | 	QB5 or AB5                | 	Number       | 	Byte 5 (0 -255) of output area                        |
-| MB6	                    | MB6	                       | Number	       | Byte 6 (0 -255) of memory area                         |
-| IC7 or EC7              | 	IB7 or EB7	               | String        | 	Byte 7 of input area as a Char                        |
-| QC8 or AC8              | 	QB8 or AB8	               | String	       | Byte 8 of output area as a Char                        |
-| MC9	                    | MB9	                       | String	       | Byte 9 of memory area as a Char                        |
-| II10 or EI10	           | IW10 or EW10	              | Number	       | Signed 16-bit number at byte 10 of input area          |
-| QI12 or AI12	           | QW12 or AW12	              | Number	       | Signed 16-bit number at byte 12 of output area         |
-| MI14	                   | MW14	                      | Number	       | Signed 16-bit number at byte 14 of memory area         |
-| IW16 or EW16	           | IW16 or EW16	              | Number	       | Unsigned 16-bit number at byte 16 of input area        |
-| QW18 or AW18	           | QW18 or AW18	              | Number	       | Unsigned 16-bit number at byte 18 of output area       |
-| MW20	                   | MW20	                      | Number	       | Unsigned 16-bit number at byte 20 of memory area       |
-| IDI22 or EDI22	         | ID22 or ED22	              | Number	       | Signed 32-bit number at byte 22 of input area          |
-| QDI24 or ADI24	         | QD24 or AD24	              | Number	       | Signed 32-bit number at byte 24 of output area         |
-| MDI26	                  | MD26	                      | Number	       | Signed 32-bit number at byte 26 of memory area         |
-| ID28 or ED28	           | ID28 or ED28	              | Number	       | Unsigned 32-bit number at byte 28 of input area        |
-| QD30 or AD30	           | QD30 or AD30	              | Number	       | Unsigned 32-bit number at byte 30 of output area       |
-| MD32	                   | MD32	                      | Number	       | Unsigned 32-bit number at byte 32 of memory area       |
-| IR34 or ER34	           | IR34 or ER34	              | Number	       | Floating point 32-bit number at byte 34 of input area  |
-| QR36 or AR36	           | QR36 or AR36	              | Number	       | Floating point 32-bit number at byte 36 of output area |
-| MR38	                   | MR38	                      | Number	       | Floating point 32-bit number at byte 38 of memory area |
+| Address	                | Step7 equivalent              | 	Description                                                    |
+|-------------------------|-------------------------------|-----------------------------------------------------------------|
+| DB5,X0.1                | 	DB5.DBX0.1                   | Bit 1 of byte 0 of DB 5                                         |
+| DB23,B1 or DB23,BYTE1   | 	DB23.DBB1                    | 	Byte 1 (0-255) of DB 23                                        |
+| DB100,C2 or DB100,CHAR2 | 	DB100.DBB2                   | 	Byte 2 of DB 100 as a Char                                     |
+| --                      | 	DB42.DBSINT36 or DB42.DBSI36 | 	Signed 8-bit integer at byte 36 of DB 42                       |
+| --                      | 	DB42.DBUSINT5 or DB42.DBUSI5 | 	Unsigned 8-bit integer at byte 5 of DB 42 (equivalent to BYTE) |
+| DB42,I3 or DB42,INT3    | 	DB42.DBW3                    | 	Signed 16-bit integer at byte 3 of DB 42                       |
+| DB57,WORD4              | 	DB57.DBW4                    | Unsigned 16-bit integer at byte 4 of DB 57                      |
+| DB13,DI5 or DB13,DINT5  | 	DB13.DBD5                    | 	Signed 32-bit integer at byte 5 of DB 13                       |
+| DB19,DW6 or DB19,DWORD6 | 	DB19.DBD6                    | 	Unsigned 32-bit integer at byte 6 of DB 19                     |
+| DB21,DR7 or DB21,REAL7  | 	DB19.DBD6	                   | Floating point 32-bit number at byte 7 of DB 21                 |
+| DB2,S7.10*	             | `DB2.DBS7.10` (faxe only)	    | String of length 10 starting at byte 7 of DB 2                  |
+| I1.0 or E1.0            | 	I1.0 or E1.0                 | 	Bit 0 of byte 1 of input area                                  |
+| Q2.1 or A2.1            | 	Q2.1 or A2.1                 | 	Bit 1 of byte 2 of output area                                 |
+| M3.2                    | 	QM3.2                        | 	Bit 2 of byte 3 of memory area                                 |
+| IB4 or EB4              | 	IB4 or EB4                   | 	Byte 4 (0 -255) of input area                                  |
+| QB5 or AB5              | 	QB5 or AB5                   | 	Byte 5 (0 -255) of output area                                 |
+| MB6	                    | MB6	                          | Byte 6 (0 -255) of memory area                                  |
+| IC7 or EC7              | 	IB7 or EB7	                  | 	Byte 7 of input area as a Char                                 |
+| QC8 or AC8              | 	QB8 or AB8	                  | Byte 8 of output area as a Char                                 |
+| MC9	                    | MB9	                          | Byte 9 of memory area as a Char                                 |
+| II10 or EI10	           | IW10 or EW10	                 | Signed 16-bit integer at byte 10 of input area                  |
+| QI12 or AI12	           | QW12 or AW12	                 | Signed 16-bit integer at byte 12 of output area                 |
+| MI14	                   | MW14	                         | Signed 16-bit integer at byte 14 of memory area                 |
+| IW16 or EW16	           | IW16 or EW16	                 | Unsigned 16-bit integer at byte 16 of input area                |
+| QW18 or AW18	           | QW18 or AW18	                 | Unsigned 16-bit integer at byte 18 of output area               |
+| MW20	                   | MW20	                         | Unsigned 16-bit integer at byte 20 of memory area               |
+| IDI22 or EDI22	         | ID22 or ED22	                 | Signed 32-bit integer at byte 22 of input area                  |
+| QDI24 or ADI24	         | QD24 or AD24	                 | Signed 32-bit integer at byte 24 of output area                 |
+| MDI26	                  | MD26	                         | Signed 32-bit integer at byte 26 of memory area                 |
+| ID28 or ED28	           | ID28 or ED28	                 | Unsigned 32-bit integer at byte 28 of input area                |
+| QD30 or AD30	           | QD30 or AD30	                 | Unsigned 32-bit integer at byte 30 of output area               |
+| MD32	                   | MD32	                         | Unsigned 32-bit integer at byte 32 of memory area               |
+| IR34 or ER34	           | IR34 or ER34	                 | Floating point 32-bit number at byte 34 of input area           |
+| QR36 or AR36	           | QR36 or AR36	                 | Floating point 32-bit number at byte 36 of output area          |
+| MR38	                   | MR38	                         | Floating point 32-bit number at byte 38 of memory area          |

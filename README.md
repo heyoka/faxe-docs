@@ -7,9 +7,13 @@ To view the documentation in rendered HTML, download the `site` folder and open 
 
 ### Prerequisites
 
+#### python
 * install mkdocs
+* install mkdocs-material
+* mkdocs-macros-plugin
 * install pygments
-
+#### npm
+* redoc-cli
 
 Build
 -----
@@ -28,7 +32,7 @@ render html
 
 install custom syntax highlighting for dfs scripts into pygments
     
-    cd DfsLexer && sudo python3 setup.py develop
+    cd Dfslexer && sudo python3 setup.py develop
 
 ### rest api documentation
 

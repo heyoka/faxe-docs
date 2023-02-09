@@ -2,8 +2,8 @@ site_name: Faxe
 theme:
   name: material
   logo: assets/images/favicon.png
-palette:
-  scheme: slate
+  palette:
+    scheme: slate
 use_directory_urls: false
 extra_css:
   - 'stylesheets/extra.css'
