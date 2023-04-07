@@ -1335,7 +1335,7 @@ paths:
     post:
       summary: "Validate a DFS script."
       description: "Provide a dfs script to validate it's syntax and contents. 
-        Since vsn 0.20.0 the response contains a list of custom nodes written in python, that are used in the provided dfs."
+        Since v0.20.0 the response contains a list of custom nodes and their dependencies written in python, that are used in the provided dfs."
       produces:
         - application/json
       consumes:
@@ -1350,7 +1350,7 @@ paths:
               {
                 "success": true,
                 "message": "script for flow is valid",
-                "python_nodes": ["custom_node_a", "custom_node_b"]
+                "python_nodes": ["custom_node_a", "custom_node_b", "module_used_in_node_b"]
               }
         400:
           description: "Bad Request"

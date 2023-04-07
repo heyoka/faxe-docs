@@ -894,6 +894,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#since-vs-1013" class="md-nav__link">
+    Since vs. 1.0.13:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -994,6 +1001,20 @@
     <li class="md-nav__item">
       <a href="oracle_query.html" class="md-nav__link">
         Oracle query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgre_statement.html" class="md-nav__link">
+        Postgre statement
       </a>
     </li>
   
@@ -1151,6 +1172,20 @@
           Flow
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flow/collect_fields.html" class="md-nav__link">
+        Collect fields
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -1354,6 +1389,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flowdata/unbatch.html" class="md-nav__link">
+        Unbatch
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1514,6 +1563,20 @@
     <li class="md-nav__item">
       <a href="../logic/eval.html" class="md-nav__link">
         Eval
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic/if.html" class="md-nav__link">
+        If
       </a>
     </li>
   
@@ -2222,6 +2285,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#since-vs-1013" class="md-nav__link">
+    Since vs. 1.0.13:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -2258,12 +2328,15 @@ If any errors occur during the request, the node will attempt to retry sending.<
 <blockquote>
 <p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
 </blockquote>
+<h3 id="since-vs-1013">Since vs. 1.0.13:</h3>
+<p>If <code>db_fields</code> and <code>faxe_fields</code> are not given, the node now tries to find the table structure on its own,
+by querying the destination table. In this mode, the remaining_fields_as parameter will be ignored.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_table</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;grip_log_fulltext3&#39;</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">faxe_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>
 
-<span style="color: #f92672">|</span><span style="color: #f8f8f2">http_post_crate()</span> 
+<span style="color: #f92672">|</span><span style="color: #a6e22e">crate_out</span><span style="color: #f8f8f2">()</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">table</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db_table</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">)</span>
@@ -2272,6 +2345,19 @@ If any errors occur during the request, the node will attempt to retry sending.<
 
 <p>Inserts the faxe-fields <code>id</code>, <code>df</code>, <code>vs</code>, <code>topic</code> into the db-fields with the same names and all remaining fields into
 the db-field named <code>data_obj</code> (which is of type 'OBJECT') in the table <code>grip_log_fulltext3</code> .</p>
+<blockquote>
+<p>Note: The timestamp field <code>ts</code> will always be written.</p>
+</blockquote>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_table</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;grip_log_fulltext3&#39;</span> 
+
+<span style="color: #f92672">|</span><span style="color: #a6e22e">crate_out</span><span style="color: #f8f8f2">()</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">database</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;test&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">table</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">db_table</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+<p>Since vs. 1.0.13
+The node derives the list of fields (faxe and db) by querying the schema for the given table.
+In this example schema (<code>database</code>) 'test' is used.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -2308,24 +2394,34 @@ the db-field named <code>data_obj</code> (which is of type 'OBJECT') in the tabl
 <td>false (not set)</td>
 </tr>
 <tr>
+<td>database( <code>string</code> )</td>
+<td>database/schema name</td>
+<td>'doc'</td>
+</tr>
+<tr>
 <td>table( <code>string</code> )</td>
 <td>database tablename</td>
 <td></td>
 </tr>
 <tr>
 <td>db_fields( <code>string_list</code> )</td>
-<td>db fieldnames (mapping for faxe fieldname to table field names)</td>
-<td></td>
+<td>db fieldnames (mapping for faxe fieldname to table field names), since 1.0.13: If not given, fields will be determined automatically</td>
+<td>undefined (since 1.0.13)</td>
 </tr>
 <tr>
 <td>faxe_fields( <code>string_list</code> )</td>
-<td>faxe fieldnames (mapping for faxe fieldname to table field names)</td>
-<td></td>
+<td>faxe fieldnames (mapping for faxe fieldname to table field names), since 1.0.13: If not given, fields will be determined automatically</td>
+<td>undefined (since 1.0.13)</td>
 </tr>
 <tr>
 <td>remaining_fields_as( <code>string</code> )</td>
 <td>if given inserts all fields not in faxe_fields into the given field, which must be of type 'object'</td>
 <td>undefined</td>
+</tr>
+<tr>
+<td>max_retries( <code>integer</code> )</td>
+<td>max retry attempts after INSERT statement fails</td>
+<td>3</td>
 </tr>
 </tbody>
 </table>

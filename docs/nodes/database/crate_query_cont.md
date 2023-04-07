@@ -1,8 +1,6 @@
 The crate_query_cont node
 =====================
 
-[`experimental`]
-
 since 0.19.0
 
 Query the [CRATE](https://crate.io) database for `time series data`. 

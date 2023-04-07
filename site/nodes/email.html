@@ -998,6 +998,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database/postgre_statement.html" class="md-nav__link">
+        Postgre statement
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1149,6 +1163,20 @@
           Flow
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="flow/collect_fields.html" class="md-nav__link">
+        Collect fields
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -1352,6 +1380,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="flowdata/unbatch.html" class="md-nav__link">
+        Unbatch
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1512,6 +1554,20 @@
     <li class="md-nav__item">
       <a href="logic/eval.html" class="md-nav__link">
         Eval
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logic/if.html" class="md-nav__link">
+        If
       </a>
     </li>
   
@@ -2256,19 +2312,31 @@
 </blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name@email.com&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;another@email.com&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">subject</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Alert #ex3 EnergyData&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name@email.com&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">subject</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Alert #ex3 EnergyData {{&quot;building&quot;}}&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;</span>
 <span style="color: #e6db74">    No data since {{&quot;datetime&quot;}} on topic &#39;&#39;home/garage/energy&#39;&#39;, </span>
 <span style="color: #e6db74">    last value was {{&quot;val&quot;}}. </span>
 <span style="color: #e6db74">    &#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>Sends an email with the subject 'Alert #ex3 EnergyData' to 2 recipients.</p>
+<p>Sends an email with the subject 'Alert #ex3 EnergyData'.</p>
 <p>The body will be rendered into an html template (see parameters).
 Body is a <code>text_template</code> parameter with two template-values: <code>datetime</code> and <code>val</code>, these two fields must be present
-in the data_point last received in the email node. 
-If a field used in a text_template is not found in the current data_point, the string 'undefined' will be used.     </p>
+in the data_point last received in the email node.
+If a field used in a text_template is not found in the current data_point, the string 'undefined' will be used.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">eval(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">str_concat</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Module&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;mod_number&quot;</span><span style="color: #f8f8f2">))</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;email_subject&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">email()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name@email.com&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;another@email.com&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">subject_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;email_subject&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;</span>
+<span style="color: #e6db74">    No data since {{&quot;datetime&quot;}} on topic &#39;&#39;home/garage/energy&#39;&#39;, </span>
+<span style="color: #e6db74">    last value was {{&quot;val&quot;}}. </span>
+<span style="color: #e6db74">    &#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Sends an email with the subject build with a lambda expression to 2 recipients.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -2285,7 +2353,7 @@ If a field used in a text_template is not found in the current data_point, the s
 <td></td>
 </tr>
 <tr>
-<td>subject(<code>string</code>)</td>
+<td>subject(<code>text_template</code>)</td>
 <td></td>
 <td></td>
 </tr>
@@ -2297,6 +2365,11 @@ If a field used in a text_template is not found in the current data_point, the s
 <tr>
 <td>body_field(<code>string</code>)</td>
 <td>field_path used to get the body string</td>
+<td></td>
+</tr>
+<tr>
+<td>subject_field(<code>string</code>)</td>
+<td>field_path used to get the subject string</td>
 <td></td>
 </tr>
 <tr>
@@ -2326,7 +2399,8 @@ If a field used in a text_template is not found in the current data_point, the s
 </tr>
 </tbody>
 </table>
-<p><code>body</code> or <code>body_field</code> must be provided.</p>
+<p><code>body</code> or <code>body_field</code> must be provided.
+<code>subject</code> or <code>subject_field</code> must be provided.</p>
 
 
 

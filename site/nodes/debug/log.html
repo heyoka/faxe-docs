@@ -950,6 +950,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/postgre_statement.html" class="md-nav__link">
+        Postgre statement
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1158,6 +1172,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../flow/collect_fields.html" class="md-nav__link">
+        Collect fields
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../flow/collect_unique.html" class="md-nav__link">
         Collect unique
       </a>
@@ -1354,6 +1382,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flowdata/unbatch.html" class="md-nav__link">
+        Unbatch
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1514,6 +1556,20 @@
     <li class="md-nav__item">
       <a href="../logic/eval.html" class="md-nav__link">
         Eval
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic/if.html" class="md-nav__link">
+        If
       </a>
     </li>
   
@@ -2252,7 +2308,12 @@
 
 
 <h1 id="the-log-node">The log node</h1>
-<p>Log incoming data to a file in json format (line by line)</p>
+<p>Log incoming data to a file in json format (line by line).</p>
+<p>That means, every incoming data-item will be converted to a json string and then appended as a new line to the given file.</p>
+<p>The node tries to ensure, that all parent directories for the specified file exist, trying to create them, if necessary.</p>
+<blockquote>
+<p>Note: Only single data_points will be written to the file. If the node is fed data_batch items, they will be unbatched to single data_points first.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">log(</span><span style="color: #e6db74">&#39;topics.txt&#39;</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
@@ -2269,7 +2330,7 @@
 <tbody>
 <tr>
 <td><em>[node]</em> file( <code>string</code> )</td>
-<td>valid writeable filepath</td>
+<td>valid writeable or creatable filepath</td>
 <td></td>
 </tr>
 </tbody>

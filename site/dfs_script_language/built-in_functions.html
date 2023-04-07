@@ -1056,6 +1056,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/database/postgre_statement.html" class="md-nav__link">
+        Postgre statement
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1207,6 +1221,20 @@
           Flow
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flow/collect_fields.html" class="md-nav__link">
+        Collect fields
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -1410,6 +1438,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/flowdata/unbatch.html" class="md-nav__link">
+        Unbatch
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1570,6 +1612,20 @@
     <li class="md-nav__item">
       <a href="../nodes/logic/eval.html" class="md-nav__link">
         Eval
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/logic/if.html" class="md-nav__link">
+        If
       </a>
     </li>
   
@@ -2849,52 +2905,57 @@
 <tbody>
 <tr>
 <td><code>from_json_string(String)</code> -&gt; faxe map or list</td>
-<td>convert a valid json string into faxe's internal data-structure</td>
+<td>Convert a valid json string into faxe's internal data-structure.</td>
 <td>from_json_string('{"a":"b"}')</td>
 </tr>
 <tr>
 <td><code>to_json_string(String)</code> -&gt; string</td>
-<td>convert faxe's internal data-structure into a json string</td>
+<td>Convert faxe's internal data-structure into a json string.</td>
 <td>to_json_string("data.struct")</td>
 </tr>
 <tr>
 <td><code>size(ListOrMap)</code> -&gt; integer</td>
-<td>get the number of entries in a list or map</td>
+<td>Get the number of entries in a list or map.</td>
 <td>size("data.lines")</td>
 </tr>
 <tr>
 <td><code>head(List)</code> -&gt; any</td>
-<td>returns the head, or the first element, of list List</td>
+<td>Returns the head, or the first element, of list List.</td>
 <td>head("data.lines")</td>
 </tr>
 <tr>
 <td><code>nth(Integer, List)</code> -&gt; any</td>
-<td>returns the nth element from list List, list indices start with 1</td>
+<td>Returns the nth element from list List, list indices start with 1.</td>
 <td>nth(N, "data.lines")</td>
 </tr>
 <tr>
+<td><code>list_append(List1, List2)</code> -&gt; list</td>
+<td>Returns a new list, which is made from the elements of List1 followed by the elements of List2.</td>
+<td>list_append(['a', 'b', 'c'], [1, 2, 4])</td>
+</tr>
+<tr>
 <td><code>list_unique(List)</code> -&gt; list</td>
-<td>returns a new list with only unique values from List</td>
+<td>Returns a new list with only unique values from List.</td>
 <td>list_unique("data.lines")</td>
 </tr>
 <tr>
 <td><code>list_join(List)</code> -&gt; string</td>
-<td>equivalent to list_join(',', List)</td>
+<td>Equivalent to list_join(',', List).</td>
 <td>list_join("data.lines")</td>
 </tr>
 <tr>
 <td><code>list_join(Separator, List)</code> -&gt; string</td>
-<td>join a list of strings with a separator string</td>
+<td>Join a list of strings with a separator string.</td>
 <td>list_join('-', "data.lines")</td>
 </tr>
 <tr>
 <td><code>list_of_strings(List)</code> -&gt; list</td>
-<td>convert every entry of a list to a string and return the list of strings</td>
+<td>Convert every entry of a list to a string and return the list of strings.</td>
 <td>list_of_strings("data.lines")</td>
 </tr>
 <tr>
 <td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>
-<td>check for list/set membership of a value, or when used with a map, check if Ele is a key in the map</td>
+<td>Check for list/set membership of a value, or when used with a map, check if Ele is a key in the map.</td>
 <td></td>
 </tr>
 <tr>
@@ -2904,17 +2965,17 @@
 </tr>
 <tr>
 <td><code>map_get(Key, Map)</code> -&gt; any</td>
-<td>get a value from a map, equivalent to <code>map_get(Key, Map, 'undefined')</code></td>
+<td>Get a value from a map, equivalent to <code>map_get(Key, Map, 'undefined')</code>.</td>
 <td>map_get("topic", '{"data/temp/val1": "temp"}')</td>
 </tr>
 <tr>
 <td><code>map_get(Key, Map, Default)</code> -&gt; any</td>
-<td>get a value from a map, <code>Default</code> is returned, if the key is not present in map</td>
+<td>Get a value from a map, <code>Default</code> is returned, if the key is not present in map.</td>
 <td>map_get("topic", '{"data/temp/val1": "temp"}', 'no_match')</td>
 </tr>
 <tr>
 <td><code>select(Key, Jsn)</code> -&gt; list</td>
-<td>Select every value with the path <code>Key</code> from a json-array</td>
+<td>Select every value with the path <code>Key</code> from a json-array.</td>
 <td>See description below.</td>
 </tr>
 <tr>
