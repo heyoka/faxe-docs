@@ -3,10 +3,7 @@ The if node
 
 Simple if-then-else logic.
 
-Almost everything you can do with this node, can also be done with an eval node, using the [if function](../../dfs_script_language/built-in_functions.md#special-if-function),
-except for one thing: 
-
-With this node it is possible to **not change or set a value**, when the if test result in false.
+Almost everything you can do with this node, can also be done with an [eval](eval.md) node, using the [if function](../../dfs_script_language/built-in_functions.md#special-if-function).
 
 Example
 -------
