@@ -184,14 +184,14 @@ Note that params `vars` and `as` must have the same length (if both are given).
 |-------------------------|-------------------------------|-----------------------------------------------------------------|
 | DB5,X0.1                | 	DB5.DBX0.1                   | Bit 1 of byte 0 of DB 5                                         |
 | DB23,B1 or DB23,BYTE1   | 	DB23.DBB1                    | 	Byte 1 (0-255) of DB 23                                        |
-| DB100,C2 or DB100,CHAR2 | 	DB100.DBB2                   | 	Byte 2 of DB 100 as a Char                                     |
+| DB100,C2 or DB100,CHAR2 | 	DB100.DBC2                   | 	Byte 2 of DB 100 as a Char                                     |
 | --                      | 	DB42.DBSINT36 or DB42.DBSI36 | 	Signed 8-bit integer at byte 36 of DB 42                       |
 | --                      | 	DB42.DBUSINT5 or DB42.DBUSI5 | 	Unsigned 8-bit integer at byte 5 of DB 42 (equivalent to BYTE) |
-| DB42,I3 or DB42,INT3    | 	DB42.DBW3                    | 	Signed 16-bit integer at byte 3 of DB 42                       |
+| DB42,I3 or DB42,INT3    | 	DB42.DBI3 or DB42.DBINT3     | 	Signed 16-bit integer at byte 3 of DB 42                       |
 | DB57,WORD4              | 	DB57.DBW4                    | Unsigned 16-bit integer at byte 4 of DB 57                      |
-| DB13,DI5 or DB13,DINT5  | 	DB13.DBD5                    | 	Signed 32-bit integer at byte 5 of DB 13                       |
-| DB19,DW6 or DB19,DWORD6 | 	DB19.DBD6                    | 	Unsigned 32-bit integer at byte 6 of DB 19                     |
-| DB21,DR7 or DB21,REAL7  | 	DB19.DBD6	                   | Floating point 32-bit number at byte 7 of DB 21                 |
+| DB13,DI5 or DB13,DINT5  | 	DB13.DBDI5  or DB13.DBDINT5  | 	Signed 32-bit integer at byte 5 of DB 13                       |
+| DB19,DW6 or DB19,DWORD6 | 	DB19.DBDW6                   | 	Unsigned 32-bit integer at byte 6 of DB 19                     |
+| DB21,DR7 or DB21,REAL7  | 	DB19.DBDR6 or DB19.DBR6	     | Floating point 32-bit number at byte 7 of DB 21                 |
 | DB2,S7.10*	             | `DB2.DBS7.10` (faxe only)	    | String of length 10 starting at byte 7 of DB 2                  |
 | I1.0 or E1.0            | 	I1.0 or E1.0                 | 	Bit 0 of byte 1 of input area                                  |
 | Q2.1 or A2.1            | 	Q2.1 or A2.1                 | 	Bit 1 of byte 2 of output area                                 |
@@ -199,7 +199,7 @@ Note that params `vars` and `as` must have the same length (if both are given).
 | IB4 or EB4              | 	IB4 or EB4                   | 	Byte 4 (0 -255) of input area                                  |
 | QB5 or AB5              | 	QB5 or AB5                   | 	Byte 5 (0 -255) of output area                                 |
 | MB6	                    | MB6	                          | Byte 6 (0 -255) of memory area                                  |
-| IC7 or EC7              | 	IB7 or EB7	                  | 	Byte 7 of input area as a Char                                 |
+| IC7 or EC7              | 	IB7 or EB7	                  | Byte 7 of input area as a Char                                  |
 | QC8 or AC8              | 	QB8 or AB8	                  | Byte 8 of output area as a Char                                 |
 | MC9	                    | MB9	                          | Byte 9 of memory area as a Char                                 |
 | II10 or EI10	           | IW10 or EW10	                 | Signed 16-bit integer at byte 10 of input area                  |
