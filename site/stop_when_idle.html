@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../flowdata/unbatch.html">
+        <link rel="prev" href="os_tuning.html">
       
       
-        <link rel="next" href="http_listen.html">
+        <link rel="next" href="dfs_examples/consume_data_rewrite_republish.html">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>Http get - Faxe</title>
+        <title>Auto stop feature - Faxe</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -42,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-http_get-node" class="md-skip">
+        <a href="#auto-stop-feature" class="md-skip">
           Skip to content
         </a>
       
@@ -83,9 +83,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="Faxe" class="md-header__button md-logo" aria-label="Faxe" data-md-component="logo">
+    <a href="index.html" title="Faxe" class="md-header__button md-logo" aria-label="Faxe" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  <img src="assets/images/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Http get
+              Auto stop feature
             
           </span>
         </div>
@@ -168,9 +168,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="Faxe" class="md-nav__button md-logo" aria-label="Faxe" data-md-component="logo">
+    <a href="index.html" title="Faxe" class="md-nav__button md-logo" aria-label="Faxe" data-md-component="logo">
       
-  <img src="../../assets/images/favicon.png" alt="logo">
+  <img src="assets/images/favicon.png" alt="logo">
 
     </a>
     Faxe
@@ -186,7 +186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         General
       </a>
     </li>
@@ -201,7 +201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration.html" class="md-nav__link">
+      <a href="configuration.html" class="md-nav__link">
         Configuration
       </a>
     </li>
@@ -216,7 +216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../custom_nodes.html" class="md-nav__link">
+      <a href="custom_nodes.html" class="md-nav__link">
         Custom nodes written in python
       </a>
     </li>
@@ -231,7 +231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datetime-parsing.html" class="md-nav__link">
+      <a href="datetime-parsing.html" class="md-nav__link">
         Timestamps and Datetime strings in Faxe
       </a>
     </li>
@@ -246,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../flow_concurrency.html" class="md-nav__link">
+      <a href="flow_concurrency.html" class="md-nav__link">
         Flow concurrency
       </a>
     </li>
@@ -261,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../introduction.html" class="md-nav__link">
+      <a href="introduction.html" class="md-nav__link">
         Intro
       </a>
     </li>
@@ -276,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../metrics.html" class="md-nav__link">
+      <a href="metrics.html" class="md-nav__link">
         Metrics, Connection status, Debug events and Logs
       </a>
     </li>
@@ -291,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../os_tuning.html" class="md-nav__link">
+      <a href="os_tuning.html" class="md-nav__link">
         Os tuning
       </a>
     </li>
@@ -304,11 +304,86 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../stop_when_idle.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Auto stop feature
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="stop_when_idle.html" class="md-nav__link md-nav__link--active">
         Auto stop feature
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+    <nav class="md-nav" aria-label="Example:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-does-idle-exactly-mean" class="md-nav__link">
+    What does idle exactly mean ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    Result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-feature" class="md-nav__link">
+    Using the feature
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -348,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_examples/consume_data_rewrite_republish.html" class="md-nav__link">
+      <a href="dfs_examples/consume_data_rewrite_republish.html" class="md-nav__link">
         Consume data rewrite republish
       </a>
     </li>
@@ -362,7 +437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_examples/fun_with_http.html" class="md-nav__link">
+      <a href="dfs_examples/fun_with_http.html" class="md-nav__link">
         Fun with http
       </a>
     </li>
@@ -376,7 +451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_examples/message_re-modeling.html" class="md-nav__link">
+      <a href="dfs_examples/message_re-modeling.html" class="md-nav__link">
         Message re modeling
       </a>
     </li>
@@ -390,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_examples/python_double.html" class="md-nav__link">
+      <a href="dfs_examples/python_double.html" class="md-nav__link">
         Python double
       </a>
     </li>
@@ -404,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_examples/read_modbus_publish_mqtt.html" class="md-nav__link">
+      <a href="dfs_examples/read_modbus_publish_mqtt.html" class="md-nav__link">
         Read modbus publish mqtt
       </a>
     </li>
@@ -418,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_examples/using_mem_node.html" class="md-nav__link">
+      <a href="dfs_examples/using_mem_node.html" class="md-nav__link">
         Using mem node
       </a>
     </li>
@@ -467,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_script_language/index.html" class="md-nav__link">
+      <a href="dfs_script_language/index.html" class="md-nav__link">
         Introducing the DFS Script Language
       </a>
     </li>
@@ -481,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_script_language/built-in_functions.html" class="md-nav__link">
+      <a href="dfs_script_language/built-in_functions.html" class="md-nav__link">
         Built in functions
       </a>
     </li>
@@ -495,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_script_language/lambda_expressions.html" class="md-nav__link">
+      <a href="dfs_script_language/lambda_expressions.html" class="md-nav__link">
         Lambda expressions
       </a>
     </li>
@@ -509,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_script_language/macros.html" class="md-nav__link">
+      <a href="dfs_script_language/macros.html" class="md-nav__link">
         Macros
       </a>
     </li>
@@ -523,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_script_language/node_connection.html" class="md-nav__link">
+      <a href="dfs_script_language/node_connection.html" class="md-nav__link">
         Node connection
       </a>
     </li>
@@ -537,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_script_language/script_expressions.html" class="md-nav__link">
+      <a href="dfs_script_language/script_expressions.html" class="md-nav__link">
         Script expressions
       </a>
     </li>
@@ -551,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dfs_script_language/tips_and_best_pratices.html" class="md-nav__link">
+      <a href="dfs_script_language/tips_and_best_pratices.html" class="md-nav__link">
         DFS Script Language tips and best pratices
       </a>
     </li>
@@ -571,16 +646,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
       
       
       
@@ -589,7 +662,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_12">
           <span class="md-nav__icon md-icon"></span>
           Nodes
@@ -602,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="nodes/index.html" class="md-nav__link">
         Faxe nodes
       </a>
     </li>
@@ -616,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../aggregate.html" class="md-nav__link">
+      <a href="nodes/aggregate.html" class="md-nav__link">
         Aggregate
       </a>
     </li>
@@ -630,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../collect.html" class="md-nav__link">
+      <a href="nodes/collect.html" class="md-nav__link">
         Collect
       </a>
     </li>
@@ -644,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../email.html" class="md-nav__link">
+      <a href="nodes/email.html" class="md-nav__link">
         Email
       </a>
     </li>
@@ -658,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mem.html" class="md-nav__link">
+      <a href="nodes/mem.html" class="md-nav__link">
         Mem
       </a>
     </li>
@@ -672,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python.html" class="md-nav__link">
+      <a href="nodes/python.html" class="md-nav__link">
         Python
       </a>
     </li>
@@ -686,7 +759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../stats.html" class="md-nav__link">
+      <a href="nodes/stats.html" class="md-nav__link">
         Stats
       </a>
     </li>
@@ -700,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tcp_send.html" class="md-nav__link">
+      <a href="nodes/tcp_send.html" class="md-nav__link">
         Tcp send
       </a>
     </li>
@@ -714,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../udp_send.html" class="md-nav__link">
+      <a href="nodes/udp_send.html" class="md-nav__link">
         Udp send
       </a>
     </li>
@@ -755,7 +828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data_collection/modbus.html" class="md-nav__link">
+      <a href="nodes/data_collection/modbus.html" class="md-nav__link">
         Modbus
       </a>
     </li>
@@ -769,7 +842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data_collection/modbus_read.html" class="md-nav__link">
+      <a href="nodes/data_collection/modbus_read.html" class="md-nav__link">
         Modbus read
       </a>
     </li>
@@ -783,7 +856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data_collection/s7read.html" class="md-nav__link">
+      <a href="nodes/data_collection/s7read.html" class="md-nav__link">
         S7read
       </a>
     </li>
@@ -797,7 +870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data_collection/tcp_receive.html" class="md-nav__link">
+      <a href="nodes/data_collection/tcp_receive.html" class="md-nav__link">
         Tcp receive
       </a>
     </li>
@@ -811,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data_collection/tcp_receive_line.html" class="md-nav__link">
+      <a href="nodes/data_collection/tcp_receive_line.html" class="md-nav__link">
         Tcp receive line
       </a>
     </li>
@@ -825,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data_collection/udp_receive.html" class="md-nav__link">
+      <a href="nodes/data_collection/udp_receive.html" class="md-nav__link">
         Udp receive
       </a>
     </li>
@@ -873,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/crate_out.html" class="md-nav__link">
+      <a href="nodes/database/crate_out.html" class="md-nav__link">
         Crate out
       </a>
     </li>
@@ -887,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/crate_query.html" class="md-nav__link">
+      <a href="nodes/database/crate_query.html" class="md-nav__link">
         Crate query
       </a>
     </li>
@@ -901,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/crate_query_cont.html" class="md-nav__link">
+      <a href="nodes/database/crate_query_cont.html" class="md-nav__link">
         Crate query cont
       </a>
     </li>
@@ -915,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/http_post_crate.html" class="md-nav__link">
+      <a href="nodes/database/http_post_crate.html" class="md-nav__link">
         Http post crate
       </a>
     </li>
@@ -929,7 +1002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/influx_out.html" class="md-nav__link">
+      <a href="nodes/database/influx_out.html" class="md-nav__link">
         Influx out
       </a>
     </li>
@@ -943,7 +1016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/mongo_query.html" class="md-nav__link">
+      <a href="nodes/database/mongo_query.html" class="md-nav__link">
         Mongo query
       </a>
     </li>
@@ -957,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/oracle_query.html" class="md-nav__link">
+      <a href="nodes/database/oracle_query.html" class="md-nav__link">
         Oracle query
       </a>
     </li>
@@ -971,7 +1044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/postgre_statement.html" class="md-nav__link">
+      <a href="nodes/database/postgre_statement.html" class="md-nav__link">
         Postgre statement
       </a>
     </li>
@@ -1019,7 +1092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/conn_status.html" class="md-nav__link">
+      <a href="nodes/debug/conn_status.html" class="md-nav__link">
         Conn status
       </a>
     </li>
@@ -1033,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/debug.html" class="md-nav__link">
+      <a href="nodes/debug/debug.html" class="md-nav__link">
         Debug
       </a>
     </li>
@@ -1047,7 +1120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/json_emitter.html" class="md-nav__link">
+      <a href="nodes/debug/json_emitter.html" class="md-nav__link">
         Json emitter
       </a>
     </li>
@@ -1061,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/log.html" class="md-nav__link">
+      <a href="nodes/debug/log.html" class="md-nav__link">
         Log
       </a>
     </li>
@@ -1075,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/metrics.html" class="md-nav__link">
+      <a href="nodes/debug/metrics.html" class="md-nav__link">
         Metrics
       </a>
     </li>
@@ -1089,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/value_emitter.html" class="md-nav__link">
+      <a href="nodes/debug/value_emitter.html" class="md-nav__link">
         Value emitter
       </a>
     </li>
@@ -1137,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flow/collect_fields.html" class="md-nav__link">
+      <a href="nodes/flow/collect_fields.html" class="md-nav__link">
         Collect fields
       </a>
     </li>
@@ -1151,7 +1224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flow/collect_unique.html" class="md-nav__link">
+      <a href="nodes/flow/collect_unique.html" class="md-nav__link">
         Collect unique
       </a>
     </li>
@@ -1165,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flow/combine.html" class="md-nav__link">
+      <a href="nodes/flow/combine.html" class="md-nav__link">
         Combine
       </a>
     </li>
@@ -1179,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flow/group_by.html" class="md-nav__link">
+      <a href="nodes/flow/group_by.html" class="md-nav__link">
         Group by
       </a>
     </li>
@@ -1193,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flow/group_union.html" class="md-nav__link">
+      <a href="nodes/flow/group_union.html" class="md-nav__link">
         Group union
       </a>
     </li>
@@ -1207,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flow/join.html" class="md-nav__link">
+      <a href="nodes/flow/join.html" class="md-nav__link">
         Join
       </a>
     </li>
@@ -1221,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flow/union.html" class="md-nav__link">
+      <a href="nodes/flow/union.html" class="md-nav__link">
         Union
       </a>
     </li>
@@ -1269,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flowdata/batch.html" class="md-nav__link">
+      <a href="nodes/flowdata/batch.html" class="md-nav__link">
         Batch
       </a>
     </li>
@@ -1283,7 +1356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flowdata/default.html" class="md-nav__link">
+      <a href="nodes/flowdata/default.html" class="md-nav__link">
         Default
       </a>
     </li>
@@ -1297,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flowdata/delete.html" class="md-nav__link">
+      <a href="nodes/flowdata/delete.html" class="md-nav__link">
         Delete
       </a>
     </li>
@@ -1311,7 +1384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flowdata/keep.html" class="md-nav__link">
+      <a href="nodes/flowdata/keep.html" class="md-nav__link">
         Keep
       </a>
     </li>
@@ -1325,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flowdata/rename.html" class="md-nav__link">
+      <a href="nodes/flowdata/rename.html" class="md-nav__link">
         Rename
       </a>
     </li>
@@ -1339,7 +1412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flowdata/set.html" class="md-nav__link">
+      <a href="nodes/flowdata/set.html" class="md-nav__link">
         Set
       </a>
     </li>
@@ -1353,7 +1426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flowdata/unbatch.html" class="md-nav__link">
+      <a href="nodes/flowdata/unbatch.html" class="md-nav__link">
         Unbatch
       </a>
     </li>
@@ -1372,16 +1445,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12_15" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12_15" >
       
       
       
@@ -1390,7 +1461,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_12_15_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_12_15_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_12_15">
           <span class="md-nav__icon md-icon"></span>
           Http
@@ -1401,59 +1472,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Http get
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="http_get.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="nodes/http/http_get.html" class="md-nav__link">
         Http get
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    Parameters
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1465,7 +1488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="http_listen.html" class="md-nav__link">
+      <a href="nodes/http/http_listen.html" class="md-nav__link">
         Http listen
       </a>
     </li>
@@ -1479,7 +1502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="http_post.html" class="md-nav__link">
+      <a href="nodes/http/http_post.html" class="md-nav__link">
         Http post
       </a>
     </li>
@@ -1527,7 +1550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/case.html" class="md-nav__link">
+      <a href="nodes/logic/case.html" class="md-nav__link">
         Case
       </a>
     </li>
@@ -1541,7 +1564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/change_detect.html" class="md-nav__link">
+      <a href="nodes/logic/change_detect.html" class="md-nav__link">
         Change detect
       </a>
     </li>
@@ -1555,7 +1578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/deadman.html" class="md-nav__link">
+      <a href="nodes/logic/deadman.html" class="md-nav__link">
         Deadman
       </a>
     </li>
@@ -1569,7 +1592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/eval.html" class="md-nav__link">
+      <a href="nodes/logic/eval.html" class="md-nav__link">
         Eval
       </a>
     </li>
@@ -1583,7 +1606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/if.html" class="md-nav__link">
+      <a href="nodes/logic/if.html" class="md-nav__link">
         If
       </a>
     </li>
@@ -1597,7 +1620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/sample.html" class="md-nav__link">
+      <a href="nodes/logic/sample.html" class="md-nav__link">
         Sample
       </a>
     </li>
@@ -1611,7 +1634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/shift.html" class="md-nav__link">
+      <a href="nodes/logic/shift.html" class="md-nav__link">
         Shift
       </a>
     </li>
@@ -1625,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/state_change.html" class="md-nav__link">
+      <a href="nodes/logic/state_change.html" class="md-nav__link">
         State change
       </a>
     </li>
@@ -1639,7 +1662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/state_count.html" class="md-nav__link">
+      <a href="nodes/logic/state_count.html" class="md-nav__link">
         State count
       </a>
     </li>
@@ -1653,7 +1676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/state_duration.html" class="md-nav__link">
+      <a href="nodes/logic/state_duration.html" class="md-nav__link">
         State duration
       </a>
     </li>
@@ -1667,7 +1690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/state_sequence.html" class="md-nav__link">
+      <a href="nodes/logic/state_sequence.html" class="md-nav__link">
         State sequence
       </a>
     </li>
@@ -1681,7 +1704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/time_diff.html" class="md-nav__link">
+      <a href="nodes/logic/time_diff.html" class="md-nav__link">
         Time diff
       </a>
     </li>
@@ -1695,7 +1718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/time_elapsed.html" class="md-nav__link">
+      <a href="nodes/logic/time_elapsed.html" class="md-nav__link">
         Time elapsed
       </a>
     </li>
@@ -1709,7 +1732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/triggered_timeout.html" class="md-nav__link">
+      <a href="nodes/logic/triggered_timeout.html" class="md-nav__link">
         Triggered timeout
       </a>
     </li>
@@ -1723,7 +1746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/value_diff.html" class="md-nav__link">
+      <a href="nodes/logic/value_diff.html" class="md-nav__link">
         Value diff
       </a>
     </li>
@@ -1737,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logic/where.html" class="md-nav__link">
+      <a href="nodes/logic/where.html" class="md-nav__link">
         Where
       </a>
     </li>
@@ -1785,7 +1808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../messaging/amqp_consume.html" class="md-nav__link">
+      <a href="nodes/messaging/amqp_consume.html" class="md-nav__link">
         Amqp consume
       </a>
     </li>
@@ -1799,7 +1822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../messaging/amqp_publish.html" class="md-nav__link">
+      <a href="nodes/messaging/amqp_publish.html" class="md-nav__link">
         Amqp publish
       </a>
     </li>
@@ -1813,7 +1836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../messaging/mqtt_amqp_bridge.html" class="md-nav__link">
+      <a href="nodes/messaging/mqtt_amqp_bridge.html" class="md-nav__link">
         Mqtt amqp bridge
       </a>
     </li>
@@ -1827,7 +1850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../messaging/mqtt_publish.html" class="md-nav__link">
+      <a href="nodes/messaging/mqtt_publish.html" class="md-nav__link">
         Mqtt publish
       </a>
     </li>
@@ -1841,7 +1864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../messaging/mqtt_subscribe.html" class="md-nav__link">
+      <a href="nodes/messaging/mqtt_subscribe.html" class="md-nav__link">
         Mqtt subscribe
       </a>
     </li>
@@ -1889,7 +1912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/avg.html" class="md-nav__link">
+      <a href="nodes/statistics/avg.html" class="md-nav__link">
         Avg
       </a>
     </li>
@@ -1903,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/bottom.html" class="md-nav__link">
+      <a href="nodes/statistics/bottom.html" class="md-nav__link">
         Bottom
       </a>
     </li>
@@ -1917,7 +1940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/count.html" class="md-nav__link">
+      <a href="nodes/statistics/count.html" class="md-nav__link">
         Count
       </a>
     </li>
@@ -1931,7 +1954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/count_change.html" class="md-nav__link">
+      <a href="nodes/statistics/count_change.html" class="md-nav__link">
         Count change
       </a>
     </li>
@@ -1945,7 +1968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/count_distinct.html" class="md-nav__link">
+      <a href="nodes/statistics/count_distinct.html" class="md-nav__link">
         Count distinct
       </a>
     </li>
@@ -1959,7 +1982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/distinct.html" class="md-nav__link">
+      <a href="nodes/statistics/distinct.html" class="md-nav__link">
         Distinct
       </a>
     </li>
@@ -1973,7 +1996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/elapsed.html" class="md-nav__link">
+      <a href="nodes/statistics/elapsed.html" class="md-nav__link">
         Elapsed
       </a>
     </li>
@@ -1987,7 +2010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/first.html" class="md-nav__link">
+      <a href="nodes/statistics/first.html" class="md-nav__link">
         First
       </a>
     </li>
@@ -2001,7 +2024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/geometric_mean.html" class="md-nav__link">
+      <a href="nodes/statistics/geometric_mean.html" class="md-nav__link">
         Geometric mean
       </a>
     </li>
@@ -2015,7 +2038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/kurtosis.html" class="md-nav__link">
+      <a href="nodes/statistics/kurtosis.html" class="md-nav__link">
         Kurtosis
       </a>
     </li>
@@ -2029,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/last.html" class="md-nav__link">
+      <a href="nodes/statistics/last.html" class="md-nav__link">
         Last
       </a>
     </li>
@@ -2043,7 +2066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/max.html" class="md-nav__link">
+      <a href="nodes/statistics/max.html" class="md-nav__link">
         Max
       </a>
     </li>
@@ -2057,7 +2080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/mean.html" class="md-nav__link">
+      <a href="nodes/statistics/mean.html" class="md-nav__link">
         Mean
       </a>
     </li>
@@ -2071,7 +2094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/median.html" class="md-nav__link">
+      <a href="nodes/statistics/median.html" class="md-nav__link">
         Median
       </a>
     </li>
@@ -2085,7 +2108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/min.html" class="md-nav__link">
+      <a href="nodes/statistics/min.html" class="md-nav__link">
         Min
       </a>
     </li>
@@ -2099,7 +2122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/percentile.html" class="md-nav__link">
+      <a href="nodes/statistics/percentile.html" class="md-nav__link">
         Percentile
       </a>
     </li>
@@ -2113,7 +2136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/stddev.html" class="md-nav__link">
+      <a href="nodes/statistics/stddev.html" class="md-nav__link">
         Stddev
       </a>
     </li>
@@ -2127,7 +2150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/sum.html" class="md-nav__link">
+      <a href="nodes/statistics/sum.html" class="md-nav__link">
         Sum
       </a>
     </li>
@@ -2141,7 +2164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/top.html" class="md-nav__link">
+      <a href="nodes/statistics/top.html" class="md-nav__link">
         Top
       </a>
     </li>
@@ -2155,7 +2178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/variance.html" class="md-nav__link">
+      <a href="nodes/statistics/variance.html" class="md-nav__link">
         Variance
       </a>
     </li>
@@ -2203,7 +2226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../window/win_clock.html" class="md-nav__link">
+      <a href="nodes/window/win_clock.html" class="md-nav__link">
         Win clock
       </a>
     </li>
@@ -2217,7 +2240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../window/win_event.html" class="md-nav__link">
+      <a href="nodes/window/win_event.html" class="md-nav__link">
         Win event
       </a>
     </li>
@@ -2231,7 +2254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../window/win_session.html" class="md-nav__link">
+      <a href="nodes/window/win_session.html" class="md-nav__link">
         Win session
       </a>
     </li>
@@ -2245,7 +2268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../window/win_time.html" class="md-nav__link">
+      <a href="nodes/window/win_time.html" class="md-nav__link">
         Win time
       </a>
     </li>
@@ -2294,8 +2317,35 @@
       
         <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
-    Example
+    Example:
   </a>
+  
+    <nav class="md-nav" aria-label="Example:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-does-idle-exactly-mean" class="md-nav__link">
+    What does idle exactly mean ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    Result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-feature" class="md-nav__link">
+    Using the feature
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2322,41 +2372,65 @@
 
 
 
-<h1 id="the-http_get-node">The http_get node</h1>
-<p>Since 0.16.0</p>
-<p>Requests data from a specified HTTP(s) endpoint via the GET method.
-If any errors occur during the request, the node will attempt to retry sending.</p>
-<p>Request are made periodically, if <code>every</code> is given and/or triggered via incoming data-items.</p>
-<h2 id="example">Example</h2>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">http_get</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;127.0.0.1&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8081</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">path</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/v1/stats/faxe&#39;</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">every</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">4s</span><span style="color: #f8f8f2">)</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">align</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;get_response&#39;</span><span style="color: #f8f8f2">)</span> 
+<h1 id="auto-stop-feature">Auto stop feature</h1>
+<blockquote>
+<p>Since version 1.1.0</p>
+</blockquote>
+<p>Normally a flow in faxe is supposed to run 24/7/365 and forever, but sometimes it is desirable to stop a flow under special conditions.</p>
+<p>Faxe has a feature called <code>stop when idle</code>, that can be used in every flow and from every node.</p>
+<h3 id="example">Example:</h3>
+<p>Suppose we have the following simple flow, that consumes from a <a href="https://rabbitmq.com">RabbitMQ Broker</a> 
+and writes data into a <a href="https://crate.io">CrateDB</a> database:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_consume()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;deves-amqp-cluster1.internal&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bindings</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my.routing.key&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exchange</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;x_xchange&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queue</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;faxe_test&#39;</span><span style="color: #f8f8f2">)</span>
+
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">batch(</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">5s</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #a6e22e">crate_out</span><span style="color: #f8f8f2">()</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">table</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;customer1&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;stream&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;measurement&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;stream&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;measurement&#39;</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
 
-<p>Sends a GET request every 4 seconds to the specified host with the URI path <code>/v1/stats/faxe</code>.
-Response data will be interpreted as JSON and 'get_response' will be the root object for the resulting data-point.</p>
-<p>Example in json format</p>
-<p>Http response body:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">2233</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #e6db74">&quot;takahashu&quot;</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;mode&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">123</span><span style="color: #f8f8f2">}</span>
+<p>Say we know, that this flow will only get data for a limited amount of time and after that time, we want to stop the flow
+to save resources.
+What we do not know, is the exact time when we do not get any more data to write to the database.</p>
+<p>The <code>stop when idle</code> feature can help us here:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_consume()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;deves-amqp-cluster1.internal&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bindings</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my.routing.key&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exchange</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;x_xchange&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queue</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;faxe_test&#39;</span><span style="color: #f8f8f2">)</span>
+
+
+<span style="color: #f92672">|</span><span style="color: #f8f8f2">batch(</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">timeout</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">5s</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">|</span><span style="color: #a6e22e">crate_out</span><span style="color: #f8f8f2">()</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">table</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;customer1&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">db_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;stream&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;measurement&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">faxe_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;stream&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;measurement&#39;</span><span style="color: #f8f8f2">)</span> 
+
+<span style="color: #75715e">%% we use the stop when idle feature here</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">_stop_idle</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">_idle_time</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">3m</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>Resulting data-point</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">1629812164152</span><span style="color: #f8f8f2">, </span>
-<span style="color: #f8f8f2">  </span><span style="color: #f92672">&quot;get_response&quot;</span><span style="color: #f8f8f2">:  </span>
-<span style="color: #f8f8f2">      {</span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">2233</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #e6db74">&quot;takahashu&quot;</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;mode&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">123</span><span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</code></pre></div>
-
-<p>Without the <code>as</code> parameter, the resulting data-point would be:</p>
-<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">1629812164152</span><span style="color: #f8f8f2">, </span>
-<span style="color: #f8f8f2">  </span><span style="color: #f92672">&quot;id&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">2233</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #e6db74">&quot;takahashu&quot;</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;mode&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">123</span>
-<span style="color: #f8f8f2">}</span>
-</code></pre></div>
-
+<p>When the <code>_stop_idle</code> parameter is <strong>true</strong> for any node in a flow (could be used in more than on node in a flow), 
+the nodes base process will check periodically, if the node is idle already for the given amount of time (3 minutes in the above example).</p>
+<h4 id="what-does-idle-exactly-mean">What does idle exactly mean ?</h4>
+<p>A node is idle, if we do not see data going in or out of a node for a given amount of time.</p>
+<h4 id="result">Result</h4>
+<p>If a node, where this feature is used (_stop_idle is set to true), is idle for the amount of time, it will tell the dataflow system to stop
+the flow it is part of. </p>
+<h4 id="using-the-feature">Using the feature</h4>
+<p>As mentioned above, this feature can be used on any node in a flow, including <a href="custom_nodes.html">custom node written in python</a>.
+If more than one node in a flow has _stop_idle set to true, the first node, that detects that it is idle, will cause the whole flow to stop.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -2368,59 +2442,14 @@ Response data will be interpreted as JSON and 'get_response' will be the root ob
 </thead>
 <tbody>
 <tr>
-<td>host( <code>string</code> )</td>
-<td>hostname or ip address of endpoint</td>
-<td></td>
+<td>_stop_idle(<code>boolean</code>)</td>
+<td>if set to true, the node will periodically check, if it was idle for at least the time given with <code>_idle_time</code></td>
+<td>false</td>
 </tr>
 <tr>
-<td>port( <code>integer</code> )</td>
-<td>port number</td>
-<td>80</td>
-</tr>
-<tr>
-<td>tls( <code>is_set</code> )</td>
-<td>whether to use tls ie. https</td>
-<td>false (not set)</td>
-</tr>
-<tr>
-<td>user( <code>string</code> )</td>
-<td>username for Basic Authentication</td>
-<td>undefined</td>
-</tr>
-<tr>
-<td>pass( <code>string</code> )</td>
-<td>password for Basic Authentication</td>
-<td>undefined</td>
-</tr>
-<tr>
-<td>path( <code>string</code> )</td>
-<td>URI path of the http endpoint</td>
-<td>'/'</td>
-</tr>
-<tr>
-<td>every( <code>duration</code> )</td>
-<td>interval at which requests are made</td>
-<td>undefined</td>
-</tr>
-<tr>
-<td>align( <code>is_set</code> )</td>
-<td>align read intervals according to every</td>
-<td>false (not set)</td>
-</tr>
-<tr>
-<td>payload_type ( <code>string</code> )</td>
-<td>how to interpert the response body, <code>'json'</code> or <code>'plain'</code></td>
-<td>'json'</td>
-</tr>
-<tr>
-<td>retries( <code>integer</code> )</td>
-<td>number of retries, if request failed</td>
-<td>2</td>
-</tr>
-<tr>
-<td>as( <code>string</code> )</td>
-<td>Root-path for the resulting data-point. If not given and <code>payload-type</code> is <code>plain</code>, defaults to 'data'.</td>
-<td>undefined</td>
+<td>_idle_time(<code>duration</code>)</td>
+<td>amount of time a node must be idle, before it initiates a stop procedure for the flow it is part of</td>
+<td>5m</td>
 </tr>
 </tbody>
 </table>
@@ -2461,10 +2490,10 @@ Response data will be interpreted as JSON and 'get_response' will be the root ob
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      <script src="assets/javascripts/bundle.6df46069.min.js"></script>
       
     
   </body>
