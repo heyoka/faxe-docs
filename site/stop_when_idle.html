@@ -2426,11 +2426,11 @@ the nodes base process will check periodically, if the node is idle already for 
 <h4 id="what-does-idle-exactly-mean">What does idle exactly mean ?</h4>
 <p>A node is idle, if we do not see data going in or out of a node for a given amount of time.</p>
 <h4 id="result">Result</h4>
-<p>If a node, where this feature is used (_stop_idle is set to true), is idle for the amount of time, it will tell the dataflow system to stop
-the flow it is part of. </p>
+<p>If a node, where this feature is used (<code>_stop_idle</code> is set to true), is idle for the amount of time, it will tell the dataflow system to stop
+the flow it is part of. The stop behavior is equivalent to <a href="./faxe_rest_api.html#/paths/~1task~1stop~1%7Btask_id%7D~1true/get">this stop call</a> via faxe's REST API.</p>
 <h4 id="using-the-feature">Using the feature</h4>
-<p>As mentioned above, this feature can be used on any node in a flow, including <a href="custom_nodes.html">custom node written in python</a>.
-If more than one node in a flow has _stop_idle set to true, the first node, that detects that it is idle, will cause the whole flow to stop.</p>
+<p>As mentioned above, this feature can be used on any node in a flow, including <a href="custom_nodes.html">custom nodes written in python</a>.
+If more than one node in a flow has <code>_stop_idle</code> set to true, the first node, that detects that it is idle, will cause the whole flow to stop.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
