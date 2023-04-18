@@ -5,17 +5,15 @@ _`Experimental`_ since vs. 1.0.13
 
 A very simple version of the collect node.
 
-For every given field in `fields`, the node adds this field (and latest value seen) to an output data-point.
-If there is a field already in the internal data-point, it will be overwritten with the value of the same field in the current data item.
-If the field is not present in the current incoming data item, it will be left untouched in the internal point.
+From every incoming data-point collect the fields given, potentially overriding the value seen before for any field.
+The node will keep the value for a field, when an incoming data-point does not have this field present.
 
-If `default` is given, and the node has never seen an incoming item with a specific field, it will get the default as value.
-Otherwise, if default is not given, the specific field will not be included in the output item, as long as there was no item seen with the specific field present.
+If `default` is given, every field that has not been seen yet, will have the default value.
+That means, that, if a default value is given, the output will always include every field from the given list.
+Otherwise, if default is not given, every field not seen, will not be present in the output data-point.
 
-The _timestamp_, _delivery_tag_ and all _tags_ from the current incoming data-point will be used in the output point.
-
-The resulting data-point at max include all the fields specified with the `fields` parameter.
-If default is given, the resulting data-point will have exactly this fields on all emits.
+_timestamp_, _delivery_tag_ and all _tags_ from the current incoming data-point will be used for the output data-point.
+ 
 
  
 Example
@@ -23,21 +21,20 @@ Example
 ```dfs  
 def j1 =
 |json_emitter(
-'{"hallo":"ho"}',
-'{"ballo":"du", "sim": 3}',
-'{"rallo":"su"}',
-'{"gallo":"mu", "rallo": "srrt", "dim": 232.3}',
-'{"mallo":"ffu"}',
-'{"hallo":"hott"}',
-'{"ballo":"dutt", "sim": 3}',
-'{"rallo":"sutt", "rallo": "srrt", "dim": 222.3}',
-'{"gallo":"mutt"}',
-'{"mallo":"tutt"}'
+    '{"hallo":"ho"}',
+    '{"ballo":"du", "sim": 3}',
+    '{"rallo":"su"}',
+    '{"gallo":"mu", "rallo": "srrt", "dim": 232.3}',
+    '{"mallo":"ffu"}',
+    '{"hallo":"hott"}',
+    '{"ballo":"dutt", "sim": 3}',
+    '{"rallo":"sutt", "rallo": "srrt", "dim": 222.3}',
+    '{"gallo":"mutt"}',
+    '{"mallo":"tutt"}'
 )
 .select('rand')
 
-|collect_fields()
-.fields('hallo', 'mallo', 'gallo', 'trimm')
+|collect_fields('hallo', 'mallo', 'gallo', 'trimm') 
 .default(0.0) 
 
 ```
@@ -65,8 +62,8 @@ This is what the first emitted data-point will look like:
 Parameters
 ----------
 
-| Parameter                     | Description                                                                                                                                                       | Default          |
-|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| fields( `string_list` )       | The list of field names (paths), that make up the resulting data point.                                                                                           | from config file |
-| default( `any` )              | Default value for any field, that has not be seen yet. If not given and there has not yet been a value for a field, the field is not included in the output item. | undefined        | 
+| Parameter                        | Description                                                                                                                                                       | Default   |
+|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| _[node]_ fields( `string_list` ) | The list of field names (paths) to collect.                                                                                                                       |           |
+| default( `any` )                 | Default value for any field, that has not be seen yet. If not given and there has not yet been a value for a field, the field is not included in the output item. | undefined | 
  

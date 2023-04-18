@@ -2325,32 +2325,29 @@
 <h1 id="the-collect_fields-node">The collect_fields node</h1>
 <p><em><code>Experimental</code></em> since vs. 1.0.13</p>
 <p>A very simple version of the collect node.</p>
-<p>For every given field in <code>fields</code>, the node adds this field (and latest value seen) to an output data-point.
-If there is a field already in the internal data-point, it will be overwritten with the value of the same field in the current data item.
-If the field is not present in the current incoming data item, it will be left untouched in the internal point.</p>
-<p>If <code>default</code> is given, and the node has never seen an incoming item with a specific field, it will get the default as value.
-Otherwise, if default is not given, the specific field will not be included in the output item, as long as there was no item seen with the specific field present.</p>
-<p>The <em>timestamp</em>, <em>delivery_tag</em> and all <em>tags</em> from the current incoming data-point will be used in the output point.</p>
-<p>The resulting data-point at max include all the fields specified with the <code>fields</code> parameter.
-If default is given, the resulting data-point will have exactly this fields on all emits.</p>
+<p>From every incoming data-point collect the fields given, potentially overriding the value seen before for any field.
+The node will keep the value for a field, when an incoming data-point does not have this field present.</p>
+<p>If <code>default</code> is given, every field that has not been seen yet, will have the default value.
+That means, that, if a default value is given, the output will always include every field from the given list.
+Otherwise, if default is not given, every field not seen, will not be present in the output data-point.</p>
+<p><em>timestamp</em>, <em>delivery_tag</em> and all <em>tags</em> from the current incoming data-point will be used for the output data-point.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">j1</span> <span style="color: #f92672">=</span>
 <span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span>
-<span style="color: #e6db74">&#39;{&quot;hallo&quot;:&quot;ho&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;ballo&quot;:&quot;du&quot;, &quot;sim&quot;: 3}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;rallo&quot;:&quot;su&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;gallo&quot;:&quot;mu&quot;, &quot;rallo&quot;: &quot;srrt&quot;, &quot;dim&quot;: 232.3}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;mallo&quot;:&quot;ffu&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;hallo&quot;:&quot;hott&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;ballo&quot;:&quot;dutt&quot;, &quot;sim&quot;: 3}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;rallo&quot;:&quot;sutt&quot;, &quot;rallo&quot;: &quot;srrt&quot;, &quot;dim&quot;: 222.3}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;gallo&quot;:&quot;mutt&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
-<span style="color: #e6db74">&#39;{&quot;mallo&quot;:&quot;tutt&quot;}&#39;</span>
+    <span style="color: #e6db74">&#39;{&quot;hallo&quot;:&quot;ho&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;ballo&quot;:&quot;du&quot;, &quot;sim&quot;: 3}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;rallo&quot;:&quot;su&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;gallo&quot;:&quot;mu&quot;, &quot;rallo&quot;: &quot;srrt&quot;, &quot;dim&quot;: 232.3}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;mallo&quot;:&quot;ffu&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;hallo&quot;:&quot;hott&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;ballo&quot;:&quot;dutt&quot;, &quot;sim&quot;: 3}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;rallo&quot;:&quot;sutt&quot;, &quot;rallo&quot;: &quot;srrt&quot;, &quot;dim&quot;: 222.3}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;gallo&quot;:&quot;mutt&quot;}&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;{&quot;mallo&quot;:&quot;tutt&quot;}&#39;</span>
 <span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;rand&#39;</span><span style="color: #f8f8f2">)</span>
 
-<span style="color: #f92672">|</span><span style="color: #a6e22e">collect_fields</span><span style="color: #f8f8f2">()</span>
-<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;hallo&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;mallo&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;gallo&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;trimm&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">|</span><span style="color: #a6e22e">collect_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;hallo&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;mallo&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;gallo&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;trimm&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.default(</span><span style="color: #ae81ff">0.0</span><span style="color: #f8f8f2">)</span> 
 </code></pre></div>
 
@@ -2377,9 +2374,9 @@ If default is given, the resulting data-point will have exactly this fields on a
 </thead>
 <tbody>
 <tr>
-<td>fields( <code>string_list</code> )</td>
-<td>The list of field names (paths), that make up the resulting data point.</td>
-<td>from config file</td>
+<td><em>[node]</em> fields( <code>string_list</code> )</td>
+<td>The list of field names (paths) to collect.</td>
+<td></td>
 </tr>
 <tr>
 <td>default( <code>any</code> )</td>

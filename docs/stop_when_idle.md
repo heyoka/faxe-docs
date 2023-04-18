@@ -65,16 +65,16 @@ the nodes base process will check periodically, if the node is idle already for 
 
 #### What does idle exactly mean ?
 
-A node is idle, if we do not see data going in or out of a node for a given amount of time.
+A node is idle, if we do not see any data going in or out for a given amount of time.
 
 #### Result
 If a node, where this feature is used (`_stop_idle` is set to true), is idle for the amount of time, it will tell the dataflow system to stop
-the flow it is part of. The stop behavior is equivalent to [this stop call](./faxe_rest_api.html#/paths/~1task~1stop~1%7Btask_id%7D~1true/get) via faxe's REST API.
+the flow it is part of. The stop behavior is equivalent to [this stop call](./faxe_rest_api.html#/paths/~1task~1stop~1%7Btask_id%7D~1true/get) (permanently stopping a flow) via faxe's REST API.
 
 #### Using the feature
 
 As mentioned above, this feature can be used on any node in a flow, including [custom nodes written in python](custom_nodes.md).
-If more than one node in a flow has `_stop_idle` set to true, the first node, that detects that it is idle, will cause the whole flow to stop.
+If more than one node in a flow has `_stop_idle` set to **true**, the first node that detects it is idle, will cause the whole flow to stop.
 
 
 Parameters
