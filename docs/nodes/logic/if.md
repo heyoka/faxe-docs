@@ -3,6 +3,8 @@ The if node
 
 Simple if-then-else logic.
 
+> Note: If you want to filter data-items from a stream of data, use the [where node](where.md).
+
 Almost everything you can do with this node, can also be done with an [eval](eval.md) node, using the [if function](../../dfs_script_language/built-in_functions.md#special-if-function).
 
 Example
