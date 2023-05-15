@@ -30,7 +30,7 @@ and containing an unsigned integer in big-endian byte order.
 
     `Length_Header:16/integer, Data:{Length_Header}/binary`
 
-_`Experimental`_ since `0.19.19`: packet now can also have the value 'line', if this is given, data from the socket will be
+Since `0.19.19`: packet now can also have the value 'line', if this is given, data from the socket will be
 treated as separated by newline characters (\n, \r\n).
 
 -----
@@ -76,11 +76,11 @@ def parser = 'parser_robot_plc_v1'
 Parameters
 ----------
 
-| Parameter           | Description                                                | Default         |
-|---------------------|------------------------------------------------------------|-----------------|
-| ip( `string` )      | ip or hostname for the tcp peer                            | undefined       |
-| port( `integer` )   | port number                                                |                 |
-| packet( `integer` ) | packet length                                              | 2               |
-| parser( `string` )  | name of parser to use for data conversion, see table below | undefined       |
-| as( `string` )      | name of the field for parsed data                          | undefined       |
-| changed( is_set )   | whether to check for changed data                          | false (not set) |
+| Parameter                      | Description                                | Default         |
+|--------------------------------|--------------------------------------------|-----------------|
+| ip( `string` )                 | ip or hostname for the tcp peer            | undefined       |
+| port( `integer` )              | port number                                |                 |
+| packet( `integer`  or 'line' ) | packet length/type                         | 2               |
+| parser( `string` )             | name of parser to use for data conversion  | undefined       |
+| as( `string` )                 | name of the field for parsed data          | undefined       |
+| changed( is_set )              | whether to check for changed data          | false (not set) |

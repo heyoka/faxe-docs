@@ -2337,6 +2337,10 @@
 
 
 <h1 id="the-tcp_receive_line-node">The tcp_receive_line node</h1>
+<blockquote>
+<p>deprecated since 1.0.0, use <a href="tcp_receive.html">tcp_recv</a> with <code>packet</code> type <strong>'line'</strong> instead.</p>
+</blockquote>
+<hr />
 <p>This node connects to a tcp endpoint and awaits data in a <code>line separated</code> special format, 
 which is defined by the <code>parser</code> parameter.
 The parser will then try to convert the data to faxe's internal format and emit the result.</p>

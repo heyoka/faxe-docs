@@ -2371,7 +2371,7 @@ and containing an unsigned integer in big-endian byte order.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code>`Length_Header:16/integer, Data:{Length_Header}/binary`
 </code></pre></div>
 
-<p><em><code>Experimental</code></em> since <code>0.19.19</code>: packet now can also have the value 'line', if this is given, data from the socket will be
+<p>Since <code>0.19.19</code>: packet now can also have the value 'line', if this is given, data from the socket will be
 treated as separated by newline characters (\n, \r\n).</p>
 <hr />
 <p>If the <code>changed</code> option is given, the node will only emit on changed values (crc32 checksum comparison).</p>
@@ -2423,13 +2423,13 @@ packet boundaries and will try to json-decode incoming data.</p>
 <td></td>
 </tr>
 <tr>
-<td>packet( <code>integer</code> )</td>
-<td>packet length</td>
+<td>packet( <code>integer</code>  or 'line' )</td>
+<td>packet length/type</td>
 <td>2</td>
 </tr>
 <tr>
 <td>parser( <code>string</code> )</td>
-<td>name of parser to use for data conversion, see table below</td>
+<td>name of parser to use for data conversion</td>
 <td>undefined</td>
 </tr>
 <tr>

@@ -3057,17 +3057,17 @@ The second example selects the first name with 'color' <code>orange</code> and t
 </thead>
 <tbody>
 <tr>
-<td><code>defined(Key)</code> -&gt; bool</td>
+<td><code>defined(Key::string)</code> -&gt; bool</td>
 <td>whether the given Key is defined in the current data-item</td>
 <td></td>
 </tr>
 <tr>
-<td><code>undefined(Key)</code> -&gt; bool</td>
+<td><code>undefined(Key::string)</code> -&gt; bool</td>
 <td>whether the given Key is NOT defined in the current data-item</td>
 <td></td>
 </tr>
 <tr>
-<td><code>empty(Key)</code> -&gt; bool</td>
+<td><code>empty(Key::string)</code> -&gt; bool</td>
 <td>whether the given Key points to an empty or not defined value, empty means an empty string or an empty list or tuple</td>
 <td>empty("data.topic") -&gt; false</td>
 </tr>
@@ -3077,12 +3077,12 @@ The second example selects the first name with 'color' <code>orange</code> and t
 <td>topic_part('this/is/mytopic', 2) -&gt; 'is'</td>
 </tr>
 <tr>
-<td><code>random(N)</code> -&gt; integer</td>
+<td><code>random(N::int)</code> -&gt; integer</td>
 <td>generate a random integer uniformly distributed between 1 and N</td>
 <td></td>
 </tr>
 <tr>
-<td><code>random(N, M)</code> -&gt; integer</td>
+<td><code>random(N::int, M::int)</code> -&gt; integer</td>
 <td>generate a random integer uniformly distributed between N and M</td>
 <td></td>
 </tr>
@@ -3102,6 +3102,16 @@ The second example selects the first name with 'color' <code>orange</code> and t
 <td></td>
 </tr>
 <tr>
+<td><code>base64_encode(String)</code> -&gt; string</td>
+<td>Encode a string to base64 format.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>base64_decode(String)</code> -&gt; string</td>
+<td>Decode a base64 encoded string to a string.</td>
+<td></td>
+</tr>
+<tr>
 <td><code>crc32(String)</code> -&gt; string</td>
 <td>Computes the crc32 (IEEE 802.3 style) checksum for the given string.</td>
 <td></td>
@@ -3115,6 +3125,16 @@ The second example selects the first name with 'color' <code>orange</code> and t
 <td><code>uuidv4()</code> -&gt; string</td>
 <td>Get a strong v4 UUID string (using crypto/openssl)</td>
 <td></td>
+</tr>
+<tr>
+<td><code>env(Key::string)</code> -&gt; string | false</td>
+<td>Get the value from an ENV key, if not found, returns <code>false</code>. Note that the value returned (except false) is always as string.</td>
+<td>env('FAXE_MQTT_HOST') -&gt; '127.0.0.1'</td>
+</tr>
+<tr>
+<td><code>env(Key::string, Default)</code> -&gt; string | any</td>
+<td>Get the value from an ENV key, if not found, returns <code>Default</code>. Note that the value returned (except Default) is always as string.</td>
+<td>env('FAXE_MQTT_HOS', '127.0.0.1') -&gt; '127.0.0.1'</td>
 </tr>
 <tr>
 <td><code>mem</code> values are set with the <a href="../nodes/mem.html">mem node</a></td>

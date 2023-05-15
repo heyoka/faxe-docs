@@ -1,6 +1,13 @@
 The tcp_receive_line node
 =====================
 
+> deprecated since 1.0.0, use [tcp_recv](tcp_receive.md) with `packet` type **'line'** instead.
+
+
+
+------------------------------------------------------------------------------------
+
+
 This node connects to a tcp endpoint and awaits data in a `line separated` special format, 
 which is defined by the `parser` parameter.
 The parser will then try to convert the data to faxe's internal format and emit the result.
