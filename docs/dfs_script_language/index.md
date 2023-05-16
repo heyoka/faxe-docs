@@ -108,6 +108,10 @@ DFS recognizes a view basic data types, the type of the literal will be interpre
 | lambda    | A lambda expression. See [extra section](lambda_expressions.md) in this documentation.                                                                                   | lambda: str_downcase('BIG')                                                            |
 | list      | A list of above simple types.                                                                                                                                            | ['a', 'b'] [1, 456,  4536]                                                             |
 
+#### Json strings
+A bunch of faxe's [built-in lambda functions](built-in_functions.md#lists-and-maps-jsn) and some nodes ([json_emitter](../nodes/debug/json_emitter.md) for example) can directly work with json strings, in faxe, we
+call them `jsn`.
+
 ### Duration literals 
 
 Duration literals define a span of time. 

@@ -2909,6 +2909,23 @@
 </tbody>
 </table>
 <h3 id="lists-and-maps-jsn">Lists and Maps (jsn)</h3>
+<p>Functions marked with a star (*), can work directly on json strings representing lists or objects (maps in faxe).
+For example, you can feed a json object string to <code>map_get</code> to get a value out of the json object: </p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">json_map</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;{&quot;key1&quot;: &quot;value1&quot;, &quot;key2&quot;: &quot;value2&quot;}&#39;</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">key1_val</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">e</span><span style="color: #f8f8f2">:</span><span style="color: #a6e22e">map_get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;key1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">json_map</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% &#39;value1&#39;</span>
+</code></pre></div>
+
+<p>To use a json string in other functions listed here, you have to convert them to faxe's internal format first, using
+<code>from_json_string</code>:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">json_map</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;{&quot;key1&quot;: &quot;value1&quot;, &quot;key2&quot;: &quot;value2&quot;, &quot;key3&quot;: &quot;value3&quot;}&#39;</span>
+<span style="color: #75715e">%% first convert to faxe&#39;s internal format</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">internal_map</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">e</span><span style="color: #f8f8f2">:</span> <span style="color: #a6e22e">from_json_string</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">json_map</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">has_key3</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">e</span><span style="color: #f8f8f2">:</span><span style="color: #a6e22e">member</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;key3&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">internal_map</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e">%% true   </span>
+</code></pre></div>
+
 <table>
 <thead>
 <tr>
@@ -2919,7 +2936,7 @@
 </thead>
 <tbody>
 <tr>
-<td><code>from_json_string(String)</code> -&gt; faxe map or list</td>
+<td>*<code>from_json_string(String)</code> -&gt; faxe map or list</td>
 <td>Convert a valid json string into faxe's internal data-structure.</td>
 <td>from_json_string('{"a":"b"}')</td>
 </tr>
@@ -2979,42 +2996,42 @@
 <td></td>
 </tr>
 <tr>
-<td><code>map_get(Key, Map)</code> -&gt; any</td>
+<td>*<code>map_get(Key, Map)</code> -&gt; any</td>
 <td>Get a value from a map, equivalent to <code>map_get(Key, Map, 'undefined')</code>.</td>
 <td>map_get("topic", '{"data/temp/val1": "temp"}')</td>
 </tr>
 <tr>
-<td><code>map_get(Key, Map, Default)</code> -&gt; any</td>
+<td>*<code>map_get(Key, Map, Default)</code> -&gt; any</td>
 <td>Get a value from a map, <code>Default</code> is returned, if the key is not present in map.</td>
 <td>map_get("topic", '{"data/temp/val1": "temp"}', 'no_match')</td>
 </tr>
 <tr>
-<td><code>select(Key, Jsn)</code> -&gt; list</td>
+<td>*<code>select(Key, Jsn)</code> -&gt; list</td>
 <td>Select every value with the path <code>Key</code> from a json-array.</td>
 <td>See description below.</td>
 </tr>
 <tr>
-<td><code>select(Key, Where, Jsn)</code> -&gt; list</td>
+<td>*<code>select(Key, Where, Jsn)</code> -&gt; list</td>
 <td>Select every value with the path <code>Key</code> and conditions <code>Where</code> from a json-array. Elements that do not meet the given conditions are filtered out.</td>
 <td>See description below.</td>
 </tr>
 <tr>
-<td><code>select_all(Key, Where, Jsn)</code> -&gt; list</td>
+<td>*<code>select_all(Key, Where, Jsn)</code> -&gt; list</td>
 <td>Select every value with the path <code>Key</code> and conditions <code>Where</code> from a json-array. The list of <code>Where</code> conditions are <code>OR</code>ed in this case, so there is a select operation for every entry in <code>Where</code></td>
 <td>See description below.</td>
 </tr>
 <tr>
-<td><code>select_first(Key, Jsn)</code> -&gt; any</td>
+<td>*<code>select_first(Key, Jsn)</code> -&gt; any</td>
 <td>Select the first value with the path <code>Key</code> from a json-array.</td>
 <td>See description below.</td>
 </tr>
 <tr>
-<td><code>select_first(Key, Where, Jsn)</code> -&gt; any</td>
+<td>*<code>select_first(Key, Where, Jsn)</code> -&gt; any</td>
 <td>Select the first value with the path <code>Key</code> and conditions <code>Where</code> from a json-array.</td>
 <td>See description below.</td>
 </tr>
 <tr>
-<td><code>select_any(Key, Where, Jsn)</code> -&gt; any</td>
+<td>*<code>select_any(Key, Where, Jsn)</code> -&gt; any</td>
 <td>Select the first value with the path <code>Key</code> that is found with any of the <code>Where</code> conditions from a json-array.</td>
 <td>See description below.</td>
 </tr>
@@ -3128,13 +3145,18 @@ The second example selects the first name with 'color' <code>orange</code> and t
 </tr>
 <tr>
 <td><code>env(Key::string)</code> -&gt; string | false</td>
-<td>Get the value from an ENV key, if not found, returns <code>false</code>. Note that the value returned (except false) is always as string.</td>
+<td>Get the value from an OS-ENV variable, if not found, returns <code>false</code>. Note that the value returned (except false) is always as string.</td>
 <td>env('FAXE_MQTT_HOST') -&gt; '127.0.0.1'</td>
 </tr>
 <tr>
 <td><code>env(Key::string, Default)</code> -&gt; string | any</td>
-<td>Get the value from an ENV key, if not found, returns <code>Default</code>. Note that the value returned (except Default) is always as string.</td>
+<td>Get the value from an OS-ENV variable, if not found, returns <code>Default</code>. Note that the value returned (except Default) is always as string.</td>
 <td>env('FAXE_MQTT_HOS', '127.0.0.1') -&gt; '127.0.0.1'</td>
+</tr>
+<tr>
+<td><code>envs()</code> -&gt; map</td>
+<td>Get a map of all OS-ENV variables. All keys and values are strings.</td>
+<td></td>
 </tr>
 <tr>
 <td><code>mem</code> values are set with the <a href="../nodes/mem.html">mem node</a></td>
