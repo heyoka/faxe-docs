@@ -1142,6 +1142,12 @@ paths:
           description: "If set to true, will not complain about already started task."
           required: false
           type: boolean
+        - in: query
+          name: "persistence"
+          description: "Whether to start the flow with active state persistence. This defaults to the state persistence config setting"
+          required: false
+          type: boolean
+          allowEmptyValue: false
   /task/start/{task_id}/true:
     get:
       summary: Start a task permanently.
@@ -1175,6 +1181,12 @@ paths:
           description: "If set to true, will not complain about already started task."
           required: false
           type: boolean
+        - in: query
+          name: "persistence"
+          description: "Whether to start the flow with active state persistence. This defaults to the state persistence config setting"
+          required: false
+          type: boolean
+          allowEmptyValue: false
   /task/stop/{task_id}:
     get:
       summary: Stop a task.
@@ -1202,6 +1214,12 @@ paths:
           description: "Id of the task, that should be stopped"
           required: true
           type: string
+        - in: query
+          name: "keepstate"
+          description: "Whether to keep flow state when stopping the flow. By default, the flow state will be deleted on stop."
+          required: false
+          type: boolean
+          allowEmptyValue: false
   /task/stop/{task_id}/true:
     get:
       summary: Stop a task permanently.
@@ -1230,6 +1248,12 @@ paths:
           description: "Id of the task, that should be stopped permanently"
           required: true
           type: string
+        - in: query
+          name: "keepstate"
+          description: "Whether to keep flow state when stopping the flow. By default, the flow state will be deleted on stop."
+          required: false
+          type: boolean
+          allowEmptyValue: false
   /task/start_group/{task_id}/{concurrency}:
     get:
       summary: Start a task-group concurrently.
@@ -1837,7 +1861,7 @@ paths:
       produces:
         - application/json
       consumes:
-        - application/x-www-form-urlencoded
+        - multipart/form-data
       responses:
         200:
           description: "Uploaded file(s)"

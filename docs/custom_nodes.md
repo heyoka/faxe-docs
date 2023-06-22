@@ -356,6 +356,172 @@ In a data-batch, `points` is a list of **data-points**, the list can be of any l
 See [data-point](#data-point) for a description.
  
 
+----------------------------------- 
+
+## State persistence
+
+Faxe introduced the concept of state persistence for flows in version 1.2.0.
+With state persistence active for a flow, the faxe engine will persist state for every node in a flow to disc to be able
+to continue a flow where it left off, if for example a restart of the whole engine is necessary due to a version update.
+
+Read more about state persistence [here](state_persistence.md).
+
+Custom python node can also utilize this feature. When on startup of a python node there is persisted state found for that
+node on the disc, this state data will be injected to the node's startup procedure.
+
+### Activate persistence
+
+There are different ways, state gets persisted for custom python nodes:
+
+```
+# defined in Faxe.py 
+
+STATE_MODE_HANDLE   = 'handle'
+STATE_MODE_EMIT     = 'emit'
+STATE_MODE_MANUAL   = 'manual'
+
+```
+
+* STATE_MODE_HANDLE means, that state is automatically persisted, after every call to either `handle_batch` or `handle_point`.
+* STATE_MODE_EMIT means, state is auto persisted after every call to self.emit() by the python node.
+* STATE_MODE_MANUAL means, that it is completely up to the python node when to persist state.
+
+To choose which mode to use, simple implement the `state_mode` method:
+
+```python 
+from faxe import Faxe
+
+def state_mode(self):
+        return Faxe.STATE_MODE_MANUAL
+```
+
+In the above example, the state mode is `manual`. In this mode the python node has to decide when to persist state and this
+is done with the `persist_state` method:
+
+```
+def persist_state(self, state=None):
+        """
+        :param state: any|None
+        """
+        ...
+
+```
+
+#### manual
+
+If state is None, then the state that gets persisted will be retreived either from the format_state method (see below) or,
+if format_state is not implemented, the state will be a dictionary with every member var of the object.
+
+
+Example:
+
+```python
+
+def my_method(self):
+   
+    ...
+
+    self.persist_state()
+    
+    # OR provide state
+    self.persist_state(state={'mystate': 'dict'})
+    
+    ...
+
+```
+
+
+### State data
+
+State data can be of any [pickle-able](https://docs.python.org/3/library/pickle.html) type.
+
+If the python node does not overwrite the `format_state` method, 
+the Faxe base class will provide a dictionary with all the member vars of the python callback object using
+python's [vars](https://docs.python.org/3/library/functions.html#vars) function.
+
+With the `format_state` method, the python node can provide state data as it wishes:
+
+```python
+
+def format_state(self):
+   return {'counter': self.counter, 'items': self.items}
+
+```
+
+As shown [above](#manual), state data can also be given, when calling the persist_state method.
+
+
+
+A python node can then get this state data with the `get_state` method:
+
+```
+def get_state(self):
+    """
+    get the last persisted state data, that was given to this node
+    :return: any
+    """
+    return self._pstate
+```
+
+Example:
+
+```python
+from faxe import Faxe, Point, Batch
+
+
+class Mynode(Faxe):
+
+    def init(self, args=None):
+        
+        ...
+        
+        # get the state
+        self.mystate = self.get_state()
+        
+
+    ...
+    
+```
+
+We can also use the `get_state_value` method (works when state data is a dictionary) and initialize member vars in an elegant way:
+
+```
+
+def get_state_value(self, key, default=None):
+        """
+        get a specific entry from the state, if state is a dict, otherwise returns 'default'
+        :param key: string
+        :param default: any
+        :return: any
+        """
+        if type(self._pstate) == dict:
+            if key in self._pstate:
+                return self._pstate[key]
+        return default
+
+```
+
+Example:
+
+```python
+from faxe import Faxe, Point, Batch
+
+
+class Mynode(Faxe):
+
+    def init(self, args=None):
+        
+        ...
+        
+        self.item_counter = self.get_state_value('item_counter', 0)
+        self.items = self.get_state_value('items', {})
+        
+
+    ...
+    
+```
+
+
 
 ## Helper classes
 
@@ -372,6 +538,8 @@ class Mynode(Faxe):
     ... 
     
 ```
+
+---------------------------------------------------------------------
 
 
 ### Helper class for working with data-point objects.

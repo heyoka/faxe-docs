@@ -5,11 +5,17 @@ _`Experimental`_ since vs. 1.0.13
 
 Execute a statement against a postreSQL or compatible database.
 
-The node will execute the given statement **only once**, possibly retrying on failure.
-After the statement has been executed sucessfully, the node will emit a data item and then will do nothing from this point on.
+2 different execution modes are available:
 
-The execution of the statement can also be triggered by a data item that enters the node. But the **only once** execution behavior
-will remain the same.
+* **one shot**:
+    This mode is the default mode, when the `every` parameter is not set.
+    The node will execute the given statement **only once**, possibly retrying on failure.
+    After the statement has been executed sucessfully, the node will emit a data item and then will do nothing from this point on.
+* **periodically**:
+    With the `every` parameter given, the node will execute the provided SQL statement periodically.
+
+The execution of the statement can also be triggered by a data item that enters the node (param `start_on_trigger` set to true). 
+But the execution mode will remain the same, in this case.
 
 
 > Note: The statement can be anything from SELECT, INSERT, DELETE or even any schema manipulation. Handle with care !
@@ -72,8 +78,9 @@ Parameters
 | tls( `boolean` )              | whether to use tls for the connection                                                                                                                    | false            |
 | statement( `string` )         | SQL statement, that should be executed.                                                                                                                  | undefined        |
 | statement_field( `string` )   | Name of the field, that holds the SQL statement, that should be executed. `start_on_trigger` must be set to true in order to use this feature.           | undefined        |
+| every( `duration` )           | Interval at which to execute the statement (periodically), if not given, the node is in one-shot mode.                                                   | undefined        |
 | result_type( `string` )       | Type of the resulting data item, 'batch' or 'point'                                                                                                      | 'batch'          |
 | start_on_trigger( `boolean` ) | if true, the node waits for an incoming data item before sending the statement to the database, this must be set to true, when `statement_field` is used | false            |
 | retries( `integer` )          | max retry attempts, when a statement fails                                                                                                               | 2                |
 
- Either statement or statement_field must be given.
+ Either `statement` or `statement_field` must be given.
