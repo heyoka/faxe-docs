@@ -6,7 +6,7 @@ Where the logs will be written, depends on the `lager` config.
 
 The debug message will include the current data-item converted to a string.
 
-See [rest api](./faxe_rest_api.html) for how to read the produced logs.
+See [rest api](../../faxe_rest_api.html) for how to read the produced logs.
 
 
 Example
