@@ -37,7 +37,7 @@ will get the default value.
 Parameters
 ----------
 
-| Parameter                 | Description                                                                                                                                                 | Default   |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| fields( `string_list` )   | names of the fields used for each computation                                                                                                               |           |
-| default( `any` )          | Default value for field, that have not been collected so far. If this is not given, that output item will only contain fields, that have been seen already. | undefined | 
+| Parameter                     | Description                                                                                                                                                 | Default   |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| [node]fields( `string_list` ) | names of the fields used for each computation                                                                                                               |           |
+| default( `any` )              | Default value for field, that have not been collected so far. If this is not given, that output item will only contain fields, that have been seen already. | undefined | 
