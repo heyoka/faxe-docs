@@ -2351,7 +2351,8 @@
 
 <h1 id="the-array_explode-node">The array_explode node</h1>
 <p>Given a data_point with one or more array fields, create and emit one new data_point for every entry in the array(s).</p>
-<p>If more than 1 array is used, they have to be the same size, otherwise the mapping will fail.</p>
+<p>If more than 1 array field is used, then the arrays must have to be of the same size, otherwise the mapping will fail.
+Any field not found in an incoming data-point, will just be ignored.</p>
 <p>For every point created out of the array(s) a time offset will be added to the previous point timestamp, starting with the timestamp of the
 original data_point for the first resulting data-point.</p>
 <h2 id="example">Example</h2>

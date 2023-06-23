@@ -3,7 +3,8 @@ The array_explode node
 
 Given a data_point with one or more array fields, create and emit one new data_point for every entry in the array(s).
 
-If more than 1 array is used, they have to be the same size, otherwise the mapping will fail.
+If more than 1 array field is used, then the arrays must have to be of the same size, otherwise the mapping will fail.
+Any field not found in an incoming data-point, will just be ignored.
 
 
 For every point created out of the array(s) a time offset will be added to the previous point timestamp, starting with the timestamp of the
