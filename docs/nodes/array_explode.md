@@ -38,3 +38,4 @@ Parameters
 | fields( `string_list` )   | names of the fields used for each computation                                        |           |
 | as( `string_list` )       | list of output field names according to `fields`, defaults to the values of `fields` | undefined |
 | time_offset( `duration` ) |                                                                                      | 1s        |
+| keep( `string_list` )     | list of field-names, that should be kept from the original data-point                | undefined |
