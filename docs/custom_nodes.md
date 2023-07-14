@@ -40,7 +40,7 @@ In our class we can use a bunch of callbacks:
 
 > All callbacks are optional.
 
-#### options (static)
+#### **options (static)**
 
 The `options` callback is used to tell FAXE, what node options you want to use for your python node.
 The return type for this callback is a `list of 2-or-3 tuples`.
@@ -107,8 +107,15 @@ A subset of the option types used for [built-in nodes](nodes/index.md) can be us
 | `list`         | list of possibly mixed data types | .option('name', 11, 234.3, 'one', 'two') | 
 
 
+#### Common options for every custom node
 
-#### init
+| option                  | description                                                                                                           | default                                  |
+|-------------------------|:----------------------------------------------------------------------------------------------------------------------|------------------------------------------|
+| `as`( string )          | field path for the output data, used to give data a new root                                                          | undefined                                | 
+| `stop_on_exit`(boolean) | if set to true, the whole corresponding flow will stop, when the python runtime exits because of an error (exception) | true                                     |
+
+-----------------------------------
+#### **init**
 
 The `init` callback is called on class instatiation, it gets injected a dictionary with the [option values](#callbacks) given in the DFS script.
 
@@ -131,8 +138,9 @@ class Mynode(Faxe):
     
 ```
 
+------------------------------------------
 
-#### handle_point
+#### **handle_point**
 
 `handle_point` is called every time the custom node receives a data-point structure from upstream nodes in a FAXE flow.
 For details on the point structure see [FAXE Data items - data_point](#data-point) below.
@@ -153,8 +161,9 @@ class Mynode(Faxe):
     
 ```
 
+----------------------------------------------------
 
-#### handle_batch
+#### **handle_batch**
 
 `handle_batch` is called every time the custom node receives a data-batch structure from upstream nodes in a FAXE flow.
 For details on the batch structure see [FAXE Data items - data_batch](#data-batch) below.
@@ -178,7 +187,7 @@ class Mynode(Faxe):
 
 ### Inherited methods from the Faxe class
 
-#### emit
+#### **emit**
 
 ```python
 def emit(self, emit_data: dict):
@@ -203,7 +212,7 @@ class Mynode(Faxe):
     
 ```
 
-#### log
+#### **log**
 
 ```python
 def log(self, msg: str, level='notice': str):
@@ -231,7 +240,7 @@ class Mynode(Faxe):
     
 ```
 
-#### now (static)
+#### **now** (static)
 
 ```python
 @staticmethod

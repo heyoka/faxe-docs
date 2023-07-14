@@ -17,7 +17,8 @@ FAXE can be managed via its [rest api](./faxe_rest_api.html).
 
 ### Data in faxe
 
-In faxe we deal with `data_points` and `data_batches`. These `data-items` are emitted by nodes 
+As you can read [here](introduction.md#data), in faxe we deal with `data_points` and `data_batches` as basic data types. 
+These `data-items` as we call them, are emitted by nodes that are freely combined into a computing graph to achieve the desired processing.
 
 Every `data_point` consists of a `ts` field, `fields` and `tags`.
 The value of the ts field is always: **unix-timestamp in millisecond precision without a timezone**.
@@ -31,7 +32,9 @@ A data_batch consists of a list of data_points ordered by timestamp.
 
 Most faxe nodes can deal with both points and batches. 
 
-### Value referencing
+
+
+## Value referencing
 
 
 As field and tag values can be deeply nested maps and lists, it is possible to use a `JSON-path` like syntax
@@ -43,3 +46,5 @@ Valid examples:
     axis.z.cur
     value.sub[2].data
     averages.emitted[5]
+
+> For more information, you can read the [introduction](introduction.md).

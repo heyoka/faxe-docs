@@ -239,15 +239,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#value-referencing" class="md-nav__link">
     Value referencing
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2357,15 +2357,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#value-referencing" class="md-nav__link">
     Value referencing
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2394,7 +2394,8 @@ freely combined into an acyclic graph.</p>
 <p>FAXE can be managed via its <a href="./faxe_rest_api.html">rest api</a>.</p>
 <h2 id="general_1">General</h2>
 <h3 id="data-in-faxe">Data in faxe</h3>
-<p>In faxe we deal with <code>data_points</code> and <code>data_batches</code>. These <code>data-items</code> are emitted by nodes </p>
+<p>As you can read <a href="introduction.html#data">here</a>, in faxe we deal with <code>data_points</code> and <code>data_batches</code> as basic data types. 
+These <code>data-items</code> as we call them, are emitted by nodes that are freely combined into a computing graph to achieve the desired processing.</p>
 <p>Every <code>data_point</code> consists of a <code>ts</code> field, <code>fields</code> and <code>tags</code>.
 The value of the ts field is always: <strong>unix-timestamp in millisecond precision without a timezone</strong>.</p>
 <p><code>fields</code> and <code>tags</code> are essentially <code>key-value maps</code>.</p>
@@ -2402,7 +2403,7 @@ The value of the ts field is always: <strong>unix-timestamp in millisecond preci
 The only valid data-type for field and tag keys is <code>string</code>.</p>
 <p>A data_batch consists of a list of data_points ordered by timestamp.</p>
 <p>Most faxe nodes can deal with both points and batches. </p>
-<h3 id="value-referencing">Value referencing</h3>
+<h2 id="value-referencing">Value referencing</h2>
 <p>As field and tag values can be deeply nested maps and lists, it is possible to use a <code>JSON-path</code> like syntax
 to declare and reference these values:</p>
 <p>Valid examples:</p>
@@ -2411,6 +2412,10 @@ axis.z.cur
 value.sub[2].data
 averages.emitted[5]
 </code></pre></div>
+
+<blockquote>
+<p>For more information, you can read the <a href="introduction.html">introduction</a>.</p>
+</blockquote>
 
 
 

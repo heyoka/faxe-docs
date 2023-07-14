@@ -293,6 +293,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#common-options-for-every-custom-node" class="md-nav__link">
+    Common options for every custom node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#init" class="md-nav__link">
     init
   </a>
@@ -2603,6 +2610,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#common-options-for-every-custom-node" class="md-nav__link">
+    Common options for every custom node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#init" class="md-nav__link">
     init
   </a>
@@ -2861,7 +2875,7 @@ pipe symbol, we use the <code>@</code> symbol.</p>
 <blockquote>
 <p>All callbacks are optional.</p>
 </blockquote>
-<h4 id="options-static">options (static)</h4>
+<h4 id="options-static"><strong>options (static)</strong></h4>
 <p>The <code>options</code> callback is used to tell FAXE, what node options you want to use for your python node.
 The return type for this callback is a <code>list of 2-or-3 tuples</code>.</p>
 <blockquote>
@@ -2969,7 +2983,30 @@ A subset of the option types used for <a href="nodes/index.html">built-in nodes<
 </tr>
 </tbody>
 </table>
-<h4 id="init">init</h4>
+<h4 id="common-options-for-every-custom-node">Common options for every custom node</h4>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th align="left">description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>as</code>( string )</td>
+<td align="left">field path for the output data, used to give data a new root</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td><code>stop_on_exit</code>(boolean)</td>
+<td align="left">if set to true, the whole corresponding flow will stop, when the python runtime exits because of an error (exception)</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="init"><strong>init</strong></h4>
 <p>The <code>init</code> callback is called on class instatiation, it gets injected a dictionary with the <a href="#callbacks">option values</a> given in the DFS script.</p>
 <blockquote>
 <p>Do not overwrite the <code>__init__</code> method. The callback will not work in this case.</p>
@@ -2989,7 +3026,8 @@ A subset of the option types used for <a href="nodes/index.html">built-in nodes<
     <span style="color: #f92672">...</span>
 </code></pre></div>
 
-<h4 id="handle_point">handle_point</h4>
+<hr />
+<h4 id="handle_point"><strong>handle_point</strong></h4>
 <p><code>handle_point</code> is called every time the custom node receives a data-point structure from upstream nodes in a FAXE flow.
 For details on the point structure see <a href="#data-point">FAXE Data items - data_point</a> below.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">from</span> <span style="color: #f8f8f2">faxe</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Faxe</span>
@@ -3006,7 +3044,8 @@ For details on the point structure see <a href="#data-point">FAXE Data items - d
     <span style="color: #f92672">...</span>
 </code></pre></div>
 
-<h4 id="handle_batch">handle_batch</h4>
+<hr />
+<h4 id="handle_batch"><strong>handle_batch</strong></h4>
 <p><code>handle_batch</code> is called every time the custom node receives a data-batch structure from upstream nodes in a FAXE flow.
 For details on the batch structure see <a href="#data-batch">FAXE Data items - data_batch</a> below.</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">from</span> <span style="color: #f8f8f2">faxe</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Faxe</span>
@@ -3024,7 +3063,7 @@ For details on the batch structure see <a href="#data-batch">FAXE Data items - d
 </code></pre></div>
 
 <h3 id="inherited-methods-from-the-faxe-class">Inherited methods from the Faxe class</h3>
-<h4 id="emit">emit</h4>
+<h4 id="emit"><strong>emit</strong></h4>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">emit</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">emit_data:</span> <span style="color: #f8f8f2">dict):</span>
 </code></pre></div>
 
@@ -3044,7 +3083,7 @@ It can take both <a href="#data-point">point</a> and <a href="#data-batch">batch
     <span style="color: #f92672">...</span>
 </code></pre></div>
 
-<h4 id="log">log</h4>
+<h4 id="log"><strong>log</strong></h4>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">msg:</span> <span style="color: #f8f8f2">str,</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;notice&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">str):</span>
 <span style="color: #e6db74">&quot;&quot;&quot;</span>
 <span style="color: #e6db74">:param level: &#39;debug&#39; | &#39;info&#39; | &#39;notice&#39; | &#39;warning&#39; | &#39;error&#39; | &#39;critical&#39; | &#39;alert&#39;</span>
@@ -3067,7 +3106,7 @@ Using this method makes sure, your log data will be injected into FAXE's logging
     <span style="color: #f92672">...</span>
 </code></pre></div>
 
-<h4 id="now-static">now (static)</h4>
+<h4 id="now-static"><strong>now</strong> (static)</h4>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #a6e22e">@staticmethod</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">now</span><span style="color: #f8f8f2">():</span>
 <span style="color: #f8f8f2">    </span><span style="color: #e6db74">&quot;&quot;&quot;</span>
