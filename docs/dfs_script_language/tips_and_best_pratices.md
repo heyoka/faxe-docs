@@ -12,8 +12,6 @@ When using declarations in DFS script you should stick to one type of naming sch
 all lowercase with underscores like in the example above.
 
 ### Lambda expressions
-
-As a rule we say: Avoid lambda expressions, if you can achieve your goal without them. Of course you cannot do everything without
-lambda expression, as many nodes require them to work.
+ 
 
 ### 
