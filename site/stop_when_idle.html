@@ -377,6 +377,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#conditional" class="md-nav__link">
+    Conditional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#using-the-feature" class="md-nav__link">
     Using the feature
   </a>
@@ -2367,6 +2374,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#conditional" class="md-nav__link">
+    Conditional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#using-the-feature" class="md-nav__link">
     Using the feature
   </a>
@@ -2457,6 +2471,9 @@ the nodes base process will check periodically, if the node is idle already for 
 <h4 id="result">Result</h4>
 <p>If a node, where this feature is used (<code>_stop_idle</code> is set to true), is idle for the amount of time, it will tell the dataflow system to stop
 the flow it is part of. The stop behavior is equivalent to <a href="./faxe_rest_api.html#/paths/~1task~1stop~1%7Btask_id%7D~1true/get">this stop call</a> (permanently stopping a flow) via faxe's REST API.</p>
+<h4 id="conditional">Conditional</h4>
+<p>Since version 1.1.6 a conditional lambda expression can be given with <code>_stop_when</code>.
+If this is present, the expression must evaluate to true once for any data-item, before the idle-time is measured and the feature becomes active.</p>
 <h4 id="using-the-feature">Using the feature</h4>
 <p>As mentioned above, this feature can be used on any node in a flow, including <a href="custom_nodes.html">custom nodes written in python</a>.
 If more than one node in a flow has <code>_stop_idle</code> set to <strong>true</strong>, the first node that detects it is idle, will cause the whole flow to stop.</p>
@@ -2479,6 +2496,11 @@ If more than one node in a flow has <code>_stop_idle</code> set to <strong>true<
 <td>_idle_time(<code>duration</code>)</td>
 <td>amount of time a node must be idle, before it initiates a stop procedure for the flow it is part of</td>
 <td>5m</td>
+</tr>
+<tr>
+<td>_stop_when(<code>lambda</code>)</td>
+<td>if given, the lambda expression must evaluate to true (once!), before the idle time is measured</td>
+<td>undefined</td>
 </tr>
 </tbody>
 </table>

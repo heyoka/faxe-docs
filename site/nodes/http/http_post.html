@@ -2356,7 +2356,7 @@
 If any errors occur during the request, the node will attempt to retry sending.</p>
 <p>Content-type header <code>application/json</code> will be used.</p>
 <blockquote>
-<p>Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.</p>
+<p>Note: This node will only output flow-data, if the (POST) request was successful.</p>
 </blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">http_post()</span>
@@ -2366,6 +2366,15 @@ If any errors occur during the request, the node will attempt to retry sending.<
 </code></pre></div>
 
 <p>Sends all incoming data to http://remote.com:8088/receive/json in JSON format.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">http_post()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;remote.com&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">port</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8088</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">path</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/receive/json&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header_names</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;X-Api-key&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header_values</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;0000-0000-0000-000&#39;</span><span style="color: #f8f8f2">)</span> 
+</code></pre></div>
+
+<p>Custom header <code>X-Api-key</code>.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -2404,7 +2413,32 @@ If any errors occur during the request, the node will attempt to retry sending.<
 <tr>
 <td>path( <code>string</code> )</td>
 <td>URI path of the http endpoint</td>
-<td>''</td>
+<td>'/'</td>
+</tr>
+<tr>
+<td>field( <code>string</code> )</td>
+<td>if given, only data from the specified field gets sent, otherwise the whole data-item is used</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>header_names( <code>string_list</code> )</td>
+<td>list of names for custom headers, that should be sent</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>header_values( <code>string_list</code> )</td>
+<td>list of corresponding values for custom headers (must be the same length as <code>header_names</code>)</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>without( <code>string_list</code> )</td>
+<td>list of field-paths, that should not be sent</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>response_as( <code>string</code> )</td>
+<td>field-path that should be used as the key for the emitted response data</td>
+<td>'data'</td>
 </tr>
 </tbody>
 </table>

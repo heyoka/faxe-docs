@@ -71,6 +71,10 @@ A node is idle, if we do not see any data going in or out for a given amount of 
 If a node, where this feature is used (`_stop_idle` is set to true), is idle for the amount of time, it will tell the dataflow system to stop
 the flow it is part of. The stop behavior is equivalent to [this stop call](./faxe_rest_api.html#/paths/~1task~1stop~1%7Btask_id%7D~1true/get) (permanently stopping a flow) via faxe's REST API.
 
+#### Conditional 
+Since version 1.1.6 a conditional lambda expression can be given with `_stop_when`.
+If this is present, the expression must evaluate to true once for any data-item, before the idle-time is measured and the feature becomes active.
+
 #### Using the feature
 
 As mentioned above, this feature can be used on any node in a flow, including [custom nodes written in python](custom_nodes.md).
@@ -80,9 +84,10 @@ If more than one node in a flow has `_stop_idle` set to **true**, the first node
 Parameters
 ----------
 
-| Parameter              | Description                                                                                                    | Default |
-|------------------------|----------------------------------------------------------------------------------------------------------------|---------| 
-| _stop_idle(`boolean`)  | if set to true, the node will periodically check, if it was idle for at least the time given with `_idle_time` | false   |
-| _idle_time(`duration`) | amount of time a node must be idle, before it initiates a stop procedure for the flow it is part of            | 5m      | 
+| Parameter              | Description                                                                                                    | Default   |
+|------------------------|----------------------------------------------------------------------------------------------------------------|-----------| 
+| _stop_idle(`boolean`)  | if set to true, the node will periodically check, if it was idle for at least the time given with `_idle_time` | false     |
+| _idle_time(`duration`) | amount of time a node must be idle, before it initiates a stop procedure for the flow it is part of            | 5m        | 
+| _stop_when(`lambda`)   | if given, the lambda expression must evaluate to true (once!), before the idle time is measured                | undefined | 
 
 
