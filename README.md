@@ -1,4 +1,6 @@
 ## View the documentation [here](https://heyoka.github.io/faxe-docs/site).
+## HTTP API documentation [here](https://heyoka.github.io/faxe-docs/site/faxe_rest_api.html).
+
 
 Documentation for FAXE
 ======================
