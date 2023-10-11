@@ -30,7 +30,7 @@ it will try to evaluate the `remove` function.
 
 If an `update` happened, the node will skip evaluating the `remove` function.
 
-If no `remove` function is given, data-items will not be removed, but only evicted by the `max_age` option.
+If no `remove` function is given, data-items will not be removed, but only evicted by the `max_age` and/or the `max_ts_age` option.
 
 ### Update and remove expression
 
@@ -210,5 +210,6 @@ Parameters
 | emit_unchanged (`boolean`) | When set to false, processing of a data-item that does not result in a change to the collection, will not trigger an output of data.                                                                                                                                                | true      |
 | emit_every (`duration`)    | Interval at which to emit the current collection as a data_batch item. If not given, every data-item (point or batch) will trigger an output (based on the value of `emit_unchanged`).                                                                                              | undefined |
 | max_age(`duration`)        | Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the time the item entered the collection.                                                                                                                                   | 3h        |
+| max_ts_age(`duration`)     | Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the timestamp within the item.                                                                                                                                              | 3h        |
 | merge(`boolean`)           | Whether to condense the output data_batch into a single data_point item by merging them.                                                                                                                                                                                            | false     |
  

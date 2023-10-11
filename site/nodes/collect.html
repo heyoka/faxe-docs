@@ -2453,7 +2453,7 @@ Data_points that do not have (any of) the key-field(s) present, will be ignored.
 the node would check, if there is an <code>update</code> function and evaluate it and if no update happend, 
 it will try to evaluate the <code>remove</code> function.</p>
 <p>If an <code>update</code> happened, the node will skip evaluating the <code>remove</code> function.</p>
-<p>If no <code>remove</code> function is given, data-items will not be removed, but only evicted by the <code>max_age</code> option.</p>
+<p>If no <code>remove</code> function is given, data-items will not be removed, but only evicted by the <code>max_age</code> and/or the <code>max_ts_age</code> option.</p>
 <h3 id="update-and-remove-expression">Update and remove expression</h3>
 <p>In the <code>update</code> or <code>remove</code> lambda-expressions, the datapoint, that is already in the collection, can be used, for comparing for example.
 That is to say: When the update or remove function is evaluated, it gets injected the data-point for the same key-field value, that is
@@ -2653,6 +2653,11 @@ Note the use of the <code>'__state'</code> prefix for previous value, that can b
 <tr>
 <td>max_age(<code>duration</code>)</td>
 <td>Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the time the item entered the collection.</td>
+<td>3h</td>
+</tr>
+<tr>
+<td>max_ts_age(<code>duration</code>)</td>
+<td>Maximum age for any data-item in the collection, before it gets removed. Reference time for item age is the timestamp within the item.</td>
 <td>3h</td>
 </tr>
 <tr>

@@ -563,6 +563,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lists" class="md-nav__link">
+    Lists
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lists-and-maps-jsn" class="md-nav__link">
     Lists and Maps (jsn)
   </a>
@@ -2411,6 +2418,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lists" class="md-nav__link">
+    Lists
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lists-and-maps-jsn" class="md-nav__link">
     Lists and Maps (jsn)
   </a>
@@ -2949,6 +2963,113 @@
 </tr>
 </tbody>
 </table>
+<h3 id="lists">Lists</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>head(List)</code> -&gt; any</td>
+<td>Returns the head, or the first element, of list List.</td>
+<td>head("data.lines")</td>
+</tr>
+<tr>
+<td><code>nth(Integer, List)</code> -&gt; any</td>
+<td>Returns the nth element from list List, list indices start with 1.</td>
+<td>nth(N, "data.lines")</td>
+</tr>
+<tr>
+<td><code>nthtail(Integer, List)</code> -&gt; any</td>
+<td>Returns the Nth tail of List, that is, the sublist of List starting at N+1 and continuing up to the end of the list.</td>
+<td>nthtail(N, "data.lines")</td>
+</tr>
+<tr>
+<td><code>list_append(List1, List2)</code> -&gt; list</td>
+<td>Returns a new list, which is made from the elements of List1 followed by the elements of List2.</td>
+<td>list_append(['a', 'b', 'c'], [1, 2, 4])</td>
+</tr>
+<tr>
+<td><code>list_delete(Elem, List)</code> -&gt; list</td>
+<td>Returns a copy of List, where the first element matching Elem is deleted, if there is such an element.</td>
+<td>list_delete(2, [1, 2, 4]) -&gt; [1, 4]</td>
+</tr>
+<tr>
+<td><code>list_last(List)</code> -&gt; any</td>
+<td>Returns the last element from List.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>list_max(List)</code> -&gt; any</td>
+<td>Returns the first element of List that compares greater than or equal to all other elements of List.</td>
+<td>list_max([1, 2, 4]) -&gt; 4</td>
+</tr>
+<tr>
+<td><code>list_min(List)</code> -&gt; any</td>
+<td>Returns the first element of List that compares less than or equal to all other elements of List.</td>
+<td>list_min([1, 2, 4]) -&gt; 1</td>
+</tr>
+<tr>
+<td><code>list_reverse(List)</code> -&gt; list</td>
+<td>Returns a list with the elements in List1 in reverse order.</td>
+<td>list_reverse([1, 2, 4]) -&gt; [4, 2, 1]</td>
+</tr>
+<tr>
+<td><code>list_sort(List)</code> -&gt; list</td>
+<td>Returns a list containing the sorted elements of List1.</td>
+<td>list_sort([4, 5, 1, 2, 4]) -&gt; [1, 2, 4, 4, 5]</td>
+</tr>
+<tr>
+<td><code>list_subtract(List1, List2)</code> -&gt; list</td>
+<td>Returns a new list List3 that is a copy of List1, subjected to the following procedure:for each element in List2, its first occurrence in List1 is deleted.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>list_sum(List)</code> -&gt; number</td>
+<td>eturns the sum of the elements in List.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>list_unique(List)</code> -&gt; list</td>
+<td>Returns a new list with only unique values from List.</td>
+<td>list_unique("data.lines")</td>
+</tr>
+<tr>
+<td><code>list_usort(List)</code> -&gt; list</td>
+<td>Returns a list containing the sorted elements of List1 where all except the first element of the elements comparing equal have been deleted.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>list_join(List)</code> -&gt; string</td>
+<td>Equivalent to list_join(',', List).</td>
+<td>list_join("data.lines")</td>
+</tr>
+<tr>
+<td><code>list_join(Separator, List)</code> -&gt; string</td>
+<td>Join a list of strings with a separator string.</td>
+<td>list_join('-', "data.lines")</td>
+</tr>
+<tr>
+<td><code>list_of_strings(List)</code> -&gt; list</td>
+<td>Convert every entry of a list to a string and return the list of strings.</td>
+<td>list_of_strings("data.lines")</td>
+</tr>
+<tr>
+<td><code>sublist(List, Len))</code> -&gt; list</td>
+<td>Returns the sublist of List1 starting at position 1 and with (maximum) Len elements.  It is not an error for Len to exceed the length of the list, in that case the whole list is returned.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sublist(List, Start, Len))</code> -&gt; list</td>
+<td>Returns the sublist of List1 starting at Start and with (maximum) Len elements. It is not an error for Start+Len to exceed the length of the list.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="lists-and-maps-jsn">Lists and Maps (jsn)</h3>
 <p>Functions marked with a star (*), can work directly on json strings representing lists or objects (maps in faxe).
 For example, you can feed a json object string to <code>map_get</code> to get a value out of the json object: </p>
@@ -2990,41 +3111,6 @@ For example, you can feed a json object string to <code>map_get</code> to get a 
 <td><code>size(ListOrMap)</code> -&gt; integer</td>
 <td>Get the number of entries in a list or map.</td>
 <td>size("data.lines")</td>
-</tr>
-<tr>
-<td><code>head(List)</code> -&gt; any</td>
-<td>Returns the head, or the first element, of list List.</td>
-<td>head("data.lines")</td>
-</tr>
-<tr>
-<td><code>nth(Integer, List)</code> -&gt; any</td>
-<td>Returns the nth element from list List, list indices start with 1.</td>
-<td>nth(N, "data.lines")</td>
-</tr>
-<tr>
-<td><code>list_append(List1, List2)</code> -&gt; list</td>
-<td>Returns a new list, which is made from the elements of List1 followed by the elements of List2.</td>
-<td>list_append(['a', 'b', 'c'], [1, 2, 4])</td>
-</tr>
-<tr>
-<td><code>list_unique(List)</code> -&gt; list</td>
-<td>Returns a new list with only unique values from List.</td>
-<td>list_unique("data.lines")</td>
-</tr>
-<tr>
-<td><code>list_join(List)</code> -&gt; string</td>
-<td>Equivalent to list_join(',', List).</td>
-<td>list_join("data.lines")</td>
-</tr>
-<tr>
-<td><code>list_join(Separator, List)</code> -&gt; string</td>
-<td>Join a list of strings with a separator string.</td>
-<td>list_join('-', "data.lines")</td>
-</tr>
-<tr>
-<td><code>list_of_strings(List)</code> -&gt; list</td>
-<td>Convert every entry of a list to a string and return the list of strings.</td>
-<td>list_of_strings("data.lines")</td>
 </tr>
 <tr>
 <td><code>member(Ele, ListOrMap)</code> -&gt; bool</td>

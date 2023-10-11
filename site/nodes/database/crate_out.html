@@ -970,6 +970,32 @@
     Parameters
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use_flow_ack" class="md-nav__link">
+    use_flow_ack
+  </a>
+  
+    <nav class="md-nav" aria-label="use_flow_ack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2347,6 +2373,32 @@
     Parameters
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use_flow_ack" class="md-nav__link">
+    use_flow_ack
+  </a>
+  
+    <nav class="md-nav" aria-label="use_flow_ack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2467,8 +2519,24 @@ In this example schema (<code>database</code>) 'test' is used.</p>
 <td>max retry attempts after INSERT statement fails</td>
 <td>3</td>
 </tr>
+<tr>
+<td>use_flow_ack( <code>boolean</code> )</td>
+<td>only in combination with a amqp_consume node, message will only be acknowledged to the amqp broker, when it is written to crate db</td>
+<td>false</td>
+</tr>
 </tbody>
 </table>
+<h3 id="use_flow_ack">use_flow_ack</h3>
+<p>This is a special mode that only has effect in combination with an amqp_consume node with the same setting (.use_flow_ack(true)).
+If this mode is enabled, messages consumed from an amqp broker will only be acknowledged after they are written to crate db.
+For normal errors (4xx) max_retries will be used, but for 5xx errors requests will be retried forever (until the problem on the CrateDB side is solved).
+There is an ENV setting and an API endpoint with which we can define rules to ignore such 5xx errors avoiding infinite retries for those.</p>
+<p>For a faxe-wide setting there is a special ENV variable used: FAXE_AMQP_FLOW_ACK_ENABLE=on, so you do not set this manually inside a flow script normally.</p>
+<h4 id="example_1">Example:</h4>
+<p>FAXE_CRATE_IGNORE_RULES='message=MaxBytesLengthExceededException,code=5000'</p>
+<p><strong>message</strong> rule: takes effect, if <code>message</code> is part of the response text from CrateDB</p>
+<p><strong>code</strong> rule: takes effect, if the response error code matches <code>code</code></p>
+<p>Multiple message and code rules can be used</p>
 
 
 

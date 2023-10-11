@@ -2510,6 +2510,11 @@ when <code>prefetch</code> is changed:</p>
 <td>5s</td>
 </tr>
 <tr>
+<td>use_flow_ack( <code>bool</code> )</td>
+<td>special ack mode, where message acknowledgement is dependend on other nodes in the flow (see <a href="../database/crate_out.html">crate_out</a>), <code>ack_every</code> and <code>ack_after</code> have no effect with this mode</td>
+<td>false</td>
+</tr>
+<tr>
 <td>dedup_size( <code>integer</code> )</td>
 <td>number of correlation-ids to hold in memory for message deduplication</td>
 <td>200</td>

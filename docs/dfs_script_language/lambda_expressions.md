@@ -1,5 +1,7 @@
 # Lambda expressions
 
+> In version 1.2.0, lambda expressions have been completely rewritten and are now fully compiled erlang code and thus much faster than before.
+
 ## Overview
 
 DFS uses lambda expressions to define transformations on data points as well as define Boolean conditions that act as filters. 
