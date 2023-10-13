@@ -2350,9 +2350,13 @@
 
 
 <h1 id="the-collect_fields-node">The collect_fields node</h1>
-<p>For every field in <code>fields</code>, holds the last value seen for this field.
-The node outputs a data-point item - with all the fields currently in the buffer - on every incoming data-item.</p>
-<p>It is possible to set a default value for fields that have not been seen so far.</p>
+<p>For every field in <code>fields</code>, holds the latest value and outputs a  data-point item with these fields on every incoming data-point.
+If a field is not present in an input data-point, it will be ignored and the last known value for this field is used in output data.</p>
+<p>It is possible to set a <code>default</code> value for fields that have not been seen so far.</p>
+<p>With <code>emit_unchanged</code> set to <strong>false</strong>, no data is emitted for a data-point, that did not change any of the values.</p>
+<blockquote>
+<p>If you need more complex collecting behaviour, take a look at the <a href="collect.html">collect</a> node.</p>
+</blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span>
 <span style="color: #e6db74">&#39;{&quot;hallo&quot;:&quot;ho&quot;}&#39;</span><span style="color: #f8f8f2">,</span>

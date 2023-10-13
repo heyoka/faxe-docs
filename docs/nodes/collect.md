@@ -12,6 +12,10 @@ It will normally `output a data_batch` item regularily (when `emit_every` is giv
 The internal collection is a key-value set with unqiue values for the keys, taken from the `key_fields`.
 [{Key, DataPoint}]
 
+> Although it should be straight forward, the behaviour of this node can get quite complex and a bit hard to understand, depending on the options given. 
+> If you just want to collect and hold a bunch of values for certain fields, take a look at 
+> the [collect_fields](./collect_fields.md) node, it may be better suited for your needs.
+
 ### Adding, updating and removing a value
 
 With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.

@@ -2440,6 +2440,11 @@
 It will normally <code>output a data_batch</code> item regularily (when <code>emit_every</code> is given) or based on every incoming item.</p>
 <p>The internal collection is a key-value set with unqiue values for the keys, taken from the <code>key_fields</code>.
 [{Key, DataPoint}]</p>
+<blockquote>
+<p>Although it should be straight forward, the behaviour of this node can get quite complex and a bit hard to understand, depending on the options given. 
+If you just want to collect and hold a bunch of values for certain fields, take a look at 
+the <a href="collect_fields.html">collect_fields</a> node, it may be better suited for your needs.</p>
+</blockquote>
 <h3 id="adding-updating-and-removing-a-value">Adding, updating and removing a value</h3>
 <p>With every incoming data-item the node will first check, if there is already an item with the same key-field value in the collection.
 If this is not the case, the node will evaluate the <code>add</code> function, if given.
