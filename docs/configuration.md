@@ -67,6 +67,16 @@ erlang.async_threads = 64
 ##   - an integer
 erlang.max_ports = 262144
 
+## Raise the default erlang process limit
+## 
+## Default: 512000
+## 
+## ENV-Key: FAXE_ERLANG_PROCESS_LIMIT
+## 
+## Acceptable values:
+##   - an integer
+erlang.process_limit = 512000
+
 ## --------------------------------------------------------------------------
 ## Erlangs timewarp and time-correction behaviour
 ## More info: https://www.erlang.org/doc/apps/erts/time_correction.html#Multi_Time_Warp_Mode
@@ -541,13 +551,13 @@ s7pool.enable = off
 
 ## whether to use the optimized s7 reader
 ## 
-## Default: off
+## Default: on
 ## 
 ## ENV-Key: FAXE_S7READER_OPTIMIZED
 ## 
 ## Acceptable values:
 ##   - on or off
-s7reader.optimized = off
+s7reader.optimized = on
 
 ## -------------------------------------------------------------------------------
 ## MQTT defaults
@@ -805,6 +815,17 @@ amqp.port = 5672
 ##   - one of: verify_none, verify_peer
 ## amqp.ssl.verify = verify_none
 
+## special amqp-to-DB message ack mode
+## enable the use of flow-acknowledgement for amqp consume nodes
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_AMQP_FLOW_ACK_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+## amqp.flow_ack.enable = off
+
 ## -------------------------------------------------------------------------------
 ## RabbitMQ defaults
 ## -------------------------------------------------------------------------------
@@ -964,6 +985,16 @@ crate_http.database = doc
 ## Acceptable values:
 ##   - on or off
 ## crate_http.tls.enable = off
+
+## CrateDB ignore rules
+## 
+## Default: code=5000,message=example
+## 
+## ENV-Key: FAXE_CRATE_IGNORE_RULES
+## 
+## Acceptable values:
+##   - text
+crate.ignore_rules = code=5000,message=example
 
 ## -------------------------------------------------------------------------------
 ## InfluxDB defaults (http api)

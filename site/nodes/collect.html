@@ -2434,7 +2434,6 @@
 
 
 <h1 id="the-collect-node">The collect node</h1>
-<p><em><code>Experimental</code></em>.</p>
 <p>Since 0.15.2</p>
 <p>The collect node will maintain a <code>set</code> of data-points based on some criteria given as lambda-expressions.
 It will normally <code>output a data_batch</code> item regularily (when <code>emit_every</code> is given) or based on every incoming item.</p>
@@ -2611,9 +2610,9 @@ Note the use of the <code>'__state'</code> prefix for previous value, that can b
 <td>undefined</td>
 </tr>
 <tr>
-<td>update(<code>lambda</code>)</td>
-<td>Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur. Reference the current value with <code>__state</code></td>
-<td>undefined</td>
+<td>update(<code>lambda</code>| <code>boolean</code>)</td>
+<td>Criterion for updating a data_point in the collection, must return a boolen value. If not given, no updating will occur. Reference the current value with <code>__state</code>. If <code>true</code>, will always update.</td>
+<td>false</td>
 </tr>
 <tr>
 <td>update_mode(<code>string</code>)</td>

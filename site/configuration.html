@@ -2351,6 +2351,16 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - an integer</span>
 <span style="color: #a6e22e">erlang.max_ports</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">262144</span>
 
+<span style="color: #75715e">## Raise the default erlang process limit</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 512000</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_ERLANG_PROCESS_LIMIT</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">erlang.process_limit</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">512000</span>
+
 <span style="color: #75715e">## --------------------------------------------------------------------------</span>
 <span style="color: #75715e">## Erlangs timewarp and time-correction behaviour</span>
 <span style="color: #75715e">## More info: https://www.erlang.org/doc/apps/erts/time_correction.html#Multi_Time_Warp_Mode</span>
@@ -2825,13 +2835,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## whether to use the optimized s7 reader</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## Default: on</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_S7READER_OPTIMIZED</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - on or off</span>
-<span style="color: #a6e22e">s7reader.optimized</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">off</span>
+<span style="color: #a6e22e">s7reader.optimized</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">on</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## MQTT defaults</span>
@@ -3089,6 +3099,17 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - one of: verify_none, verify_peer</span>
 <span style="color: #75715e">## amqp.ssl.verify = verify_none</span>
 
+<span style="color: #75715e">## special amqp-to-DB message ack mode</span>
+<span style="color: #75715e">## enable the use of flow-acknowledgement for amqp consume nodes</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_AMQP_FLOW_ACK_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #75715e">## amqp.flow_ack.enable = off</span>
+
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## RabbitMQ defaults</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
@@ -3248,6 +3269,16 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - on or off</span>
 <span style="color: #75715e">## crate_http.tls.enable = off</span>
+
+<span style="color: #75715e">## CrateDB ignore rules</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: code=5000,message=example</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_CRATE_IGNORE_RULES</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">crate.ignore_rules</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">code=5000,message=example</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## InfluxDB defaults (http api)</span>
