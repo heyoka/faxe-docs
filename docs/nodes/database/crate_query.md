@@ -6,6 +6,7 @@ Query the CRATE database for `time series data`. This node is `experimental`.
 The select statement will be executed periodically according to the `every` parameter.
 Each time the database is queried, the timestamps will be set according to `period`.
 
+> Queries must start with the keyword `select/SELECT` or `with/WITH` and must contain the keyword `from/FROM` to be valid. 
 
 Example
 -------

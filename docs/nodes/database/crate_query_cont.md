@@ -12,6 +12,8 @@ This node is used for continous timeseries queries.
 A select statement will be executed periodically, on every iteration a `timefilter` gets adjusted according to the `period` parameter.
 For this to work, the query given must contain the `$__timefilter` placeholder in the query's where clause:
 
+> Queries must start with the keyword `select/SELECT` or `with/WITH` and must contain the keyword `from/FROM` to be valid.
+
 ```dfs 
  def query = 
  '

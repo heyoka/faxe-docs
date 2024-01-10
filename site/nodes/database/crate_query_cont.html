@@ -2400,6 +2400,9 @@
 <h3 id="query">Query</h3>
 <p>A select statement will be executed periodically, on every iteration a <code>timefilter</code> gets adjusted according to the <code>period</code> parameter.
 For this to work, the query given must contain the <code>$__timefilter</code> placeholder in the query's where clause:</p>
+<blockquote>
+<p>Queries must start with the keyword <code>select/SELECT</code> or <code>with/WITH</code> and must contain the keyword <code>from/FROM</code> to be valid.</p>
+</blockquote>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code> <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">query</span> <span style="color: #f92672">=</span> 
  <span style="color: #e6db74">&#39;</span>
 <span style="color: #e6db74">    SELECT ts, id, temp1 FROM doc.table </span>
