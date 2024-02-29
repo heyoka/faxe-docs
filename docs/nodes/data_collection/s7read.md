@@ -191,7 +191,7 @@ Note that params `vars` and `as` must have the same length (if both are given).
 | DB57,WORD4              | 	DB57.DBW4                    | Unsigned 16-bit integer at byte 4 of DB 57                      |
 | DB13,DI5 or DB13,DINT5  | 	DB13.DBDI5  or DB13.DBDINT5  | 	Signed 32-bit integer at byte 5 of DB 13                       |
 | DB19,DW6 or DB19,DWORD6 | 	DB19.DBDW6                   | 	Unsigned 32-bit integer at byte 6 of DB 19                     |
-| DB21,DR7 or DB21,REAL7  | 	DB19.DBDR6 or DB19.DBR6	     | Floating point 32-bit number at byte 7 of DB 21                 |
+| DB21,DR7 or DB21,REAL7  | 	DB21.DBDR7 or DB21.DBR7	     | Floating point 32-bit number at byte 7 of DB 21                 |
 | DB2,S7.10*	             | `DB2.DBS7.10` (faxe only)	    | String of length 10 starting at byte 7 of DB 2                  |
 | DB1100,DT8	             | DB1100.DBDT8 or DB1100.DT8	   | 8 byte S7 DATE_AND_TIME format (DT) (UTC is assumed)            |
 | I1.0 or E1.0            | 	I1.0 or E1.0                 | 	Bit 0 of byte 1 of input area                                  |
