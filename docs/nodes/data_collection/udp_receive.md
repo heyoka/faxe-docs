@@ -26,12 +26,12 @@ def parser = 'parser_robot_plc_v1'
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------  
-port( `integer` )| port number |
-parser( `string` )| name of parser to use for data conversion, see table below|
-as( `string` ) | name of the field for parsed data|
-changed( is_set )| whether to check for changed data| false (not set) 
+| Parameter          | Description                                                | Default         |
+|--------------------|------------------------------------------------------------|-----------------|
+| port( `integer` )  | port number                                                |                 |
+| parser( `string` ) | name of parser to use for data conversion, see table below |                 |
+| as( `string` )     | name of the field for parsed data                          |                 |
+| changed( is_set )  | whether to check for changed data                          | false (not set) |
 
 Available Parsers
 -----------------

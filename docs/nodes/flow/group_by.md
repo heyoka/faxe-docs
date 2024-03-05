@@ -49,8 +49,8 @@ A computing sub-graph in this example will contain an `eval` node connected to a
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-_[node]_ fields( `string_list` ) | fieldnames to group by   | 
-lambda( `lambda` ) | use a function to group the data-items (experimental) | undefined
+| Parameter                        | Description                                           | Default   |
+|----------------------------------|-------------------------------------------------------|-----------|
+| _[node]_ fields( `string_list` ) | fieldnames to group by                                |           |
+| lambda( `lambda` )               | use a function to group the data-items (experimental) | undefined |
  

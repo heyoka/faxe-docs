@@ -121,16 +121,16 @@ The output from the above example will be:
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-_[node]_ (`port`)| input node for port 2 |
-merge_field( `string` )| Base field for the merge operation | []
-fields( `string_list` )| List of fields to include| []
-tags( `string_list` )| List of tags to include | []
-aliases( `string_list` )| List of field aliases to use instead of the original field names| []
-prefix( `string` )|Prefix for the injected fields from stream 2| undefined
-prefix_delimiter( `string` )|Used to separate prefix and the original field name from stream 2|'_'
-nofill ( `isset` ) | if set, dataoutput will happen regardless of a initial input on port 2 | false (not set)
+| Parameter                    | Description                                                            | Default         |
+|------------------------------|------------------------------------------------------------------------|-----------------|
+| _[node]_ (`port`)            | input node for port 2                                                  |                 |
+| merge_field( `string` )      | Base field for the merge operation                                     | []              |
+| fields( `string_list` )      | List of fields to include                                              | []              |
+| tags( `string_list` )        | List of tags to include                                                | []              |
+| aliases( `string_list` )     | List of field aliases to use instead of the original field names       | []              |
+| prefix( `string` )           | Prefix for the injected fields from stream 2                           | undefined       |
+| prefix_delimiter( `string` ) | Used to separate prefix and the original field name from stream 2      | '_'             |
+| nofill ( `isset` )           | if set, dataoutput will happen regardless of a initial input on port 2 | false (not set) |
 
 When `merge_field` is given the params fields, prefix and prefix_delimiter have no effect.
 Otherwise either `prefix` or `aliases` must be given these are mutually exclusive parameters. 

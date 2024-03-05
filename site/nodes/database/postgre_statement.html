@@ -2432,27 +2432,27 @@ a different database. So we extend our example by adding a second postgre_statem
 <tr>
 <td>host( <code>string</code> )</td>
 <td>hostname or ip address of endpoint</td>
-<td>from config file</td>
+<td>config: <code>crate.host</code>/<code>FAXE_CRATE_HOST</code></td>
 </tr>
 <tr>
 <td>port( <code>integer</code> )</td>
 <td>port number</td>
-<td>from config file</td>
-</tr>
-<tr>
-<td>user( <code>string</code> )</td>
-<td>username</td>
-<td>from config file</td>
-</tr>
-<tr>
-<td>pass( <code>string</code> )</td>
-<td>password</td>
-<td>from config file</td>
+<td>config: <code>crate.port</code>/<code>FAXE_CRATE_PORT</code></td>
 </tr>
 <tr>
 <td>tls( <code>boolean</code> )</td>
 <td>whether to use tls for the connection</td>
-<td>false</td>
+<td>config: <code>crate.tls.enable</code>/<code>FAXE_CRATE_TLS_ENABLE</code></td>
+</tr>
+<tr>
+<td>user( <code>string</code> )</td>
+<td>username</td>
+<td>config: <code>crate.user</code>/<code>FAXE_CRATE_USER</code></td>
+</tr>
+<tr>
+<td>pass( <code>string</code> )</td>
+<td>password</td>
+<td>config: <code>crate.pass</code>/<code>FAXE_CRATE_PASS</code></td>
 </tr>
 <tr>
 <td>statement( <code>string</code> )</td>

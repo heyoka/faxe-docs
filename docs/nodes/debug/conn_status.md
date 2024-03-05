@@ -21,8 +21,8 @@ Example
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-flow( `string` )| Id of task|
-node( `string` )| Id of node| undefined
+| Parameter        | Description | Default   |
+|------------------|-------------|-----------|
+| flow( `string` ) | Id of task  |           |
+| node( `string` ) | Id of node  | undefined |
  

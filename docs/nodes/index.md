@@ -22,11 +22,33 @@ Faxe nodes can have `2 types of parameters`:
 
 ```
 
-    
+------------------------------------------
     
 Some parameters are required and others are optional.
+In the nodes documentation parameters/options are listed in a table like this:
+
+| Parameter               | Description                | Default                                    |
+|-------------------------|----------------------------|--------------------------------------------|
+| parameter1( `string` )  | description for parameter1 | 'default string'                           |
+| parameter2( `integer` ) | description for parameter2 | config: `example.host`/`FAXE_EXAMPLE_HOST` |
+| parameter3( `string` )  | description for parameter3 |                                            |
+
+`parameter1` has a default value and is optional in a DFS script. 
+
+`parameter2` also has a default value, but this value comes from faxe's configuration.
+
+There are 2 ways to configure this parameter (which is global for all nodes using it) :
+
+1. in a config file
+2. with environment variables
+
+Therefor the pattern in the `Default` column of the list is: `config: {config-file setting}/{ENV variable name}`
+
+`parameter3` has no default value and therefor must be given in a DFS script.
 
 **Every parameter with no default value is mandatory !**
+
+---------------------------------------------
 
 The following is a list of all possible parameter types faxe supports based on the basic data-types:
 

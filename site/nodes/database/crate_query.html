@@ -2409,27 +2409,32 @@ Each time the database is queried, the timestamps will be set according to <code
 <tr>
 <td>host( <code>string</code> )</td>
 <td>CrateDB host</td>
-<td>from config file</td>
+<td>config: <code>crate.host</code>/<code>FAXE_CRATE_HOST</code></td>
 </tr>
 <tr>
 <td>port( <code>integer</code> )</td>
 <td>CrateDB port</td>
-<td>from config file</td>
+<td>config: <code>crate.port</code>/<code>FAXE_CRATE_PORT</code></td>
+</tr>
+<tr>
+<td>tls( <code>boolean</code> )</td>
+<td>whether to use tls</td>
+<td>config: <code>crate.tls.enable</code>/<code>FAXE_CRATE_TLS_ENABLE</code></td>
 </tr>
 <tr>
 <td>user( <code>string</code> )</td>
 <td>username</td>
-<td>from config file</td>
+<td>config: <code>crate.user</code>/<code>FAXE_CRATE_USER</code></td>
 </tr>
 <tr>
 <td>pass( <code>string</code> )</td>
 <td>password</td>
-<td>from config file</td>
+<td>config: <code>crate.pass</code>/<code>FAXE_CRATE_PASS</code></td>
 </tr>
 <tr>
 <td>database( <code>string</code> )</td>
 <td>Database name</td>
-<td>from config file</td>
+<td>config: <code>crate.database</code>/<code>FAXE_CRATE_DATABASE</code></td>
 </tr>
 <tr>
 <td>query( <code>string</code> <code>text</code> )</td>

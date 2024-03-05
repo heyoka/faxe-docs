@@ -26,9 +26,9 @@ Example
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-flow( `string` )| Id of task|
-node( `string` )| Id of node| undefined
-metrics( `string_list` )| List of [metric_names](../../metrics.md)| undefined
+| Parameter                | Description                              | Default   |
+|--------------------------|------------------------------------------|-----------|
+| flow( `string` )         | Id of task                               |           |
+| node( `string` )         | Id of node                               | undefined |
+| metrics( `string_list` ) | List of [metric_names](../../metrics.md) | undefined |
  

@@ -39,7 +39,7 @@ with chain expressions
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-_[node]_ nodes_in( `node_list` )|   | optional
+| Parameter                        | Description | Default  |
+|----------------------------------|-------------|----------|
+| _[node]_ nodes_in( `node_list` ) |             | optional |
  

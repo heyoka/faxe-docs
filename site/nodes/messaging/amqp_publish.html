@@ -2429,22 +2429,22 @@ Portable hash function that gives the same hash for the same Erlang term regardl
 <tr>
 <td>host( <code>string</code> )</td>
 <td>Ip address or hostname of the broker</td>
-<td>from config</td>
+<td>config: <code>amqp.host</code>/<code>FAXE_AMQP_HOST</code></td>
 </tr>
 <tr>
 <td>port( <code>integer</code> )</td>
 <td>The broker's port</td>
-<td>5672 / from config file</td>
+<td>config: <code>amqp.port</code>/<code>FAXE_AMQP_PORT</code></td>
 </tr>
 <tr>
 <td>user( <code>string</code> )</td>
 <td>AMQP user</td>
-<td>from config file</td>
+<td>config: <code>amqp.user</code>/<code>FAXE_AMQP_USER</code></td>
 </tr>
 <tr>
 <td>pass( <code>string</code> )</td>
 <td>AMQP password</td>
-<td>from config file</td>
+<td>config: <code>amqp.pass</code>/<code>FAXE_AMQP_PASS</code></td>
 </tr>
 <tr>
 <td>vhost( <code>string</code> )</td>
@@ -2484,7 +2484,7 @@ Portable hash function that gives the same hash for the same Erlang term regardl
 <tr>
 <td>ssl( is_set )</td>
 <td>whether to use ssl</td>
-<td>false (not set)</td>
+<td>config: <code>amqp.ssl.enable</code>/<code>FAXE_AMQP_SSL_ENABLE</code></td>
 </tr>
 </tbody>
 </table>

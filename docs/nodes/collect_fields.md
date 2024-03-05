@@ -10,7 +10,7 @@ With `emit_unchanged` set to **false**, no data is emitted for a data-point, tha
 
 
 
-> If you need more complex collecting behaviour, take a look at the [collect](./collect.md) node.
+> If you need more complex collecting behaviors, take a look at the [collect](./collect.md) node.
 
 Example
 -------

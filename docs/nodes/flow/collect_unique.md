@@ -54,12 +54,12 @@ as a new data_point with the two fields called "node_id" and "request_ref".
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-_[node]_ field( `string` )| path to the key-field |
-min_vals( `integer` )| number of different items collected before first output starts|1
-keep( `string_list` )|values to keep from every data_point|
-as( `string_list` )|output names for the keep values|[]
-max_age ( `duration` ) | max age for every collected entry | undefined
+| Parameter                  | Description                                                    | Default   |
+|----------------------------|----------------------------------------------------------------|-----------|
+| _[node]_ field( `string` ) | path to the key-field                                          |           |
+| min_vals( `integer` )      | number of different items collected before first output starts | 1         |
+| keep( `string_list` )      | values to keep from every data_point                           |           |
+| as( `string_list` )        | output names for the keep values                               | []        |
+| max_age ( `duration` )     | max age for every collected entry                              | undefined |
  
  

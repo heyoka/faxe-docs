@@ -69,18 +69,18 @@ def fieldname = 'SHOW_CREATE_TABLE_{{source_schema}}_{{source_table}}'
 Parameters
 ----------
 
-| Parameter                     | Description                                                                                                                                              | Default          |
-|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| host( `string` )              | hostname or ip address of endpoint                                                                                                                       | from config file |
-| port( `integer` )             | port number                                                                                                                                              | from config file |
-| user( `string` )              | username                                                                                                                                                 | from config file |
-| pass( `string` )              | password                                                                                                                                                 | from config file |
-| tls( `boolean` )              | whether to use tls for the connection                                                                                                                    | false            |
-| statement( `string` )         | SQL statement, that should be executed.                                                                                                                  | undefined        |
-| statement_field( `string` )   | Name of the field, that holds the SQL statement, that should be executed. `start_on_trigger` must be set to true in order to use this feature.           | undefined        |
-| every( `duration` )           | Interval at which to execute the statement (periodically), if not given, the node is in one-shot mode.                                                   | undefined        |
-| result_type( `string` )       | Type of the resulting data item, 'batch' or 'point'                                                                                                      | 'batch'          |
-| start_on_trigger( `boolean` ) | if true, the node waits for an incoming data item before sending the statement to the database, this must be set to true, when `statement_field` is used | false            |
-| retries( `integer` )          | max retry attempts, when a statement fails                                                                                                               | 2                |
+| Parameter                     | Description                                                                                                                                              | Default                                            |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| host( `string` )              | hostname or ip address of endpoint                                                                                                                       | config: `crate.host`/`FAXE_CRATE_HOST`             |
+| port( `integer` )             | port number                                                                                                                                              | config: `crate.port`/`FAXE_CRATE_PORT`             |
+| tls( `boolean` )              | whether to use tls for the connection                                                                                                                    | config: `crate.tls.enable`/`FAXE_CRATE_TLS_ENABLE` | 
+| user( `string` )              | username                                                                                                                                                 | config: `crate.user`/`FAXE_CRATE_USER`             |
+| pass( `string` )              | password                                                                                                                                                 | config: `crate.pass`/`FAXE_CRATE_PASS`             |
+| statement( `string` )         | SQL statement, that should be executed.                                                                                                                  | undefined                                          |
+| statement_field( `string` )   | Name of the field, that holds the SQL statement, that should be executed. `start_on_trigger` must be set to true in order to use this feature.           | undefined                                          |
+| every( `duration` )           | Interval at which to execute the statement (periodically), if not given, the node is in one-shot mode.                                                   | undefined                                          |
+| result_type( `string` )       | Type of the resulting data item, 'batch' or 'point'                                                                                                      | 'batch'                                            |
+| start_on_trigger( `boolean` ) | if true, the node waits for an incoming data item before sending the statement to the database, this must be set to true, when `statement_field` is used | false                                              |
+| retries( `integer` )          | max retry attempts, when a statement fails                                                                                                               | 2                                                  |
 
  Either `statement` or `statement_field` must be given.

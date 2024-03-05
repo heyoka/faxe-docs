@@ -2441,7 +2441,9 @@ If any errors occur during the request, the node will attempt to retry sending.<
 </blockquote>
 <h3 id="since-vs-1013">Since vs. 1.0.13:</h3>
 <p>If <code>db_fields</code> and <code>faxe_fields</code> are not given, the node now tries to find the table structure on its own,
-by querying the destination table. In this mode, the remaining_fields_as parameter will be ignored.</p>
+by querying the destination table. In this mode, the remaining_fields_as parameter will be ignored.
+For this feature a separate connection to CrateDB is used, which gets its default connection parameters from config settings
+regarding the <code>postgre protocol</code> of CrateDB.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_table</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;grip_log_fulltext3&#39;</span>
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">db_fields</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;df&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;vs&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;topic&#39;</span><span style="color: #f8f8f2">]</span>
@@ -2482,27 +2484,27 @@ In this example schema (<code>database</code>) 'test' is used.</p>
 <tr>
 <td>host( <code>string</code> )</td>
 <td>hostname or ip address of endpoint</td>
-<td>from config file</td>
+<td>config: <code>crate_http.host</code>/<code>FAXE_CRATE_HTTP_HOST</code></td>
 </tr>
 <tr>
 <td>port( <code>integer</code> )</td>
 <td>port number</td>
-<td>from config file</td>
+<td>config: <code>crate_http.port</code>/<code>FAXE_CRATE_HTTP_PORT</code></td>
 </tr>
 <tr>
 <td>user( <code>string</code> )</td>
 <td>username</td>
-<td>from config file</td>
+<td>config: <code>crate_http.user</code>/<code>FAXE_CRATE_HTTP_USER</code></td>
 </tr>
 <tr>
 <td>pass( <code>string</code> )</td>
 <td>password</td>
-<td>from config file</td>
+<td>config: <code>crate_http.pass</code>/<code>FAXE_CRATE_HTTP_PASS</code></td>
 </tr>
 <tr>
 <td>tls( <code>is_set</code> )</td>
 <td>whether to use tls ie. https</td>
-<td>false (not set)</td>
+<td>config: <code>crate_http.tls.enable</code>/<code>FAXE_CRATE_TLS_ENABLE</code></td>
 </tr>
 <tr>
 <td>database( <code>string</code> )</td>
@@ -2539,10 +2541,30 @@ In this example schema (<code>database</code>) 'test' is used.</p>
 <td>only in combination with a amqp_consume node, message will only be acknowledged to the amqp broker, when it is written to crate db</td>
 <td>false</td>
 </tr>
+<tr>
+<td>pg_port( <code>integer</code> )</td>
+<td>since v 1.3 overwrite the port used for the separate postgre connection</td>
+<td>config: <code>crate.port</code>/<code>FAXE_CRATE_PORT</code></td>
+</tr>
+<tr>
+<td>pg_user( <code>string</code> )</td>
+<td>since v 1.3 overwrite the username used for the separate postgre connection</td>
+<td>config: <code>crate.user</code>/<code>FAXE_CRATE_USER</code></td>
+</tr>
+<tr>
+<td>pg_pass( <code>string</code> )</td>
+<td>since v 1.3 overwrite the password used for the separate postgre connection</td>
+<td>config: <code>crate.pass</code>/<code>FAXE_CRATE_PASS</code></td>
+</tr>
+<tr>
+<td>pg_tls( <code>boolean</code> )</td>
+<td>since v 1.3 overwrite the use of tls for the separate postgre connection, whether to use tls</td>
+<td>config: <code>crate.tls.enable</code>/<code>FAXE_CRATE_TLS_ENABLE</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="use_flow_ack">use_flow_ack</h3>
-<p>This is a special mode that only has effect in combination with an amqp_consume node with the same setting (.use_flow_ack(true)).
+<p>This is a special mode that only has effect in combination with an <a href="../messaging/amqp_consume.html">amqp_consume</a> node with the same setting (.use_flow_ack(true)).
 If this mode is enabled, messages consumed from an amqp broker will only be acknowledged after they are written to crate db.
 For normal errors (4xx) max_retries will be used, but for 5xx errors requests will be retried forever (until the problem on the CrateDB side is solved).
 There is an ENV setting and an API endpoint with which we can define rules to ignore such 5xx errors avoiding infinite retries for those.</p>

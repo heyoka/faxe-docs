@@ -34,10 +34,9 @@ Joins the fields of `v1` and `v2` and produces a stream, that has the fields `v1
 
 Node Parameters
 ---------------
-Parameter     | Description | Default 
---------------|-------------|--------- 
-_[node]_ nodes( `node_list` )| list of node (chains) to merge  | []
-
+| Parameter                     | Description                    | Default |
+|-------------------------------|--------------------------------|---------|
+| _[node]_ nodes( `node_list` ) | list of node (chains) to merge | []      |
 
 Parameters
 ----------

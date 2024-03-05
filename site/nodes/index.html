@@ -2368,8 +2368,46 @@
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">level</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;notice&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>Some parameters are required and others are optional.</p>
+<hr />
+<p>Some parameters are required and others are optional.
+In the nodes documentation parameters/options are listed in a table like this:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameter1( <code>string</code> )</td>
+<td>description for parameter1</td>
+<td>'default string'</td>
+</tr>
+<tr>
+<td>parameter2( <code>integer</code> )</td>
+<td>description for parameter2</td>
+<td>config: <code>example.host</code>/<code>FAXE_EXAMPLE_HOST</code></td>
+</tr>
+<tr>
+<td>parameter3( <code>string</code> )</td>
+<td>description for parameter3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>parameter1</code> has a default value and is optional in a DFS script. </p>
+<p><code>parameter2</code> also has a default value, but this value comes from faxe's configuration.</p>
+<p>There are 2 ways to configure this parameter (which is global for all nodes using it) :</p>
+<ol>
+<li>in a config file</li>
+<li>with environment variables</li>
+</ol>
+<p>Therefor the pattern in the <code>Default</code> column of the list is: <code>config: {config-file setting}/{ENV variable name}</code></p>
+<p><code>parameter3</code> has no default value and therefor must be given in a DFS script.</p>
 <p><strong>Every parameter with no default value is mandatory !</strong></p>
+<hr />
 <p>The following is a list of all possible parameter types faxe supports based on the basic data-types:</p>
 <table>
 <thead>

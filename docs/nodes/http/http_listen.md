@@ -8,13 +8,12 @@ The http_listen node provides an http endpoint, that is listening for incoming d
 Response
 --------
 
-Status        | Description | Body
---------------|-------------|---------
-200 OK          |OK           | json : {"success": "true"}
-401 Unauthorized|BasicAuth was defined with `user and pass` options, but Authorization header not present or has wrong value. |
-405 Method not allowed |Http method other than `OPTIONS`, `POST` or `PUT` used. |
-415 Unsupported Media Type  |Body is missing or wrong content-type is used. |
-
+| Status                     | Description                                                                                                  | Body                       |
+|----------------------------|--------------------------------------------------------------------------------------------------------------|----------------------------|
+| 200 OK                     | OK                                                                                                           | json : {"success": "true"} |
+| 401 Unauthorized           | BasicAuth was defined with `user and pass` options, but Authorization header not present or has wrong value. |                            |
+| 405 Method not allowed     | Http method other than `OPTIONS`, `POST` or `PUT` used.                                                      |                            |
+| 415 Unsupported Media Type | Body is missing or wrong content-type is used.                                                               |                            |
 
 Example 1
 -------
@@ -92,13 +91,13 @@ Resulting data-point in json format:
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|---------
-port( `integer` )|port to listen on| 8899
-tls( `is_set` ) | whether to use tls (https), For ssl options used (tls version, ciphers suites, etc.) see faxe's http API [config](../../configuration.md)| false (not set)
-path( `string` )| URI path of the http endpoint | '/'
-payload_type( `string` ) | how to interpret incoming data, valid values: `'plain'` or `'json'` | 'plain' 
-content_type( `string` ) | how the message-body will be interpreted, `'application/x-www-form-urlencoded'`, `'text/plain'`, `'application/json'` | 'application/json'
-as( `string` ) | base path for resulting data-items, if not given and content_type is `text/plain` or `application/json`, 'data' is the default value | undefined / 'data'
-user( `string` ) | If given, `BasicAuth Authorization` is to be used in requests to this endpoint.| undefined
-pass( `string` ) | If user is given, pass must be given also. | undefined
+| Parameter                | Description                                                                                                                               | Default            |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| port( `integer` )        | port to listen on                                                                                                                         | 8899               |
+| tls( `is_set` )          | whether to use tls (https), For ssl options used (tls version, ciphers suites, etc.) see faxe's http API [config](../../configuration.md) | false (not set)    |
+| path( `string` )         | URI path of the http endpoint                                                                                                             | '/'                |
+| payload_type( `string` ) | how to interpret incoming data, valid values: `'plain'` or `'json'`                                                                       | 'plain'            |
+| content_type( `string` ) | how the message-body will be interpreted, `'application/x-www-form-urlencoded'`, `'text/plain'`, `'application/json'`                     | 'application/json' |
+| as( `string` )           | base path for resulting data-items, if not given and content_type is `text/plain` or `application/json`, 'data' is the default value      | undefined / 'data' |
+| user( `string` )         | If given, `BasicAuth Authorization` is to be used in requests to this endpoint.                                                           | undefined          |
+| pass( `string` )         | If user is given, pass must be given also.                                                                                                | undefined          |
