@@ -1482,6 +1482,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../nodes/flowdata/path_split.html" class="md-nav__link">
+        Path split
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../nodes/flowdata/rename.html" class="md-nav__link">
         Rename
       </a>
@@ -2861,8 +2875,8 @@
 <td>Returns a string where leading Unicode whitespace has been removed</td>
 </tr>
 <tr>
-<td><code>str_lstrip(x, char)</code> -&gt; string</td>
-<td>Returns a string where leading char have been removed</td>
+<td><code>str_lstrip(string, char::int)</code> -&gt; string</td>
+<td>Returns a string where leading char have been removed ('char' number of leading chars)</td>
 </tr>
 <tr>
 <td>str_pad_leading/2</td>
@@ -2919,6 +2933,10 @@
 <tr>
 <td><code>str_slice(x, start, len)</code> -&gt; string</td>
 <td>Returns a substring starting at the offset given by the first, and a length given by the second param, if offset is negative, count back from end of string.</td>
+</tr>
+<tr>
+<td><code>str_slice(x, start)</code> -&gt; string</td>
+<td>Returns a substring starting at the offset given by start.</td>
 </tr>
 <tr>
 <td>str_split/1</td>

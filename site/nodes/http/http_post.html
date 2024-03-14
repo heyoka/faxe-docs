@@ -1369,6 +1369,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../flowdata/path_split.html" class="md-nav__link">
+        Path split
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../flowdata/rename.html" class="md-nav__link">
         Rename
       </a>
@@ -2367,11 +2381,11 @@
 
 
 <h1 id="the-http_post-node">The http_post node</h1>
-<p>Sends incoming data to a specified HTTP endpoint via the POST method as a JSON message.
+<p>Sends incoming data to a specified HTTP endpoint via the <code>POST</code> or <code>PUT</code> method as a JSON message.
 If any errors occur during the request, the node will attempt to retry sending.</p>
 <p>Content-type header <code>application/json</code> will be used.</p>
 <blockquote>
-<p>Note: This node will only output flow-data, if the (POST) request was successful.</p>
+<p>Note: This node will only output flow-data, if the request was successful.</p>
 </blockquote>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">http_post()</span>
@@ -2429,6 +2443,11 @@ If any errors occur during the request, the node will attempt to retry sending.<
 <td>path( <code>string</code> )</td>
 <td>URI path of the http endpoint</td>
 <td>'/'</td>
+</tr>
+<tr>
+<td>method( <code>string</code> )</td>
+<td>HTTP method to use, valid options are: 'post' or 'put'</td>
+<td>'post'</td>
 </tr>
 <tr>
 <td>field( <code>string</code> )</td>

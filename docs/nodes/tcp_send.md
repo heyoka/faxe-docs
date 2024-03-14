@@ -36,8 +36,6 @@ treated as separated by newline characters (\n, \r\n).
 
 The tcp listener is protected against flooding with the {active, once} inet option.
 
-> Note: This node is a sink node and does not output any flow-data, therefore any node connected to this node will not get any data.
-
 Example
 -------
 
@@ -69,15 +67,15 @@ Data received will be interpreted as a json-string and injected into the current
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-ip( `string` )| ip or hostname for the tcp peer | 
-port( `integer` )| port number |
-packet( `integer` )| packet length | 2
-every( `string` )| send interval| undefined
-msg_text( `string` ) | predefined string to send to the peer endpoint| undefined
-msg_json( `string` ) | predefined json-string to send to the peer endpoint| undefined
-response_as( `string` ) | name of the field for parsed data| undefined
-response_json( is_set ) | interprets a response as a json-string| false (not set)
-response_timeout( duration ) | timeout for a "response" after a message has been sent| 5s
+| Parameter                    | Description                                            | Default         |
+|------------------------------|--------------------------------------------------------|-----------------|
+| ip( `string` )               | ip or hostname for the tcp peer                        |                 |
+| port( `integer` )            | port number                                            |                 |
+| packet( `integer` )          | packet length                                          | 2               |
+| every( `string` )            | send interval                                          | undefined       |
+| msg_text( `string` )         | predefined string to send to the peer endpoint         | undefined       |
+| msg_json( `string` )         | predefined json-string to send to the peer endpoint    | undefined       |
+| response_as( `string` )      | name of the field for parsed data                      | undefined       |
+| response_json( is_set )      | interprets a response as a json-string                 | false (not set) |
+| response_timeout( duration ) | timeout for a "response" after a message has been sent | 5s              |
  

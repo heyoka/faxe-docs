@@ -1,12 +1,12 @@
 The http_post node
 =====================
 
-Sends incoming data to a specified HTTP endpoint via the POST method as a JSON message.
+Sends incoming data to a specified HTTP endpoint via the `POST` or `PUT` method as a JSON message.
 If any errors occur during the request, the node will attempt to retry sending.
 
 Content-type header `application/json` will be used.
 
-> Note: This node will only output flow-data, if the (POST) request was successful.
+> Note: This node will only output flow-data, if the request was successful.
 
 Example
 -------
@@ -47,6 +47,7 @@ Parameters
 | user( `string` )               | username for Basic Authentication                                                             | undefined       |
 | pass( `string` )               | password for Basic Authentication                                                             | undefined       |
 | path( `string` )               | URI path of the http endpoint                                                                 | '/'             |
+| method( `string` )             | HTTP method to use, valid options are: 'post' or 'put'                                        | 'post'          |
 | field( `string` )              | if given, only data from the specified field gets sent, otherwise the whole data-item is used | undefined       |
 | header_names( `string_list` )  | list of names for custom headers, that should be sent                                         | undefined       |
 | header_values( `string_list` ) | list of corresponding values for custom headers (must be the same length as `header_names`)   | undefined       |
