@@ -9,6 +9,8 @@ Outputs a data-point for every object, that is found under a root path. Values t
 
 With `include_name` and `include_as`, the name of the root path can be used as a new field for the resulting data-points.
 
+> Note, that field/path names must start with a letter !
+
 Examples
 -------
 ```dfs  
