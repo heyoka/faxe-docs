@@ -3092,6 +3092,16 @@
 <td>list_of_strings("data.lines")</td>
 </tr>
 <tr>
+<td><code>list_string_concat(List1, List2)</code> -&gt; list</td>
+<td>Concatenate the string representation of the elements of 2 lists, the resulting list is as long as the shorter of the two lists.</td>
+<td>list_of_strings("data.lines")</td>
+</tr>
+<tr>
+<td><code>list_string_concat(List1, List2, Sep)</code> -&gt; list</td>
+<td>Concatenate the string representation of the elements of 2 lists, the resulting list is as long as the shorter of the two lists. The given separator string will be place in between each of the pairs of strings.</td>
+<td>list_of_strings("data.lines")</td>
+</tr>
+<tr>
 <td><code>sublist(List, Len))</code> -&gt; list</td>
 <td>Returns the sublist of List1 starting at position 1 and with (maximum) Len elements.  It is not an error for Len to exceed the length of the list, in that case the whole list is returned.</td>
 <td></td>
