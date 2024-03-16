@@ -3009,27 +3009,27 @@
 <tr>
 <td><code>head(List)</code> -&gt; any</td>
 <td>Returns the head, or the first element, of list List.</td>
-<td>head("data.lines")</td>
+<td><code>head("data.lines")</code></td>
 </tr>
 <tr>
 <td><code>nth(Integer, List)</code> -&gt; any</td>
 <td>Returns the nth element from list List, list indices start with 1.</td>
-<td>nth(N, "data.lines")</td>
+<td><code>nth(N, "data.lines")</code></td>
 </tr>
 <tr>
 <td><code>nthtail(Integer, List)</code> -&gt; any</td>
 <td>Returns the Nth tail of List, that is, the sublist of List starting at N+1 and continuing up to the end of the list.</td>
-<td>nthtail(N, "data.lines")</td>
+<td><code>nthtail(N, "data.lines")</code></td>
 </tr>
 <tr>
 <td><code>list_append(List1, List2)</code> -&gt; list</td>
 <td>Returns a new list, which is made from the elements of List1 followed by the elements of List2.</td>
-<td>list_append(['a', 'b', 'c'], [1, 2, 4])</td>
+<td><code>list_append(['a', 'b', 'c'], [1, 2, 4])</code></td>
 </tr>
 <tr>
 <td><code>list_delete(Elem, List)</code> -&gt; list</td>
 <td>Returns a copy of List, where the first element matching Elem is deleted, if there is such an element.</td>
-<td>list_delete(2, [1, 2, 4]) -&gt; [1, 4]</td>
+<td><code>list_delete(2, [1, 2, 4]) -&gt; [1, 4]</code></td>
 </tr>
 <tr>
 <td><code>list_last(List)</code> -&gt; any</td>
@@ -3039,22 +3039,22 @@
 <tr>
 <td><code>list_max(List)</code> -&gt; any</td>
 <td>Returns the first element of List that compares greater than or equal to all other elements of List.</td>
-<td>list_max([1, 2, 4]) -&gt; 4</td>
+<td><code>list_max([1, 2, 4]) -&gt; 4</code></td>
 </tr>
 <tr>
 <td><code>list_min(List)</code> -&gt; any</td>
 <td>Returns the first element of List that compares less than or equal to all other elements of List.</td>
-<td>list_min([1, 2, 4]) -&gt; 1</td>
+<td><code>list_min([1, 2, 4]) -&gt; 1</code></td>
 </tr>
 <tr>
 <td><code>list_reverse(List)</code> -&gt; list</td>
 <td>Returns a list with the elements in List1 in reverse order.</td>
-<td>list_reverse([1, 2, 4]) -&gt; [4, 2, 1]</td>
+<td><code>list_reverse([1, 2, 4]) -&gt; [4, 2, 1]</code></td>
 </tr>
 <tr>
 <td><code>list_sort(List)</code> -&gt; list</td>
 <td>Returns a list containing the sorted elements of List1.</td>
-<td>list_sort([4, 5, 1, 2, 4]) -&gt; [1, 2, 4, 4, 5]</td>
+<td><code>list_sort([4, 5, 1, 2, 4]) -&gt; [1, 2, 4, 4, 5]</code></td>
 </tr>
 <tr>
 <td><code>list_subtract(List1, List2)</code> -&gt; list</td>
@@ -3069,7 +3069,7 @@
 <tr>
 <td><code>list_unique(List)</code> -&gt; list</td>
 <td>Returns a new list with only unique values from List.</td>
-<td>list_unique("data.lines")</td>
+<td><code>list_unique("data.lines")</code></td>
 </tr>
 <tr>
 <td><code>list_usort(List)</code> -&gt; list</td>
@@ -3079,27 +3079,37 @@
 <tr>
 <td><code>list_join(List)</code> -&gt; string</td>
 <td>Equivalent to list_join(',', List).</td>
-<td>list_join("data.lines")</td>
+<td><code>list_join("data.lines")</code></td>
 </tr>
 <tr>
 <td><code>list_join(Separator, List)</code> -&gt; string</td>
 <td>Join a list of strings with a separator string.</td>
-<td>list_join('-', "data.lines")</td>
+<td><code>list_join('-', "data.lines")</code></td>
 </tr>
 <tr>
 <td><code>list_of_strings(List)</code> -&gt; list</td>
 <td>Convert every entry of a list to a string and return the list of strings.</td>
-<td>list_of_strings("data.lines")</td>
+<td><code>list_of_strings("data.lines")</code></td>
+</tr>
+<tr>
+<td><code>list_string_prefix(List, Prefix)</code> -&gt; list</td>
+<td>Prefix the elements of a list of strings with a given string.</td>
+<td><code>list_string_prefix(['v1', 'v2'], 'mod_') -&gt; ['mod_v1', 'mod_v2']</code></td>
+</tr>
+<tr>
+<td><code>list_string_postfix(List, Postfix)</code> -&gt; list</td>
+<td>Postfix the elements of a list of strings with a given string.</td>
+<td><code>list_string_postfix(['v1', 'v2'], '_dfe') -&gt; ['v1_dfe', 'v2_dfe']</code></td>
 </tr>
 <tr>
 <td><code>list_string_concat(List1, List2)</code> -&gt; list</td>
 <td>Concatenate the string representation of the elements of 2 lists, the resulting list is as long as the shorter of the two lists.</td>
-<td>list_of_strings("data.lines")</td>
+<td><code>list_string_concat(['v1', 'v2'], ['k1', 'k2']) -&gt; ['v1k1', 'v2k2']</code></td>
 </tr>
 <tr>
 <td><code>list_string_concat(List1, List2, Sep)</code> -&gt; list</td>
 <td>Concatenate the string representation of the elements of 2 lists, the resulting list is as long as the shorter of the two lists. The given separator string will be place in between each of the pairs of strings.</td>
-<td>list_of_strings("data.lines")</td>
+<td></td>
 </tr>
 <tr>
 <td><code>sublist(List, Len))</code> -&gt; list</td>
