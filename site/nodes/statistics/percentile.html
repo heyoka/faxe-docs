@@ -2381,8 +2381,8 @@
 
 
 <h1 id="the-percentile-node">The percentile node</h1>
-<p>Select a point at the given percentile. This is a selector function, no interpolation between points is performed.</p>
-<p>See the <a href="../stats.html">stats node</a></p>
+<p>Select a point at the given percentile. This is a selector function, no interpolation between points is performed.
+This node expects a data-batch item.</p>
 <h2 id="example">Example</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #a6e22e">percentile</span><span style="color: #f8f8f2">()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">perc</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">95</span><span style="color: #f8f8f2">)</span>
@@ -2411,9 +2411,9 @@
 <td>defaults to the name of the stats-node</td>
 </tr>
 <tr>
-<td>perc ( <code>integer</code> )</td>
+<td>at ( <code>integer</code> )</td>
 <td>select percentile</td>
-<td>95</td>
+<td>75</td>
 </tr>
 </tbody>
 </table>
