@@ -33,6 +33,7 @@ _Since v1.4.2_
 This feature can be used to migrate the flow of data to a new queue.
 
 The reasons for migrating a queue could be: 
+
 * `Rename` a queue (maybe to use a different policy)
 * Use a different `type of queue`
 * Migrate a queue to a `different vhost`

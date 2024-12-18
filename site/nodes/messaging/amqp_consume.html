@@ -2458,10 +2458,12 @@ when <code>prefetch</code> is changed:</p>
 <h2 id="queue-migration">Queue migration</h2>
 <p><em>Since v1.4.2</em></p>
 <p>This feature can be used to migrate the flow of data to a new queue.</p>
-<p>The reasons for migrating a queue could be: 
-* <code>Rename</code> a queue (maybe to use a different policy)
-* Use a different <code>type of queue</code>
-* Migrate a queue to a <code>different vhost</code></p>
+<p>The reasons for migrating a queue could be: </p>
+<ul>
+<li><code>Rename</code> a queue (maybe to use a different policy)</li>
+<li>Use a different <code>type of queue</code></li>
+<li>Migrate a queue to a <code>different vhost</code></li>
+</ul>
 <p>For this to work without losing any data, that is still
 living in the existing queue, the node will temporarily setup a second consumer for this queue and consumes from both queues in parallel,
 until it sees the same messages coming in on both queues (duplicates will be removed). At this point the consumer for the existing queue will be stopped
