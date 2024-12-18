@@ -212,6 +212,40 @@ class Mynode(Faxe):
     
 ```
 
+#### **ack**
+
+```python
+def ack(self, ack_data, multi=True):
+```
+Where ack_data is either a `dtag` value (integer) from a data_item or a data_item itself (point or batch).
+
+The `ack` method inherited from the base class (Faxe) is normally used to acknowledge data back to a message broker. 
+
+`multi` defines if the acknowledgement is done just for the given dtag (multi=False) or for all dtags up to the given one (multi=True). 
+If `ack_data` is a data_batch item, `multi` is set to True and the highest dtag value, that is found in the list of data_points, will be used.
+
+
+Normally other built-in faxe nodes take care of acknowledging data, when they are consumed from a broker, but under some circumstances it is necessary to do
+this in a custom node. For example: A flow that consumes from RabbitMQ and does not write to a database, but has a custom python node as a sink node.
+
+```python
+from faxe import Faxe
+
+
+class Mynode(Faxe):
+
+    ...
+
+    def handle_point(self, batch_data):
+        """do something with batch_data"""
+        self.emit(batch_data)
+        self.ack(batch_data)
+        
+    ...
+    
+```
+
+
 #### **log**
 
 ```python

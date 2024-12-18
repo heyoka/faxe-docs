@@ -1850,6 +1850,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#queue-migration" class="md-nav__link">
+    Queue migration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -2393,6 +2400,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#queue-migration" class="md-nav__link">
+    Queue migration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -2441,6 +2455,36 @@ when <code>prefetch</code> is changed:</p>
 <li>set <code>dedup_size</code> to 3 times the <code>prefetch</code> value</li>
 </ul>
 <p>Example: prefetch = 100, ack_every = 35, dedup_size = 300</p>
+<h2 id="queue-migration">Queue migration</h2>
+<p><em>Since v1.4.2</em></p>
+<p>This feature can be used to migrate the flow of data to a new queue.</p>
+<p>The reasons for migrating a queue could be: 
+* <code>Rename</code> a queue (maybe to use a different policy)
+* Use a different <code>type of queue</code>
+* Migrate a queue to a <code>different vhost</code></p>
+<p>For this to work without losing any data, that is still
+living in the existing queue, the node will temporarily setup a second consumer for this queue and consumes from both queues in parallel,
+until it sees the same messages coming in on both queues (duplicates will be removed). At this point the consumer for the existing queue will be stopped
+and the queue will be deleted from the broker.
+If a flow that is setup to do a queue migration is restarted <strong>after</strong> the migration has already finished, the takeover_queue is <strong>not</strong> declared again, because the
+takeover_queue declaration is done in <a href="https://www.rabbitmq.com/client-libraries/dotnet-api-guide#passive-declaration">passive mode</a>, which means that a queue can only be used, if it already exists on the broker.</p>
+<p>New node parameters are added (See <a href="#Parameters">parameters</a> table below):</p>
+<ul>
+<li><code>takeover_queue</code>: Name of the existing queue from which to takeover the data stream.</li>
+<li><code>takeover_queue_type</code>: "x-queue-type" amqp argument</li>
+<li><code>takeover_vhost</code> </li>
+</ul>
+<p>All other parameters are the same for both consumers, except:</p>
+<ul>
+<li><code>queue_prefix</code>: Does not affect the takeover_queue, you must use the full (existing) queue name.</li>
+<li><code>exchange</code> and <code>exchange_prefix</code>: This will always be the same for both consumers.</li>
+<li><code>consumer_tag</code>: a postfix will be added for the take-over consumer.</li>
+</ul>
+<blockquote>
+<p>When <code>vhost</code> and <code>takeover_vhost</code> are different, you must make sure, that the data is published to both vhosts.
+The name of the exchanges must be the same on each vhost.
+Exchanges and queues are specific to a vhost, so we cannot bind a queue on one vhost to an exchange on another vhost.</p>
+</blockquote>
 <hr />
 <p>At the moment this node can only set up and work with <code>topic</code> exchanges.</p>
 <h2 id="example">Example</h2>
@@ -2507,6 +2551,11 @@ when <code>prefetch</code> is changed:</p>
 <td>queue_prefix( <code>string</code> )</td>
 <td>prefix for the queue-name that will be ensured to exist for <code>queue</code></td>
 <td>from config</td>
+</tr>
+<tr>
+<td>queue_type( <code>string</code> )</td>
+<td>Queue type, Valid values are: <code>''</code>, <code>'quorum'</code>, <code>'classic'</code>. The value will be used for the "x-queue-type" argument while declaring a queue. With <code>''</code>, the type of the queue will be the default type on the vhost.</td>
+<td>''</td>
 </tr>
 <tr>
 <td>exchange( <code>string</code> )</td>
@@ -2580,13 +2629,28 @@ when <code>prefetch</code> is changed:</p>
 </tr>
 <tr>
 <td>confirm ( <code>boolean</code> )</td>
-<td>whether to acknowledge consumed messages to the amqp broker, when set to <code>false</code>, throughput can be increased with the danger of data-loss</td>
+<td>whether to acknowledge consumed messages to the amqp broker, when set to <code>false</code>, the channel will be set to auto-ack , throughput can be increased with the danger of data-loss</td>
 <td>true</td>
 </tr>
 <tr>
 <td>safe ( <code>boolean</code> )</td>
 <td>whether to use faxe's internal queue. If <code>true</code>, messages consumed from the amqp broker will be stored in an internal ondisc queue before they get sent to downstream nodes, to avoid losing data.</td>
 <td>false</td>
+</tr>
+<tr>
+<td>takeover_queue ( <code>string</code> )</td>
+<td>Name for the take-over queue.</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>takeover_queue_type ( <code>string</code> )</td>
+<td>Queue type for the take-over queue. Valid values are: <code>''</code>, <code>'quorum'</code>, <code>'classic'</code>. The value will be used for the "x-queue-type" argument while declaring a queue. With '', the type of the queue will be the default type on the vhost.</td>
+<td>''</td>
+</tr>
+<tr>
+<td>takeover_vhost ( <code>string</code> )</td>
+<td>Name of the vhost for the take-over queue.</td>
+<td>value of <code>vhost</code></td>
 </tr>
 </tbody>
 </table>

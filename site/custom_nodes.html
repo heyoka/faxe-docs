@@ -341,6 +341,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ack" class="md-nav__link">
+    ack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#log" class="md-nav__link">
     log
   </a>
@@ -2687,6 +2694,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ack" class="md-nav__link">
+    ack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#log" class="md-nav__link">
     log
   </a>
@@ -3108,6 +3122,31 @@ It can take both <a href="#data-point">point</a> and <a href="#data-batch">batch
     <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">my_method</span><span style="color: #f8f8f2">(self):</span>
         <span style="color: #f8f8f2">batch_data</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">my_batch_data</span>
         <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">emit(batch_data)</span>
+
+    <span style="color: #f92672">...</span>
+</code></pre></div>
+
+<h4 id="ack"><strong>ack</strong></h4>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">ack</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">ack_data,</span> <span style="color: #f8f8f2">multi</span><span style="color: #f92672">=</span><span style="color: #66d9ef">True</span><span style="color: #f8f8f2">):</span>
+</code></pre></div>
+
+<p>Where ack_data is either a <code>dtag</code> value (integer) from a data_item or a data_item itself (point or batch).</p>
+<p>The <code>ack</code> method inherited from the base class (Faxe) is normally used to acknowledge data back to a message broker. </p>
+<p><code>multi</code> defines if the acknowledgement is done just for the given dtag (multi=False) or for all dtags up to the given one (multi=True). 
+If <code>ack_data</code> is a data_batch item, <code>multi</code> is set to True and the highest dtag value, that is found in the list of data_points, will be used.</p>
+<p>Normally other built-in faxe nodes take care of acknowledging data, when they are consumed from a broker, but under some circumstances it is necessary to do
+this in a custom node. For example: A flow that consumes from RabbitMQ and does not write to a database, but has a custom python node as a sink node.</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">from</span> <span style="color: #f8f8f2">faxe</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Faxe</span>
+
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Mynode</span><span style="color: #f8f8f2">(Faxe):</span>
+
+    <span style="color: #f92672">...</span>
+
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">handle_point</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">batch_data):</span>
+<span style="color: #f8f8f2">        </span><span style="color: #e6db74">&quot;&quot;&quot;do something with batch_data&quot;&quot;&quot;</span>
+        <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">emit(batch_data)</span>
+        <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ack(batch_data)</span>
 
     <span style="color: #f92672">...</span>
 </code></pre></div>
