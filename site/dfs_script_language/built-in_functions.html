@@ -1482,6 +1482,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../nodes/flowdata/multi_map.html" class="md-nav__link">
+        Multi map
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../nodes/flowdata/path_split.html" class="md-nav__link">
         Path split
       </a>
@@ -2859,6 +2873,14 @@
 <td>Compares strings case insensitively</td>
 </tr>
 <tr>
+<td><code>str_find(string, pattern)</code> -&gt; string/undefined</td>
+<td>Removes anything before <code>pattern</code> in <code>string</code> and returns the remainder of the string or undefined if pattern is not found. Same as str_find(string, pattern, 'leading').</td>
+</tr>
+<tr>
+<td><code>str_find(string, pattern, dir)</code> -&gt; string/undefined</td>
+<td>Like str_find/2, but <code>dir</code>, which can be 'leading' or 'trailing', indicates from which direction characters are to be searched.</td>
+</tr>
+<tr>
 <td><code>str_first(x)</code> -&gt; string/undefined</td>
 <td>Returns the first grapheme from an utf8 string, undefined if the string is empty</td>
 </tr>
@@ -3356,6 +3378,11 @@ The second example selects the first name with 'color' <code>orange</code> and t
 <tr>
 <td><code>ls_mem_set(Key)</code> -&gt; any</td>
 <td>get the set value associated with Key from the flow-memory</td>
+<td></td>
+</tr>
+<tr>
+<td><code>build_plc_addresses(Jsn)</code> -&gt; list</td>
+<td>Given jsn list with PLC address information, builds address strings, that can be used for the <a href="../nodes/data_collection/s7read.html">s7read</a> node</td>
 <td></td>
 </tr>
 </tbody>

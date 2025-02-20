@@ -11,7 +11,6 @@ Here are the simple rules of the syntax:
 Every config item can be overwritten with OS Environment variables (see 'ENV-Key'). 
 
 ```cfg
-
 ## Name of the Erlang node
 ## 
 ## Default: faxe@127.0.0.1
@@ -256,6 +255,15 @@ log.logstash_backend_enable = off
 ## Acceptable values:
 ##   - the path to a directory
 ## dfs.script_path = /home/heyoka/workspace/faxe/dfs/
+
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_DFS_DEBUG
+## 
+## Acceptable values:
+##   - on or off
+dfs.debug = off
 
 ## ----------------------------------------------------------------
 ## API USER - default user, that will be created on first startup
@@ -513,6 +521,18 @@ dequeue.max_interval = 200ms
 dequeue.step_size = 3
 
 ## -------------------------------------------------------------------------
+## NODE SPECIFIC settings
+## -------------------------------------------------------------------------
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_NODE_CRATE_QUERY_CONT_EXTENDED_LOG
+## 
+## Acceptable values:
+##   - on or off
+node.crate_query_cont.extended_log = off
+
+## -------------------------------------------------------------------------
 ## S7 DEFAULTS
 ## -------------------------------------------------------------------------
 ## for every unique ip address used by s7_read nodes,
@@ -572,15 +592,10 @@ s7reader.optimized = on
 mqtt_pool.enable = on
 
 ## max size (maximum number of connections) for the mqtt connection pool
-## 
-## Default: 30
-## 
-## ENV-Key: FAXE_MQTT_POOL_MAX_SIZE
-## 
-## Acceptable values:
-##   - an integer
-mqtt_pool.max_size = 30
-
+## {mapping, "mqtt_pool.max_size", "faxe.mqtt_pool.max_size",
+## [{default, 30}, {datatype, integer}]
+## }.
+## mqtt host
 ## 
 ## Default: 10.14.204.20
 ## 
@@ -922,6 +937,16 @@ crate.database = doc
 ##   - on or off
 ## crate.tls.enable = off
 
+## CrateDB ignore rules
+## 
+## Default: code=5000,message=example
+## 
+## ENV-Key: FAXE_CRATE_IGNORE_RULES
+## 
+## Acceptable values:
+##   - text
+crate.ignore_rules = code=5000,message=example
+
 ## -------------------------------------------------------------------------------
 ## CrateDB defaults (http api)
 ## -------------------------------------------------------------------------------
@@ -975,8 +1000,27 @@ crate_http.user = crate
 ##   - text
 crate_http.database = doc
 
-## crate tls
-## enable the use of tls for crate http connections
+## cratedb http connection timeout
+## 
+## Default: 30s
+## 
+## ENV-Key: FAXE_CRATE_HTTP_CONNECTION_TIMEOUT
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+crate_http.connection_timeout = 30s
+
+## cratedb http query timeout
+## 
+## Default: 15s
+## 
+## ENV-Key: FAXE_CRATE_HTTP_QUERY_TIMEOUT
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+crate_http.query_timeout = 15s
+
+## crate tls - enable the use of tls for crate http connections
 ## 
 ## Default: off
 ## 
@@ -985,16 +1029,6 @@ crate_http.database = doc
 ## Acceptable values:
 ##   - on or off
 ## crate_http.tls.enable = off
-
-## CrateDB ignore rules
-## 
-## Default: code=5000,message=example
-## 
-## ENV-Key: FAXE_CRATE_IGNORE_RULES
-## 
-## Acceptable values:
-##   - text
-crate.ignore_rules = code=5000,message=example
 
 ## -------------------------------------------------------------------------------
 ## InfluxDB defaults (http api)
@@ -1292,8 +1326,6 @@ debug.handler.mqtt.enable = off
 debug.time = 3m
 
 ## ----------------------- FLOW_CHANGED --------------------------
-## flow_changed handler MQTT
-## enable/disable flow_changed handler mqtt
 ## 
 ## Default: off
 ## 
@@ -1331,8 +1363,73 @@ flow_changed.handler.mqtt.enable = off
 ##   - text
 ## flow_changed.handler.mqtt.base_topic = sys/faxe
 
+## ----------------------- FLOW HEALTH STATUS (observer) --------------------------
+## enable/disable flow health observer process
+## 
+## Default: on
+## 
+## ENV-Key: FAXE_FLOW_HEALTH_OBSERVER_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+flow_health.observer.enable = on
 
+##
+## Interval at which the observer reports the status of a flow, if there are not any other reports sent.
+## Default: 3m
+## 
+## ENV-Key: FAXE_FLOW_HEALTH_OBSERVER_REPORT_INTERVAL
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+flow_health.observer.report_interval = 3m
 
+##
+## Interval at which the stopped status of a flow is sent 
+## Default: 60m
+## 
+## ENV-Key: FAXE_FLOW_HEALTH_POST_MORTEM_REPORT_INTERVAL
+## 
+## Acceptable values:
+##   - a time duration with units, e.g. '10s' for 10 seconds
+flow_health.post_mortem.report_interval = 60m
+
+## 
+## Default: on
+## 
+## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+flow_health.handler.mqtt.enable = on
+
+## flow_health handler mqtt host
+## 
+## Default: 
+## 
+## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_HOST
+## 
+## Acceptable values:
+##   - text
+## flow_health.handler.mqtt.host = example.com
+
+## flow_health handler mqtt port
+## 
+## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_PORT
+## 
+## Acceptable values:
+##   - an integer
+## flow_health.handler.mqtt.port = 1883
+
+## flow_health handler mqtt base topic
+## 
+## Default: sys/faxe
+## 
+## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_BASE_TOPIC
+## 
+## Acceptable values:
+##   - text
+## flow_health.handler.mqtt.base_topic = sys/faxe
 
 
 ```

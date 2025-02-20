@@ -30,8 +30,9 @@ has a field "data.condition.id" with value 2, or it has the field "data.conditio
 Parameters
 ----------
 
-Parameter     | Description | Default 
---------------|-------------|--------- 
-fields( `string_list` )| list of fieldnames to delete | []
-tags( `string_list` )| list of tagnames to delete | []
-where( `lambda` )| lambda function for conditional deleting | undefined
+| Parameter               | Description                                    | Default   |
+|-------------------------|------------------------------------------------|-----------|
+| fields( `string_list` ) | list of fieldnames to delete                   | []        |
+| tags( `string_list` )   | list of tagnames to delete                     | []        |
+| where( `lambda` )       | lambda function for conditional deleting       | undefined |
+| when_value( `any` )     | delete a field only, if it has the given value | undefined |

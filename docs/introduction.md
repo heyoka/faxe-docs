@@ -124,10 +124,10 @@ The path for the field **value3_1** in the second example:
 values.value3.value_3_1
 ```
 
-In the third example we have a json-array, we can reference the field **value2** like so:
+In the third example we have a json-array, we can reference the field **value2** like so (array indexes are 0 based):
 
 ```
-values[2].value2
+values[1].value2
 ```
 
 #### Dots in fieldnames

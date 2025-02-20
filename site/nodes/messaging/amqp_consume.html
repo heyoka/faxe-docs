@@ -1369,6 +1369,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../flowdata/multi_map.html" class="md-nav__link">
+        Multi map
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../flowdata/path_split.html" class="md-nav__link">
         Path split
       </a>
@@ -1857,8 +1871,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -2407,8 +2421,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -2489,7 +2503,7 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 </blockquote>
 <hr />
 <p>At the moment this node can only set up and work with <code>topic</code> exchanges.</p>
-<h2 id="example">Example</h2>
+<h2 id="examples">Examples</h2>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_consume()</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;deves-amqp-cluster1.internal&#39;</span><span style="color: #f8f8f2">)</span> 
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bindings</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my.routing.key&#39;</span><span style="color: #f8f8f2">)</span>
@@ -2499,6 +2513,19 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_format</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;float_micro&#39;</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
+<hr />
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">amqp_consume()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">host</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;deves-amqp-cluster1.internal&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bindings</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my.routing.key&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exchange</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;x_xchange&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queue</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;faxe_test&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queue_type</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;quorum&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">takeover_queue</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;existing_queue&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;UTC-Time&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_format</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;float_micro&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Migrate from a queue named 'exisiting_queue' to a new queue named 'faxe_test' with type 'quorum'.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -2556,7 +2583,7 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 </tr>
 <tr>
 <td>queue_type( <code>string</code> )</td>
-<td>Queue type, Valid values are: <code>''</code>, <code>'quorum'</code>, <code>'classic'</code>. The value will be used for the "x-queue-type" argument while declaring a queue. With <code>''</code>, the type of the queue will be the default type on the vhost.</td>
+<td>Queue type, Valid values are: <code>''</code>, <code>'quorum'</code>, <code>'classic'</code>. The value will be used for the "x-queue-type" argument while declaring a queue. With <code>''</code>, the type of the queue will be the default type defined for the vhost.</td>
 <td>''</td>
 </tr>
 <tr>
@@ -2646,7 +2673,7 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 </tr>
 <tr>
 <td>takeover_queue_type ( <code>string</code> )</td>
-<td>Queue type for the take-over queue. Valid values are: <code>''</code>, <code>'quorum'</code>, <code>'classic'</code>. The value will be used for the "x-queue-type" argument while declaring a queue. With '', the type of the queue will be the default type on the vhost.</td>
+<td>Queue type for the take-over queue. Valid values are: <code>''</code>, <code>'quorum'</code>, <code>'classic'</code>. The value will be used for the "x-queue-type" argument while declaring a queue. With '', the type of the queue will be the default type defined for the vhost.</td>
 <td>''</td>
 </tr>
 <tr>

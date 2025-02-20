@@ -1377,6 +1377,20 @@
   
   
     <li class="md-nav__item">
+      <a href="nodes/flowdata/multi_map.html" class="md-nav__link">
+        Multi map
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="nodes/flowdata/path_split.html" class="md-nav__link">
         Path split
       </a>
@@ -2570,6 +2584,15 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - the path to a directory</span>
 <span style="color: #75715e">## dfs.script_path = /home/heyoka/workspace/faxe/dfs/</span>
 
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_DFS_DEBUG</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">dfs.debug</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">off</span>
+
 <span style="color: #75715e">## ----------------------------------------------------------------</span>
 <span style="color: #75715e">## API USER - default user, that will be created on first startup</span>
 <span style="color: #75715e">## ----------------------------------------------------------------</span>
@@ -2826,6 +2849,18 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #a6e22e">dequeue.step_size</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">3</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------</span>
+<span style="color: #75715e">## NODE SPECIFIC settings</span>
+<span style="color: #75715e">## -------------------------------------------------------------------------</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_NODE_CRATE_QUERY_CONT_EXTENDED_LOG</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">node.crate_query_cont.extended_log</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">off</span>
+
+<span style="color: #75715e">## -------------------------------------------------------------------------</span>
 <span style="color: #75715e">## S7 DEFAULTS</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------</span>
 <span style="color: #75715e">## for every unique ip address used by s7_read nodes,</span>
@@ -2885,15 +2920,10 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #a6e22e">mqtt_pool.enable</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">on</span>
 
 <span style="color: #75715e">## max size (maximum number of connections) for the mqtt connection pool</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: 30</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## ENV-Key: FAXE_MQTT_POOL_MAX_SIZE</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## Acceptable values:</span>
-<span style="color: #75715e">##   - an integer</span>
-<span style="color: #a6e22e">mqtt_pool.max_size</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">30</span>
-
+<span style="color: #75715e">## {mapping, &quot;mqtt_pool.max_size&quot;, &quot;faxe.mqtt_pool.max_size&quot;,</span>
+<span style="color: #75715e">## [{default, 30}, {datatype, integer}]</span>
+<span style="color: #75715e">## }.</span>
+<span style="color: #75715e">## mqtt host</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: 10.14.204.20</span>
 <span style="color: #75715e">## </span>
@@ -3235,6 +3265,16 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - on or off</span>
 <span style="color: #75715e">## crate.tls.enable = off</span>
 
+<span style="color: #75715e">## CrateDB ignore rules</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: code=5000,message=example</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_CRATE_IGNORE_RULES</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">crate.ignore_rules</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">code=5000,message=example</span>
+
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## CrateDB defaults (http api)</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
@@ -3288,8 +3328,27 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #a6e22e">crate_http.database</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">doc</span>
 
-<span style="color: #75715e">## crate tls</span>
-<span style="color: #75715e">## enable the use of tls for crate http connections</span>
+<span style="color: #75715e">## cratedb http connection timeout</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 30s</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_CRATE_HTTP_CONNECTION_TIMEOUT</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">crate_http.connection_timeout</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">30s</span>
+
+<span style="color: #75715e">## cratedb http query timeout</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 15s</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_CRATE_HTTP_QUERY_TIMEOUT</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">crate_http.query_timeout</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">15s</span>
+
+<span style="color: #75715e">## crate tls - enable the use of tls for crate http connections</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: off</span>
 <span style="color: #75715e">## </span>
@@ -3298,16 +3357,6 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - on or off</span>
 <span style="color: #75715e">## crate_http.tls.enable = off</span>
-
-<span style="color: #75715e">## CrateDB ignore rules</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: code=5000,message=example</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## ENV-Key: FAXE_CRATE_IGNORE_RULES</span>
-<span style="color: #75715e">## </span>
-<span style="color: #75715e">## Acceptable values:</span>
-<span style="color: #75715e">##   - text</span>
-<span style="color: #a6e22e">crate.ignore_rules</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">code=5000,message=example</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## InfluxDB defaults (http api)</span>
@@ -3605,8 +3654,6 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #a6e22e">debug.time</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">3m</span>
 
 <span style="color: #75715e">## ----------------------- FLOW_CHANGED --------------------------</span>
-<span style="color: #75715e">## flow_changed handler MQTT</span>
-<span style="color: #75715e">## enable/disable flow_changed handler mqtt</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: off</span>
 <span style="color: #75715e">## </span>
@@ -3643,6 +3690,74 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #75715e">## flow_changed.handler.mqtt.base_topic = sys/faxe</span>
+
+<span style="color: #75715e">## ----------------------- FLOW HEALTH STATUS (observer) --------------------------</span>
+<span style="color: #75715e">## enable/disable flow health observer process</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_OBSERVER_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">flow_health.observer.enable</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">on</span>
+
+<span style="color: #75715e">##</span>
+<span style="color: #75715e">## Interval at which the observer reports the status of a flow, if there are not any other reports sent.</span>
+<span style="color: #75715e">## Default: 3m</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_OBSERVER_REPORT_INTERVAL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">flow_health.observer.report_interval</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">3m</span>
+
+<span style="color: #75715e">##</span>
+<span style="color: #75715e">## Interval at which the stopped status of a flow is sent </span>
+<span style="color: #75715e">## Default: 60m</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_POST_MORTEM_REPORT_INTERVAL</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
+<span style="color: #a6e22e">flow_health.post_mortem.report_interval</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">60m</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">flow_health.handler.mqtt.enable</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">on</span>
+
+<span style="color: #75715e">## flow_health handler mqtt host</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: </span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_HOST</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #75715e">## flow_health.handler.mqtt.host = example.com</span>
+
+<span style="color: #75715e">## flow_health handler mqtt port</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_PORT</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #75715e">## flow_health.handler.mqtt.port = 1883</span>
+
+<span style="color: #75715e">## flow_health handler mqtt base topic</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_BASE_TOPIC</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #75715e">## flow_health.handler.mqtt.base_topic = sys/faxe</span>
 </code></pre></div>
 
 

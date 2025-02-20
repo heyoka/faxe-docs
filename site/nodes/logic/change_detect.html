@@ -1369,6 +1369,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../flowdata/multi_map.html" class="md-nav__link">
+        Multi map
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../flowdata/path_split.html" class="md-nav__link">
         Path split
       </a>
@@ -2421,12 +2435,22 @@ So that after the timeout the first data_item will be emitted. </li>
 <tr>
 <td><em>[node]</em> fields( <code>string_list</code> )</td>
 <td>List of fields to monitor</td>
-<td>optional</td>
+<td>undefined</td>
 </tr>
 <tr>
 <td>reset_timeout( <code>duration</code> )</td>
 <td>Previous values TTL</td>
 <td>3h</td>
+</tr>
+<tr>
+<td>group_by( <code>string</code> )</td>
+<td>Group the internal buffer by the value of this field, so that for every different value of it holds its own last value.</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>strict( <code>boolean</code> )</td>
+<td>If <code>fields</code> are given, when strict is set to true, all values have to change in order for the node to let a data_point pass. This has no effect, when <code>fields</code> is not given.</td>
+<td>true</td>
 </tr>
 </tbody>
 </table>
