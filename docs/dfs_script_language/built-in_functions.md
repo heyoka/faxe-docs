@@ -315,6 +315,31 @@ Results in `['orange', 'navel-orange']`.
 | `ls_mem_set(Key)` -> any                                    | get the set value associated with Key from the flow-memory                                                                                      |                                                  |
 | `build_plc_addresses(Jsn)` -> list                          | Given jsn list with PLC address information, builds address strings, that can be used for the [s7read](../nodes/data_collection/s7read.md) node |                                                  |
 
+### build_plc_addresses(Jsn) -> list 
+
+Jsn is a list of objects containing plc address information in one of two formats:
+
+* `{"bit": 2, "byte": 7, "db": 2077.0, "offset": 324}` results in a BOOL address: `DB2077.DBX342.2` (byte-1 + 12<const offset>)
+* `{"offset": 36.0, "db": 11245.0, "var_type": "DINT" [, "var_len":1]}` results in `DB11245.DBDINT36` (`var_len` is only used, when `var_type` is "STRING")
+
+| var_type |                 |
+|----------|-----------------|
+| BOOL     |                 | 
+| UINT     |                 |
+| UDINT    |                 | 
+| WORD     |                 | 
+| DWORD    |                 | 
+| TIME     |                 | 
+| CHAR     |                 | 
+| BYTE     |                 | 
+| REAL     |                 |
+| DATETIME |                 |
+| STRING   | needs `var_len` |
+
+If the function sees any other format or a field missing, it will fail.
+
+----------------------------------------------------------------
+
 ### Conditional functions
 
 ## Special if function

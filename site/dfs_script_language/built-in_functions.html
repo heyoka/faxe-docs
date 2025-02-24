@@ -612,6 +612,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#build_plc_addressesjsn-list" class="md-nav__link">
+    build_plc_addresses(Jsn) -&gt; list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conditional-functions" class="md-nav__link">
     Conditional functions
   </a>
@@ -2495,6 +2502,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#build_plc_addressesjsn-list" class="md-nav__link">
+    build_plc_addresses(Jsn) -&gt; list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conditional-functions" class="md-nav__link">
     Conditional functions
   </a>
@@ -3387,6 +3401,68 @@ The second example selects the first name with 'color' <code>orange</code> and t
 </tr>
 </tbody>
 </table>
+<h3 id="build_plc_addressesjsn-list">build_plc_addresses(Jsn) -&gt; list</h3>
+<p>Jsn is a list of objects containing plc address information in one of two formats:</p>
+<ul>
+<li><code>{"bit": 2, "byte": 7, "db": 2077.0, "offset": 324}</code> results in a BOOL address: <code>DB2077.DBX342.2</code> (byte-1 + 12<const offset>)</li>
+<li><code>{"offset": 36.0, "db": 11245.0, "var_type": "DINT" [, "var_len":1]}</code> results in <code>DB11245.DBDINT36</code> (<code>var_len</code> is only used, when <code>var_type</code> is "STRING")</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>var_type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOL</td>
+<td></td>
+</tr>
+<tr>
+<td>UINT</td>
+<td></td>
+</tr>
+<tr>
+<td>UDINT</td>
+<td></td>
+</tr>
+<tr>
+<td>WORD</td>
+<td></td>
+</tr>
+<tr>
+<td>DWORD</td>
+<td></td>
+</tr>
+<tr>
+<td>TIME</td>
+<td></td>
+</tr>
+<tr>
+<td>CHAR</td>
+<td></td>
+</tr>
+<tr>
+<td>BYTE</td>
+<td></td>
+</tr>
+<tr>
+<td>REAL</td>
+<td></td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td></td>
+</tr>
+<tr>
+<td>STRING</td>
+<td>needs <code>var_len</code></td>
+</tr>
+</tbody>
+</table>
+<p>If the function sees any other format or a field missing, it will fail.</p>
+<hr />
 <h3 id="conditional-functions">Conditional functions</h3>
 <h2 id="special-if-function">Special if function</h2>
 <p><strong>If</strong></p>
