@@ -2524,13 +2524,13 @@ Note the 'as' parameter here: It gives the output data a new root-object ('data'
 </code></pre></div>
 
 <h3 id="using-__state-in-modifier">Using __state in modifier</h3>
-<p><code>__state</code> contains the data_point, that was emitted before, we can implement a simple counter:</p>
+<p><code>__state</code> contains the data_point, that was emitted previously, we can implement a simple counter with that for example:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">json_emitter(</span><span style="color: #e6db74">&#39;{&quot;field1&quot;: 1}&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modify</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;field1&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modify_with</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">lambda</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;__state.field1&quot;</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
 </code></pre></div>
 
-<p>Output is a data_point with an every increasing value for <code>field1</code>.</p>
+<p>Output is a data_point with an ever increasing value for <code>field1</code>.</p>
 <hr />
 <h3 id="batch-output-and-one_shot">Batch output and one_shot</h3>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">start_time</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;2021-11-16T16:21:00.000Z&#39;</span>

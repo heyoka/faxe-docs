@@ -84,16 +84,15 @@ Sample output:
 ```
 ### Using __state in modifier
 
-`__state` contains the data_point, that was emitted before, we can implement a simple counter:
+`__state` contains the data_point, that was emitted previously, we can implement a simple counter with that for example:
 
 ```dfs  
 |json_emitter('{"field1": 1}')
 .modify('field1')
 .modify_with(lambda: "__state.field1" + 1)
 
-
 ```
-Output is a data_point with an every increasing value for `field1`.
+Output is a data_point with an ever increasing value for `field1`.
 
 ------------------------------------------------------
 
