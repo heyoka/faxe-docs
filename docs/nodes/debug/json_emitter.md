@@ -82,6 +82,18 @@ Sample output:
 }
 
 ```
+### Using __state in modifier
+
+`__state` contains the data_point, that was emitted before, we can implement a simple counter:
+
+```dfs  
+|json_emitter('{"field1": 1}')
+.modify('field1')
+.modify_with(lambda: "__state.field1" + 1)
+
+
+```
+Output is a data_point with an every increasing value for `field1`.
 
 ------------------------------------------------------
 

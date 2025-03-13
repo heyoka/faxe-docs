@@ -3311,12 +3311,12 @@ The second example selects the first name with 'color' <code>orange</code> and t
 </tr>
 <tr>
 <td><code>random(N::int)</code> -&gt; integer</td>
-<td>generate a random integer uniformly distributed between 1 and N</td>
+<td>generate a random integer uniformly distributed between 1 and N, N &gt; 0</td>
 <td></td>
 </tr>
 <tr>
 <td><code>random(N::int, M::int)</code> -&gt; integer</td>
-<td>generate a random integer uniformly distributed between N and M</td>
+<td>generate a random integer uniformly distributed between N and M, N &gt; 0 and M &gt; N</td>
 <td></td>
 </tr>
 <tr>
@@ -3397,6 +3397,11 @@ The second example selects the first name with 'color' <code>orange</code> and t
 <tr>
 <td><code>build_plc_addresses(Jsn)</code> -&gt; list</td>
 <td>Given jsn list with PLC address information, builds address strings, that can be used for the <a href="../nodes/data_collection/s7read.html">s7read</a> node</td>
+<td></td>
+</tr>
+<tr>
+<td><code>build_plc_addresses(Jsn, FieldName::string)</code> -&gt; list</td>
+<td>Injects the results of building the addresses back into the given JsnList and returns the updated List</td>
 <td></td>
 </tr>
 </tbody>
