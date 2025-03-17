@@ -36,20 +36,21 @@ Example
 Parameters
 ----------
 
-| Parameter                      | Description                                                                             | Default                                          |
-|--------------------------------|-----------------------------------------------------------------------------------------|--------------------------------------------------|
-| host( `string` )               | Ip address or hostname of the broker                                                    | config: `amqp.host`/`FAXE_AMQP_HOST`             |
-| port( `integer` )              | The broker's port                                                                       | config: `amqp.port`/`FAXE_AMQP_PORT`             |
-| user( `string` )               | AMQP user                                                                               | config: `amqp.user`/`FAXE_AMQP_USER`             |
-| pass( `string` )               | AMQP password                                                                           | config: `amqp.pass`/`FAXE_AMQP_PASS`             |
-| vhost( `string` )              | vhost to connect to on the broker                                                       | '/'                                              |
-| routing_key( `string` )        | routing key for the published messages                                                  | undefined                                        |
-| routing_key_lambda( `lambda` ) | lambda expression producing a routing key for the published messages                    | undefined                                        |
-| routing_key_field( `string` )  | path to a field in the current data-item, who's value should be used as the routing-key | undefined                                        |
-| exchange( `string` )           | name of the exchange to publish to                                                      |                                                  |
-| qos( `integer` )               | publish quality, see table below for details                                            | 1                                                |
-| persistent( `bool` )           | whether to send the amqp messages with delivery-mode 2 (persistent)                     | false (delivery_mode = 1)                        |
-| ssl( is_set )                  | whether to use ssl                                                                      | config: `amqp.ssl.enable`/`FAXE_AMQP_SSL_ENABLE` |
+| Parameter                      | Description                                                                               | Default                                                      |
+|--------------------------------|-------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| host( `string` )               | Ip address or hostname of the broker                                                      | config: `amqp.host`/`FAXE_AMQP_HOST`                         |
+| port( `integer` )              | The broker's port                                                                         | config: `amqp.port`/`FAXE_AMQP_PORT`                         |
+| user( `string` )               | AMQP user                                                                                 | config: `amqp.user`/`FAXE_AMQP_USER`                         |
+| pass( `string` )               | AMQP password                                                                             | config: `amqp.pass`/`FAXE_AMQP_PASS`                         |
+| vhost( `string` )              | vhost to connect to on the broker                                                         | '/'                                                          |
+| vhost_prefix( `string` )       | prefix for the `vhost` name, will be applied only, if `vhost` is not the default of `'/'` | config: `rabbitmq.vhost_prefix`/`FAXE_RABBITMQ_VHOST_PREFIX` |
+| routing_key( `string` )        | routing key for the published messages                                                    | undefined                                                    |
+| routing_key_lambda( `lambda` ) | lambda expression producing a routing key for the published messages                      | undefined                                                    |
+| routing_key_field( `string` )  | path to a field in the current data-item, who's value should be used as the routing-key   | undefined                                                    |
+| exchange( `string` )           | name of the exchange to publish to                                                        |                                                              |
+| qos( `integer` )               | publish quality, see table below for details                                              | 1                                                            |
+| persistent( `bool` )           | whether to send the amqp messages with delivery-mode 2 (persistent)                       | false (delivery_mode = 1)                                    |
+| ssl( is_set )                  | whether to use ssl                                                                        | config: `amqp.ssl.enable`/`FAXE_AMQP_SSL_ENABLE`             |
 
 One of `routing_key`, `routing_key_lambda`, `routing_key_field` is required.
 

@@ -2486,8 +2486,10 @@ If a flow that is setup to do a queue migration is restarted <strong>after</stro
 takeover_queue declaration is done in <a href="https://www.rabbitmq.com/client-libraries/dotnet-api-guide#passive-declaration">passive mode</a>, which means that a queue can only be used, if it already exists on the broker.</p>
 <p>New node parameters are added (See <a href="#Parameters">parameters</a> table below):</p>
 <ul>
+<li><code>takeover</code>: enable/disable queue takeover mode</li>
 <li><code>takeover_queue</code>: Name of the existing queue from which to takeover the data stream.</li>
 <li><code>takeover_queue_type</code>: "x-queue-type" amqp argument</li>
+<li><code>takeover_queue_prefix</code>: prefix for takeover queues</li>
 <li><code>takeover_vhost</code> </li>
 </ul>
 <p>All other parameters are the same for both consumers, except:</p>
@@ -2562,6 +2564,11 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 <td>'/'</td>
 </tr>
 <tr>
+<td>vhost_prefix( <code>string</code> )</td>
+<td>prefix for the <code>vhost</code> and <code>takeover_vhost</code> name, will be applied only, if <code>vhost</code> or <code>takeover_vhost</code> is not the default of <code>'/'</code></td>
+<td>config: <code>rabbitmq.vhost_prefix</code>/<code>FAXE_RABBITMQ_VHOST_PREFIX</code></td>
+</tr>
+<tr>
 <td>routing_key( <code>string</code> ) <em>deprecated</em></td>
 <td>routing key to use for queue binding</td>
 <td>undefined</td>
@@ -2579,7 +2586,7 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 <tr>
 <td>queue_prefix( <code>string</code> )</td>
 <td>prefix for the queue-name that will be ensured to exist for <code>queue</code></td>
-<td>from config</td>
+<td>config: <code>rabbitmq.queue_prefix</code>/<code>FAXE_RABBITMQ_QUEUE_PREFIX</code></td>
 </tr>
 <tr>
 <td>queue_type( <code>string</code> )</td>
@@ -2594,7 +2601,7 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 <tr>
 <td>exchange_prefix( <code>string</code> )</td>
 <td>prefix for the exchange-name that will be ensured to exist for <code>exchange</code></td>
-<td>from config</td>
+<td>config: <code>rabbitmq.exchange_prefix</code>/<code>FAXE_RABBITMQ_EXCHANGE_PREFIX</code></td>
 </tr>
 <tr>
 <td>prefetch( <code>integer</code> )</td>
@@ -2667,14 +2674,24 @@ Exchanges and queues are specific to a vhost, so we cannot bind a queue on one v
 <td>false</td>
 </tr>
 <tr>
+<td>takeover ( <code>boolean</code> )</td>
+<td>Enable/disable queue takeover mode.</td>
+<td>config: <code>rabbitmq.takeover</code>/<code>FAXE_RABBITMQ_TAKEOVER</code></td>
+</tr>
+<tr>
 <td>takeover_queue ( <code>string</code> )</td>
 <td>Name for the take-over queue.</td>
-<td>undefined</td>
+<td>FlowName + '_' + NodeName</td>
+</tr>
+<tr>
+<td>takeover_queue_prefix ( <code>string</code> )</td>
+<td>prefix for the queue-name that will be ensured to exist for <code>takeover_queue</code></td>
+<td>config: <code>rabbitmq.takeover_queue_prefix</code>/<code>FAXE_RABBITMQ_TAKEOVER_QUEUE_PREFIX</code></td>
 </tr>
 <tr>
 <td>takeover_queue_type ( <code>string</code> )</td>
 <td>Queue type for the take-over queue. Valid values are: <code>''</code>, <code>'quorum'</code>, <code>'classic'</code>. The value will be used for the "x-queue-type" argument while declaring a queue. With '', the type of the queue will be the default type defined for the vhost.</td>
-<td>''</td>
+<td>config: <code>rabbitmq.takeover_queue_type</code>/<code>FAXE_RABBITMQ_TAKEOVER_QUEUE_TYPE</code></td>
 </tr>
 <tr>
 <td>takeover_vhost ( <code>string</code> )</td>
