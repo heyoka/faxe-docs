@@ -49,7 +49,7 @@ Since vs. 1.0.13
 The node derives the list of fields (faxe and db) by querying the schema for the given table.
 In this example schema (`database`) 'test' is used.
 
-
+> Note: `table`, `database` and `db_fields` names will be quoted automatically, if necessary.
 
 Parameters
 ----------
