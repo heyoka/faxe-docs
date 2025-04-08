@@ -1220,6 +1220,13 @@ paths:
           required: false
           type: boolean
           allowEmptyValue: false
+        - in: query
+          name: "ignore"
+          description: "If true (default), success is also returned, if the task does not exist."
+          required: false
+          type: boolean
+          default: true
+          allowEmptyValue: true
   /task/stop/{task_id}/true:
     get:
       summary: Stop a task permanently.
@@ -1254,6 +1261,13 @@ paths:
           required: false
           type: boolean
           allowEmptyValue: false
+        - in: query
+          name: "ignore"
+          description: "If true (default), success is also returned, if the task does not exist."
+          required: false
+          type: boolean
+          default: true
+          allowEmptyValue: true
   /task/start_group/{task_id}/{concurrency}:
     get:
       summary: Start a task-group concurrently.
@@ -1567,6 +1581,13 @@ paths:
           name: "task_id"
           type: string
           required: true
+        - in: query
+          name: "ignore"
+          description: "If true (default), success is also returned, if the task does not exist."
+          required: false
+          type: boolean
+          default: true
+          allowEmptyValue: true
   /task/delete/{task_id}/force:
     delete:
       summary: "Force delete a task"
@@ -1587,6 +1608,13 @@ paths:
           name: "task_id"
           type: string
           required: true
+        - in: query
+          name: "ignore"
+          description: "If true (default), success is also returned, if the task does not exist."
+          required: false
+          type: boolean
+          default: true
+          allowEmptyValue: true
   /task/add_tags/{task_id}:
     post:
       summary: Add tags to a task

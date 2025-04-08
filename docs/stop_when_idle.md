@@ -2,7 +2,7 @@
 
 > Since version 1.1.0
 
-Normally a flow in faxe is supposed to run 24/7/365 and forever, but sometimes it is desirable to stop a flow under special conditions.
+Normally a flow in faxe is supposed to run 24/7/365, but sometimes it is desirable to stop a flow under special conditions.
 
 Faxe has a feature called `stop when idle`, that can be used in every flow and from every node.
 
@@ -60,7 +60,7 @@ The `stop when idle` feature can help us here:
 
 ```
 
-When the `_stop_idle` parameter is **true** for any node in a flow (could be used in more than on node in a flow), 
+When the `_stop_idle` parameter is **true** for any node in a flow (could be used in more than one node in a flow), 
 the nodes base process will check periodically, if the node is idle already for the given amount of time (3 minutes in the above example).
 
 #### What does idle exactly mean ?

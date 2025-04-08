@@ -865,6 +865,15 @@ rabbitmq.root_exchange = x_lm_fanout
 rabbitmq.queue_prefix = q_
 
 ## 
+## Default: classic
+## 
+## ENV-Key: FAXE_RABBITMQ_QUEUE_TYPE
+## 
+## Acceptable values:
+##   - text
+rabbitmq.queue_type = classic
+
+## 
 ## Default: x_
 ## 
 ## ENV-Key: FAXE_RABBITMQ_EXCHANGE_PREFIX
@@ -872,6 +881,48 @@ rabbitmq.queue_prefix = q_
 ## Acceptable values:
 ##   - text
 rabbitmq.exchange_prefix = x_
+
+## 
+## Default: dh_
+## 
+## ENV-Key: FAXE_RABBITMQ_VHOST_PREFIX
+## 
+## Acceptable values:
+##   - text
+rabbitmq.vhost_prefix = dh_
+
+## ------------------------------------------------------------------------------
+## Queue takeover
+## -----------------------------------------------------------------------------------
+## rabbitmq default prefix for every takeover-queue
+## the amqp_consume node will use this to ensure this prefix is there for every queue
+## such a prefix is often used to select policies by (the start of) the queue name
+## 
+## Default: q_
+## 
+## ENV-Key: FAXE_RABBITMQ_TAKEOVER_QUEUE_PREFIX
+## 
+## Acceptable values:
+##   - text
+rabbitmq.takeover_queue_prefix = q_
+
+## 
+## Default: classic
+## 
+## ENV-Key: FAXE_RABBITMQ_TAKEOVER_QUEUE_TYPE
+## 
+## Acceptable values:
+##   - text
+rabbitmq.takeover_queue_type = classic
+
+## 
+## Default: off
+## 
+## ENV-Key: FAXE_RABBITMQ_TAKEOVER
+## 
+## Acceptable values:
+##   - on or off
+## rabbitmq.takeover = off
 
 ## -------------------------------------------------------------------------------
 ## CrateDB defaults (postgreSQL connect)
@@ -1184,6 +1235,16 @@ azure_blob.account_secret = azblob-secret
 ##   - text
 ## report_debug.mqtt_host = example.com
 
+## default base topic for all mqtt handlers
+## 
+## Default: sys/faxe/default
+## 
+## ENV-Key: FAXE_HANDLER_MQTT_BASE_TOPIC
+## 
+## Acceptable values:
+##   - text
+handler.mqtt.base_topic = sys/faxe/default
+
 ## 
 ## ----------------------- METRICS ------------------------------
 ## Metrics handler MQTT sends metric events to an mqtt broker
@@ -1218,13 +1279,13 @@ metrics.handler.mqtt.enable = off
 ## The mqtt handler will prefix its topic with this value,
 ## note that it must be a valid mqtt topic string.
 ## 
-## Default: sys/faxe
+## Default: 
 ## 
 ## ENV-Key: FAXE_METRICS_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## metrics.handler.mqtt.base_topic = sys/faxe
+## metrics.handler.mqtt.base_topic = 
 
 ## flow-metrics publish interval
 ## Interval at which flow-metrics get publish to the handler
@@ -1267,13 +1328,13 @@ conn_status.handler.mqtt.enable = on
 
 ## connection status handler mqtt base topic
 ## 
-## Default: sys/faxe
+## Default: 
 ## 
 ## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## conn_status.handler.mqtt.base_topic = sys/faxe
+## conn_status.handler.mqtt.base_topic = 
 
 ## ----------------------- DEBUG AND TRACE --------------------------
 ## Debug trace handler MQTT
@@ -1307,13 +1368,13 @@ debug.handler.mqtt.enable = off
 
 ## debug_trace handler mqtt base topic
 ## 
-## Default: sys/faxe
+## Default: 
 ## 
 ## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## debug.handler.mqtt.base_topic = sys/faxe
+## debug.handler.mqtt.base_topic = 
 
 ## time debug and node-metric messages will be published to the configured endpoints
 ## 
@@ -1355,13 +1416,13 @@ flow_changed.handler.mqtt.enable = off
 
 ## flow_changed handler mqtt base topic
 ## 
-## Default: sys/faxe
+## Default: 
 ## 
 ## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## flow_changed.handler.mqtt.base_topic = sys/faxe
+## flow_changed.handler.mqtt.base_topic = 
 
 ## ----------------------- FLOW HEALTH STATUS (observer) --------------------------
 ## enable/disable flow health observer process
@@ -1374,8 +1435,7 @@ flow_changed.handler.mqtt.enable = off
 ##   - on or off
 flow_health.observer.enable = on
 
-##
-## Interval at which the observer reports the status of a flow, if there are not any other reports sent.
+## 
 ## Default: 3m
 ## 
 ## ENV-Key: FAXE_FLOW_HEALTH_OBSERVER_REPORT_INTERVAL
@@ -1384,8 +1444,7 @@ flow_health.observer.enable = on
 ##   - a time duration with units, e.g. '10s' for 10 seconds
 flow_health.observer.report_interval = 3m
 
-##
-## Interval at which the stopped status of a flow is sent 
+## 
 ## Default: 60m
 ## 
 ## ENV-Key: FAXE_FLOW_HEALTH_POST_MORTEM_REPORT_INTERVAL
@@ -1423,13 +1482,13 @@ flow_health.handler.mqtt.enable = on
 
 ## flow_health handler mqtt base topic
 ## 
-## Default: sys/faxe
+## Default: 
 ## 
 ## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_BASE_TOPIC
 ## 
 ## Acceptable values:
 ##   - text
-## flow_health.handler.mqtt.base_topic = sys/faxe
+## flow_health.handler.mqtt.base_topic = 
 
 
 ```

@@ -7,7 +7,7 @@ def device_id = 255
 def modbus_ip = '127.0.0.1'
 def mqtt_broker = '10.14.204.3'
 
-|modbus()
+|modbus_read()
 .ip('127.0.0.1')
 %% not the default port here
 .port(8899)

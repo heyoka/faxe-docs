@@ -3193,6 +3193,15 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #a6e22e">rabbitmq.queue_prefix</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">q_</span>
 
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: classic</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_QUEUE_TYPE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">rabbitmq.queue_type</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">classic</span>
+
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: x_</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_EXCHANGE_PREFIX</span>
@@ -3200,6 +3209,48 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #a6e22e">rabbitmq.exchange_prefix</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">x_</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: dh_</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_VHOST_PREFIX</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">rabbitmq.vhost_prefix</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">dh_</span>
+
+<span style="color: #75715e">## ------------------------------------------------------------------------------</span>
+<span style="color: #75715e">## Queue takeover</span>
+<span style="color: #75715e">## -----------------------------------------------------------------------------------</span>
+<span style="color: #75715e">## rabbitmq default prefix for every takeover-queue</span>
+<span style="color: #75715e">## the amqp_consume node will use this to ensure this prefix is there for every queue</span>
+<span style="color: #75715e">## such a prefix is often used to select policies by (the start of) the queue name</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: q_</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_TAKEOVER_QUEUE_PREFIX</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">rabbitmq.takeover_queue_prefix</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">q_</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: classic</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_TAKEOVER_QUEUE_TYPE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">rabbitmq.takeover_queue_type</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">classic</span>
+
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: off</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_RABBITMQ_TAKEOVER</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #75715e">## rabbitmq.takeover = off</span>
 
 <span style="color: #75715e">## -------------------------------------------------------------------------------</span>
 <span style="color: #75715e">## CrateDB defaults (postgreSQL connect)</span>
@@ -3512,6 +3563,16 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - text</span>
 <span style="color: #75715e">## report_debug.mqtt_host = example.com</span>
 
+<span style="color: #75715e">## default base topic for all mqtt handlers</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: sys/faxe/default</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_HANDLER_MQTT_BASE_TOPIC</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">handler.mqtt.base_topic</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">sys/faxe/default</span>
+
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ----------------------- METRICS ------------------------------</span>
 <span style="color: #75715e">## Metrics handler MQTT sends metric events to an mqtt broker</span>
@@ -3546,13 +3607,13 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## The mqtt handler will prefix its topic with this value,</span>
 <span style="color: #75715e">## note that it must be a valid mqtt topic string.</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_METRICS_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## metrics.handler.mqtt.base_topic = sys/faxe</span>
+<span style="color: #75715e">## metrics.handler.mqtt.base_topic = </span>
 
 <span style="color: #75715e">## flow-metrics publish interval</span>
 <span style="color: #75715e">## Interval at which flow-metrics get publish to the handler</span>
@@ -3595,13 +3656,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## connection status handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_CONN_STATUS_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## conn_status.handler.mqtt.base_topic = sys/faxe</span>
+<span style="color: #75715e">## conn_status.handler.mqtt.base_topic = </span>
 
 <span style="color: #75715e">## ----------------------- DEBUG AND TRACE --------------------------</span>
 <span style="color: #75715e">## Debug trace handler MQTT</span>
@@ -3635,13 +3696,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## debug_trace handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_DEBUG_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## debug.handler.mqtt.base_topic = sys/faxe</span>
+<span style="color: #75715e">## debug.handler.mqtt.base_topic = </span>
 
 <span style="color: #75715e">## time debug and node-metric messages will be published to the configured endpoints</span>
 <span style="color: #75715e">## </span>
@@ -3683,13 +3744,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## flow_changed handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_FLOW_CHANGED_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## flow_changed.handler.mqtt.base_topic = sys/faxe</span>
+<span style="color: #75715e">## flow_changed.handler.mqtt.base_topic = </span>
 
 <span style="color: #75715e">## ----------------------- FLOW HEALTH STATUS (observer) --------------------------</span>
 <span style="color: #75715e">## enable/disable flow health observer process</span>
@@ -3702,8 +3763,7 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - on or off</span>
 <span style="color: #a6e22e">flow_health.observer.enable</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">on</span>
 
-<span style="color: #75715e">##</span>
-<span style="color: #75715e">## Interval at which the observer reports the status of a flow, if there are not any other reports sent.</span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: 3m</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_OBSERVER_REPORT_INTERVAL</span>
@@ -3712,8 +3772,7 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">##   - a time duration with units, e.g. &#39;10s&#39; for 10 seconds</span>
 <span style="color: #a6e22e">flow_health.observer.report_interval</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">3m</span>
 
-<span style="color: #75715e">##</span>
-<span style="color: #75715e">## Interval at which the stopped status of a flow is sent </span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: 60m</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_POST_MORTEM_REPORT_INTERVAL</span>
@@ -3751,13 +3810,13 @@ Here are the simple rules of the syntax:</p>
 
 <span style="color: #75715e">## flow_health handler mqtt base topic</span>
 <span style="color: #75715e">## </span>
-<span style="color: #75715e">## Default: sys/faxe</span>
+<span style="color: #75715e">## Default: </span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_FLOW_HEALTH_HANDLER_MQTT_BASE_TOPIC</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## Acceptable values:</span>
 <span style="color: #75715e">##   - text</span>
-<span style="color: #75715e">## flow_health.handler.mqtt.base_topic = sys/faxe</span>
+<span style="color: #75715e">## flow_health.handler.mqtt.base_topic = </span>
 </code></pre></div>
 
 
