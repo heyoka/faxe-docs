@@ -1222,7 +1222,7 @@ paths:
           allowEmptyValue: false
         - in: query
           name: "ignore"
-          description: "If true (default), success is also returned, if the task does not exist."
+          description: "If true (default), success is also returned, if the task is currently not running."
           required: false
           type: boolean
           default: true
@@ -1263,7 +1263,7 @@ paths:
           allowEmptyValue: false
         - in: query
           name: "ignore"
-          description: "If true (default), success is also returned, if the task does not exist."
+          description: "If true (default), success is also returned, if the task is currently not running."
           required: false
           type: boolean
           default: true
