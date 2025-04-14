@@ -1619,7 +1619,7 @@ paths:
     post:
       summary: Add tags to a task
       description: Add a list of tags to the specified task, note that a task will have a tag only once,
-          it does not matter, if a task is added multiple times.
+          it does not matter, if a tag is added multiple times.
       produces:
         - application/json
       consumes:
