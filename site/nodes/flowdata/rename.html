@@ -1437,6 +1437,19 @@
     Examples
   </a>
   
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-special-case" class="md-nav__link">
+    A special case:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2369,6 +2382,19 @@
     Examples
   </a>
   
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-special-case" class="md-nav__link">
+    A special case:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2411,6 +2437,21 @@
 </code></pre></div>
 
 <p>Here we use a mixed list, strings and a lambda expression, for the as_fields parameter.</p>
+<h3 id="a-special-case">A special case:</h3>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f92672">|</span><span style="color: #f8f8f2">rename()</span>
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;&#39;</span><span style="color: #f8f8f2">)</span> 
+<span style="color: #f8f8f2">.</span><span style="color: #a6e22e">as_fields</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;data&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<p>Every field in the root object will be moved to a new object <code>data</code>.</p>
+<p>Before:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;field_a&quot;</span><span style="color: #f8f8f2">:  </span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;field_b&quot;</span><span style="color: #f8f8f2">:  </span><span style="color: #e6db74">&quot;2&quot;</span><span style="color: #f8f8f2">}</span>
+</code></pre></div>
+
+<p>After:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span><span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">: {</span><span style="color: #f92672">&quot;field_a&quot;</span><span style="color: #f8f8f2">:  </span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">, </span><span style="color: #f92672">&quot;field_b&quot;</span><span style="color: #f8f8f2">:  </span><span style="color: #e6db74">&quot;2&quot;</span><span style="color: #f8f8f2">}}</span>
+</code></pre></div>
+
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>

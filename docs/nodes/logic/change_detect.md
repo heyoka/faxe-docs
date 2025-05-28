@@ -35,10 +35,10 @@ Example
 Parameters
 ----------
 
-| Parameter                        | Description                                                                                                                                                                  | Default   |
-|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| _[node]_ fields( `string_list` ) | List of fields to monitor                                                                                                                                                    | undefined |
-| reset_timeout( `duration` )      | Previous values TTL                                                                                                                                                          | 3h        |
-| group_by( `string` )             | Group the internal buffer by the value of this field, so that for every different value of it holds its own last value.                                                      | undefined |
-| strict( `boolean` )              | If `fields` are given, when strict is set to true, all values have to change in order for the node to let a data_point pass. This has no effect, when `fields` is not given. | true      |
+| Parameter                        | Description                                                                                                                                                                                    | Default   |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| _[node]_ fields( `string_list` ) | List of fields to monitor                                                                                                                                                                      | undefined |
+| reset_timeout( `duration` )      | Previous values TTL                                                                                                                                                                            | 3h        |
+| group_by( `string` )             | Group the internal buffer by the value of this field, so that for every different value of it holds its own last value.                                                                        | undefined |
+| strict( `boolean` )              | If `fields` are given, when strict is set to true, all values have to change in order for the node to let a data_point pass. This has no effect, when the number of `fields` is less than two. | true      |
  

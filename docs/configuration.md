@@ -524,6 +524,77 @@ dequeue.step_size = 3
 ## NODE SPECIFIC settings
 ## -------------------------------------------------------------------------
 ## 
+## Default: on
+## 
+## ENV-Key: FAXE_SEQ_CHECK_ENABLE
+## 
+## Acceptable values:
+##   - on or off
+seq_check.enable = on
+
+## sequence check topic depth, number of topic parts to use for meta data
+## 
+## Default: 5
+## 
+## ENV-Key: FAXE_SEQ_CHECK_TOPIC_DEPTH
+## 
+## Acceptable values:
+##   - an integer
+seq_check.topic_depth = 5
+
+## sequence check topic mask
+## 
+## Default: comp/data/{site}/Mqtt_SeqCheck/{dataformat}
+## 
+## ENV-Key: FAXE_SEQ_CHECK_TOPIC_MASK
+## 
+## Acceptable values:
+##   - text
+seq_check.topic_mask = comp/data/{site}/Mqtt_SeqCheck/{dataformat}
+
+## sequence check topic mapping
+## 
+## Default: {"{site}": 3, "{dataformat}": 4, "bleepp": 5}
+## 
+## ENV-Key: FAXE_SEQ_CHECK_TOPIC_MAPPING
+## 
+## Acceptable values:
+##   - text
+seq_check.topic_mapping = {"{site}": 3, "{dataformat}": 4, "bleepp": 5}
+
+## sequence check - size off seq buffer window to evaluate
+## 
+## Default: 50
+## 
+## ENV-Key: FAXE_SEQ_CHECK_WIN_SIZE
+## 
+## Acceptable values:
+##   - an integer
+seq_check.win_size = 50
+
+## sequence check - seq threshold, after this the seq rolls over to 1
+## 
+## Default: 9999999
+## 
+## ENV-Key: FAXE_SEQ_CHECK_MAX_SEQ_NUM
+## 
+## Acceptable values:
+##   - an integer
+seq_check.max_seq_num = 9999999
+
+## mqtt_publish node adds meta data field called '_meta'
+## if set to on, the mqtt_subscribe node will remove this field from every data_point after the check is done
+## 
+## Default: on
+## 
+## ENV-Key: FAXE_SEQ_CHECK_CLEANUP
+## 
+## Acceptable values:
+##   - on or off
+seq_check.cleanup = on
+
+## extended logging for node crate_query_cont
+## 
 ## Default: off
 ## 
 ## ENV-Key: FAXE_NODE_CRATE_QUERY_CONT_EXTENDED_LOG

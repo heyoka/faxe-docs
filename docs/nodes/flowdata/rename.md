@@ -24,6 +24,24 @@ _`Since 0.19.4`_ : We can now also use [lambda expressions](../../dfs_script_lan
 ```
 Here we use a mixed list, strings and a lambda expression, for the as_fields parameter.
 
+### A special case:
+```dfs  
+|rename()
+.fields('') 
+.as_fields('data')
+```
+Every field in the root object will be moved to a new object `data`.
+
+Before:
+```json
+{"field_a":  1, "field_b":  "2"}
+```
+After:
+```json
+{"data": {"field_a":  1, "field_b":  "2"}}
+```
+
+
 Parameters
 ----------
 

@@ -2852,6 +2852,77 @@ Here are the simple rules of the syntax:</p>
 <span style="color: #75715e">## NODE SPECIFIC settings</span>
 <span style="color: #75715e">## -------------------------------------------------------------------------</span>
 <span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_SEQ_CHECK_ENABLE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">seq_check.enable</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">on</span>
+
+<span style="color: #75715e">## sequence check topic depth, number of topic parts to use for meta data</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 5</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_SEQ_CHECK_TOPIC_DEPTH</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">seq_check.topic_depth</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">5</span>
+
+<span style="color: #75715e">## sequence check topic mask</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: comp/data/{site}/Mqtt_SeqCheck/{dataformat}</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_SEQ_CHECK_TOPIC_MASK</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">seq_check.topic_mask</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">comp/data/{site}/Mqtt_SeqCheck/{dataformat}</span>
+
+<span style="color: #75715e">## sequence check topic mapping</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: {&quot;{site}&quot;: 3, &quot;{dataformat}&quot;: 4, &quot;bleepp&quot;: 5}</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_SEQ_CHECK_TOPIC_MAPPING</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - text</span>
+<span style="color: #a6e22e">seq_check.topic_mapping</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">{&quot;{site}&quot;: 3, &quot;{dataformat}&quot;: 4, &quot;bleepp&quot;: 5}</span>
+
+<span style="color: #75715e">## sequence check - size off seq buffer window to evaluate</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 50</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_SEQ_CHECK_WIN_SIZE</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">seq_check.win_size</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">50</span>
+
+<span style="color: #75715e">## sequence check - seq threshold, after this the seq rolls over to 1</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: 9999999</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_SEQ_CHECK_MAX_SEQ_NUM</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - an integer</span>
+<span style="color: #a6e22e">seq_check.max_seq_num</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">9999999</span>
+
+<span style="color: #75715e">## mqtt_publish node adds meta data field called &#39;_meta&#39;</span>
+<span style="color: #75715e">## if set to on, the mqtt_subscribe node will remove this field from every data_point after the check is done</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Default: on</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## ENV-Key: FAXE_SEQ_CHECK_CLEANUP</span>
+<span style="color: #75715e">## </span>
+<span style="color: #75715e">## Acceptable values:</span>
+<span style="color: #75715e">##   - on or off</span>
+<span style="color: #a6e22e">seq_check.cleanup</span><span style="color: #f8f8f2"> </span><span style="color: #f92672">=</span><span style="color: #f8f8f2"> </span><span style="color: #e6db74">on</span>
+
+<span style="color: #75715e">## extended logging for node crate_query_cont</span>
+<span style="color: #75715e">## </span>
 <span style="color: #75715e">## Default: off</span>
 <span style="color: #75715e">## </span>
 <span style="color: #75715e">## ENV-Key: FAXE_NODE_CRATE_QUERY_CONT_EXTENDED_LOG</span>

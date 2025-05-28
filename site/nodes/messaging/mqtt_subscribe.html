@@ -1906,6 +1906,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sequence-check" class="md-nav__link">
+    Sequence check
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequence check">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-data_point-with-meta-data" class="md-nav__link">
+    Example data_point with meta data:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
@@ -2372,6 +2392,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sequence-check" class="md-nav__link">
+    Sequence check
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequence check">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-data_point-with-meta-data" class="md-nav__link">
+    Example data_point with meta data:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
@@ -2401,6 +2441,33 @@
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">topics</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;top/grips/#&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_field</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;UTC-Stamp&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dt_format</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;float_micro&#39;</span><span style="color: #f8f8f2">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="sequence-check">Sequence check</h2>
+<p>since version 1.5.5</p>
+<p>This node can perform a check on data based on <strong>meta data</strong>, that gets added to each data-item by an <a href="mqtt_publish.html">mqtt_publish</a> node.
+This data will include a sequence number that will be checked.
+The check will be performed after n number of items to see, if data has been lost along the way.
+In case of missing data, a new mqtt message will be sent out to report this.
+If no meta data is present in a data_point, it will be ignored in regards of the check.
+For more information see <a href="../../configuration.html">configuration</a>.</p>
+<h4 id="example-data_point-with-meta-data">Example data_point with meta data:</h4>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%;"><span></span><code><span style="color: #f8f8f2">{</span>
+<span style="color: #f8f8f2">    </span><span style="color: #f92672">&quot;ts&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">1748438360000</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">    </span><span style="color: #f92672">&quot;data&quot;</span><span style="color: #f8f8f2">: {</span>
+<span style="color: #f8f8f2">        </span><span style="color: #960050; background-color: #1e0010">...</span>
+<span style="color: #f8f8f2">        }</span>
+<span style="color: #f8f8f2">    },</span>
+<span style="color: #f8f8f2">    </span><span style="color: #f92672">&quot;_meta&quot;</span><span style="color: #f8f8f2">: {</span>
+<span style="color: #f8f8f2">        </span><span style="color: #f92672">&quot;topic&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #e6db74">&quot;data/test/seq_check/v1&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">        </span><span style="color: #f92672">&quot;started&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #66d9ef">false</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">        </span><span style="color: #f92672">&quot;seq&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #ae81ff">4392</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">        </span><span style="color: #f92672">&quot;nodeid&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #e6db74">&quot;mqtt_publish3&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">        </span><span style="color: #f92672">&quot;flowid&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #e6db74">&quot;test1&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">        </span><span style="color: #f92672">&quot;device&quot;</span><span style="color: #f8f8f2">: </span><span style="color: #e6db74">&quot;3a79daae29a28b4e2f754720a2bcd31c&quot;</span>
+<span style="color: #f8f8f2">    }</span>
+<span style="color: #f8f8f2">}</span>
 </code></pre></div>
 
 <h2 id="parameters">Parameters</h2>
@@ -2482,6 +2549,11 @@
 <td>ssl( is_set )</td>
 <td>whether to use ssl</td>
 <td>config: <code>mqtt.ssl.enable</code>/<code>FAXE_MQTT_SSL_ENABLE</code></td>
+</tr>
+<tr>
+<td>remove_meta_field( <code>bool</code> )</td>
+<td>whether to remove meta data added by an mqtt_publish node for the seq_check feature (see <a href="#Sequence check">here</a>)</td>
+<td>config: <code>seq_check.cleanup</code>/<code>FAXE_SEQ_CHECK_CLEANUP</code></td>
 </tr>
 </tbody>
 </table>
