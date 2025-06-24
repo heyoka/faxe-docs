@@ -648,6 +648,54 @@ paths:
           description: Unauthorized
         405:
           description: Method not allowed
+  /stats/seq_check:
+    get:
+      summary: Info about the built in seq_check (counters)
+      description: Returns a list of information about topic and counters used in seq_check.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json:
+              {
+                "counters":
+                  [
+                    {"/data/some/rand/topic": 234},
+                    {"/data/some/other/topic": 65465}
+                  ]
+              }
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
+  /stats/s7:
+    get:
+      summary: Infos about the s7 connection pools
+      description: Returns information about the every s7 connection and read pool currently in use.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
+  /stats/python:
+    get:
+      summary: Infos about custom python nodes
+      description: Returns information, mostly about resource consumption of every instance of custom python nodes currently in use.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        405:
+          description: Method not allowed
   /tasks:
     get:
       summary: List of tasks
